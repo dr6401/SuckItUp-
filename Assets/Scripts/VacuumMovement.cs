@@ -7,6 +7,10 @@ public class VacuumMovement : MonoBehaviour
     public float jumpForce = 5f;
     public float drag = 2f;
     public float mouseSensitivity = 2f; // Controls mouse sensitivity
+    public float gravity = 9.81f;
+    public float maxGravity = 50f;
+    public float gravityAcceleration = 1.5f;
+    private float currentGravity;
 
     private Rigidbody rb;
     private bool isGrounded;
@@ -16,7 +20,7 @@ public class VacuumMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.drag = drag;
+        rb.linearDamping = drag;
         rb.freezeRotation = true; // Prevents physics-based rotation
 
         // Get the camera (Make sure the camera is a child of the player)
@@ -29,6 +33,7 @@ public class VacuumMovement : MonoBehaviour
 
     void Update()
     {
+        ApplyGravity();
         Move();
         RotatePlayer();
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
@@ -45,13 +50,26 @@ public class VacuumMovement : MonoBehaviour
         Vector3 moveDirection = transform.right * moveX + transform.forward * moveZ; // Move relative to player direction
         float speed = moveSpeed * (Input.GetKey(KeyCode.LeftShift) ? sprintMultiplier : 1f);
 
-        rb.AddForce(moveDirection.normalized * speed * 10f, ForceMode.Acceleration);
+        rb.AddForce(moveDirection.normalized * speed * 10f, ForceMode.Force);
     }
 
     void Jump()
     {
-        rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
         isGrounded = false;
+    }
+
+    void ApplyGravity()
+    {
+        if (!isGrounded)
+        {
+            currentGravity = Mathf.Min(maxGravity, currentGravity * gravityAcceleration);
+            rb.linearVelocity += Vector3.down * currentGravity * Time.deltaTime;
+        }
+        else
+        {
+            currentGravity = gravity;
+        }
     }
 
     void RotatePlayer()
