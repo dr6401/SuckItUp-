@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class VacuumMovement : MonoBehaviour
+[RequireComponent(typeof(CharacterController))]
+public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float sprintMultiplier = 1.5f;
@@ -11,14 +12,21 @@ public class VacuumMovement : MonoBehaviour
     public float maxGravity = 50f;
     public float gravityAcceleration = 1.5f;
     private float currentGravity;
+    private bool canMove = true;
+    private bool isRunning = false;
+    private float movementDirectionY;
+    float rotationX;
 
     private Rigidbody rb;
     private bool isGrounded;
     private Transform cameraTransform; // Store camera reference
     private float verticalRotation = 0f;
+    CharacterController characterController;
 
+    Vector3 moveDirection = Vector3.zero;
     void Start()
     {
+        characterController = GetComponent<CharacterController>();
         rb = GetComponent<Rigidbody>();
         rb.linearDamping = drag;
         rb.freezeRotation = true; // Prevents physics-based rotation
@@ -40,36 +48,46 @@ public class VacuumMovement : MonoBehaviour
         {
             Jump();
         }
+        Debug.Log("Is player grounded:" + isGrounded);
     }
 
     void Move()
     {
-        float moveX = Input.GetAxis("Horizontal");
-        float moveZ = Input.GetAxis("Vertical");
+        Vector3 forward = transform.TransformDirection(Vector3.forward);
+        Vector3 right= transform.TransformDirection(Vector3.right);
 
-        Vector3 moveDirection = transform.right * moveX + transform.forward * moveZ; // Move relative to player direction
-        float speed = moveSpeed * (Input.GetKey(KeyCode.LeftShift) ? sprintMultiplier : 1f);
+        isRunning = Input.GetKey(KeyCode.LeftShift);
 
-        rb.AddForce(moveDirection.normalized * speed * 10f, ForceMode.Force);
+        float curSpeedX = canMove ? (isRunning ? moveSpeed * sprintMultiplier : moveSpeed) * Input.GetAxis("Vertical") : 0;
+        float curSpeedZ = canMove ? (isRunning ? moveSpeed * sprintMultiplier : moveSpeed) * Input.GetAxis("Horizontal") : 0;
+
+        movementDirectionY = moveDirection.y;
+        moveDirection = (forward * curSpeedX) + (right * curSpeedZ);
+
+        characterController.Move(moveDirection * Time.deltaTime);
     }
 
     void Jump()
     {
-        rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
-        isGrounded = false;
+        if (characterController.isGrounded)
+        {
+            moveDirection.y = jumpForce;
+            isGrounded = false;
+        }
     }
 
     void ApplyGravity()
     {
-        if (!isGrounded)
+        if (characterController.isGrounded)
         {
-            currentGravity = Mathf.Min(maxGravity, currentGravity * gravityAcceleration);
-            rb.linearVelocity += Vector3.down * currentGravity * Time.deltaTime;
+            currentGravity = 0.1f;
         }
         else
         {
-            currentGravity = gravity;
+            currentGravity += gravity * Time.deltaTime;
         }
+
+        moveDirection.y = -currentGravity;
     }
 
     void RotatePlayer()
