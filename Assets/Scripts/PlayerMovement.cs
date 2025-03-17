@@ -6,31 +6,23 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float sprintMultiplier = 1.5f;
     public float jumpForce = 5f;
-    public float drag = 2f;
     public float mouseSensitivity = 2f; // Controls mouse sensitivity
     public float gravity = 9.81f;
     public float maxGravity = 50f;
     public float gravityAcceleration = 1.5f;
-    private float currentGravity;
     private bool canMove = true;
     private bool isRunning = false;
-    private float movementDirectionY;
-    float rotationX;
 
-    private Rigidbody rb;
-    private bool isGrounded;
-    private Transform cameraTransform; // Store camera reference
+    //private bool isGrounded = true;
+    public Transform cameraTransform; // Store camera reference
     private float verticalRotation = 0f;
+    private float verticalVelocity = 0f;
     CharacterController characterController;
 
     Vector3 moveDirection = Vector3.zero;
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        rb = GetComponent<Rigidbody>();
-        rb.linearDamping = drag;
-        rb.freezeRotation = true; // Prevents physics-based rotation
-
         // Get the camera (Make sure the camera is a child of the player)
         cameraTransform = Camera.main.transform;
 
@@ -44,11 +36,12 @@ public class PlayerMovement : MonoBehaviour
         ApplyGravity();
         Move();
         RotatePlayer();
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && characterController.isGrounded)
         {
             Jump();
         }
-        Debug.Log("Is player grounded:" + isGrounded);
+        Debug.Log("Is player grounded:" + characterController.isGrounded);
+        Debug.Log("Current verticalVelocity: " + verticalVelocity);
     }
 
     void Move()
@@ -61,33 +54,29 @@ public class PlayerMovement : MonoBehaviour
         float curSpeedX = canMove ? (isRunning ? moveSpeed * sprintMultiplier : moveSpeed) * Input.GetAxis("Vertical") : 0;
         float curSpeedZ = canMove ? (isRunning ? moveSpeed * sprintMultiplier : moveSpeed) * Input.GetAxis("Horizontal") : 0;
 
-        movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedZ);
+        moveDirection.y = verticalVelocity;
 
         characterController.Move(moveDirection * Time.deltaTime);
     }
 
     void Jump()
     {
-        if (characterController.isGrounded)
-        {
-            moveDirection.y = jumpForce;
-            isGrounded = false;
-        }
+         verticalVelocity = jumpForce;
+         //isGrounded = false;
+         Debug.Log("Jumped");
     }
 
     void ApplyGravity()
     {
         if (characterController.isGrounded)
         {
-            currentGravity = 0.1f;
+            verticalVelocity -= 0.1f;
         }
         else
         {
-            currentGravity += gravity * Time.deltaTime;
+            verticalVelocity -= gravity * Time.deltaTime;
         }
-
-        moveDirection.y = -currentGravity;
     }
 
     void RotatePlayer()
@@ -105,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
         cameraTransform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
     }
 
-    private void OnTriggerStay(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Ground"))
         {
@@ -119,5 +108,5 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = false;
         }
-    }
+    }*/
 }

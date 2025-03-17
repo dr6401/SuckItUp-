@@ -45,7 +45,6 @@ public class EnemyScript : MonoBehaviour
     {
         if ((transform.position - playerPosition).sqrMagnitude < minPlayerChasingDistance * minPlayerChasingDistance)
         {
-            Debug.Log("Time for peace has passed. Hunting yo ass");
             agent.SetDestination(playerPosition);
         }
     }
