@@ -40,8 +40,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         }
-        Debug.Log("Is player grounded:" + characterController.isGrounded);
-        Debug.Log("Current verticalVelocity: " + verticalVelocity);
     }
 
     void Move()

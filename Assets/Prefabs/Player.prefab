@@ -55,11 +55,11 @@ MonoBehaviour:
   moveSpeed: 1
   sprintMultiplier: 1.5
   jumpForce: 30
-  drag: 0
   mouseSensitivity: 2
   gravity: 9.81
   maxGravity: 100
   gravityAcceleration: 1.5
+  cameraTransform: {fileID: 0}
 --- !u!114 &826207211167296944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,6 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shooterWeapon: {fileID: 8813503632283820654}
   vacuumWeapon: {fileID: 6155433996507247864}
+  camera: {fileID: 0}
 --- !u!33 &7403795466888647579
 MeshFilter:
   m_ObjectHideFlags: 0

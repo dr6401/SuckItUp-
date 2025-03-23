@@ -51,7 +51,7 @@ public class EnemyScript : MonoBehaviour
 
     private void HitPlayer()
     {
-        Debug.Log("Hit yo ass");
+        //Debug.Log("Hit yo ass");
         timeSinceAttack = 0;
     }
 }
