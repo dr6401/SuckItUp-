@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public class WeaponHandler : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class WeaponHandler : MonoBehaviour
     [SerializeField] private GameObject hitEffectPrefab;
     [SerializeField] private GameObject enemyHitEffectPrefab;
     public RawImage crossHair;
+    [SerializeField] private float maxAmmo = 30f;
+    private float currentAmmo;
+    [SerializeField] private TMP_Text ammoText;
 
     // Update is called once per frame
 
@@ -27,6 +31,7 @@ public class WeaponHandler : MonoBehaviour
         isVacuumWeaponActive = false;
         camera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         crossHair.enabled = false;
+        currentAmmo = maxAmmo;
     }
     void Update()
     {
@@ -36,12 +41,22 @@ public class WeaponHandler : MonoBehaviour
         {
             WeaponSwitch();
         }
-
-        if (isShooterWeaponActive && Input.GetMouseButton(0) && timeSinceLastShot >= fireRate)
+        // Shoot
+        if (isShooterWeaponActive && Input.GetMouseButton(0) && timeSinceLastShot >= fireRate && currentAmmo > 0)
         {
             Shoot();
             timeSinceLastShot = 0;
         }
+        // Suck
+
+        if (!isShooterWeaponActive && Input.GetMouseButton(0))
+        {
+            Vacuum();
+        }
+        else {
+            StopSuckingDustParticles();
+        }
+
         // Aim
         if (Input.GetMouseButton(1))
         {
@@ -51,6 +66,8 @@ public class WeaponHandler : MonoBehaviour
         {
             crossHair.enabled = false;
         }
+
+        ammoText.text = "Ammo: " + currentAmmo.ToString();
     }
 
     private void Shoot()
@@ -79,7 +96,20 @@ public class WeaponHandler : MonoBehaviour
                 Instantiate(hitEffectPrefab, hit.point, Quaternion.identity);
             }
         }
+
+        currentAmmo--;
     }
+
+    private void Vacuum()
+    {
+        SuckDustParticlesIn(true);
+    }
+
+    public void RefillAmmo(int reloadAmmount)
+    {
+        currentAmmo += reloadAmmount;
+    }
+
 
     private void WeaponSwitch()
     {
@@ -101,7 +131,28 @@ public class WeaponHandler : MonoBehaviour
         Debug.Log("Changed crosshair colour to white");
     }
 
-    private void OnDrawGizmos()
+    private void SuckDustParticlesIn(bool isSucking)
+    {
+        Collider[] dustPickups = Physics.OverlapSphere(transform.position, 10f); // 10f = radius in which player will detect if any dusts are going to become suckable
+
+        foreach (Collider dust in dustPickups)
+        {
+            if (dust.CompareTag("DustPickup"))
+            {
+                //Debug.Log("Mf named " + dust.name + " has been detected as a Dusty guy in dustPickups array");
+                dust.GetComponent<DustPickup>().isGettingSucked = isSucking;
+            }
+        }
+    }
+
+    // When have time refactor this, so that it will only excecute SuckDustParticlesIn(false) once,
+    // so it won't need to do the Collider Physics.Overlap checking constantly, but turn it off just once
+    private void StopSuckingDustParticles()
+    {
+        SuckDustParticlesIn(false);
+    }
+
+    /*private void OnDrawGizmos()
     {
         if (camera.transform == null)
         {
@@ -117,5 +168,5 @@ public class WeaponHandler : MonoBehaviour
         Vector3 shootDirection = camera.transform.forward;
 
         Gizmos.DrawRay(shootOrigin, shootDirection * 100f);
-    }
+    }*/
 }

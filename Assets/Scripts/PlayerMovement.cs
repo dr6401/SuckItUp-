@@ -91,20 +91,4 @@ public class PlayerMovement : MonoBehaviour
         verticalRotation = Mathf.Clamp(verticalRotation, -80f, 80f);
         cameraTransform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
     }
-
-    /*private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
-
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Ground"))
-        {
-            isGrounded = false;
-        }
-    }*/
 }

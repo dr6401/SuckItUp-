@@ -191,3 +191,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   currentHealth: 0
+  dustPickupPrefab: {fileID: 595504505390220050, guid: 6b7f082c78ed8a146aadd8c036b32730, type: 3}
+  minSpawnedDustParticles: 8
+  maxSpawnedDustParticles: 20
