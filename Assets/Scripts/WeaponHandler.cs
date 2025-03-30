@@ -15,14 +15,15 @@ public class WeaponHandler : MonoBehaviour
     private float shootingRange = 100f;
     [SerializeField] private float fireRate = 0.2f;
     private float timeSinceLastShot = 0;
-    [SerializeField] private Camera camera;
+    [SerializeField] private new Camera camera;
     [SerializeField] private GameObject hitEffectPrefab;
     [SerializeField] private GameObject enemyHitEffectPrefab;
     public RawImage crossHair;
     [SerializeField] private float maxAmmo = 30f;
     private float currentAmmo;
     [SerializeField] private TMP_Text ammoText;
-
+    public Animator primaryWeaponAnimator;
+    public bool isAiming;
     // Update is called once per frame
 
     private void Start()
@@ -60,11 +61,23 @@ public class WeaponHandler : MonoBehaviour
         // Aim
         if (Input.GetMouseButton(1))
         {
-            crossHair.enabled = true;
+            if (!isAiming)
+            {
+                isAiming = true;
+                StartCoroutine(EnableSightsWhenAiming());
+            }
+            else
+            {
+                crossHair.enabled = true;
+            }
+            primaryWeaponAnimator.SetBool("IsAiming", true);
+            //crossHair.enabled = true;
         }
         else
         {
+            isAiming = false;
             crossHair.enabled = false;
+            primaryWeaponAnimator.SetBool("IsAiming", false);
         }
 
         ammoText.text = "Ammo: " + currentAmmo.ToString();
@@ -78,11 +91,11 @@ public class WeaponHandler : MonoBehaviour
         Vector3 shootOrigin = camera.transform.position;
         Vector3 shootDirection = camera.transform.forward;
 
-        Debug.Log("Shooting!");
+        //Debug.Log("Shooting!");
 
         if (Physics.Raycast(shootOrigin, shootDirection, out hit, shootingRange, layerMask))
         {
-            Debug.Log("hit " + hit.collider.gameObject.name + "!");
+            //Debug.Log("hit " + hit.collider.gameObject.name + "!");
 
             if (hit.collider.tag == "Enemy")
             {
@@ -119,16 +132,24 @@ public class WeaponHandler : MonoBehaviour
         vacuumWeapon.SetActive(isVacuumWeaponActive);
     }
 
+    private IEnumerator EnableSightsWhenAiming()
+    {
+        float animationTimeForAimSightsToBeEnabled = 0.15f;
+        yield return new WaitForSeconds(animationTimeForAimSightsToBeEnabled);
+        crossHair.enabled = true;
+
+    }
+
     private IEnumerator CrossHairColourToggle()
     {
         float colourToggleDuration = 0.1f;
-        Debug.Log("Finna change crosshair colour to green");
+        //Debug.Log("Finna change crosshair colour to green");
         crossHair.color = Color.green;
 
         yield return new WaitForSeconds(colourToggleDuration);
 
         crossHair.color = Color.white;
-        Debug.Log("Changed crosshair colour to white");
+        //Debug.Log("Changed crosshair colour to white");
     }
 
     private void SuckDustParticlesIn(bool isSucking)

@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private float verticalRotation = 0f;
     private float verticalVelocity = 0f;
     CharacterController characterController;
+    [SerializeField] private WeaponHandler weaponHandler;
 
     Vector3 moveDirection = Vector3.zero;
     void Start()
@@ -25,10 +26,12 @@ public class PlayerMovement : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         // Get the camera (Make sure the camera is a child of the player)
         cameraTransform = Camera.main.transform;
+        weaponHandler = GetComponent<WeaponHandler>();
 
         // Lock the cursor so it feels like an FPS
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
     }
 
     void Update()
@@ -40,6 +43,15 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         }
+        if (weaponHandler.isAiming)
+        {
+            moveSpeed = 2.5f;
+        }
+        else
+        {
+            moveSpeed = 5f;
+        }
+
     }
 
     void Move()
@@ -47,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right= transform.TransformDirection(Vector3.right);
 
-        isRunning = Input.GetKey(KeyCode.LeftShift);
+        isRunning = (Input.GetKey(KeyCode.LeftShift) && !weaponHandler.isAiming); // Enable sprint only if player isn't aiming
 
         float curSpeedX = canMove ? (isRunning ? moveSpeed * sprintMultiplier : moveSpeed) * Input.GetAxis("Vertical") : 0;
         float curSpeedZ = canMove ? (isRunning ? moveSpeed * sprintMultiplier : moveSpeed) * Input.GetAxis("Horizontal") : 0;
@@ -62,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
     {
          verticalVelocity = jumpForce;
          //isGrounded = false;
-         Debug.Log("Jumped");
+         //Debug.Log("Jumped");
     }
 
     void ApplyGravity()
