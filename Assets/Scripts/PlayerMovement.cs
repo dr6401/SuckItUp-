@@ -3,7 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    private float moveSpeed;
+    public float baseMoveSpeed = 1f;
+    private float halvedBaseMoveSpeed;
     public float sprintMultiplier = 1.5f;
     public float jumpForce = 5f;
     public float mouseSensitivity = 2f; // Controls mouse sensitivity
@@ -23,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection = Vector3.zero;
     void Start()
     {
+        halvedBaseMoveSpeed = baseMoveSpeed / 2;
         characterController = GetComponent<CharacterController>();
         // Get the camera (Make sure the camera is a child of the player)
         cameraTransform = Camera.main.transform;
@@ -45,11 +48,11 @@ public class PlayerMovement : MonoBehaviour
         }
         if (weaponHandler.isAiming)
         {
-            moveSpeed = 2.5f;
+            moveSpeed = halvedBaseMoveSpeed;
         }
         else
         {
-            moveSpeed = 5f;
+            moveSpeed = baseMoveSpeed;
         }
 
     }

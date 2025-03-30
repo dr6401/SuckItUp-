@@ -4,9 +4,11 @@ public class EnemySpawner : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
+    //NOTE: Position this object in a place around which you want the enemies to spawn in radious "spawnOffset"
+
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] float spawnInterval = 3f;
-    private float spawnOffset = 20f;
+    public float spawnOffset = 20f;
     private float timeSinceSpawned = 0f;
     void Start()
     {
