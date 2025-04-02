@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     public float mouseSensitivity = 2f; // Controls mouse sensitivity
     public float gravity = 9.81f;
     public float maxGravity = 50f;
-    public float gravityAcceleration = 1.5f;
     private bool canMove = true;
     private bool isRunning = false;
 
@@ -54,7 +53,6 @@ public class PlayerMovement : MonoBehaviour
         {
             moveSpeed = baseMoveSpeed;
         }
-
     }
 
     void Move()
@@ -84,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (characterController.isGrounded)
         {
-            verticalVelocity -= 0.1f;
+            //verticalVelocity -= 0.1f;
         }
         else
         {

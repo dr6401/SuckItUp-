@@ -97,7 +97,7 @@ public class WeaponHandler : MonoBehaviour
         {
             //Debug.Log("hit " + hit.collider.gameObject.name + "!");
 
-            if (hit.collider.tag == "Enemy")
+            if (hit.collider.tag == "Enemy" || hit.collider.tag == "EnemySpawner")
             {
                 StartCoroutine(CrossHairColourToggle());
                 EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();

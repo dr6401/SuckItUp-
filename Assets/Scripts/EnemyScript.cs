@@ -7,22 +7,23 @@ public class EnemyScript : MonoBehaviour
 
     [SerializeField] GameObject player;
     [SerializeField] float minPlayerChasingDistance = 50f;
-    [SerializeField] float attackRange = 1f;
+    [SerializeField] float attackRange = 5f;
     [SerializeField] float attackCooldown = 3f;
+    [SerializeField] private int attackDamage = 5;
     private float timeSinceAttack = 2;
     //[SerializeField] float chaseSpeed = 5f;
     private Vector3 playerPosition;
-    private Rigidbody rb;
     private NavMeshAgent agent;
+    [SerializeField] PlayerHealth playerHealth;
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
 
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
+        playerHealth = player.GetComponent<PlayerHealth>();
     }
 
     // Update is called once per frame
@@ -53,5 +54,6 @@ public class EnemyScript : MonoBehaviour
     {
         //Debug.Log("Hit yo ass");
         timeSinceAttack = 0;
+        playerHealth.TakeDamage(attackDamage);
     }
 }
