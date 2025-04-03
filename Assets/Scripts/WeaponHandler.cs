@@ -18,6 +18,8 @@ public class WeaponHandler : MonoBehaviour
     [SerializeField] private new Camera camera;
     [SerializeField] private GameObject hitEffectPrefab;
     [SerializeField] private GameObject enemyHitEffectPrefab;
+    [SerializeField] private GameObject muzzleFlashPrefab;
+    [SerializeField] private Transform endOfBarrel;
     public RawImage crossHair;
     [SerializeField] private float maxAmmo = 30f;
     private float currentAmmo;
@@ -33,6 +35,10 @@ public class WeaponHandler : MonoBehaviour
         camera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         crossHair.enabled = false;
         currentAmmo = maxAmmo;
+        if (endOfBarrel == null)
+        {
+            endOfBarrel = GetComponentInChildren<Transform>().Find("EndOfBarrel");
+        }
     }
     void Update()
     {
@@ -90,6 +96,7 @@ public class WeaponHandler : MonoBehaviour
         RaycastHit hit;
         Vector3 shootOrigin = camera.transform.position;
         Vector3 shootDirection = camera.transform.forward;
+        Instantiate(muzzleFlashPrefab, endOfBarrel.position + endOfBarrel.forward * 0.2f + endOfBarrel.up * -0.025f, endOfBarrel.rotation, endOfBarrel);
 
         //Debug.Log("Shooting!");
 

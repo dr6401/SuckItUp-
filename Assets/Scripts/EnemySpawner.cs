@@ -9,9 +9,16 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float spawnInterval = 3f;
     public float spawnOffset = 20f;
     private float timeSinceSpawned = 0f;
+    private Transform enemiesFolder;
     void Start()
     {
-        
+        enemiesFolder = transform.Find("Enemies");
+        if (enemiesFolder == null)
+        {
+            GameObject newFolder = new GameObject("Enemies");
+            newFolder.transform.SetParent(transform);
+            enemiesFolder = newFolder.transform;
+        }
     }
 
     // Update is called once per frame
@@ -32,7 +39,9 @@ public class EnemySpawner : MonoBehaviour
         float zOffset = Random.Range(-spawnOffset, spawnOffset);
 
         Vector3 spawnPosition = new Vector3(thisObjectPosition.x + xOffset, thisObjectPosition.y, thisObjectPosition.z + zOffset);
-        Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
         timeSinceSpawned = 0;
+
+        enemy.transform.SetParent(enemiesFolder);
     }
 }

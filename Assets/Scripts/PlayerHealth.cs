@@ -4,7 +4,7 @@ using TMPro;
 public class PlayerHealth : MonoBehaviour
 {
 
-    [SerializeField] private static int maxHealth = 100;
+    [SerializeField] private int maxHealth = 100;
     private static int health;
     [SerializeField] private TMP_Text healthText;
 
