@@ -5,6 +5,11 @@ public class GameManager : MonoBehaviour
 {
     private float objectiveTextDuration = 7.5f;
     [SerializeField] private GameObject objectiveText;
+    [SerializeField] private GameObject keyBindingsText;
+    [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private WeaponHandler weaponHandler;
+    private bool keyBindingTextToggled = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -14,7 +19,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape)){
+            keyBindingTextToggled = !keyBindingTextToggled;
+            keyBindingsText.SetActive(keyBindingTextToggled);
+
+            objectiveText.SetActive(false);
+
+            Time.timeScale = keyBindingTextToggled ? 0f : 1f;
+            playerMovement.inputBlocked = keyBindingTextToggled;
+            weaponHandler.inputBlocked = keyBindingTextToggled;
+        }
     }
 
     private IEnumerator DisableText()

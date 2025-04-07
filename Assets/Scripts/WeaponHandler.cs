@@ -26,6 +26,7 @@ public class WeaponHandler : MonoBehaviour
     [SerializeField] private TMP_Text ammoText;
     public Animator primaryWeaponAnimator;
     public bool isAiming;
+    public bool inputBlocked = false;
     // Update is called once per frame
 
     private void Start()
@@ -42,50 +43,53 @@ public class WeaponHandler : MonoBehaviour
     }
     void Update()
     {
-        timeSinceLastShot += Time.deltaTime;
+        if (!inputBlocked)
+        {
+            timeSinceLastShot += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            WeaponSwitch();
-        }
-        // Shoot
-        if (isShooterWeaponActive && Input.GetMouseButton(0) && timeSinceLastShot >= fireRate && currentAmmo > 0)
-        {
-            Shoot();
-            timeSinceLastShot = 0;
-        }
-        // Suck
-
-        if (!isShooterWeaponActive && Input.GetMouseButton(0))
-        {
-            Vacuum();
-        }
-        else {
-            StopSuckingDustParticles();
-        }
-
-        // Aim
-        if (Input.GetMouseButton(1))
-        {
-            if (!isAiming)
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                isAiming = true;
-                StartCoroutine(EnableSightsWhenAiming());
+                WeaponSwitch();
+            }
+            // Shoot
+            if (isShooterWeaponActive && Input.GetMouseButton(0) && timeSinceLastShot >= fireRate && currentAmmo > 0)
+            {
+                Shoot();
+                timeSinceLastShot = 0;
+            }
+            // Suck
+
+            if (!isShooterWeaponActive && Input.GetMouseButton(0))
+            {
+                Vacuum();
             }
             else
             {
-                crossHair.enabled = true;
+                StopSuckingDustParticles();
             }
-            primaryWeaponAnimator.SetBool("IsAiming", true);
-            //crossHair.enabled = true;
-        }
-        else
-        {
-            isAiming = false;
-            crossHair.enabled = false;
-            primaryWeaponAnimator.SetBool("IsAiming", false);
-        }
 
+            // Aim
+            if (Input.GetMouseButton(1) && isShooterWeaponActive)
+            {
+                if (!isAiming)
+                {
+                    isAiming = true;
+                    StartCoroutine(EnableSightsWhenAiming());
+                }
+                else
+                {
+                    crossHair.enabled = true;
+                }
+                primaryWeaponAnimator.SetBool("IsAiming", true);
+                //crossHair.enabled = true;
+            }
+            else
+            {
+                isAiming = false;
+                crossHair.enabled = false;
+                primaryWeaponAnimator.SetBool("IsAiming", false);
+            }
+        }
         ammoText.text = "Ammo: " + currentAmmo.ToString();
     }
 

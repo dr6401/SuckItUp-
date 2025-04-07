@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public float maxGravity = 50f;
     private bool canMove = true;
     private bool isRunning = false;
+    public bool inputBlocked = false;
 
     //private bool isGrounded = true;
     public Transform cameraTransform; // Store camera reference
@@ -38,20 +39,23 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        ApplyGravity();
-        Move();
-        RotatePlayer();
-        if (Input.GetKeyDown(KeyCode.Space) && characterController.isGrounded)
+        if (!inputBlocked)
         {
-            Jump();
-        }
-        if (weaponHandler.isAiming)
-        {
-            moveSpeed = halvedBaseMoveSpeed;
-        }
-        else
-        {
-            moveSpeed = baseMoveSpeed;
+            ApplyGravity();
+            Move();
+            RotatePlayer();
+            if (Input.GetKeyDown(KeyCode.Space) && characterController.isGrounded)
+            {
+                Jump();
+            }
+            if (weaponHandler.isAiming)
+            {
+                moveSpeed = halvedBaseMoveSpeed;
+            }
+            else
+            {
+                moveSpeed = baseMoveSpeed;
+            }
         }
     }
 
