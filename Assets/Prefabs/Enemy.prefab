@@ -128,7 +128,7 @@ MonoBehaviour:
   player: {fileID: 0}
   minPlayerChasingDistance: 100
   attackRange: 2
-  attackCooldown: 3
+  attackCooldown: 2
   attackDamage: 5
   playerHealth: {fileID: 0}
 --- !u!114 &9063275716246866882

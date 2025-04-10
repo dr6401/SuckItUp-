@@ -31,6 +31,9 @@ public class WeaponHandler : MonoBehaviour
     private float aimingCameraFOV = 45f;
     private float targetFOV;
     private float zoomSpeed = 6f;
+    private bool isAlreadySucking;
+
+    private SoundManager soundManager;
     // Update is called once per frame
 
     private void Start()
@@ -43,6 +46,11 @@ public class WeaponHandler : MonoBehaviour
         if (endOfBarrel == null)
         {
             endOfBarrel = GetComponentInChildren<Transform>().Find("EndOfBarrel");
+        }
+        
+        if (soundManager == null)
+        {
+            soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
         }
     }
     void Update()
@@ -70,6 +78,11 @@ public class WeaponHandler : MonoBehaviour
             else
             {
                 StopSuckingDustParticles();
+                if (isAlreadySucking)
+                {
+                    soundManager.PlayEndVacuuming();
+                }
+                isAlreadySucking = false;
             }
 
             // Aim
@@ -135,6 +148,11 @@ public class WeaponHandler : MonoBehaviour
 
     private void Vacuum()
     {
+        if (!isAlreadySucking)
+        {
+            soundManager.PlayStartVacuuming();
+            isAlreadySucking = true;
+        }
         SuckDustParticlesIn(true);
     }
 

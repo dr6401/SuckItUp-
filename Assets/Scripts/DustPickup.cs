@@ -10,8 +10,14 @@ public class DustPickup : MonoBehaviour
     public bool isGettingSucked; //winky face
     private float accelerationFactor = 1.05f;
     private float minGetSuckedUpDistance = 1f;
+    private SoundManager soundManager;
     void Start()
     {
+        if (soundManager == null)
+        {
+            soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+        }
+        
         if (target == null)
         {
             target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -30,6 +36,7 @@ public class DustPickup : MonoBehaviour
             if (Vector3.Distance(transform.position, target.position) < minGetSuckedUpDistance)
             {
                 FindFirstObjectByType<WeaponHandler>().RefillAmmo(1);
+                soundManager.PlayDustSuction();
                 Destroy(gameObject);
             }
         }
