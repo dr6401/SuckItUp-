@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -12,13 +13,15 @@ public class EnemySpawner : MonoBehaviour
     private Transform enemiesFolder;
     void Start()
     {
-        enemiesFolder = transform.Find("Enemies");
-        if (enemiesFolder == null)
+        Transform parent = transform.parent;
+        GameObject folder =GameObject.Find("EnemiesFolder");
+        if (folder == null)
         {
-            GameObject newFolder = new GameObject("Enemies");
-            newFolder.transform.SetParent(transform);
-            enemiesFolder = newFolder.transform;
+            Debug.Log("Folder is null, creating new folder");
+            folder = new GameObject("EnemiesFolder");
+            folder.transform.parent = parent;
         }
+        enemiesFolder = folder.transform;
     }
 
     // Update is called once per frame
@@ -39,9 +42,17 @@ public class EnemySpawner : MonoBehaviour
         float zOffset = Random.Range(-spawnOffset, spawnOffset);
 
         Vector3 spawnPosition = new Vector3(thisObjectPosition.x + xOffset, thisObjectPosition.y, thisObjectPosition.z + zOffset);
-        GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-        timeSinceSpawned = 0;
 
-        enemy.transform.SetParent(enemiesFolder);
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(spawnPosition, out hit, 2f, NavMesh.AllAreas))
+        {
+            GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            timeSinceSpawned = 0;
+            enemy.transform.SetParent(enemiesFolder);
+        }
+        else
+        {
+            Debug.Log("Couldn't spawn enemy on NavMesh, trying to spawn again");
+        }
     }
 }

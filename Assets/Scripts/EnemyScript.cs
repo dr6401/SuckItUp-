@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,8 +8,8 @@ public class EnemyScript : MonoBehaviour
 
     [SerializeField] GameObject player;
     [SerializeField] float minPlayerChasingDistance = 50f;
-    [SerializeField] float attackRange = 5f;
-    [SerializeField] float attackCooldown = 3f;
+    [SerializeField] float attackRange = 2f;
+    [SerializeField] float attackCooldown = 1f;
     [SerializeField] private int attackDamage = 5;
     private float timeSinceAttack = 2;
     //[SerializeField] float chaseSpeed = 5f;
@@ -30,15 +31,12 @@ public class EnemyScript : MonoBehaviour
     void Update()
     {
         playerPosition = player.transform.position;
-        if (timeSinceAttack > attackCooldown)
-        {
-            ChasePlayer();
-            if ((transform.position - playerPosition).sqrMagnitude < attackRange * attackRange)
-            {
-                HitPlayer();
-            }
-        }
+        ChasePlayer();
 
+        if ((transform.position - playerPosition).sqrMagnitude < attackRange * attackRange && timeSinceAttack > attackCooldown)
+        {
+            HitPlayer();
+        }
         timeSinceAttack += Time.deltaTime;
     }
 

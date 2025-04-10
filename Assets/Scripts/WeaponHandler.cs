@@ -27,6 +27,10 @@ public class WeaponHandler : MonoBehaviour
     public Animator primaryWeaponAnimator;
     public bool isAiming;
     public bool inputBlocked = false;
+    private float notAminingCameraFOV = 60f;
+    private float aimingCameraFOV = 45f;
+    private float targetFOV;
+    private float zoomSpeed = 6f;
     // Update is called once per frame
 
     private void Start()
@@ -81,7 +85,7 @@ public class WeaponHandler : MonoBehaviour
                     crossHair.enabled = true;
                 }
                 primaryWeaponAnimator.SetBool("IsAiming", true);
-                //crossHair.enabled = true;
+                
             }
             else
             {
@@ -89,6 +93,11 @@ public class WeaponHandler : MonoBehaviour
                 crossHair.enabled = false;
                 primaryWeaponAnimator.SetBool("IsAiming", false);
             }
+            //Changing FOV for aiming transition
+            targetFOV = isAiming ? aimingCameraFOV : notAminingCameraFOV;
+            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
+
+
         }
         ammoText.text = "Ammo: " + currentAmmo.ToString();
     }

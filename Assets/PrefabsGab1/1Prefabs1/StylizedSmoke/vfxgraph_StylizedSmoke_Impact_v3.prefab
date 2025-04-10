@@ -72,6 +72,9 @@ VisualEffect:
       - m_Value: 3
         m_Name: VoronoiSpeed
         m_Overridden: 1
+      - m_Value: 0.01
+        m_Name: FresnelPower
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
