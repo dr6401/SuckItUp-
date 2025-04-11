@@ -3759,6 +3759,10 @@ PrefabInstance:
       propertyPath: 'dustParticlesCrumbling.Array.data[7]'
       value: 
       objectReference: {fileID: 8300000, guid: 92be81f6fa3b4b742b672e634b387158, type: 3}
+    - target: {fileID: 9022603881607913974, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
