@@ -992,11 +992,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1958061831142115717, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: maxSpawnedDustParticles
-      value: 80
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1958061831142115717, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: minSpawnedDustParticles
-      value: 60
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2725402623183118778, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_LocalScale.x
@@ -1053,6 +1053,10 @@ PrefabInstance:
     - target: {fileID: 2725402623183118778, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
+      propertyPath: spawnInterval
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3744722369772636606, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_IsActive
@@ -1919,7 +1923,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 0
-  m_NavMeshData: {fileID: 23800000, guid: 7509cb1bf404a954881fbcb9fc6834b2, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 230589a02f33f9f4589ad2de74dd34b1, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1001 &1046143440
 PrefabInstance:
@@ -2499,6 +2503,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1626028573}
     m_Modifications:
+    - target: {fileID: 1958061831142115717, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
+      propertyPath: maxSpawnedDustParticles
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1958061831142115717, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
+      propertyPath: minSpawnedDustParticles
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2725402623183118778, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -2558,6 +2570,10 @@ PrefabInstance:
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: spawnOffset
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
+      propertyPath: spawnInterval
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6149801562829461563, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Name
@@ -2741,7 +2757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5666044982448068472, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: maxAmmo
-      value: 10000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5666044982448068472, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: ammoText
@@ -2801,7 +2817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23555715ee96bb74f98b9b87fd14b972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 100
   healthText: {fileID: 8684106243264282723}
 --- !u!114 &1426673973 stripped
 MonoBehaviour:
@@ -3761,7 +3777,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 92be81f6fa3b4b742b672e634b387158, type: 3}
     - target: {fileID: 9022603881607913974, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3948,6 +3964,10 @@ PrefabInstance:
       propertyPath: spawnOffset
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5878903646017234297, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
+      propertyPath: spawnInterval
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6724917399087893350, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_Name
       value: EnemySpawnerManager
@@ -3979,6 +3999,14 @@ PrefabInstance:
     - target: {fileID: 6729580142714765279, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7177251947794946016, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
+      propertyPath: maxSpawnedDustParticles
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7177251947794946016, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
+      propertyPath: minSpawnedDustParticles
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7702446211941141229, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_Enabled

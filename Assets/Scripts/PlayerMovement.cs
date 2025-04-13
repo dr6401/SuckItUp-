@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
             ApplyGravity();
             Move();
             RotatePlayer();
-            if (Input.GetKeyDown(KeyCode.Space) && characterController.isGrounded)
+            if (Input.GetKey(KeyCode.Space) && characterController.isGrounded)
             {
                 Jump();
             }

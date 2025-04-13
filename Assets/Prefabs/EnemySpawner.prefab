@@ -144,6 +144,7 @@ MonoBehaviour:
   maxHealth: 200
   currentHealth: 0
   dustPickupPrefab: {fileID: 595504505390220050, guid: 6b7f082c78ed8a146aadd8c036b32730, type: 3}
+  deathExplosionPrefab: {fileID: 29421082159119318, guid: 8e3fbb3aa5740614fbad7ce758cb1e0e, type: 3}
   minSpawnedDustParticles: 60
   maxSpawnedDustParticles: 80
   enemySpawnManager: {fileID: 0}

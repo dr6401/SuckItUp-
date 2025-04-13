@@ -9,7 +9,7 @@ public class TutorialManager : MonoBehaviour
     private float objectiveTextDuration = 7.5f;
     [SerializeField] private GameObject objectiveText;
     [SerializeField] private GameObject keyBindingsText;
-    [FormerlySerializedAs("toggleWeaponText")] [SerializeField] private GameObject toggleWeaponTextObject;
+    [FormerlySerializedAs("toggleWeaponText")] [SerializeField] public GameObject toggleWeaponTextObject;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private WeaponHandler weaponHandler;
     private bool keyBindingTextToggled = false;
@@ -25,9 +25,12 @@ public class TutorialManager : MonoBehaviour
         objectiveText.SetActive(false);
 
         GameObject[] dustParticlesInRoom = GameObject.FindGameObjectsWithTag("DustPickup");
-        foreach(GameObject enemySpawner in dustParticlesInRoom)
+        foreach(GameObject dustParticle in dustParticlesInRoom)
         {
-            dustParticles.Add(enemySpawner.gameObject);
+            if (!dustParticles.Contains(dustParticle))
+            {
+                dustParticles.Add(dustParticle.gameObject);
+            }
         }
         maxNumberOfDust = dustParticles.Count;
         aliveDustParticles = maxNumberOfDust;
@@ -36,6 +39,15 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GameObject[] dustParticlesInRoom = GameObject.FindGameObjectsWithTag("DustPickup");
+        foreach(GameObject dustParticle in dustParticlesInRoom)
+        {
+            if (!dustParticles.Contains(dustParticle))
+            {
+                dustParticles.Add(dustParticle.gameObject);
+            }
+        }
+        
         if (Input.GetKeyDown(KeyCode.Escape)){
             keyBindingTextToggled = !keyBindingTextToggled;
             keyBindingsText.SetActive(keyBindingTextToggled);
@@ -65,10 +77,24 @@ public class TutorialManager : MonoBehaviour
     
     private IEnumerator DisplayVacuumTutorialText()
     {
-        toggleWeaponTextObject.GetComponent<TMP_Text>().text = "Left Click with Vacuum 3000 to suck up dust. Sucking dust up fills your ammo";
+        toggleWeaponTextObject.GetComponent<TMP_Text>().text = "Hold Left Click with Vacuum 3000 to suck up dust. Sucking dust up fills your ammo";
         yield return new WaitForSeconds(objectiveTextDuration);
         toggleWeaponTextObject.SetActive(false);
         objectiveText.SetActive(true);
         StartCoroutine(DisableText());
+    }
+
+    public void DustDestroyed(GameObject dust)
+    {
+        if (dustParticles.Contains(dust))
+        {
+            dustParticles.Remove(dust);
+            aliveDustParticles = dustParticles.Count;
+        }
+    }
+
+    public void SetObjectiveTextVisible()
+    {
+        objectiveText.SetActive(true);
     }
 }
