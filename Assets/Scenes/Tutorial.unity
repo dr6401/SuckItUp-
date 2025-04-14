@@ -2332,6 +2332,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   healthText: {fileID: 8684106243264282723}
+  gameOverText: {fileID: 0}
+  tryAgainText: {fileID: 0}
+  _gameManager: {fileID: 0}
 --- !u!114 &1426673973 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5666044982448068472, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
@@ -3536,9 +3539,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8763557131505957745, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
+      propertyPath: shootingSFX.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763557131505957745, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
       propertyPath: 'musicThemes.Array.data[0]'
       value: 
       objectReference: {fileID: 8300000, guid: 4be231677b49fb242bb9ef92a8d52548, type: 3}
+    - target: {fileID: 8763557131505957745, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
+      propertyPath: 'shootingSFX.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 92d35fe1c59bbd14eaee9e3d3b54cea7, type: 3}
+    - target: {fileID: 8763557131505957745, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
+      propertyPath: 'shootingSFX.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 5207b2a445fcb144281ab5395fe95c1d, type: 3}
+    - target: {fileID: 8763557131505957745, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
+      propertyPath: 'shootingSFX.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 1e940d15337ad1e43b0cc1b2430d7c06, type: 3}
+    - target: {fileID: 8763557131505957745, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
+      propertyPath: 'shootingSFX.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 70c97e425596b8142b7b9163256c0868, type: 3}
     - target: {fileID: 8763557131505957745, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
       propertyPath: vacuumingSounds.Array.size
       value: 3

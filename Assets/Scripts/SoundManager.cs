@@ -10,6 +10,7 @@ public class SoundManager : MonoBehaviour
     [Header("-------Audio Clips-------")]
     [SerializeField] private AudioClip[] musicThemes;
     [SerializeField] private AudioClip[] dustParticlesCrumblings;
+    [SerializeField] private AudioClip[] shootingSFX;
     [SerializeField] private AudioClip[] vacuumingSounds;
     [SerializeField] private AudioClip[] mouseClicks;
     private AudioClip[][] SFXSounds;
@@ -154,5 +155,20 @@ public class SoundManager : MonoBehaviour
             yield return null;
         }
         audioSource.volume = targetVolume;
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.OnShoot += PlayRandomShootSFX;
+    }
+    
+    private void OnDisable()
+    {
+        GameEvents.OnShoot -= PlayRandomShootSFX;
+    }
+
+    private void PlayRandomShootSFX()
+    {
+        SFX.PlayOneShot(shootingSFX[Random.Range(0, shootingSFX.Length)]);
     }
 }

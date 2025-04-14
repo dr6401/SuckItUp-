@@ -16,6 +16,7 @@ public class EnemyScript : MonoBehaviour
     private Vector3 playerPosition;
     private NavMeshAgent agent;
     [SerializeField] PlayerHealth playerHealth;
+    private bool canChasePlayer = true;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -30,14 +31,17 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerPosition = player.transform.position;
-        ChasePlayer();
-
-        if ((transform.position - playerPosition).sqrMagnitude < attackRange * attackRange && timeSinceAttack > attackCooldown)
+        if (canChasePlayer)
         {
-            HitPlayer();
+            playerPosition = player.transform.position;
+            ChasePlayer();
+
+            if ((transform.position - playerPosition).sqrMagnitude < attackRange * attackRange && timeSinceAttack > attackCooldown)
+            {
+                HitPlayer();
+            }
+            timeSinceAttack += Time.deltaTime;
         }
-        timeSinceAttack += Time.deltaTime;
     }
 
     private void ChasePlayer()
@@ -53,5 +57,19 @@ public class EnemyScript : MonoBehaviour
         //Debug.Log("Hit yo ass");
         timeSinceAttack = 0;
         playerHealth.TakeDamage(attackDamage);
+    }
+
+    private void StopChasingPlayer()
+    {
+        canChasePlayer = false;
+    }
+    private void OnEnable()
+    {
+        GameEvents.OnPlayerDeath += StopChasingPlayer;
+    }
+    
+    private void OnDisable()
+    {
+        GameEvents.OnPlayerDeath -= StopChasingPlayer;
     }
 }

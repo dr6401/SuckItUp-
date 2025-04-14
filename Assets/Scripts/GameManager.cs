@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviour
 {
     private float objectiveTextDuration = 7.5f;
@@ -9,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private WeaponHandler weaponHandler;
     private bool keyBindingTextToggled = false;
+    public bool gameNotOver = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,7 +22,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)){
+        if (Input.GetKeyDown(KeyCode.Escape) && gameNotOver){
             keyBindingTextToggled = !keyBindingTextToggled;
             keyBindingsText.SetActive(keyBindingTextToggled);
 
@@ -28,6 +31,14 @@ public class GameManager : MonoBehaviour
             Time.timeScale = keyBindingTextToggled ? 0f : 1f;
             playerMovement.inputBlocked = keyBindingTextToggled;
             weaponHandler.inputBlocked = keyBindingTextToggled;
+        }
+
+        if (!gameNotOver)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene("Level1");
+            }
         }
     }
 

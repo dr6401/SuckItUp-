@@ -1,5 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.LowLevel;
+using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -11,6 +14,7 @@ public class EnemySpawner : MonoBehaviour
     public float spawnOffset = 20f;
     private float timeSinceSpawned = 0f;
     private Transform enemiesFolder;
+    private bool canSpawnEnemies = true;
     void Start()
     {
         Transform parent = transform.parent;
@@ -29,7 +33,7 @@ public class EnemySpawner : MonoBehaviour
     {
         timeSinceSpawned += Time.deltaTime;
 
-        if (timeSinceSpawned > spawnInterval)
+        if (timeSinceSpawned > spawnInterval && canSpawnEnemies)
         {
             SpawnEnemy();
         }
@@ -54,5 +58,20 @@ public class EnemySpawner : MonoBehaviour
         {
             Debug.Log("Couldn't spawn enemy on NavMesh, trying to spawn again");
         }
+    }
+
+    private void DisableEnemySpawning()
+    {
+        canSpawnEnemies = false;
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.OnPlayerDeath += DisableEnemySpawning;
+    }
+    
+    private void OnDisable()
+    {
+        GameEvents.OnPlayerDeath -= DisableEnemySpawning;
     }
 }

@@ -119,6 +119,8 @@ public class WeaponHandler : MonoBehaviour
     {
         int layerMask = ~LayerMask.GetMask("Player");
 
+        GameEvents.OnShoot?.Invoke();
+        
         RaycastHit hit;
         Vector3 shootOrigin = camera.transform.position;
         Vector3 shootDirection = camera.transform.forward;
