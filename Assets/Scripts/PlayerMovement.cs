@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private float halvedBaseMoveSpeed;
     public float sprintMultiplier = 1.5f;
     public float jumpForce = 5f;
-    public float mouseSensitivity = 2f; // Controls mouse sensitivity
+    public float mouseSensitivity = 0.5f; // Controls mouse sensitivity
     public float gravity = 9.81f;
     public float maxGravity = 50f;
     private bool canMove = true;
@@ -34,6 +34,17 @@ public class PlayerMovement : MonoBehaviour
         // Lock the cursor so it feels like an FPS
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        if (!PlayerPrefs.HasKey("sensitivity"))
+        {
+            PlayerPrefs.SetFloat("sensitivity", mouseSensitivity);
+            Debug.Log("Player didnt have sensitivity yet. Setting it to: " + PlayerPrefs.GetFloat("sensitivity"));
+        }
+        else
+        {
+            mouseSensitivity = PlayerPrefs.GetFloat("sensitivity");
+            Debug.Log("Player already had defined sensitivity: " + PlayerPrefs.GetFloat("sensitivity"));
+        }
 
     }
 
@@ -107,5 +118,12 @@ public class PlayerMovement : MonoBehaviour
         verticalRotation -= mouseY;
         verticalRotation = Mathf.Clamp(verticalRotation, -80f, 80f);
         cameraTransform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
+    }
+
+    public void SetSensitivity(float sensitivity)
+    {
+        mouseSensitivity = sensitivity;
+        PlayerPrefs.SetFloat("sensitivity", sensitivity);
+        
     }
 }

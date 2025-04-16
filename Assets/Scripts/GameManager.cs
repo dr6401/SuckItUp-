@@ -2,12 +2,13 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
     private float objectiveTextDuration = 7.5f;
     [SerializeField] private GameObject objectiveText;
-    [SerializeField] private GameObject keyBindingsText;
+    [SerializeField] private GameObject settingsCanvas;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private WeaponHandler weaponHandler;
     private bool keyBindingTextToggled = false;
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(DisableText());
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -24,9 +27,21 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && gameNotOver){
             keyBindingTextToggled = !keyBindingTextToggled;
-            keyBindingsText.SetActive(keyBindingTextToggled);
+            settingsCanvas.SetActive(keyBindingTextToggled);
 
             objectiveText.SetActive(false);
+
+            //Enabling/Disabling the cursor if the game is paused
+            if (keyBindingTextToggled)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
 
             Time.timeScale = keyBindingTextToggled ? 0f : 1f;
             playerMovement.inputBlocked = keyBindingTextToggled;

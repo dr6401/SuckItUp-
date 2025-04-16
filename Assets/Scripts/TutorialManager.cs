@@ -8,7 +8,7 @@ public class TutorialManager : MonoBehaviour
 {
     private float objectiveTextDuration = 7.5f;
     [SerializeField] private GameObject objectiveText;
-    [SerializeField] private GameObject keyBindingsText;
+    [SerializeField] private GameObject settingsCanvas;
     [FormerlySerializedAs("toggleWeaponText")] [SerializeField] public GameObject toggleWeaponTextObject;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private WeaponHandler weaponHandler;
@@ -34,6 +34,8 @@ public class TutorialManager : MonoBehaviour
         }
         maxNumberOfDust = dustParticles.Count;
         aliveDustParticles = maxNumberOfDust;
+        
+        toggleWeaponTextObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -50,10 +52,22 @@ public class TutorialManager : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Escape)){
             keyBindingTextToggled = !keyBindingTextToggled;
-            keyBindingsText.SetActive(keyBindingTextToggled);
+            settingsCanvas.SetActive(keyBindingTextToggled);
 
             objectiveText.SetActive(!keyBindingTextToggled);
             toggleWeaponTextObject.SetActive(false);
+            
+            //Enabling/Disabling the cursor if the game is paused
+            if (keyBindingTextToggled)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
 
             Time.timeScale = keyBindingTextToggled ? 0f : 1f;
             playerMovement.inputBlocked = keyBindingTextToggled;

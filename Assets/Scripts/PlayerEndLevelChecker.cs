@@ -47,7 +47,6 @@ public class PlayerEndLevelChecker : MonoBehaviour
     {
         if (other.CompareTag("EndLevelArea"))
         {
-            Debug.Log("EndLevelAre entered");
             if (tutorialManager.aliveDustParticles <= 0 && currentNumberOfEnemiesInRoom <= 0)
             {
                 objectiveText.GetComponent<TMP_Text>().text = "Congratulations on completing the tutorial!\n Get ready for action in " + sceneLoadingTimer;
