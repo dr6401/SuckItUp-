@@ -8,6 +8,9 @@ public class EnemySpawnManager : MonoBehaviour
     [SerializeField] private int maxSpawners;
     private int aliveSpawners;
     List<GameObject> spawners = new List<GameObject>();
+    private bool actionSent = false;
+
+    public static event Action AllSpawnerDead;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,6 +28,12 @@ public class EnemySpawnManager : MonoBehaviour
     void Update()
     {
         spawnerText.text = aliveSpawners + "/" + maxSpawners;
+
+        if (aliveSpawners <= 0 && !actionSent)
+        {
+                AllSpawnerDead?.Invoke();
+                actionSent = true;
+        }
     }
 
     public void DecrementAliveSpawnersCounter()

@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,8 +14,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject settingsCanvas;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private WeaponHandler weaponHandler;
+    [SerializeField] private GameObject victoryText;
+    private bool areAllSpawnersDestroyed = false;
+    private bool areAllEnemiesKilled = false;
     private bool keyBindingTextToggled = false;
     public bool gameNotOver = true;
+    
+    List<GameObject> aliveEnemies = new List<GameObject>();
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,6 +29,16 @@ public class GameManager : MonoBehaviour
         StartCoroutine(DisableText());
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    private void OnEnable()
+    {
+        EnemySpawnManager.AllSpawnerDead += HandleAllSpawnersDead;
+    }
+    
+    private void OnDisable()
+    {
+        EnemySpawnManager.AllSpawnerDead -= HandleAllSpawnersDead;
     }
 
     // Update is called once per frame
@@ -55,12 +74,36 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("Level1");
             }
         }
+
+        if (areAllSpawnersDestroyed && areAllEnemiesKilled)
+        {
+            victoryText.SetActive(true);
+            Time.timeScale = 0f;
+            gameNotOver = false;
+            playerMovement.inputBlocked = true;
+            weaponHandler.inputBlocked = true;
+        }
+    }
+
+    private void HandleAllSpawnersDead()
+    {
+        areAllSpawnersDestroyed = true;
+        Debug.Log("AllSpawnersDestroyed Action received. Setting areAllSpawnersDestroyed => true");
+        startTrackingEnemies();
     }
 
     private IEnumerator DisableText()
     {
         yield return new WaitForSeconds(objectiveTextDuration);
         objectiveText.SetActive(false);
+    }
 
+    private void startTrackingEnemies()
+    {
+        EnemyScript[] enemies = FindObjectsByType<EnemyScript>(FindObjectsSortMode.None);
+        foreach(EnemyScript enemy in enemies)
+        {
+            aliveEnemies.Add(enemy.gameObject);
+        }
     }
 }
