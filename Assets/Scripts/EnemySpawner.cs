@@ -15,10 +15,11 @@ public class EnemySpawner : MonoBehaviour
     private float timeSinceSpawned = 0f;
     private Transform enemiesFolder;
     private bool canSpawnEnemies = true;
+    [SerializeField] private int maxSpawnedEnemies = 20;
     void Start()
     {
         Transform parent = transform.parent;
-        GameObject folder =GameObject.Find("EnemiesFolder");
+        GameObject folder = GameObject.Find("EnemiesFolder");
         if (folder == null)
         {
             Debug.Log("Folder is null, creating new folder");
@@ -33,7 +34,7 @@ public class EnemySpawner : MonoBehaviour
     {
         timeSinceSpawned += Time.deltaTime;
 
-        if (timeSinceSpawned > spawnInterval && canSpawnEnemies)
+        if (timeSinceSpawned > spawnInterval && canSpawnEnemies && enemiesFolder.childCount < maxSpawnedEnemies)
         {
             SpawnEnemy();
         }

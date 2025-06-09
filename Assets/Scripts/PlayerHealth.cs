@@ -37,7 +37,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        _gameManager.gameNotOver = false;
+        _gameManager.gameOver = true;
         GameEvents.OnPlayerDeath?.Invoke();
         gameOverText.GameObject().SetActive(true);
         tryAgainText.GameObject().SetActive(true);

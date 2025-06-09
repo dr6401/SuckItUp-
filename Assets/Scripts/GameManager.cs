@@ -6,6 +6,8 @@ using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using System.Collections.Generic;
+using UnityEngine.WSA;
+using Cursor = UnityEngine.Cursor;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,12 +18,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private WeaponHandler weaponHandler;
     [SerializeField] private GameObject victoryText;
     private bool areAllSpawnersDestroyed = false;
-    private bool areAllEnemiesKilled = false;
     private bool keyBindingTextToggled = false;
-    public bool gameNotOver = true;
-    
-    List<GameObject> aliveEnemies = new List<GameObject>();
-
+    public bool gameOver = false;
+    private GameObject player;
+    private Transform enemiesFolder;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,6 +29,16 @@ public class GameManager : MonoBehaviour
         StartCoroutine(DisableText());
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        player = GameObject.FindWithTag("Player");
+        
+        // Getting access to the enemies folder for checking if enemies <= 0
+        GameObject folder = GameObject.Find("EnemiesFolder");
+        if (folder == null)
+        {
+            Debug.Log("Folder is null, creating new folder");
+            folder = new GameObject("EnemiesFolder");
+        }
+        enemiesFolder = folder.transform;
     }
 
     private void OnEnable()
@@ -44,7 +54,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && gameNotOver){
+        if (Input.GetKeyDown(KeyCode.Escape) && !gameOver){
             keyBindingTextToggled = !keyBindingTextToggled;
             settingsCanvas.SetActive(keyBindingTextToggled);
 
@@ -67,7 +77,7 @@ public class GameManager : MonoBehaviour
             weaponHandler.inputBlocked = keyBindingTextToggled;
         }
 
-        if (!gameNotOver)
+        if (gameOver)
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -75,13 +85,11 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (areAllSpawnersDestroyed && areAllEnemiesKilled)
+        if (areAllSpawnersDestroyed && enemiesFolder.childCount <= 0)
         {
+            Destroy(player);
             victoryText.SetActive(true);
-            Time.timeScale = 0f;
-            gameNotOver = false;
-            playerMovement.inputBlocked = true;
-            weaponHandler.inputBlocked = true;
+            gameOver = true;
         }
     }
 
@@ -89,21 +97,11 @@ public class GameManager : MonoBehaviour
     {
         areAllSpawnersDestroyed = true;
         Debug.Log("AllSpawnersDestroyed Action received. Setting areAllSpawnersDestroyed => true");
-        startTrackingEnemies();
     }
 
     private IEnumerator DisableText()
     {
         yield return new WaitForSeconds(objectiveTextDuration);
         objectiveText.SetActive(false);
-    }
-
-    private void startTrackingEnemies()
-    {
-        EnemyScript[] enemies = FindObjectsByType<EnemyScript>(FindObjectsSortMode.None);
-        foreach(EnemyScript enemy in enemies)
-        {
-            aliveEnemies.Add(enemy.gameObject);
-        }
     }
 }

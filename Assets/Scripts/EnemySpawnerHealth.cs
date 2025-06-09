@@ -1,13 +1,33 @@
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class EnemySpawnerHealth : EnemyHealth
 {
     [SerializeField] private EnemySpawnManager enemySpawnManager;
-
+    [SerializeField] private GameObject smokeBleed1VFXprefab;
+    private bool hasSmokeBleedAlreadySpawnedOnce = false;
+    private bool hasSmokeBleedAlreadySpawnedTwice = false;
     private void Start()
     {
         currentHealth = maxHealth;
         enemySpawnManager = GetComponentInParent<EnemySpawnManager>();
+    }
+    private void Update()
+    {
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+        if (currentHealth < 67 && !hasSmokeBleedAlreadySpawnedOnce)
+        {
+            Instantiate(smokeBleed1VFXprefab, transform.position, Quaternion.Euler(0, Random.Range(0f,359f), 0), transform);
+            hasSmokeBleedAlreadySpawnedOnce = true;
+        }
+        if (currentHealth < 33 && !hasSmokeBleedAlreadySpawnedTwice)
+        {
+            Instantiate(smokeBleed1VFXprefab, transform.position, Quaternion.Euler(0, Random.Range(0f,359f), 0), transform);
+            hasSmokeBleedAlreadySpawnedTwice = true;
+        }
     }
     protected override void Die()
     {

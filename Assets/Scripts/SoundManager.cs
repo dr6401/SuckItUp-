@@ -32,12 +32,6 @@ public class SoundManager : MonoBehaviour
         currentSuctionSFXTimer += Time.deltaTime;
     }
 
-    public void PlayBearTheme()
-    {
-        music.clip = musicThemes[1];
-        music.Play();
-    }
-
     public void PlaySFX(int clipNum)
     {
         SFX.PlayOneShot(SFXSounds[clipNum][Random.Range(0, SFXSounds[clipNum].Length - 1)]);

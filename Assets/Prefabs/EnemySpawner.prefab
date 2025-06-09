@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2963608202159946524}
   - component: {fileID: 1958061831142115717}
   - component: {fileID: 6537706781921770622}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemySpawner
   m_TagString: EnemySpawner
   m_Icon: {fileID: 0}
@@ -148,6 +148,7 @@ MonoBehaviour:
   minSpawnedDustParticles: 60
   maxSpawnedDustParticles: 80
   enemySpawnManager: {fileID: 0}
+  smokeBleed1VFXprefab: {fileID: 4309857886803190102, guid: 9de698744ee3f944bb0815e9e23f059b, type: 3}
 --- !u!54 &6537706781921770622
 Rigidbody:
   m_ObjectHideFlags: 0
