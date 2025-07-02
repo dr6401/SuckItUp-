@@ -27,6 +27,12 @@ public class DustPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (target == null)
+        {
+            Debug.Log("Dust didnt find player to follow");
+            return;
+        }
+        
         if (target != null && isGettingSucked)
         {
             moveSpeed *= accelerationFactor;

@@ -3008,7 +3008,7 @@ GameObject:
   - component: {fileID: 623857464}
   - component: {fileID: 623857463}
   m_Layer: 5
-  m_Name: RToRestart
+  m_Name: ContinueText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3053,7 +3053,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press R to Try Again!
+  m_text: Are you ready for the next level...?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4517,9 +4517,9 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.06666667
   m_MinRegionArea: 0
-  m_NavMeshData: {fileID: 23800000, guid: 230589a02f33f9f4589ad2de74dd34b1, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 52878fce25f2d9147b8329fa6d2364fd, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1001 &1042142924
 PrefabInstance:
@@ -8975,6 +8975,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7267542044105194087, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7890158831581124516, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

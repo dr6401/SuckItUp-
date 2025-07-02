@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
             Destroy(player);
             victoryText.SetActive(true);
             gameOver = true;
+            StartCoroutine(LoadNextScene());
         }
     }
 
