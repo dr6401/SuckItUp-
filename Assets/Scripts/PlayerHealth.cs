@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
 
-    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int maxHealth = 200;
     private static int health;
     [SerializeField] private TMP_Text healthText;
     [SerializeField] private TMP_Text gameOverText;

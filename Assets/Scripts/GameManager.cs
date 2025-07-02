@@ -6,7 +6,6 @@ using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using System.Collections.Generic;
-using UnityEngine.WSA;
 using Cursor = UnityEngine.Cursor;
 
 public class GameManager : MonoBehaviour
@@ -22,6 +21,7 @@ public class GameManager : MonoBehaviour
     public bool gameOver = false;
     private GameObject player;
     private Transform enemiesFolder;
+    private float timeToLoadNextScene = 5f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -103,5 +103,12 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(objectiveTextDuration);
         objectiveText.SetActive(false);
+    }
+
+    private IEnumerator LoadNextScene()
+    {
+        yield return new WaitForSeconds(timeToLoadNextScene);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex + 1);
     }
 }
