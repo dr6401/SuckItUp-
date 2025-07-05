@@ -11,11 +11,9 @@ public class DustCuller : MonoBehaviour
     void Start()
     {
         vFX = GetComponentInChildren<VisualEffect>();
-        Debug.Log("In start function");
         if (target == null)
         {
             target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-            Debug.Log("assigned " + target.name + " to target");
         }
     }
 
@@ -24,7 +22,6 @@ public class DustCuller : MonoBehaviour
     {
         if (target == null)
         {
-            Debug.Log("Dust didnt find player to follow");
             return;
         }
         

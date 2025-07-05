@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 5f;
     public float mouseSensitivity = 0.5f; // Controls mouse sensitivity
     public float gravity = 9.81f;
-    public float maxGravity = 50f;
     private bool canMove = true;
     private bool isRunning = false;
     public bool inputBlocked = false;

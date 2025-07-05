@@ -29,7 +29,6 @@ public class DustPickup : MonoBehaviour
     {
         if (target == null)
         {
-            Debug.Log("Dust didnt find player to follow");
             return;
         }
         
