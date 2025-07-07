@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -14,20 +15,31 @@ public class PlayerMovement : MonoBehaviour
     private bool isRunning = false;
     public bool inputBlocked = false;
 
-    //private bool isGrounded = true;
     public Transform cameraTransform; // Store camera reference
     private float verticalRotation = 0f;
     private float verticalVelocity = 0f;
     CharacterController characterController;
     [SerializeField] private WeaponHandler weaponHandler;
 
+    
+    private bool isCrouching = false;
+    private bool cameraLowered = false;
+    private float playerHeight = 0.75f;
+    private Vector3 originalCameraTransform;
+
     Vector3 moveDirection = Vector3.zero;
+    
+    [SerializeField] private new Camera camera;
+
     void Start()
     {
+        camera = Camera.main;
+        
         halvedBaseMoveSpeed = baseMoveSpeed / 2;
         characterController = GetComponent<CharacterController>();
         // Get the camera (Make sure the camera is a child of the player)
         cameraTransform = Camera.main.transform;
+        originalCameraTransform = cameraTransform.localPosition;
         weaponHandler = GetComponent<WeaponHandler>();
 
         // Lock the cursor so it feels like an FPS
@@ -46,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+    
 
     void Update()
     {
@@ -54,9 +67,23 @@ public class PlayerMovement : MonoBehaviour
             ApplyGravity();
             Move();
             RotatePlayer();
-            if (Input.GetKey(KeyCode.Space) && characterController.isGrounded)
+            if (Input.GetKey(KeyCode.Space) && characterController.isGrounded) // Jump
             {
                 Jump();
+            }
+            if (Input.GetKey(KeyCode.LeftControl) && characterController.isGrounded) // Crouch
+            {
+                isCrouching = true; 
+                Crouch();   
+            }
+
+            if (!(Input.GetKey(KeyCode.LeftControl)) && isCrouching) // Stop Crouching
+            {
+                if (!Physics.Raycast(transform.position, Vector3.up, playerHeight))
+                {
+                    isCrouching = false;
+                    DeCrouch();   
+                }
             }
             if (weaponHandler.isAiming)
             {
@@ -88,8 +115,41 @@ public class PlayerMovement : MonoBehaviour
     void Jump()
     {
          verticalVelocity = jumpForce;
-         //isGrounded = false;
-         //Debug.Log("Jumped");
+    }
+
+    void Crouch()
+    {
+        characterController.height = 1;
+        characterController.center = new Vector3(0, -playerHeight, 0);
+        if (!cameraLowered)
+        {
+            cameraTransform.localPosition = originalCameraTransform + Vector3.down;
+            cameraLowered = true;
+        }
+        //LowerCamera();
+    }
+
+    void DeCrouch()
+    {
+        characterController.height = 2;
+        characterController.center = new Vector3(0, 0, 0);
+        if (cameraLowered)
+        {
+            cameraTransform.localPosition = originalCameraTransform;
+            cameraLowered = false;
+        }
+    }
+
+    void LowerCamera()
+    {
+        if (!cameraLowered)
+        {
+            cameraTransform.localPosition += Vector3.down * 0.05f;    
+        }
+        else
+        {
+            cameraLowered = true;
+        }
     }
 
     void ApplyGravity()
@@ -125,4 +185,19 @@ public class PlayerMovement : MonoBehaviour
         PlayerPrefs.SetFloat("sensitivity", sensitivity);
         
     }
+    
+    /*private void OnDrawGizmos()
+{
+    if (camera == null)
+    {
+        camera = Camera.main;
+    }
+    
+    Gizmos.color = Color.red;
+
+    Vector3 shootOrigin = camera.transform.position;
+    Vector3 shootDirection = camera.transform.up;
+
+    Gizmos.DrawRay(shootOrigin, shootDirection * playerHeight);
+}*/
 }
