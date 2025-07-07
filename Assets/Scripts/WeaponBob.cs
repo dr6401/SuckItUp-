@@ -39,7 +39,6 @@ public class WeaponBob : MonoBehaviour
         GetInput();
         SwayRotation();
         Bob();
-        Debug.Log("Smooth rot: " + smoothRot);
     }
 
     private void Bob()
