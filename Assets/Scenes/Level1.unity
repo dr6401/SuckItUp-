@@ -633,7 +633,7 @@ PrefabInstance:
     - target: {fileID: 5010069614515891488, guid: c8878c5af1e178249a581f7d569e0f08, type: 3}
       propertyPath: playerMovement
       value: 
-      objectReference: {fileID: 1426673974}
+      objectReference: {fileID: 0}
     - target: {fileID: 5010069614515891488, guid: c8878c5af1e178249a581f7d569e0f08, type: 3}
       propertyPath: sensitivitySlider
       value: 
@@ -6335,6 +6335,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 4313594062892892696, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1309307420}
     - target: {fileID: 4313594062892892696, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: gravity
       value: 90.81
