@@ -21,20 +21,20 @@ public class PlayerMovement : MonoBehaviour
     CharacterController characterController;
     [SerializeField] private WeaponHandler weaponHandler;
 
-    
+
     private bool isCrouching = false;
     private bool cameraLowered = false;
     private float playerHeight = 0.75f;
     private Vector3 originalCameraTransform;
 
     Vector3 moveDirection = Vector3.zero;
-    
+
     [SerializeField] private new Camera camera;
 
     void Start()
     {
         camera = Camera.main;
-        
+
         halvedBaseMoveSpeed = baseMoveSpeed / 2;
         characterController = GetComponent<CharacterController>();
         // Get the camera (Make sure the camera is a child of the player)
@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
-    
+
 
     void Update()
     {
@@ -69,22 +69,28 @@ public class PlayerMovement : MonoBehaviour
             RotatePlayer();
             if (Input.GetKey(KeyCode.Space) && characterController.isGrounded) // Jump
             {
-                Jump();
+                if (!Physics.Raycast(transform.position - Vector3.down * 0.25f, transform.up, playerHeight * 1.35f))
+                {
+                    Jump();
+                }
             }
+
             if (Input.GetKey(KeyCode.LeftControl) && characterController.isGrounded) // Crouch
             {
-                isCrouching = true; 
-                Crouch();   
+                isCrouching = true;
+                Crouch();
             }
 
             if (!(Input.GetKey(KeyCode.LeftControl)) && isCrouching) // Stop Crouching
             {
-                if (!Physics.Raycast(transform.position - Vector3.down * 0.25f, transform.up, playerHeight * 1.35f) && !Physics.Raycast(transform.position - Vector3.down * 0.25f, - transform.up, playerHeight * 1f)) // These floats are just fine-tuning, so we get the ray cast to align with the newly created player collider (collider when player is crouching)
+                if (!Physics.Raycast(transform.position + Vector3.down * 0.3f, transform.up, playerHeight * 1.35f))// These floats are just fine-tuning, so we get the ray cast to align with the newly created player collider (collider when player is crouching)
                 {
                     isCrouching = false;
-                    DeCrouch();   
+                    DeCrouch();
+                    characterController.Move(Vector3.zero); // Something to start physics quickly
                 }
             }
+
             if (weaponHandler.isAiming)
             {
                 moveSpeed = halvedBaseMoveSpeed;
@@ -99,12 +105,15 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         Vector3 forward = transform.TransformDirection(Vector3.forward);
-        Vector3 right= transform.TransformDirection(Vector3.right);
+        Vector3 right = transform.TransformDirection(Vector3.right);
 
-        isRunning = (Input.GetKey(KeyCode.LeftShift) && !weaponHandler.isAiming); // Enable sprint only if player isn't aiming
+        isRunning = (Input.GetKey(KeyCode.LeftShift) &&
+                     !weaponHandler.isAiming); // Enable sprint only if player isn't aiming
 
-        float curSpeedX = canMove ? (isRunning ? moveSpeed * sprintMultiplier : moveSpeed) * Input.GetAxis("Vertical") : 0;
-        float curSpeedZ = canMove ? (isRunning ? moveSpeed * sprintMultiplier : moveSpeed) * Input.GetAxis("Horizontal") : 0;
+        float curSpeedX =
+            canMove ? (isRunning ? moveSpeed * sprintMultiplier : moveSpeed) * Input.GetAxis("Vertical") : 0;
+        float curSpeedZ =
+            canMove ? (isRunning ? moveSpeed * sprintMultiplier : moveSpeed) * Input.GetAxis("Horizontal") : 0;
 
         moveDirection = (forward * curSpeedX) + (right * curSpeedZ);
         moveDirection.y = verticalVelocity;
@@ -114,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
-         verticalVelocity = jumpForce;
+        verticalVelocity = jumpForce;
     }
 
     void Crouch()
@@ -140,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void LowerCamera()
+void LowerCamera()
     {
         if (!cameraLowered)
         {
