@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
             RotatePlayer();
             if (Input.GetKey(KeyCode.Space) && characterController.isGrounded) // Jump
             {
-                if (!Physics.Raycast(transform.position - Vector3.down * 0.25f, transform.up, playerHeight * 1.35f))
+                if (!Physics.Raycast(transform.position - Vector3.down * 0.25f, transform.up, playerHeight * 1.4f))
                 {
                     Jump();
                 }
@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (!(Input.GetKey(KeyCode.LeftControl)) && isCrouching) // Stop Crouching
             {
-                if (!Physics.Raycast(transform.position + Vector3.down * 0.3f, transform.up, playerHeight * 1.35f))// These floats are just fine-tuning, so we get the ray cast to align with the newly created player collider (collider when player is crouching)
+                if (!Physics.Raycast(transform.position + Vector3.down * 0.3f, transform.up, playerHeight * 1.4f))// These floats are just fine-tuning, so we get the ray cast to align with the newly created player collider (collider when player is crouching)
                 {
                     isCrouching = false;
                     DeCrouch();
@@ -207,8 +207,6 @@ void LowerCamera()
     Vector3 shootOrigin = transform.position + Vector3.down * 0.25f;
     Vector3 shootDirection = transform.up;
 
-    Gizmos.DrawRay(shootOrigin, shootDirection * playerHeight * 1.35f);
-    Gizmos.color = Color.magenta;
-    Gizmos.DrawRay(shootOrigin, - shootDirection * playerHeight * 1);
-}
+    Gizmos.DrawRay(shootOrigin, shootDirection * playerHeight * 1.4f);
+    }
 }
