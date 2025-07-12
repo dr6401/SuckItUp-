@@ -19,6 +19,8 @@ public class TutorialManager : MonoBehaviour
     public int aliveDustParticles;
     List<GameObject> dustParticles = new List<GameObject>();
 
+    public bool hasInputBeenGranted = true;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -50,7 +52,7 @@ public class TutorialManager : MonoBehaviour
             }
         }
         
-        if (Input.GetKeyDown(KeyCode.Escape)){
+        if (Input.GetKeyDown(KeyCode.Escape) && hasInputBeenGranted){
             keyBindingTextToggled = !keyBindingTextToggled;
             settingsCanvas.SetActive(keyBindingTextToggled);
 
