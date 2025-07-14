@@ -1,0 +1,48 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main  # Spremeni, če uporabljaš drug branch
+
+jobs:
+  build:
+    name: Build for ${{ matrix.targetPlatform }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform:
+          - StandaloneWindows64
+          - StandaloneOSX
+          - WebGL
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Cache Library
+        uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-${{ matrix.targetPlatform }}
+          restore-keys: |
+            Library-
+
+      - name: Setup Unity
+        uses: game-ci/unity-installer@v3
+        with:
+          unityVersion: 6000.0.37f1  # Zamenjaj z natančno verzijo Unity 6, ki jo uporabljaš
+
+      - name: Build project
+        uses: game-ci/unity-builder@v3
+        with:
+          targetPlatform: ${{ matrix.targetPlatform }}
+          unityVersion: 6000.0.37f1  # Usklajeno z zgornjo vrednostjo
+      - name: Upload Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: Build-${{ matrix.targetPlatform }}
+          path: build/${{ matrix.targetPlatform }}
+
