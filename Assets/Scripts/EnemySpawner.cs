@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
@@ -9,7 +10,8 @@ public class EnemySpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     //NOTE: Position this object in a place around which you want the enemies to spawn in radious "spawnOffset"
-    [SerializeField] GameObject enemyPrefab;
+    [SerializeField] GameObject fluffyDustyPrefab;
+    [SerializeField] private GameObject flyingDustyPrefab;
     [SerializeField] float spawnInterval = 3f;
     public float spawnOffset = 20f;
     private float timeSinceSpawned = 0f;
@@ -51,9 +53,18 @@ public class EnemySpawner : MonoBehaviour
         NavMeshHit hit;
         if (NavMesh.SamplePosition(spawnPosition, out hit, 2f, NavMesh.AllAreas))
         {
-            GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            int spawnFluffyOrFlyingDustyChance = Random.Range(1, 10);
+            if (spawnFluffyOrFlyingDustyChance < 1)// 70% chance to spawn fluffyDusty
+            {
+                GameObject enemy = Instantiate(fluffyDustyPrefab, spawnPosition, Quaternion.identity);
+                enemy.transform.SetParent(enemiesFolder);
+            }
+            else// 30% chance to spawn flyingDusty
+            {
+                GameObject enemy = Instantiate(flyingDustyPrefab, spawnPosition, Quaternion.identity);
+                enemy.transform.SetParent(enemiesFolder);
+            }
             timeSinceSpawned = 0;
-            enemy.transform.SetParent(enemiesFolder);
         }
         else
         {
