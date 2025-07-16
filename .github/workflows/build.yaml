@@ -6,6 +6,19 @@ on:
       - main  # Spremeni, če uporabljaš drug branch
 
 jobs:
+    activate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Request activation file
+        uses: game-ci/unity-activation-request@v2
+        with:
+          unityVersion: 6000.0.37f1
+
+      - name: Upload activation file
+        uses: actions/upload-artifact@v4
+        with:
+          name: unity-activation-file
+          path: unity_v6000.0.37f1.alf
   build:
     name: Build for ${{ matrix.targetPlatform }}
     runs-on: ubuntu-latest
@@ -21,14 +34,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Cache Library
-        uses: actions/cache@v4
-        with:
-          path: Library
-          key: Library-${{ matrix.targetPlatform }}
-          restore-keys: |
-            Library-
       - name: Build project
         uses: game-ci/unity-builder@v2
         with:
