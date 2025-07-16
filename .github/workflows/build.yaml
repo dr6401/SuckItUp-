@@ -19,7 +19,8 @@ jobs:
         with:
           name: unity-activation-file
           path: unity_v6000.0.37f1.alf
-  build:
+
+    build:
     name: Build for ${{ matrix.targetPlatform }}
     runs-on: ubuntu-latest
 
