@@ -195,7 +195,7 @@ void LowerCamera()
         
     }
     
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
 {
     if (camera == null)
     {
@@ -208,5 +208,5 @@ void LowerCamera()
     Vector3 shootDirection = transform.up;
 
     Gizmos.DrawRay(shootOrigin, shootDirection * playerHeight * 1.4f);
-    }
+    }*/
 }

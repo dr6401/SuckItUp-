@@ -54,7 +54,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (deathExplosionPrefab != null)
         {
-            Instantiate(deathExplosionPrefab, transform.position, quaternion.identity);
+            Instantiate(deathExplosionPrefab, transform.position, Quaternion.identity);
         }
 
         Destroy(gameObject);

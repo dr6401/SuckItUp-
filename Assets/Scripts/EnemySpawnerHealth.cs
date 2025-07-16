@@ -40,6 +40,10 @@ public class EnemySpawnerHealth : EnemyHealth
                 Instantiate(dustPickupPrefab, spawnPosition, Quaternion.identity);
             }
         }
+        if (deathExplosionPrefab != null)
+        {
+            Instantiate(deathExplosionPrefab, transform.position, Quaternion.identity);
+        }
         enemySpawnManager.DecrementAliveSpawnersCounter();
         Destroy(gameObject);
         Debug.Log("Enemy " + name + " died");

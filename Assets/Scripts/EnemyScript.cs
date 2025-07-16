@@ -7,11 +7,12 @@ public class EnemyScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     [SerializeField] GameObject player;
+    [Header("Stats")]
     [SerializeField] float minPlayerChasingDistance = 50f;
     [SerializeField] float attackRange = 2f;
     [SerializeField] float attackCooldown = 1f;
     [SerializeField] private int attackDamage = 5;
-    private float timeSinceAttack = 2;
+    private float timeSinceAttack = 5;
     //[SerializeField] float chaseSpeed = 5f;
     private Vector3 playerPosition;
     private NavMeshAgent agent;

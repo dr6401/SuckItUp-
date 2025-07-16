@@ -31,8 +31,8 @@ Transform:
   m_GameObject: {fileID: 894411595714582602}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.426, z: 1.404}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2040057329772293185}
@@ -110,7 +110,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.6
+  m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-7258130974219824834
 MonoBehaviour:
@@ -124,13 +124,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cc613c079ea2b64bba38d6dc55047ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  patrolWaitTime: 1
-  flyingHeight: 15
-  detectionRange: 15
   player: {fileID: 0}
-  patrolRadius: 10
-  numberOfPatrolPoints: 4
+  minPlayerChasingDistance: 75
+  attackRange: 50
+  attackCooldown: 5
+  attackDamage: 5
+  projectileSpeed: 15
+  attackProjectilePrefab: {fileID: 3140219601708675230, guid: 9ecc1109d3ac6854c9fb912b0ccad209, type: 3}
+  FiringPoint: {fileID: 938193821657929114}
+  playerCamera: {fileID: 0}
 --- !u!114 &7304921206916074982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,10 +173,10 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 64
   m_CollisionDetection: 0
 --- !u!1 &6158559810616918388
 GameObject:
@@ -201,7 +203,7 @@ Transform:
   m_GameObject: {fileID: 6158559810616918388}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.072}
+  m_LocalPosition: {x: 0, y: 0.39, z: 1.072}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
