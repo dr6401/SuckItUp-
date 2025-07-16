@@ -80,8 +80,6 @@ public class FlyingPatrolEnemy : MonoBehaviour
             attackProjectileScript = attackProjectile.GetComponent<AttackProjectile>();
             attackProjectileScript.attackDamage = attackDamage;// Assign the projectile that much dmg as set in this (FlyingEnemyScript) script
         }
-        Debug.DrawLine(attackProjectileSpawnPositionVector3, playerCamera.transform.position, Color.red, 1f);
-        
     }
 
     private void StopChasingPlayer()
