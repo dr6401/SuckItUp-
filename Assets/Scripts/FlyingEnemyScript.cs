@@ -67,9 +67,7 @@ public class FlyingPatrolEnemy : MonoBehaviour
         if (!Physics.Raycast(transform.position, randomDirection, wanderingDistance, layerMask)) {
             rb.AddForce(randomDirection * movementSpeed, ForceMode.Force);
             timeSinceWanderedAround = 0f;
-            Debug.Log("Found a way, moving towards it");
         }
-        else Debug.Log("Couldn't find a way, trying to WanderAround() again");
     }
 
     private void ChasePlayer()

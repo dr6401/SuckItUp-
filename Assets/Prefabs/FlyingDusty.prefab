@@ -125,11 +125,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  movementSpeed: 100
   minPlayerChasingDistance: 75
   attackRange: 50
   attackCooldown: 5
   attackDamage: 5
   projectileSpeed: 15
+  wanderingDistance: 30
   attackProjectilePrefab: {fileID: 3140219601708675230, guid: 9ecc1109d3ac6854c9fb912b0ccad209, type: 3}
   FiringPoint: {fileID: 938193821657929114}
   playerCamera: {fileID: 0}
@@ -295,10 +297,31 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7a4bdde928cf9e542b4334348d65ec4a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 938193821657929114}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -3181452503744645242, guid: 7a4bdde928cf9e542b4334348d65ec4a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3855011008163905217}
   m_SourcePrefab: {fileID: 100100000, guid: 7a4bdde928cf9e542b4334348d65ec4a, type: 3}
 --- !u!4 &2040057329772293185 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7a4bdde928cf9e542b4334348d65ec4a, type: 3}
   m_PrefabInstance: {fileID: 2001010180627565482}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5196082932325481516 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -3181452503744645242, guid: 7a4bdde928cf9e542b4334348d65ec4a, type: 3}
+  m_PrefabInstance: {fileID: 2001010180627565482}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3855011008163905217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5196082932325481516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e3a06ba73ddc9b499290851cc30a8e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  propellerSpeed: 20000
