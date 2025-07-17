@@ -6,7 +6,6 @@ public class AutoDestroyVFX : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     private VisualEffect vfx;
-    private float timer = 0;
     void Awake()
     {
         vfx = GetComponentInChildren<VisualEffect>();
@@ -15,12 +14,9 @@ public class AutoDestroyVFX : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-        if ((vfx.aliveParticleCount == 0) || !vfx.HasAnySystemAwake())
+        if (vfx.aliveParticleCount == 0)
         {
             Destroy(gameObject);
         }
-
-        //Debug.Log("timer: " + timer + ", vfxDuration: " + vfxDuration);
     }
 }

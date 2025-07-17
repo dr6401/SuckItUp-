@@ -1856,11 +1856,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -7258130974219824834, guid: 82af18ff07b29e74c9dc18a1eab84064, type: 3}
       propertyPath: attackCooldown
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 894411595714582602, guid: 82af18ff07b29e74c9dc18a1eab84064, type: 3}
       propertyPath: m_Name
       value: FlyingDusty (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 894411595714582602, guid: 82af18ff07b29e74c9dc18a1eab84064, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879638101386722354, guid: 82af18ff07b29e74c9dc18a1eab84064, type: 3}
+      propertyPath: m_Constraints
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 5903584660214093293, guid: 82af18ff07b29e74c9dc18a1eab84064, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3324,6 +3332,14 @@ PrefabInstance:
     - target: {fileID: 894411595714582602, guid: 82af18ff07b29e74c9dc18a1eab84064, type: 3}
       propertyPath: m_Name
       value: FlyingDusty (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 894411595714582602, guid: 82af18ff07b29e74c9dc18a1eab84064, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879638101386722354, guid: 82af18ff07b29e74c9dc18a1eab84064, type: 3}
+      propertyPath: m_Constraints
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 5903584660214093293, guid: 82af18ff07b29e74c9dc18a1eab84064, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5617,6 +5633,14 @@ PrefabInstance:
     - target: {fileID: 894411595714582602, guid: 82af18ff07b29e74c9dc18a1eab84064, type: 3}
       propertyPath: m_Name
       value: FlyingDusty (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 894411595714582602, guid: 82af18ff07b29e74c9dc18a1eab84064, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879638101386722354, guid: 82af18ff07b29e74c9dc18a1eab84064, type: 3}
+      propertyPath: m_Constraints
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 5903584660214093293, guid: 82af18ff07b29e74c9dc18a1eab84064, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8144,6 +8168,10 @@ PrefabInstance:
     - target: {fileID: 894411595714582602, guid: 82af18ff07b29e74c9dc18a1eab84064, type: 3}
       propertyPath: m_Name
       value: FlyingDusty
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879638101386722354, guid: 82af18ff07b29e74c9dc18a1eab84064, type: 3}
+      propertyPath: m_Constraints
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 5903584660214093293, guid: 82af18ff07b29e74c9dc18a1eab84064, type: 3}
       propertyPath: m_LocalPosition.x

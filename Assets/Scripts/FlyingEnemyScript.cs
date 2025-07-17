@@ -1,22 +1,30 @@
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class FlyingPatrolEnemy : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] GameObject player;
     [Header("Stats")]
+    [SerializeField] private float movementSpeed = 100f;
     [SerializeField] float minPlayerChasingDistance = 50f;
     [SerializeField] float attackRange = 40f;
     [SerializeField] float attackCooldown = 5f;
     [SerializeField] private int attackDamage = 5;
     [SerializeField] private int projectileSpeed = 200;
+    [SerializeField] private float wanderingDistance = 30f;
     private float timeSinceAttack = 2;
     [SerializeField] private GameObject attackProjectilePrefab;
     [SerializeField] private Transform FiringPoint;
+    
+    private Rigidbody rb;
     private Rigidbody attackProjectileRigidbody;
     private AttackProjectile attackProjectileScript;
+    private float timeSinceWanderedAround = 5f;
+    private float wanderingAroundInterval = 5f;
     
     private Vector3 playerPosition;
     [SerializeField] private Camera playerCamera;
@@ -28,6 +36,7 @@ public class FlyingPatrolEnemy : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player");
             playerCamera = player.GetComponentInChildren<Camera>();
         }
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -35,6 +44,11 @@ public class FlyingPatrolEnemy : MonoBehaviour
     {
         if (canChasePlayer)
         {
+            timeSinceWanderedAround += Time.deltaTime;
+            if (timeSinceWanderedAround >= wanderingAroundInterval)
+            {
+                WanderAround();   
+            }
             playerPosition = player.transform.position;
             ChasePlayer();
             if ((transform.position - playerPosition).sqrMagnitude < attackRange * attackRange && timeSinceAttack > attackCooldown)
@@ -43,6 +57,19 @@ public class FlyingPatrolEnemy : MonoBehaviour
             }
             timeSinceAttack += Time.deltaTime;
         }
+    }
+
+    private void WanderAround()
+    {
+        int layerMask = ~LayerMask.GetMask("Enemy", "Projectile");
+        Vector3 randomDirection = Random.onUnitSphere;
+        
+        if (!Physics.Raycast(transform.position, randomDirection, wanderingDistance, layerMask)) {
+            rb.AddForce(randomDirection * movementSpeed, ForceMode.Force);
+            timeSinceWanderedAround = 0f;
+            Debug.Log("Found a way, moving towards it");
+        }
+        else Debug.Log("Couldn't find a way, trying to WanderAround() again");
     }
 
     private void ChasePlayer()

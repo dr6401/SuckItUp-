@@ -141,7 +141,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6730101343735680261}
-  - component: {fileID: 6975406837808481978}
+  - component: {fileID: 4297849460128464149}
   m_Layer: 0
   m_Name: vfx_MuzzleFlash_v1
   m_TagString: Untagged
@@ -165,7 +165,7 @@ Transform:
   - {fileID: 2691396066117203325}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6975406837808481978
+--- !u!114 &4297849460128464149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,6 +174,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5882845429730421325}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7412a0ae17adf74b992768ae8b44c6f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e8e4000e969e2649b6e1b185381a2de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
