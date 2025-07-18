@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -25,6 +26,11 @@ public class FlyingPatrolEnemy : MonoBehaviour
     private AttackProjectile attackProjectileScript;
     private float timeSinceWanderedAround = 5f;
     private float wanderingAroundInterval = 5f;
+    [SerializeField] private float yFrequency = 5f;
+    [SerializeField] private float flyingAmplitude = 1.5f;
+    [SerializeField] private float minFlyingHeight = -24f; // For each level check where should the lowest flyable height be and assign it
+    public bool followPlayersHeight = true; // OR you can just set this to true and enemies will use players Y position as minFlyingHeight
+    [SerializeField] private GameObject minFlyingHeightSetter;
     
     private Vector3 playerPosition;
     [SerializeField] private Camera playerCamera;
@@ -36,6 +42,16 @@ public class FlyingPatrolEnemy : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player");
             playerCamera = player.GetComponentInChildren<Camera>();
         }
+
+        if (minFlyingHeightSetter == null)
+        {
+            minFlyingHeightSetter = GameObject.FindGameObjectWithTag("MinFlyingHeightSetter");
+        }
+
+        if (minFlyingHeightSetter != null)
+        {
+            minFlyingHeight = minFlyingHeightSetter.transform.position.y;
+        }
         rb = GetComponent<Rigidbody>();
     }
 
@@ -45,29 +61,68 @@ public class FlyingPatrolEnemy : MonoBehaviour
         if (canChasePlayer)
         {
             timeSinceWanderedAround += Time.deltaTime;
-            if (timeSinceWanderedAround >= wanderingAroundInterval)
-            {
-                WanderAround();   
-            }
             playerPosition = player.transform.position;
-            ChasePlayer();
             if ((transform.position - playerPosition).sqrMagnitude < attackRange * attackRange && timeSinceAttack > attackCooldown)
             {
                 AttackPlayer();
             }
             timeSinceAttack += Time.deltaTime;
+
+            if (followPlayersHeight)
+            {
+                minFlyingHeight = playerPosition.y;
+            }
         }
+    }
+
+    private void FixedUpdate()
+    {
+        LookAtPlayer();
+        FlyUpAndDown();
+        if (timeSinceWanderedAround >= wanderingAroundInterval)
+        {
+            WanderAround();   
+        }
+        ChasePlayer();
+    }
+
+    private void LookAtPlayer()
+    {
+        Vector3 lookDirection = playerPosition - transform.position;
+        transform.rotation = Quaternion.LookRotation(lookDirection);
     }
 
     private void WanderAround()
     {
         int layerMask = ~LayerMask.GetMask("Enemy", "Projectile");
-        Vector3 randomDirection = Random.onUnitSphere;
-        
+        Vector3 randomDirection = Random.onUnitSphere.normalized; //Normalized meaning every movement will be the same length For not same length random movement just remove the .normalized
+
+        if (transform.position.y <= minFlyingHeight) // If enemy is near the floor
+        {
+            randomDirection.y = Mathf.Abs(randomDirection.y); // Make sure the next direction will be upwards not downwards
+            randomDirection.y *= 2f; // Make sure that y direction is not only positive but actually points steeply high
+            randomDirection.Normalize();
+            Debug.Log("Enemy was low, so his next vector will be: X: " + randomDirection.x + " + Y: " + randomDirection.y + " + Z: "+ randomDirection.z);
+        }
+                                                                  
         if (!Physics.Raycast(transform.position, randomDirection, wanderingDistance, layerMask)) {
             rb.AddForce(randomDirection * movementSpeed, ForceMode.Force);
             timeSinceWanderedAround = 0f;
         }
+    }
+
+    private void FlyUpAndDown()
+    {
+        float verticalVelocity = Mathf.Cos(Time.time * yFrequency) * flyingAmplitude * yFrequency; // We add yFrequency at the end since we use .Cos which is a derivative of sin
+        Vector3 velocity = rb.linearVelocity;
+
+        velocity.y += verticalVelocity;
+        rb.linearVelocity = velocity;
+        
+        // More clunky, try if suicidal
+        //float forceY = Mathf.Cos(Time.time * yFrequency) * flyingAmplitude * yFrequency;
+        //rb.AddForce(new Vector3(0, forceY, 0), ForceMode.Acceleration);
+
     }
 
     private void ChasePlayer()
