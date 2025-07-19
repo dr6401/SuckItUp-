@@ -10,6 +10,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     //NOTE: Position this object in a place around which you want the enemies to spawn in radious "spawnOffset"
+    //
     [SerializeField] GameObject fluffyDustyPrefab;
     [SerializeField] private GameObject flyingDustyPrefab;
     [SerializeField] float spawnInterval = 3f;
@@ -18,6 +19,7 @@ public class EnemySpawner : MonoBehaviour
     private Transform enemiesFolder;
     private bool canSpawnEnemies = true;
     [SerializeField] private int maxSpawnedEnemies = 20;
+    [SerializeField] private float chanceToSpawnFluffyDusty = 0f;
     void Start()
     {
         Transform parent = transform.parent;
@@ -53,8 +55,8 @@ public class EnemySpawner : MonoBehaviour
         NavMeshHit hit;
         if (NavMesh.SamplePosition(spawnPosition, out hit, 2f, NavMesh.AllAreas))
         {
-            int spawnFluffyOrFlyingDustyChance = Random.Range(1, 10);
-            if (spawnFluffyOrFlyingDustyChance < 1)// 70% chance to spawn fluffyDusty
+            float spawnFluffyOrFlyingDustyChance = Random.Range(0.1f, 1f);
+            if (spawnFluffyOrFlyingDustyChance > chanceToSpawnFluffyDusty)// With chanceToSpawnFluffyDusty = 0 -> flying dusties will never spawn, decrease this to enable flyingDusty spawning: 70% chance to spawn fluffyDusty
             {
                 GameObject enemy = Instantiate(fluffyDustyPrefab, spawnPosition, Quaternion.identity);
                 enemy.transform.SetParent(enemiesFolder);
