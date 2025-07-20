@@ -2831,7 +2831,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2725402623183118778, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.32
+      value: 3.86
       objectReference: {fileID: 0}
     - target: {fileID: 2725402623183118778, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2864,6 +2864,14 @@ PrefabInstance:
     - target: {fileID: 2725402623183118778, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963608202159946524, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
+      propertyPath: spawnOffset
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963608202159946524, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
+      propertyPath: flyingEnemyClearanceRadius
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6149801562829461563, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
       propertyPath: m_Name
