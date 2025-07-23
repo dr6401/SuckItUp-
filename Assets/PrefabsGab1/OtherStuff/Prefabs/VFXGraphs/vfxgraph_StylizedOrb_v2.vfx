@@ -283,8 +283,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: -1371
     y: -429
-    width: 6777
-    height: 2054
+    width: 6779
+    height: 2080
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1691,8 +1691,7 @@ MonoBehaviour:
   raytracedScaleMode: 0
   needsOwnSort: 0
   needsOwnAabbBuffer: 0
-  shaderGraph: {fileID: -5475051401550479605, guid: 1454fa0e079c908468bce421a495cf4e,
-    type: 3}
+  shaderGraph: {fileID: -5475051401550479605, guid: 1454fa0e079c908468bce421a495cf4e, type: 3}
   materialSettings:
     m_PropertyNames: []
     m_PropertyValues: []
@@ -8669,8 +8668,7 @@ MonoBehaviour:
   raytracedScaleMode: 0
   needsOwnSort: 0
   needsOwnAabbBuffer: 0
-  shaderGraph: {fileID: -5475051401550479605, guid: 1454fa0e079c908468bce421a495cf4e,
-    type: 3}
+  shaderGraph: {fileID: -5475051401550479605, guid: 1454fa0e079c908468bce421a495cf4e, type: 3}
   materialSettings:
     m_PropertyNames: []
     m_PropertyValues: []
@@ -16968,8 +16966,7 @@ MonoBehaviour:
     - rid: 1001
       type: {class: ParticleShadingShaderGraph, ns: UnityEditor.VFX, asm: Unity.VisualEffectGraph.Editor}
       data:
-        shaderGraph: {fileID: 4333940904281232215, guid: de123431de9d0e24c98aa8e1fe7c5fe4,
-          type: 3}
+        shaderGraph: {fileID: 4333940904281232215, guid: de123431de9d0e24c98aa8e1fe7c5fe4, type: 3}
         materialSettings:
           m_PropertyNames:
           - _WorkflowMode
