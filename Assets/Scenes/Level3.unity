@@ -249,6 +249,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 534812656059286047, guid: 36196eb9956c82646a9c8f7289837f0c, type: 3}
+      propertyPath: m_Radius
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 534812656059286047, guid: 36196eb9956c82646a9c8f7289837f0c, type: 3}
       propertyPath: m_ProvidesContacts
       value: 1
       objectReference: {fileID: 0}
@@ -258,11 +262,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 908413033393833671, guid: 36196eb9956c82646a9c8f7289837f0c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2494672293741293689, guid: 36196eb9956c82646a9c8f7289837f0c, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5098933889538519955, guid: 36196eb9956c82646a9c8f7289837f0c, type: 3}
+      propertyPath: attackRange
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584168965062488665, guid: 36196eb9956c82646a9c8f7289837f0c, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584168965062488665, guid: 36196eb9956c82646a9c8f7289837f0c, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584168965062488665, guid: 36196eb9956c82646a9c8f7289837f0c, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7938370277619822123, guid: 36196eb9956c82646a9c8f7289837f0c, type: 3}
+      propertyPath: attackRange
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7938370277619822123, guid: 36196eb9956c82646a9c8f7289837f0c, type: 3}
+      propertyPath: attackDamage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7938370277619822123, guid: 36196eb9956c82646a9c8f7289837f0c, type: 3}
+      propertyPath: attackCooldown
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8231865434020439608, guid: 36196eb9956c82646a9c8f7289837f0c, type: 3}
       propertyPath: m_LocalScale.x
@@ -278,15 +310,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8231865434020439608, guid: 36196eb9956c82646a9c8f7289837f0c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 43.36
+      value: 45.56
       objectReference: {fileID: 0}
     - target: {fileID: 8231865434020439608, guid: 36196eb9956c82646a9c8f7289837f0c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -23.427402
+      value: -27.89
       objectReference: {fileID: 0}
     - target: {fileID: 8231865434020439608, guid: 36196eb9956c82646a9c8f7289837f0c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 56.7
+      value: 53.42
       objectReference: {fileID: 0}
     - target: {fileID: 8231865434020439608, guid: 36196eb9956c82646a9c8f7289837f0c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12581,7 +12613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23555715ee96bb74f98b9b87fd14b972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 1000
   healthText: {fileID: 1906739400}
   gameOverText: {fileID: 1906739399}
   tryAgainText: {fileID: 1906739398}

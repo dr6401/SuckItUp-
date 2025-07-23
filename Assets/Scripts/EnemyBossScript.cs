@@ -1,15 +1,17 @@
 using System;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyScript : MonoBehaviour
+public class EnemyBossScript : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     [SerializeField] GameObject player;
     [Header("Stats")]
     [SerializeField] float minPlayerChasingDistance = 50f;
-    [SerializeField] float attackRange = 2f;
+    [SerializeField] float attackRange = 4f;
     [SerializeField] float attackCooldown = 1f;
     [SerializeField] private int attackDamage = 5;
     private float timeSinceAttack = 5;
@@ -18,6 +20,7 @@ public class EnemyScript : MonoBehaviour
     private NavMeshAgent agent;
     [SerializeField] PlayerHealth playerHealth;
     private bool canChasePlayer = true;
+    private Animator animator;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -27,6 +30,7 @@ public class EnemyScript : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player");
         }
         playerHealth = player.GetComponent<PlayerHealth>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -39,10 +43,18 @@ public class EnemyScript : MonoBehaviour
 
             if ((transform.position - playerPosition).sqrMagnitude < attackRange * attackRange && timeSinceAttack > attackCooldown)
             {
-                HitPlayer();
+                Debug.Log("Ready for attack, gonna strike");
+                StartCoroutine(AttackSequence());
             }
             timeSinceAttack += Time.deltaTime;
+            LookAtPlayer();
         }
+    }
+    
+    private void LookAtPlayer()
+    {
+        Vector3 lookDirection = playerPosition - transform.position;
+        transform.rotation = Quaternion.LookRotation(lookDirection);
     }
 
     private void ChasePlayer()
@@ -53,11 +65,18 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-    private void HitPlayer()
+    private IEnumerator AttackSequence()
     {
-        //Debug.Log("Hit yo ass");
+        Debug.Log("Hit yo ass");
         timeSinceAttack = 0;
-        playerHealth.TakeDamage(attackDamage);
+        Debug.Log("Attack started and attack Timer reset");
+        animator.Play("FluffyDustyAttack");
+        yield return new WaitForSeconds(0.45f); // It takes 0.225s for the "hit" part of the animation to be played
+        if ((transform.position - playerPosition).sqrMagnitude <  attackRange * attackRange * 0.76) // If the player is near enough the enemy at the time of "hit"
+        // part of the animation being played he takes the dmg, if he moved away in time, he doesn't 
+        {
+            playerHealth.TakeDamage(attackDamage);
+        }
     }
 
     private void StopChasingPlayer()
@@ -73,4 +92,11 @@ public class EnemyScript : MonoBehaviour
     {
         GameEvents.OnPlayerDeath -= StopChasingPlayer;
     }
+
+    /*private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.color.WithAlpha(0.5f);
+        Gizmos.DrawSphere(transform.position, attackRange);
+    }*/
 }
