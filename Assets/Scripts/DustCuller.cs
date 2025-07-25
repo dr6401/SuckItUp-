@@ -25,7 +25,7 @@ public class DustCuller : MonoBehaviour
             return;
         }
         
-        float distanceToPlayer = Vector3.Distance(transform.position, target.transform.position);
+        float distanceToPlayer = (transform.position - target.transform.position).sqrMagnitude;
         if (distanceToPlayer > maxDistance)
         {
             vFX.Stop();
