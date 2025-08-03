@@ -49,7 +49,7 @@ public class PlayerEndLevelChecker : MonoBehaviour
         {
             if (tutorialManager.aliveDustParticles <= 0 && currentNumberOfEnemiesInRoom <= 0)
             {
-                objectiveText.GetComponent<TMP_Text>().text = "Congratulations on completing the tutorial!\n Get ready for action in " + sceneLoadingTimer;
+                objectiveText.GetComponent<TMP_Text>().text = "Congratulations on completing the tutorial!\n\n Good luck with cleaning the rest of the house...";
                 tutorialManager.SetObjectiveTextVisible();
                 objectiveText.SetActive(true);
                 tutorialManager.toggleWeaponTextObject.SetActive(false);
@@ -71,12 +71,14 @@ public class PlayerEndLevelChecker : MonoBehaviour
 
     private IEnumerator StartLoadingNextLevel()
     {
+        PlayerPrefs.SetInt("TutorialCompleted", 1);
+        PlayerPrefs.Save();
         while (sceneLoadingTimer > 0)
         {
-            objectiveText.GetComponent<TMP_Text>().text = "Congratulations on completing the tutorial!\n Get ready for action in " + sceneLoadingTimer;
+            objectiveText.GetComponent<TMP_Text>().text = "Congratulations on completing the tutorial!\n\n Good luck with cleaning the rest of the house...";
             yield return new WaitForSeconds(1);
             sceneLoadingTimer--;
         }
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("Hallway");
     }
 }

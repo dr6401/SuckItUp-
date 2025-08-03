@@ -2984,6 +2984,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 4015532630556736059, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4015532630556736059, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
+      propertyPath: healthText
+      value: 
+      objectReference: {fileID: 925031746}
+    - target: {fileID: 4015532630556736059, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
+      propertyPath: gameOverText
+      value: 
+      objectReference: {fileID: 925031745}
+    - target: {fileID: 4015532630556736059, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
+      propertyPath: tryAgainText
+      value: 
+      objectReference: {fileID: 925031744}
     - target: {fileID: 4313594062892892696, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: gravity
       value: 90.81
@@ -3103,9 +3119,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5856168188944468224, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       insertIndex: 3
-      addedObject: {fileID: 1426673968}
-    - targetCorrespondingSourceObject: {fileID: 5856168188944468224, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
-      insertIndex: 4
       addedObject: {fileID: 1426673980}
   m_SourcePrefab: {fileID: 100100000, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
 --- !u!1 &1426673967 stripped
@@ -3113,23 +3126,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5856168188944468224, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
   m_PrefabInstance: {fileID: 1426673966}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1426673968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1426673967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23555715ee96bb74f98b9b87fd14b972, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  healthText: {fileID: 925031746}
-  gameOverText: {fileID: 925031745}
-  tryAgainText: {fileID: 925031744}
-  _gameManager: {fileID: 0}
 --- !u!114 &1426673973 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5666044982448068472, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}

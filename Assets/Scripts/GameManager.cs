@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
-                SceneManager.LoadScene("Level1");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
 
@@ -108,8 +108,13 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator LoadNextScene()
     {
+        PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, 1);
+        Debug.Log("Saved to PlayerPrefs scene: " + SceneManager.GetActiveScene().name + " with value of 1");
+        PlayerPrefs.Save();
         yield return new WaitForSeconds(timeToLoadNextScene);
+        SceneManager.LoadScene("Hallway");
+        /*yield return new WaitForSeconds(timeToLoadNextScene);
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex + 1);
+        SceneManager.LoadScene(currentSceneIndex + 1);*/
     }
 }
