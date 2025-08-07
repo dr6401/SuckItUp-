@@ -7,7 +7,7 @@ public class DustCuller : MonoBehaviour
     private bool isPlaying = false;
     [SerializeField] private VisualEffect vFX;
     [SerializeField] private Transform target;
-    [SerializeField] private float maxDistance = 100f;
+    [SerializeField] private float maxDistance = 1000f;
     void Start()
     {
         vFX = GetComponentInChildren<VisualEffect>();
