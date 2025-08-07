@@ -4121,7 +4121,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -13300,6 +13300,22 @@ PrefabInstance:
     - target: {fileID: 615040776990848394, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: m_RenderShadows
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 615040776990848394, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
+      propertyPath: m_VolumeLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1193547500841403564, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
+      propertyPath: m_ClearFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1193547500841403564, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
+      propertyPath: m_OcclusionCulling
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1193547500841403564, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1193547500841403564, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: m_AllowDynamicResolution
