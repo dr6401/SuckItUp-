@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     private Transform enemiesFolder;
     private float timeToLoadNextScene = 5f;
+    
+    List<GameObject> dustParticles = new List<GameObject>();
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -87,11 +90,46 @@ public class GameManager : MonoBehaviour
 
         if (areAllSpawnersDestroyed && enemiesFolder.childCount <= 0)
         {
-            Destroy(player);
-            victoryText.SetActive(true);
-            gameOver = true;
-            StartCoroutine(LoadNextScene());
+            TrackRemainingDust();
+            if (CheckIfAllDustIsSuckedUp())
+            {
+                EndLevel();
+            }
         }
+    }
+
+    private void TrackRemainingDust()
+    {
+        GameObject[] dustParticlesInRoom = GameObject.FindGameObjectsWithTag("DustPickup");
+        foreach(GameObject dustParticle in dustParticlesInRoom)
+        {
+            if (!dustParticles.Contains(dustParticle))
+            {
+                dustParticles.Add(dustParticle.gameObject);
+            }
+        }
+    }
+
+    private bool CheckIfAllDustIsSuckedUp()
+    {
+        if (dustParticles.Count <= 0) return true;
+        return false;
+    }
+    
+    public void DustDestroyed(GameObject dust)
+    {
+        if (dustParticles.Contains(dust))
+        {
+            dustParticles.Remove(dust);
+        }
+    }
+
+    private void EndLevel()
+    {
+        Destroy(player);
+        victoryText.SetActive(true);
+        gameOver = true;
+        StartCoroutine(LoadNextScene());
     }
 
     private void HandleAllSpawnersDead()

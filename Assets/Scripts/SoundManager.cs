@@ -7,12 +7,14 @@ public class SoundManager : MonoBehaviour
     [Header("-------Audio Sources-------")]
     [SerializeField] private AudioSource music;
     [SerializeField] private AudioSource SFX;
+    [SerializeField] private AudioSource loudSFX;
     [Header("-------Audio Clips-------")]
     [SerializeField] private AudioClip[] musicThemes;
     [SerializeField] private AudioClip[] dustParticlesCrumblings;
     [SerializeField] private AudioClip[] shootingSFX;
     [SerializeField] private AudioClip[] vacuumingSounds;
     [SerializeField] private AudioClip[] mouseClicks;
+    [SerializeField] private AudioClip[] hitMarkerSFX;
     private AudioClip[][] SFXSounds;
     private static SoundManager instance;
     private readonly float fadeDuration = 0.1f;
@@ -70,7 +72,7 @@ public class SoundManager : MonoBehaviour
     {
         if (currentSuctionSFXTimer >= maxSuctionSFXTimer)
         {
-            SFX.PlayOneShot(dustParticlesCrumblings[Random.Range(0, dustParticlesCrumblings.Length)]);
+            loudSFX.PlayOneShot(dustParticlesCrumblings[Random.Range(0, dustParticlesCrumblings.Length)]);
             currentSuctionSFXTimer = 0;
         }
     }
@@ -154,15 +156,22 @@ public class SoundManager : MonoBehaviour
     private void OnEnable()
     {
         GameEvents.OnShoot += PlayRandomShootSFX;
+        GameEvents.OnHit += PlayRandomHitMarkerSFX;
     }
     
     private void OnDisable()
     {
         GameEvents.OnShoot -= PlayRandomShootSFX;
+        GameEvents.OnHit -= PlayRandomHitMarkerSFX;
     }
 
     private void PlayRandomShootSFX()
     {
         SFX.PlayOneShot(shootingSFX[Random.Range(0, shootingSFX.Length)]);
+    }
+    
+    private void PlayRandomHitMarkerSFX()
+    {
+        SFX.PlayOneShot(hitMarkerSFX[Random.Range(0, hitMarkerSFX.Length)]);
     }
 }

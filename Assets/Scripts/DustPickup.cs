@@ -12,12 +12,17 @@ public class DustPickup : MonoBehaviour
     private float minGetSuckedUpDistance = 1f;
     private SoundManager soundManager;
     private WeaponHandler weaponHandler;
+    private GameManager gameManager;
 
     void Start()
     {
         soundManager = GameObject.FindGameObjectWithTag("SoundManager")?.GetComponent<SoundManager>();
         target = GameObject.FindGameObjectWithTag("Player")?.transform;
         weaponHandler = FindFirstObjectByType<WeaponHandler>(); // Cache this once, avoid every frame
+        if (gameManager == null)
+        {
+            gameManager = GameObject.FindAnyObjectByType<GameManager>();
+        }
     }
 
     // Update is called once per frame
@@ -39,6 +44,14 @@ public class DustPickup : MonoBehaviour
             weaponHandler?.RefillAmmo(1);
             soundManager?.PlayDustSuction();
             Destroy(gameObject);
+        }
+    }
+    
+    private void OnDestroy()
+    {
+        if (gameManager != null)
+        {
+            gameManager.DustDestroyed(this.gameObject);   
         }
     }
 
