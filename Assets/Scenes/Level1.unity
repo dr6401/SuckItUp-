@@ -7291,6 +7291,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4812438950831597256, guid: 0f2447ac03155874994fb947e147aa7b, type: 3}
+      propertyPath: m_IsGlobal
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5500915276743743324, guid: 0f2447ac03155874994fb947e147aa7b, type: 3}
       propertyPath: m_Name
       value: Lvl1GlobalVolume
