@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 882f13d0d1a7290459ddae98e1d7c0c0, type: 3}
+  m_Name: SuctionVortex
+  m_EditorClassIdentifier: 
+  augmentName: Suction Vortex
+  description: Holding vacuum for 2 seconds creates a black hole that pulls enemies
+    inward for 3 seconds.
+  icon: {fileID: 0}
+  tier: 2
+  category: 2
