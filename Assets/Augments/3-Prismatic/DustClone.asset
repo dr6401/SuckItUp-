@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c656ee35ef932438267aff65601213, type: 3}
-  m_Name: DustToGold
+  m_Script: {fileID: 11500000, guid: 70cf1f3404d8bb04b81c4808fd358fbd, type: 3}
+  m_Name: DustClone
   m_EditorClassIdentifier: 
-  augmentName: Dust To Gold
-  description: Every 200 dust converts into a random Gold-tier augment.
-  icon: {fileID: 0}
+  augmentName: Dust Clone
+  description: Every 60 seconds, create a clone that mimics your actions for 5 seconds.
+  icon: {fileID: 21300000, guid: a620d67f013a5484b849d9d348997987, type: 3}
   tier: 2
   category: 3

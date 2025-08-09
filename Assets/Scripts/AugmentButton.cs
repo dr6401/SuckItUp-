@@ -1,3 +1,4 @@
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -38,10 +39,12 @@ public class AugmentButton : MonoBehaviour
 
     }
 
-    public void OnClick()
+    public void SelectAugment()
     {
         augmentSelectionUI.StoreChosenAugment(augment);
         augment.Apply(player);
         augmentSelectionUI.CloseUI();
+        Debug.Log("Selected " + augment.augmentName + "! Current augments: " +
+                  string.Join(", ", augmentSelectionUI.chosenAugments.Select(a => a.augmentName)));
     }
 }

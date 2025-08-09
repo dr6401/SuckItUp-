@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d1ca1d646fc2b945956d48875f0d7ec, type: 3}
-  m_Name: AmmoRecycler
+  m_Script: {fileID: 11500000, guid: 9fa1879a8816dad44adf5bfedcef3422, type: 3}
+  m_Name: BroomBoost
   m_EditorClassIdentifier: 
-  augmentName: Ammo Recycler
-  description: Killing enemies has a 20% chance to restore 1 ammo.
-  icon: {fileID: 0}
+  augmentName: Broom Boost
+  description: Slight movement speed increase (+10%) when actively vacuuming.
+  icon: {fileID: 21300000, guid: 870d5db197594c3419b02b9f44227860, type: 3}
   tier: 0
-  category: 0
+  category: 1

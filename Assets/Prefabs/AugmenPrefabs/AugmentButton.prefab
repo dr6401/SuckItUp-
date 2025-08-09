@@ -122,7 +122,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2914565624185922998}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6567881131569960144}
+        m_TargetAssemblyTypeName: AugmentButton, Assembly-CSharp
+        m_MethodName: SelectAugment
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6567881131569960144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   augmentName: {fileID: 7859110050824445485}
   augmentDescription: {fileID: 829288704179005065}
-  iconImage: {fileID: 0}
+  iconImage: {fileID: 2914565624185922998}
 --- !u!1 &1815885590650609553
 GameObject:
   m_ObjectHideFlags: 0

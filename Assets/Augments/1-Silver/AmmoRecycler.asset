@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff4ab336531554b4996c93a21c386281, type: 3}
-  m_Name: FastHands
+  m_Script: {fileID: 11500000, guid: 6d1ca1d646fc2b945956d48875f0d7ec, type: 3}
+  m_Name: AmmoRecycler
   m_EditorClassIdentifier: 
-  augmentName: Fast Hands
-  description: Vacuum startup time reduced by 40%.
-  icon: {fileID: 0}
+  augmentName: Ammo Recycler
+  description: Killing enemies has a 20% chance to restore 1 ammo.
+  icon: {fileID: 21300000, guid: 870d5db197594c3419b02b9f44227860, type: 3}
   tier: 0
-  category: 2
+  category: 0

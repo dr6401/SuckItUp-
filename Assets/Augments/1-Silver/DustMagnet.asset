@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6df93c194014ee38e3aa6fb25ae83d4, type: 3}
-  m_Name: Springstep
+  m_Script: {fileID: 11500000, guid: 509ec1ef427fa244493151de1f439ca7, type: 3}
+  m_Name: DustMagnet
   m_EditorClassIdentifier: 
-  augmentName: Springstep
-  description: Jump height increased by 25%.
-  icon: {fileID: 0}
+  augmentName: Dust Magnet
+  description: Increases vacuum suction range by 30%.
+  icon: {fileID: 21300000, guid: 870d5db197594c3419b02b9f44227860, type: 3}
   tier: 0
-  category: 1
+  category: 2

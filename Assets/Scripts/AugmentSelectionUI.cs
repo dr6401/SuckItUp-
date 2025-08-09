@@ -1,5 +1,9 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AugmentSelectionUI : MonoBehaviour
 {
@@ -21,15 +25,42 @@ public class AugmentSelectionUI : MonoBehaviour
         }
     }
 
+    public void TestAugmentSelection()
+    {
+        List<Augment> silverPool = GetPoolByTier(AugmentTier.Silver);
+        silverPool.RemoveAll(augment => chosenAugments.Contains(augment));
+        List<Augment> goldPool = GetPoolByTier(AugmentTier.Gold);
+        goldPool.RemoveAll(augment => chosenAugments.Contains(augment));
+        List<Augment> prismaticPool = GetPoolByTier(AugmentTier.Prismatic);
+        prismaticPool.RemoveAll(augment => chosenAugments.Contains(augment));
+        if (silverPool.Count == 0 && goldPool.Count == 0 && prismaticPool.Count == 0)
+        {
+            Debug.Log("No more Augments left!");
+            return;
+        }
+        AugmentTier tier = (AugmentTier)Random.Range(0, System.Enum.GetValues(typeof(AugmentTier)).Length);
+        if (GetPoolByTier(tier).Count != 0)
+        {
+            OpenUI(player, tier);
+        }
+        else
+        {
+            TestAugmentSelection();
+        }
+    }
+
     public void OpenUI(GameObject playerRef, AugmentTier tier)
     {
         player = playerRef;
         List<Augment> pool = GetPoolByTier(tier);
         pool.RemoveAll(augment => chosenAugments.Contains(augment));
         List<Augment> choices = GetRandomAugments(pool, numberOfChoices);
+        
+        Debug.Log("Current pool of " + tier + " augments: " + string.Join(", ", pool.Select(a => a.augmentName)));
 
         foreach (var choice in choices)
         {
+            Debug.Log("Given you the choice: " + choice.augmentName);
             var btnObj = Instantiate(augmentButtonPrefab, buttonParent);
             var btnObjScript = btnObj.GetComponent<AugmentButton>();
             btnObjScript.Setup(choice, player, this);
@@ -56,7 +87,7 @@ public class AugmentSelectionUI : MonoBehaviour
         {
             int idx = Random.Range(0, availableAugments.Count);
             offeredAugments.Add(availableAugments[idx]);
-            offeredAugments.RemoveAt(idx);
+            availableAugments.RemoveAt(idx);
         }
 
         return offeredAugments;

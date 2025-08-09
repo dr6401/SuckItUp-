@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 882f13d0d1a7290459ddae98e1d7c0c0, type: 3}
-  m_Name: SuctionVortex
+  m_Script: {fileID: 11500000, guid: 6e7c3072fcab3414389026e9aa9721f1, type: 3}
+  m_Name: AmmoIsPower
   m_EditorClassIdentifier: 
-  augmentName: Suction Vortex
-  description: Holding vacuum for 2 seconds creates a black hole that pulls enemies
-    inward for 3 seconds.
-  icon: {fileID: 0}
+  augmentName: Ammo Is Power
+  description: Damage scales with current ammo \u2014 +0.2% per bullet over 100.
+  icon: {fileID: 21300000, guid: a620d67f013a5484b849d9d348997987, type: 3}
   tier: 2
-  category: 2
+  category: 0
