@@ -7,4 +7,5 @@ public static class GameEvents
         public static Action OnShoot;
         public static Action OnHit;
         public static Action OnPlayerDeath;
+        public static Action OnSuckDust;
 }

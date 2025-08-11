@@ -10,6 +10,7 @@ public class AugmentSelectionUI : MonoBehaviour
     public GameObject player;
     public Transform buttonParent;
     public GameObject augmentButtonPrefab;
+    [SerializeField] private GameManager gameManager;
     public List<Augment> silverAugments, goldAugments, prismaticAugments;
     public List<Augment> chosenAugments;
     [SerializeField] private int numberOfChoices = 3;
@@ -23,6 +24,11 @@ public class AugmentSelectionUI : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
+        if (gameManager == null)
+        {
+            gameManager = GameObject.FindAnyObjectByType<GameManager>();
+        }
+        gameObject.SetActive(false);
     }
 
     public void TestAugmentSelection()
@@ -41,7 +47,7 @@ public class AugmentSelectionUI : MonoBehaviour
         AugmentTier tier = (AugmentTier)Random.Range(0, System.Enum.GetValues(typeof(AugmentTier)).Length);
         if (GetPoolByTier(tier).Count != 0)
         {
-            OpenUI(player, tier);
+            TriggerAugmentSelection(player, tier);
         }
         else
         {
@@ -49,7 +55,7 @@ public class AugmentSelectionUI : MonoBehaviour
         }
     }
 
-    public void OpenUI(GameObject playerRef, AugmentTier tier)
+    public void TriggerAugmentSelection(GameObject playerRef, AugmentTier tier)
     {
         player = playerRef;
         List<Augment> pool = GetPoolByTier(tier);
@@ -71,6 +77,7 @@ public class AugmentSelectionUI : MonoBehaviour
 
     public void CloseUI()
     {
+        gameManager.TogglePauseGame();
         foreach (Transform child in buttonParent)
         {
             Destroy(child.gameObject);

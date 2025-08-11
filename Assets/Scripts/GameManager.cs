@@ -58,26 +58,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !gameOver){
-            keyBindingTextToggled = !keyBindingTextToggled;
-            settingsCanvas.SetActive(keyBindingTextToggled);
-
-            objectiveText.SetActive(false);
-
-            //Enabling/Disabling the cursor if the game is paused
-            if (keyBindingTextToggled)
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-            }
-            else
-            {
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-
-            Time.timeScale = keyBindingTextToggled ? 0f : 1f;
-            playerMovement.inputBlocked = keyBindingTextToggled;
-            weaponHandler.inputBlocked = keyBindingTextToggled;
+            TogglePauseGame();
         }
 
         if (gameOver)
@@ -96,6 +77,30 @@ public class GameManager : MonoBehaviour
                 EndLevel();
             }
         }
+    }
+
+    public void TogglePauseGame()
+    {
+        keyBindingTextToggled = !keyBindingTextToggled;
+        settingsCanvas.SetActive(keyBindingTextToggled);
+
+        objectiveText.SetActive(false);
+
+        //Enabling/Disabling the cursor if the game is paused
+        if (keyBindingTextToggled)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        Time.timeScale = keyBindingTextToggled ? 0f : 1f;
+        playerMovement.inputBlocked = keyBindingTextToggled;
+        weaponHandler.inputBlocked = keyBindingTextToggled;
     }
 
     private void TrackRemainingDust()
