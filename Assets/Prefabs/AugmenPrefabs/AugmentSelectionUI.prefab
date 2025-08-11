@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 53803ccec7fa24b4eae9b8cf05ba8033, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 0
+    m_Top: 40
     m_Bottom: 0
   m_ChildAlignment: 3
   m_StartCorner: 0
@@ -269,6 +269,7 @@ MonoBehaviour:
   player: {fileID: 0}
   buttonParent: {fileID: 3462484511507193320}
   augmentButtonPrefab: {fileID: 111587063980478251, guid: 5c8e3ed702343c04ea37e79f75fc5bb0, type: 3}
+  gameManager: {fileID: 0}
   silverAugments:
   - {fileID: 11400000, guid: bcfc8d6c588d6f847b38072c18dd4c1d, type: 2}
   - {fileID: 11400000, guid: 6342a3d204d1f4343992c986d4937c6a, type: 2}
@@ -289,4 +290,3 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d41e3df84278e7644806e10b7d940bee, type: 2}
   chosenAugments: []
   numberOfChoices: 3
-  gameManager: {fileID: 0}
