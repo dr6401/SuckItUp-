@@ -2105,6 +2105,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 5988429782968315471, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7267542044105194087, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2118,7 +2122,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5514966319002317418, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3950734686692476239, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
       insertIndex: -1
@@ -3915,6 +3920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73bb506bcf404b1bbdfca33ebf9eefe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectiveTextDuration: 10
   objectiveText: {fileID: 485147605}
   settingsCanvas: {fileID: 167718863}
   toggleWeaponTextObject: {fileID: 487651867}

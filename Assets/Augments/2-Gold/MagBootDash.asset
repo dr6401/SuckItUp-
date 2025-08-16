@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0df5baec23a0b7d4cb0fba38d4a11698, type: 3}
+  m_Name: MagBootDash
+  m_EditorClassIdentifier: 
+  augmentName: Mag Boot Dash
+  description: Adds a ground slide/dash ability with a short cooldown.
+  icon: {fileID: 21300000, guid: aa319a020b3bcd548aca660549505fd2, type: 3}
+  tier: 1
+  category: 1

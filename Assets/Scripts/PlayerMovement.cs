@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Android;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
@@ -28,6 +29,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 originalCameraTransform;
 
     Vector3 moveDirection = Vector3.zero;
+    
+    // AUGMENT STUFF
+    private bool isZooming = false;
+    private bool currentZoomiesSpeed;
+    private float beforeZoomingMovementSpeed;
 
     [SerializeField] private new Camera camera;
 
@@ -65,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
         if (!inputBlocked)
         {
             ApplyGravity();
+            //if (isZooming) Zoom();
             Move();
             RotatePlayer();
             if (Input.GetKey(KeyCode.Space) && characterController.isGrounded) // Jump
@@ -193,6 +200,31 @@ void LowerCamera()
         mouseSensitivity = sensitivity;
         PlayerPrefs.SetFloat("sensitivity", sensitivity);
         
+    }
+
+    // AUGMENT FUNCTIONS
+    public void UpdateHalvedMovementSpeed()
+    {
+        Debug.Log("previous halved moveSpeed: " + halvedBaseMoveSpeed);
+        halvedBaseMoveSpeed = baseMoveSpeed / 2;
+        Debug.Log("updated halved moveSpeed: " + halvedBaseMoveSpeed);
+    }
+    
+    public void ApplySteadyAim()
+    {
+        halvedBaseMoveSpeed = baseMoveSpeed;
+        Debug.Log("Halved move speed: " + halvedBaseMoveSpeed + " set to base move speed (" + baseMoveSpeed + ")");
+    }
+
+    public void ApplyFeatherless()
+    {
+        gravity *= 0.5f;
+    }
+
+    public void ApplyZoomies()
+    {
+        isZooming = true;
+        beforeZoomingMovementSpeed = baseMoveSpeed;
     }
     
     /*private void OnDrawGizmos()

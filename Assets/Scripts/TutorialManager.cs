@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 
 public class TutorialManager : MonoBehaviour
 {
-    private float objectiveTextDuration = 7.5f;
+    [SerializeField]private float objectiveTextDuration = 10;
     [SerializeField] private GameObject objectiveText;
     [SerializeField] private GameObject settingsCanvas;
     [FormerlySerializedAs("toggleWeaponText")] [SerializeField] public GameObject toggleWeaponTextObject;
