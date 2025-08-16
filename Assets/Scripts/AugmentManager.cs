@@ -12,7 +12,7 @@ public class AugmentManager : MonoBehaviour
     [SerializeField] private AugmentSelectionUI augmentSelectionUI;
     [SerializeField] private TMP_Text dustScoreText;
     [SerializeField] private GameManager gameManager;
-    [SerializeField] public float augmentTriggerTresholdDuplicator = 2f;
+    [SerializeField] public float augmentTriggerTresholdDuplicator = 1f;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
