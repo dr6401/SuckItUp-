@@ -13,6 +13,7 @@ TagManager:
   - GameManager
   - MinFlyingHeightSetter
   - DustScoreText
+  - PlayerSpawnPosition
   layers:
   - Default
   - TransparentFX

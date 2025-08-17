@@ -131,7 +131,7 @@ namespace MoreMountains.Feedbacks
 					SceneManager.LoadScene(DestinationSceneName);
 					break;
 				case LoadingModes.DirectAdditive:
-					SceneManager.LoadScene(DestinationSceneName, LoadSceneMode.Additive);
+					SceneManager.LoadScene(DestinationSceneName, LoadSceneMode.Single);
 					break;
 				case LoadingModes.MMSceneLoadingManager:
 					MMSceneLoadingManager.LoadScene(DestinationSceneName, LoadingSceneName);

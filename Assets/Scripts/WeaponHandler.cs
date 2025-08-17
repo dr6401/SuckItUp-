@@ -1,12 +1,13 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using TMPro;
+using UnityEngine.Serialization;
 
 public class WeaponHandler : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
+    
     public GameObject shooterWeapon;
     public GameObject vacuumWeapon;
     private bool isShooterWeaponActive = true;
@@ -21,7 +22,8 @@ public class WeaponHandler : MonoBehaviour
     [SerializeField] private GameObject muzzleFlashPrefab;
     [SerializeField] private Transform endOfBarrel;
     public RawImage crossHair;
-    [SerializeField] private float maxAmmo = 30f;
+    private float startAmmo = 100f;
+    [SerializeField] private float ammo = 0f;
     private float currentAmmo;
     [SerializeField] private TMP_Text ammoText;
     public Animator primaryWeaponAnimator;
@@ -34,7 +36,6 @@ public class WeaponHandler : MonoBehaviour
     private bool isAlreadySucking;
 
     private SoundManager soundManager;
-    // Update is called once per frame
 
     private void Start()
     {
@@ -42,7 +43,7 @@ public class WeaponHandler : MonoBehaviour
         isVacuumWeaponActive = false;
         camera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         crossHair.enabled = false;
-        currentAmmo = maxAmmo;
+        currentAmmo = ammo;
         if (endOfBarrel == null)
         {
             endOfBarrel = GetComponentInChildren<Transform>().Find("EndOfBarrel");
@@ -112,7 +113,7 @@ public class WeaponHandler : MonoBehaviour
 
 
         }
-        ammoText.text = "Ammo: " + currentAmmo.ToString();
+        ammoText.text = currentAmmo.ToString();
     }
 
     private void Shoot()
@@ -162,6 +163,7 @@ public class WeaponHandler : MonoBehaviour
     public void RefillAmmo(int reloadAmmount)
     {
         currentAmmo += reloadAmmount;
+        GameEvents.OnAmmoUpdate?.Invoke();
     }
 
 
@@ -207,13 +209,28 @@ public class WeaponHandler : MonoBehaviour
         }
     }
 
-    // When have time refactor this, so that it will only excecute SuckDustParticlesIn(false) once,
+    // When have time refactor this, so that it will only execute SuckDustParticlesIn(false) once,
     // so it won't need to do the Collider Physics.Overlap checking constantly, but turn it off just once
     private void StopSuckingDustParticles()
     {
         SuckDustParticlesIn(false);
     }
 
+    private void ResetPlayerState()
+    {
+        ammo = startAmmo;
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.OnPlayerDeath += ResetPlayerState;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnPlayerDeath -= ResetPlayerState;
+    }
+    
     /*private void OnDrawGizmos()
     {
         if (camera.transform == null)
