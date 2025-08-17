@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using TMPro;
+using System;
 
 public class WeaponHandler : MonoBehaviour
 {
@@ -34,6 +35,9 @@ public class WeaponHandler : MonoBehaviour
     private bool isAlreadySucking;
 
     private SoundManager soundManager;
+
+    public static event Action OnAmmoIncrease;
+    public static event Action OnNoAmmoLeft;
     // Update is called once per frame
 
     private void Start()
@@ -64,10 +68,17 @@ public class WeaponHandler : MonoBehaviour
                 WeaponSwitch();
             }
             // Shoot
-            if (isShooterWeaponActive && Input.GetMouseButton(0) && timeSinceLastShot >= fireRate && currentAmmo > 0)
+            if (isShooterWeaponActive && Input.GetMouseButton(0) && timeSinceLastShot >= fireRate)
             {
-                Shoot();
-                timeSinceLastShot = 0;
+                if (currentAmmo <= 0)
+                {
+                    OnNoAmmoLeft?.Invoke();
+                }
+                else
+                {
+                    Shoot();
+                    timeSinceLastShot = 0;   
+                }
             }
             // Suck
 
@@ -112,7 +123,7 @@ public class WeaponHandler : MonoBehaviour
 
 
         }
-        ammoText.text = "Ammo: " + currentAmmo.ToString();
+        ammoText.text = currentAmmo.ToString();
     }
 
     private void Shoot()
@@ -161,6 +172,10 @@ public class WeaponHandler : MonoBehaviour
 
     public void RefillAmmo(int reloadAmmount)
     {
+        if (reloadAmmount > 0)
+        {
+            OnAmmoIncrease?.Invoke();
+        }
         currentAmmo += reloadAmmount;
     }
 
