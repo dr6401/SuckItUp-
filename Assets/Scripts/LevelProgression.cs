@@ -22,18 +22,8 @@ public class LevelProgression : MonoBehaviour
 
     private float levelLoadingTime = 3;
     private float currentTimer = 0;
-    
-    void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
 
-    void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    void Start()
     {
         if (player == null)
         {
@@ -51,12 +41,10 @@ public class LevelProgression : MonoBehaviour
             level3AreaMr = level3AreaObject.GetComponent<MeshRenderer>();
         }
     }
-    
 
     // Update is called once per frame
     void Update()
     {
-        if (player == null) return;
         adjustedPlayerPosition = player.transform.position + Vector3.down;
 
         if (isPlayerInsideBounds(level1Area.bounds, adjustedPlayerPosition) && PlayerPrefs.GetInt("TutorialCompleted") == 1)

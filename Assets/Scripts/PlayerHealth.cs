@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
@@ -8,10 +7,7 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
 
-    public static PlayerHealth instance;
-    [SerializeField] private bool keepItPersistent = true;
-    
-    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int maxHealth = 200;
     private static int health;
     [SerializeField] private TMP_Text healthText;
     [SerializeField] private TMP_Text gameOverText;
@@ -19,21 +15,6 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private GameManager _gameManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    
-    private void Awake()
-    {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        instance = this;
-        if (keepItPersistent)
-        {
-            DontDestroyOnLoad(gameObject);
-        }
-    }
     void Start()
     {
         if (_gameManager == null)
@@ -60,20 +41,7 @@ public class PlayerHealth : MonoBehaviour
         GameEvents.OnPlayerDeath?.Invoke();
         gameOverText.GameObject().SetActive(true);
         tryAgainText.GameObject().SetActive(true);
-    }
-
-    private void ResetPlayerState()
-    {
-        health = maxHealth;
-    }
-    private void OnEnable()
-    {
-        GameEvents.OnPlayerDeath += ResetPlayerState;
-    }
-    
-    private void OnDisable()
-    {
-        GameEvents.OnPlayerDeath -= ResetPlayerState;
+        Destroy(gameObject);
     }
 
     public void TakeDamage(int damage)

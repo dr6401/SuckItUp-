@@ -8,6 +8,4 @@ public static class GameEvents
         public static Action OnHit;
         public static Action OnPlayerDeath;
         public static Action OnSuckDust;
-        public static Action OnAmmoUpdate;
-        public static Action OnWinLevel;
 }

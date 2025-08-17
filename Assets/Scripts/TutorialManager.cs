@@ -9,7 +9,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]private float objectiveTextDuration = 10;
     [SerializeField] private GameObject objectiveText;
     [SerializeField] private GameObject settingsCanvas;
-    [SerializeField] public GameObject toggleWeaponTextObject;
+    [FormerlySerializedAs("toggleWeaponText")] [SerializeField] public GameObject toggleWeaponTextObject;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private WeaponHandler weaponHandler;
     private bool keyBindingTextToggled = false;

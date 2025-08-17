@@ -10,10 +10,6 @@ using Cursor = UnityEngine.Cursor;
 
 public class GameManager : MonoBehaviour
 {
-
-    public static GameManager instance;
-    [SerializeField] private bool keepItPersistent = true;
-    
     private float objectiveTextDuration = 7.5f;
     [SerializeField] private GameObject objectiveText;
     [SerializeField] private GameObject settingsCanvas;
@@ -29,20 +25,6 @@ public class GameManager : MonoBehaviour
     
     List<GameObject> dustParticles = new List<GameObject>();
 
-    private void Awake()
-    {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        instance = this;
-        if (keepItPersistent)
-        {
-            DontDestroyOnLoad(gameObject);   
-        }
-    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -51,20 +33,25 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         player = GameObject.FindWithTag("Player");
+        
+        // Getting access to the enemies folder for checking if enemies <= 0
+        GameObject folder = GameObject.Find("EnemiesFolder");
+        if (folder == null)
+        {
+            Debug.Log("Folder is null, creating new folder");
+            folder = new GameObject("EnemiesFolder");
+        }
+        enemiesFolder = folder.transform;
     }
 
     private void OnEnable()
     {
         EnemySpawnManager.AllSpawnerDead += HandleAllSpawnersDead;
-        GameEvents.OnPlayerDeath += ResetPlayerState;
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
     
     private void OnDisable()
     {
         EnemySpawnManager.AllSpawnerDead -= HandleAllSpawnersDead;
-        GameEvents.OnPlayerDeath -= ResetPlayerState;
-        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     // Update is called once per frame
@@ -81,10 +68,9 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
-        
-        if (SceneManager.GetActiveScene().name != "Hallway" && areAllSpawnersDestroyed && enemiesFolder != null && enemiesFolder.childCount <= 0)
+
+        if (areAllSpawnersDestroyed && enemiesFolder.childCount <= 0)
         {
-            Debug.Log("Conditions for track remaining dust met");
             TrackRemainingDust();
             if (CheckIfAllDustIsSuckedUp())
             {
@@ -145,7 +131,7 @@ public class GameManager : MonoBehaviour
 
     private void EndLevel()
     {
-        GameEvents.OnWinLevel?.Invoke();
+        Destroy(player);
         victoryText.SetActive(true);
         gameOver = true;
         StartCoroutine(LoadNextScene());
@@ -170,29 +156,8 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
         yield return new WaitForSeconds(timeToLoadNextScene);
         SceneManager.LoadScene("Hallway");
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        var spawn = GameObject.FindGameObjectWithTag("PlayerSpawnPosition");
-        if (spawn != null && player != null)
-        {
-            player.transform.position = spawn.transform.position;
-            player.transform.rotation = spawn.transform.rotation;
-        }
-        
-        // Getting access to the enemies folder for checking if enemies <= 0
-        GameObject folder = GameObject.Find("EnemiesFolder");
-        if (folder == null)
-        {
-            Debug.Log("Folder is null, creating new folder");
-            folder = new GameObject("EnemiesFolder");
-        }
-        enemiesFolder = folder.transform;
-    }
-
-    private void ResetPlayerState()
-    {
-        player.transform.position = new Vector3(player.transform.position.x, -50, player.transform.position.z); // after death move player out of the map to hide him
+        /*yield return new WaitForSeconds(timeToLoadNextScene);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex + 1);*/
     }
 }

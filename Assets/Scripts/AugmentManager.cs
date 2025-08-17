@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class AugmentManager : MonoBehaviour
 {
     private int currentSuckedDust = 0;
-    [SerializeField] private float augmentTriggerTreshold = 20;
+    private float augmentTriggerTreshold = 20;
     [SerializeField] private GameObject player;
     [SerializeField] private AugmentSelectionUI augmentSelectionUI;
     [SerializeField] private TMP_Text dustScoreText;
