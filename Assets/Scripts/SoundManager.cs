@@ -15,6 +15,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip[] vacuumingSounds;
     [SerializeField] private AudioClip[] mouseClicks;
     [SerializeField] private AudioClip[] hitMarkerSFX;
+    [SerializeField] private AudioClip noAmmoLeftSFX;
     private AudioClip[][] SFXSounds;
     private static SoundManager instance;
     private readonly float fadeDuration = 0.1f;
@@ -157,12 +158,22 @@ public class SoundManager : MonoBehaviour
     {
         GameEvents.OnShoot += PlayRandomShootSFX;
         GameEvents.OnHit += PlayRandomHitMarkerSFX;
+        WeaponHandler.OnNoAmmoLeft += PlayNoAmmoLeftSFX;
     }
     
     private void OnDisable()
     {
         GameEvents.OnShoot -= PlayRandomShootSFX;
         GameEvents.OnHit -= PlayRandomHitMarkerSFX;
+        WeaponHandler.OnNoAmmoLeft -= PlayNoAmmoLeftSFX;
+    }
+
+    private void PlayNoAmmoLeftSFX()
+    {
+        if (noAmmoLeftSFX != null)
+        {
+            //SFX.PlayOneShot(noAmmoLeftSFX);
+        }
     }
 
     private void PlayRandomShootSFX()

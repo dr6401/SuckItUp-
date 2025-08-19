@@ -22,7 +22,7 @@ public class WeaponHandler : MonoBehaviour
     [SerializeField] private GameObject muzzleFlashPrefab;
     [SerializeField] private Transform endOfBarrel;
     public RawImage crossHair;
-    [SerializeField] private float maxAmmo = 30f;
+    [SerializeField] private float maxAmmo = 0f;
     private float currentAmmo;
     [SerializeField] private TMP_Text ammoText;
     public Animator primaryWeaponAnimator;
@@ -216,7 +216,6 @@ public class WeaponHandler : MonoBehaviour
         {
             if (dust.CompareTag("DustPickup"))
             {
-                //Debug.Log("Mf named " + dust.name + " has been detected as a Dusty guy in dustPickups array");
                 dust.GetComponent<DustPickup>().isGettingSucked = isSucking;
             }
         }

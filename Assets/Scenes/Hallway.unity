@@ -1102,6 +1102,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4015532630556736059, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4015532630556736059, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: healthText
       value: 
       objectReference: {fileID: 1445765129}
@@ -1155,6 +1159,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5030005378581562621, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5666044982448068472, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
+      propertyPath: maxAmmo
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5666044982448068472, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}

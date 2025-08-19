@@ -330,6 +330,7 @@ MonoBehaviour:
   mouseClicks: []
   hitMarkerSFX:
   - {fileID: 8300000, guid: 9a3df340ed41a9e4189ecce6564e0b99, type: 3}
+  noAmmoLeftSFX: {fileID: 8300000, guid: d86a37b943fd0504e9cf7a9fd234ac6e, type: 3}
 --- !u!1 &8559753548214809764
 GameObject:
   m_ObjectHideFlags: 0

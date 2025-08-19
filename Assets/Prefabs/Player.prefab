@@ -380,7 +380,7 @@ MonoBehaviour:
   muzzleFlashPrefab: {fileID: 5882845429730421325, guid: ffe4d091efa6c294caa503a244a38a9f, type: 3}
   endOfBarrel: {fileID: 3095398930143407492}
   crossHair: {fileID: 0}
-  maxAmmo: 100
+  maxAmmo: 0
   ammoText: {fileID: 0}
   primaryWeaponAnimator: {fileID: 5334811845218082478}
   isAiming: 0
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23555715ee96bb74f98b9b87fd14b972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 100
   healthText: {fileID: 0}
   gameOverText: {fileID: 0}
   tryAgainText: {fileID: 0}
