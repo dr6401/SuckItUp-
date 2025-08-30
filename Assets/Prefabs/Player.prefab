@@ -358,7 +358,7 @@ MonoBehaviour:
   inputBlocked: 0
   cameraTransform: {fileID: 3534616509636871620}
   weaponHandler: {fileID: 5666044982448068472}
-  slideSpeedMultiplier: 2
+  slideSpeedMultiplier: 1.5
   camera: {fileID: 1193547500841403564}
 --- !u!114 &5666044982448068472
 MonoBehaviour:

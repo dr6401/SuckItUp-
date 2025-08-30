@@ -14,6 +14,7 @@ public class AugmentSelectionUI : MonoBehaviour
     public List<Augment> silverAugments, goldAugments, prismaticAugments;
     public List<Augment> chosenAugments;
     [SerializeField] private int numberOfChoices = 3;
+    private int availableAugmentsAtStart;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -29,6 +30,20 @@ public class AugmentSelectionUI : MonoBehaviour
             gameManager = GameObject.FindAnyObjectByType<GameManager>();
         }
         gameObject.SetActive(false);
+
+        foreach (var silverAugment in silverAugments)
+        {
+            availableAugmentsAtStart++;
+        }
+        foreach (var goldAugment in goldAugments)
+        {
+            availableAugmentsAtStart++;
+        }
+        foreach (var prismaticAugment in prismaticAugments)
+        {
+            availableAugmentsAtStart++;
+        }
+        Debug.Log("availableAugmentsAtStart: " + availableAugmentsAtStart);
     }
 
     public void TestAugmentSelection()
@@ -114,5 +129,10 @@ public class AugmentSelectionUI : MonoBehaviour
             AugmentTier.Prismatic => prismaticAugments,
             _ => silverAugments,
         };
+    }
+
+    public bool areAllAugmentsTaken()
+    {
+        return chosenAugments.Count >= availableAugmentsAtStart;
     }
 }

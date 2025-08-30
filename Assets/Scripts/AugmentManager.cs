@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class AugmentManager : MonoBehaviour
 {
     private int currentSuckedDust = 0;
-    private float augmentTriggerTreshold = 20;
+    [SerializeField] private float augmentTriggerTreshold = 20;
     [SerializeField] private GameObject player;
     [SerializeField] private AugmentSelectionUI augmentSelectionUI;
     [SerializeField] private TMP_Text dustScoreText;
@@ -47,9 +47,9 @@ public class AugmentManager : MonoBehaviour
     {
         if (dustScoreText != null)
         {
-            dustScoreText.text = "Dust Score: " + currentSuckedDust + "/" + augmentTriggerTreshold;   
+            dustScoreText.text = augmentSelectionUI.areAllAugmentsTaken() ? "" : "Dust Score: " + currentSuckedDust + "/" + augmentTriggerTreshold;
         }
-        if (currentSuckedDust >= augmentTriggerTreshold)
+        if (currentSuckedDust >= augmentTriggerTreshold && !augmentSelectionUI.areAllAugmentsTaken())
         {
             gameManager.TogglePauseGame();
             Debug.Log("Current sucked dust was" + currentSuckedDust + "! Setting new currentSuckedDust to 0 and the threshold to " + augmentTriggerTreshold * 2);
