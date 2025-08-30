@@ -14197,9 +14197,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6311604290768841780, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6311604290768841780, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
       propertyPath: m_Volume
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6311604290768841780, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -2920273009181853820, guid: 6de2cc9ccd7156847a9049dce43557fe, type: 2}
     - target: {fileID: 6845708594331843543, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -14251,7 +14259,7 @@ PrefabInstance:
     - target: {fileID: 8763557131505957745, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
       propertyPath: 'musicThemes.Array.data[0]'
       value: 
-      objectReference: {fileID: 8300000, guid: a81cdd08a61f11341b185393c66f1857, type: 3}
+      objectReference: {fileID: 8300000, guid: 4b1de4b509c39ce41bda4419cc2723b8, type: 3}
     - target: {fileID: 8763557131505957745, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
       propertyPath: 'shootingSFX.Array.data[0]'
       value: 

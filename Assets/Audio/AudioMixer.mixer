@@ -14,6 +14,39 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &-3835569006703645717
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: c9d795d3b8838234fa3d935f0a5559a3
+  m_EffectName: Attenuation
+  m_MixLevel: ba6b3187aa00b504e88667ca60e57bff
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!243 &-2920273009181853820
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Music
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: d4e59297bed080d4b849a411258892c2
+  m_Children: []
+  m_Volume: 240ec87c9b166b640b9bfbbeebca68ac
+  m_Pitch: 556f9db978ca3864fb40403fd7e5746e
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -3835569006703645717}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!243 &-433744388735094266
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -54,6 +87,7 @@ AudioMixerController:
     - 139cbf6d847f1a749a13dc7469257f0c
     - f3fa4b072473e5d469e66d0ba3c001d6
     - f709216f01ad08048b710aa12595465b
+    - d4e59297bed080d4b849a411258892c2
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -69,6 +103,7 @@ AudioMixerGroupController:
   m_Children:
   - {fileID: 5505774061515577387}
   - {fileID: -433744388735094266}
+  - {fileID: -2920273009181853820}
   m_Volume: 30cb1ad8a3a580942997dfe73387ba50
   m_Pitch: 0f25b1f4761583b408f2691fb3653fa8
   m_Send: 00000000000000000000000000000000
@@ -103,6 +138,7 @@ AudioMixerSnapshotController:
   m_SnapshotID: 5cc3bf5a8c820354891bd3439d9409a1
   m_FloatValues:
     01a64a70a7f584244809816f9d51a796: -7
+    240ec87c9b166b640b9bfbbeebca68ac: 0
   m_TransitionOverrides: {}
 --- !u!244 &454121495684287699
 AudioMixerEffectController:
