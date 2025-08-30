@@ -2310,7 +2310,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: spawnInterval
-      value: 20
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: maxSpawnedEnemies
@@ -2362,63 +2362,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2725402623183118778, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
   m_PrefabInstance: {fileID: 469088254}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &474168296
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6985164944301197437, guid: 5528ffbfe6df25d48b09b8317394e660, type: 3}
-      propertyPath: m_Name
-      value: FluffyDusty
-      objectReference: {fileID: 0}
-    - target: {fileID: 8437377777178859107, guid: 5528ffbfe6df25d48b09b8317394e660, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 55.19681
-      objectReference: {fileID: 0}
-    - target: {fileID: 8437377777178859107, guid: 5528ffbfe6df25d48b09b8317394e660, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -31.357853
-      objectReference: {fileID: 0}
-    - target: {fileID: 8437377777178859107, guid: 5528ffbfe6df25d48b09b8317394e660, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 62.689087
-      objectReference: {fileID: 0}
-    - target: {fileID: 8437377777178859107, guid: 5528ffbfe6df25d48b09b8317394e660, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8437377777178859107, guid: 5528ffbfe6df25d48b09b8317394e660, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8437377777178859107, guid: 5528ffbfe6df25d48b09b8317394e660, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8437377777178859107, guid: 5528ffbfe6df25d48b09b8317394e660, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8437377777178859107, guid: 5528ffbfe6df25d48b09b8317394e660, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8437377777178859107, guid: 5528ffbfe6df25d48b09b8317394e660, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8437377777178859107, guid: 5528ffbfe6df25d48b09b8317394e660, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5528ffbfe6df25d48b09b8317394e660, type: 3}
 --- !u!1001 &491920045
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6832,7 +6775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: spawnInterval
-      value: 20
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: maxSpawnedEnemies
@@ -14697,7 +14640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5878903646017234297, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: spawnInterval
-      value: 20
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 5878903646017234297, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: maxSpawnedEnemies
@@ -14798,6 +14741,10 @@ PrefabInstance:
       propertyPath: tryAgainText
       value: 
       objectReference: {fileID: 1906739398}
+    - target: {fileID: 4313594062892892696, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
+      propertyPath: slidingFOV
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 5030005378581562621, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: m_LocalPosition.x
       value: 34.96
@@ -14874,4 +14821,3 @@ SceneRoots:
   - {fileID: 1576073584}
   - {fileID: 1573264200}
   - {fileID: 904864550464547262}
-  - {fileID: 474168296}

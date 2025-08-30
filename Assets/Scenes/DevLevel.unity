@@ -2163,7 +2163,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1320188318267757704, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1958061831142115717, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: maxHealth
@@ -2179,7 +2179,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1960802332229744666, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2725402623183118778, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_LocalScale.x
@@ -2259,7 +2259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6149801562829461563, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8545371770531275925, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[7].m_Overridden
@@ -2275,7 +2275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9183940832177295276, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6076,7 +6076,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1320188318267757704, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1958061831142115717, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: maxHealth
@@ -6092,7 +6092,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1960802332229744666, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2725402623183118778, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_LocalScale.x
@@ -6164,11 +6164,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6149801562829461563, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9183940832177295276, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10043,7 +10043,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 559923847819973065, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3309773760090981982, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_Name
@@ -10051,7 +10051,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3309773760090981982, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3547289171739182595, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_IsActive
@@ -10147,7 +10147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7170008885388502655, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7177251947794946016, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: maxHealth
@@ -10163,7 +10163,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7702446211941141229, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8154225777116116252, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: spawnerText
@@ -10208,6 +10208,10 @@ PrefabInstance:
       propertyPath: tryAgainText
       value: 
       objectReference: {fileID: 1906739398}
+    - target: {fileID: 4313594062892892696, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
+      propertyPath: slidingFOV
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 5030005378581562621, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: m_LocalPosition.x
       value: 33.41

@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Searcher;
 using UnityEngine;
 using UnityEngine.Android;
 
@@ -22,6 +23,12 @@ public class PlayerMovement : MonoBehaviour
     CharacterController characterController;
     [SerializeField] private WeaponHandler weaponHandler;
 
+    [Header("Sliding")] 
+    [SerializeField] private float slideSpeedMultiplier = 1.5f;
+    private float slideDecay = 2f;
+    private bool isSliding = false;
+    private Vector3 slideDirection;
+    private Vector3 horizontalMoveSpeed;
 
     private bool isCrouching = false;
     private bool cameraLowered = false;
@@ -34,7 +41,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isZooming = false;
     private bool currentZoomiesSpeed;
     private float beforeZoomingMovementSpeed;
-
+    
+    [Header("Camera")]
     [SerializeField] private new Camera camera;
 
     void Start()
@@ -81,32 +89,59 @@ public class PlayerMovement : MonoBehaviour
                     Jump();
                 }
             }
-
-            if (Input.GetKey(KeyCode.LeftControl) && characterController.isGrounded) // Crouch
+            
+            horizontalMoveSpeed = new Vector3(moveDirection.x, moveDirection.y * 0.2f, moveDirection.z);
+            if (Input.GetKey(KeyCode.LeftControl) && characterController.isGrounded) // Crouch or Slide
             {
-                isCrouching = true;
-                Crouch();
+                if (!isSliding && !isCrouching && horizontalMoveSpeed.sqrMagnitude >
+                    baseMoveSpeed * baseMoveSpeed + 1f)
+                {
+                    StartSlide();
+                }
+                else if (!isSliding)
+                {
+                    //isCrouching = true;
+                    Crouch();   
+                }
             }
 
-            if (!(Input.GetKey(KeyCode.LeftControl)) && isCrouching) // Stop Crouching
+            if (!Input.GetKey(KeyCode.LeftControl) && (isCrouching || isSliding)) // Stop Crouching/Sliding
             {
                 if (!Physics.Raycast(transform.position + Vector3.down * 0.3f, transform.up, playerHeight * 1.4f))// These floats are just fine-tuning, so we get the ray cast to align with the newly created player collider (collider when player is crouching)
                 {
                     isCrouching = false;
+                    isSliding = false;
                     DeCrouch();
                     characterController.Move(Vector3.zero); // Something to start physics quickly
                 }
             }
 
-            if (weaponHandler.isAiming)
+            if (isSliding)
+            {
+                HandleSlide();
+                Debug.Log("Is Sliding");
+            }
+            else
+            {
+                Debug.Log("StoppedSliding");
+            }
+
+            if (weaponHandler.isAiming && !isSliding)
             {
                 moveSpeed = halvedBaseMoveSpeed;
             }
-            else
+            else if (isCrouching & characterController.isGrounded)
+            {
+                moveSpeed = halvedBaseMoveSpeed;
+            }
+            else if (!isSliding)
             {
                 moveSpeed = baseMoveSpeed;
             }
         }
+        //Debug.Log("baseMoveSpeed * baseMoveSpeed / 2: " + baseMoveSpeed * baseMoveSpeed + ", horizontalMoveSpeed.sqrMagnitude: " + horizontalMoveSpeed.sqrMagnitude);
+        Debug.Log("horizontalMoveSpeed.y.sqrMagnitude: " + horizontalMoveSpeed.y);
+        //Debug.Log("MoveSpeed: " + moveSpeed);
     }
 
     void Move()
@@ -122,7 +157,14 @@ public class PlayerMovement : MonoBehaviour
         float curSpeedZ =
             canMove ? (isRunning ? moveSpeed * sprintMultiplier : moveSpeed) * Input.GetAxis("Horizontal") : 0;
 
-        moveDirection = (forward * curSpeedX) + (right * curSpeedZ);
+        if (characterController.isGrounded)
+        {
+            moveDirection = (forward * curSpeedX) + (right * curSpeedZ);    
+        }
+        else if (isSliding)
+        {
+            moveDirection += (forward * curSpeedX * 10f * Time.deltaTime);
+        }
         moveDirection.y = verticalVelocity;
 
         characterController.Move(moveDirection * Time.deltaTime);
@@ -131,10 +173,40 @@ public class PlayerMovement : MonoBehaviour
     void Jump()
     {
         verticalVelocity = jumpForce;
+        if (isSliding) verticalVelocity *= 1.2f; //bigger jump after jumping from slide - B-hopping
+    }
+
+    void StartSlide()
+    {
+        isSliding = true;
+        slideDirection = new Vector3(moveDirection.x, 0, moveDirection.z).normalized;
+        moveSpeed *= slideSpeedMultiplier;
+        //Crouch();
+    }
+
+    void HandleSlide()
+    {
+        characterController.Move(slideDirection * (moveSpeed * Time.deltaTime));
+
+        moveSpeed = Mathf.Lerp(moveSpeed, 0, slideDecay * Time.deltaTime);
+        
+        characterController.height = 1;
+        characterController.center = new Vector3(0, -playerHeight, 0);
+        if (!cameraLowered)
+        {
+            cameraTransform.localPosition = originalCameraTransform + Vector3.down * 1.2f;
+            cameraLowered = true;
+        }
+
+        /*if (moveSpeed < 0.1f)
+        {
+            isSliding = false;
+        }*/
     }
 
     void Crouch()
     {
+        isCrouching = true;
         characterController.height = 1;
         characterController.center = new Vector3(0, -playerHeight, 0);
         if (!cameraLowered)
@@ -172,7 +244,9 @@ void LowerCamera()
     {
         if (characterController.isGrounded)
         {
-            //verticalVelocity -= 0.1f;
+            verticalVelocity -= 0.1f;
+
+            verticalVelocity = Mathf.Max(verticalVelocity, -1f);
         }
         else
         {

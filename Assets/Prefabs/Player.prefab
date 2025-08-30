@@ -358,7 +358,9 @@ MonoBehaviour:
   inputBlocked: 0
   cameraTransform: {fileID: 3534616509636871620}
   weaponHandler: {fileID: 5666044982448068472}
+  slideSpeedMultiplier: 2
   camera: {fileID: 1193547500841403564}
+  slidingFOV: 90
 --- !u!114 &5666044982448068472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,6 +387,7 @@ MonoBehaviour:
   primaryWeaponAnimator: {fileID: 5334811845218082478}
   isAiming: 0
   inputBlocked: 0
+  cameraFOVController: {fileID: 0}
 --- !u!33 &6918828009483187376
 MeshFilter:
   m_ObjectHideFlags: 0
