@@ -1,5 +1,4 @@
 using System;
-using UnityEditor.Searcher;
 using UnityEngine;
 using UnityEngine.Android;
 
@@ -43,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     private float beforeZoomingMovementSpeed;
     
     [Header("Camera")]
-    [SerializeField] private new Camera camera;
+    [SerializeField] private Camera camera;
 
     void Start()
     {
@@ -163,7 +162,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (isSliding)
         {
-            moveDirection += (forward * curSpeedX * 10f * Time.deltaTime);
+            moveDirection += (forward * curSpeedX * 5f * Time.deltaTime);
         }
         moveDirection.y = verticalVelocity;
 
@@ -228,7 +227,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-void LowerCamera()
+    void LowerCamera()
     {
         if (!cameraLowered)
         {

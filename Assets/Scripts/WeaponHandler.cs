@@ -16,7 +16,7 @@ public class WeaponHandler : MonoBehaviour
     private float shootingRange = 100f;
     [SerializeField] private float fireRate = 0.2f;
     private float timeSinceLastShot = 0;
-    [SerializeField] private new Camera camera;
+    [SerializeField] private Camera camera;
     [SerializeField] private GameObject hitEffectPrefab;
     [SerializeField] private GameObject enemyHitEffectPrefab;
     [SerializeField] private GameObject muzzleFlashPrefab;
