@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isRunning = false;
     public bool inputBlocked = false;
 
-    public Transform cameraTransform; // Store camera reference
+    public Transform cameraTransform; // Store camera reference 
     private float verticalRotation = 0f;
     private float verticalVelocity = 0f;
     CharacterController characterController;
