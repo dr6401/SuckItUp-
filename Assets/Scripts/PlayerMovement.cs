@@ -164,6 +164,10 @@ public class PlayerMovement : MonoBehaviour
         {
             moveDirection += (forward * curSpeedX * 5f * Time.deltaTime);
         }
+        else
+        {
+            moveDirection = (forward * curSpeedX) + (right * curSpeedZ);    
+        }
         moveDirection.y = verticalVelocity;
 
         characterController.Move(moveDirection * Time.deltaTime);
@@ -197,10 +201,13 @@ public class PlayerMovement : MonoBehaviour
             cameraLowered = true;
         }
 
-        /*if (moveSpeed < 0.1f)
+        if (moveSpeed < 1f)
         {
             isSliding = false;
-        }*/
+            isCrouching = true;
+            Crouch();
+            Debug.Log("You were sliding a bit to slow, so you stopped sliding and started crouching");
+        }
     }
 
     void Crouch()

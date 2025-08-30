@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 2375169489118886388}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7.2, y: 7.2, z: 7.2}
+  m_LocalScale: {x: 0.030000001, y: 0.030000001, z: 0.030000001}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 368880430705902358}
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.4117647}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -303,5 +303,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 24133d3878ba2114aba4a04a191fedb6, type: 2}
   - {fileID: 11400000, guid: a1bcb9ae296c5f44e9d7a483c9ca4927, type: 2}
   - {fileID: 11400000, guid: d41e3df84278e7644806e10b7d940bee, type: 2}
-  chosenAugments: []
   numberOfChoices: 3
+  runAugmentData: {fileID: 11400000, guid: 345c27a68c7aa5640b4db38dbdda85be, type: 2}

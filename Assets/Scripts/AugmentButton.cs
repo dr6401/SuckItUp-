@@ -44,7 +44,6 @@ public class AugmentButton : MonoBehaviour
         augmentSelectionUI.StoreChosenAugment(augment);
         augment.Apply(player);
         augmentSelectionUI.CloseUI();
-        Debug.Log("Selected " + augment.augmentName + "! Current augments: " +
-                  string.Join(", ", augmentSelectionUI.chosenAugments.Select(a => a.augmentName)));
+        Debug.Log("Selected " + augment.augmentName + "!");
     }
 }

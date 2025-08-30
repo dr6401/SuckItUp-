@@ -12,9 +12,11 @@ public class AugmentSelectionUI : MonoBehaviour
     public GameObject augmentButtonPrefab;
     [SerializeField] private GameManager gameManager;
     public List<Augment> silverAugments, goldAugments, prismaticAugments;
-    public List<Augment> chosenAugments;
     [SerializeField] private int numberOfChoices = 3;
     private int availableAugmentsAtStart;
+    [Header("Augment Persistence")]
+    [SerializeField] private RunAugmentData runAugmentData;
+    
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -49,11 +51,11 @@ public class AugmentSelectionUI : MonoBehaviour
     public void TestAugmentSelection()
     {
         List<Augment> silverPool = GetPoolByTier(AugmentTier.Silver);
-        silverPool.RemoveAll(augment => chosenAugments.Contains(augment));
+        silverPool.RemoveAll(augment => runAugmentData.IsAugmentInChosenAugments(augment));
         List<Augment> goldPool = GetPoolByTier(AugmentTier.Gold);
-        goldPool.RemoveAll(augment => chosenAugments.Contains(augment));
+        goldPool.RemoveAll(augment => runAugmentData.IsAugmentInChosenAugments(augment));
         List<Augment> prismaticPool = GetPoolByTier(AugmentTier.Prismatic);
-        prismaticPool.RemoveAll(augment => chosenAugments.Contains(augment));
+        prismaticPool.RemoveAll(augment => runAugmentData.IsAugmentInChosenAugments(augment));
         if (silverPool.Count == 0 && goldPool.Count == 0 && prismaticPool.Count == 0)
         {
             Debug.Log("No more Augments left!");
@@ -73,8 +75,8 @@ public class AugmentSelectionUI : MonoBehaviour
     public void TriggerAugmentSelection(GameObject playerRef, AugmentTier tier)
     {
         player = playerRef;
-        List<Augment> pool = GetPoolByTier(AugmentTier.Silver);// this parameter should be "tier" for production, set to custom for testing
-        pool.RemoveAll(augment => chosenAugments.Contains(augment));
+        List<Augment> pool = GetPoolByTier(tier);// this parameter should be "tier" for production, set to custom for testing
+        pool.RemoveAll(augment => runAugmentData.IsAugmentInChosenAugments(augment));
         List<Augment> choices = GetRandomAugments(pool, numberOfChoices);
         
         Debug.Log("Current pool of " + tier + " augments: " + string.Join(", ", pool.Select(a => a.augmentName)));
@@ -117,7 +119,7 @@ public class AugmentSelectionUI : MonoBehaviour
 
     public void StoreChosenAugment(Augment augment)
     {
-        chosenAugments.Add(augment);
+        runAugmentData.AddToChosenAugments(augment);
     }
 
     private List<Augment> GetPoolByTier(AugmentTier tier)
@@ -133,6 +135,6 @@ public class AugmentSelectionUI : MonoBehaviour
 
     public bool areAllAugmentsTaken()
     {
-        return chosenAugments.Count >= availableAugmentsAtStart;
+        return runAugmentData.NumberOfChosenAugments() >= availableAugmentsAtStart;
     }
 }
