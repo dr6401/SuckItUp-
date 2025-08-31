@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private WeaponHandler weaponHandler;
 
     [Header("Sliding")] // Sliding
-    [SerializeField] private float slideSpeedMultiplier = 1.5f;
+    [SerializeField] private float slideSpeedMultiplier = 5f;
     private float slideDecay = 2f;
     private bool isSliding = false;
     private Vector3 slideDirection;
@@ -94,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
             horizontalMoveSpeed = new Vector3(moveDirection.x, moveDirection.y * 0.2f, moveDirection.z);
             if (Input.GetKey(KeyCode.LeftControl) && characterController.isGrounded) // Crouch or Slide
             {
-                if (!isSliding && !isCrouching && horizontalMoveSpeed.sqrMagnitude >
+                if (!isSliding && horizontalMoveSpeed.sqrMagnitude >
                     baseMoveSpeed * baseMoveSpeed + 1f)
                 {
                     StartSlide();
@@ -106,8 +106,10 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
 
-            if (!Input.GetKey(KeyCode.LeftControl) && (isCrouching || isSliding)) // Stop Crouching/Sliding
+            if (!Input.GetKey(KeyCode.LeftControl) && (isCrouching || isSliding) && characterController.isGrounded && horizontalMoveSpeed.sqrMagnitude <
+                baseMoveSpeed * baseMoveSpeed + 1f) // Stop Crouching/Sliding
             {
+                Debug.Log("Conditions for isUncrouching/StoppingSlide were met");
                 if (!Physics.Raycast(transform.position + Vector3.down * 0.3f, transform.up, playerHeight * 1.4f))// These floats are just fine-tuning, so we get the ray cast to align with the newly created player collider (collider when player is crouching)
                 {
                     isCrouching = false;
@@ -124,14 +126,14 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                Debug.Log("StoppedSliding");
+                //Debug.Log("StoppedSliding");
             }
 
             if (weaponHandler.isAiming && !isSliding)
             {
                 moveSpeed = halvedBaseMoveSpeed;
             }
-            else if (isCrouching & characterController.isGrounded)
+            else if (isCrouching && !isSliding && characterController.isGrounded)
             {
                 moveSpeed = halvedBaseMoveSpeed;
             }
@@ -140,8 +142,10 @@ public class PlayerMovement : MonoBehaviour
                 moveSpeed = baseMoveSpeed;
             }
         }
-        //Debug.Log("baseMoveSpeed * baseMoveSpeed / 2: " + baseMoveSpeed * baseMoveSpeed + ", horizontalMoveSpeed.sqrMagnitude: " + horizontalMoveSpeed.sqrMagnitude);
-        Debug.Log("horizontalMoveSpeed.y.sqrMagnitude: " + horizontalMoveSpeed.y);
+        Debug.Log("baseMoveSpeed * baseMoveSpeed + 1f: " + baseMoveSpeed * baseMoveSpeed + 1f + ", horizontalMoveSpeed.sqrMagnitude: " + horizontalMoveSpeed.sqrMagnitude);
+        Debug.Log("isCrouching: " + isCrouching);
+        Debug.Log("isSliding: " + isSliding);
+        //Debug.Log("horizontalMoveSpeed.y.sqrMagnitude: " + horizontalMoveSpeed.y);
         //Debug.Log("MoveSpeed: " + moveSpeed);
     }
 
@@ -183,6 +187,7 @@ public class PlayerMovement : MonoBehaviour
 
     void StartSlide()
     {
+        isCrouching = false;
         isSliding = true;
         slideDirection = new Vector3(moveDirection.x, 0, moveDirection.z).normalized;
         moveSpeed *= slideSpeedMultiplier;
