@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Android;
 
@@ -22,12 +23,13 @@ public class PlayerMovement : MonoBehaviour
     CharacterController characterController;
     [SerializeField] private WeaponHandler weaponHandler;
 
-    [Header("Sliding")] 
+    [Header("Sliding")] // Sliding
     [SerializeField] private float slideSpeedMultiplier = 1.5f;
     private float slideDecay = 2f;
     private bool isSliding = false;
     private Vector3 slideDirection;
     private Vector3 horizontalMoveSpeed;
+    [SerializeField] private GameObject slideVFX;
 
     private bool isCrouching = false;
     private bool cameraLowered = false;
@@ -162,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (isSliding)
         {
-            moveDirection += (forward * curSpeedX * 5f * Time.deltaTime);
+            moveDirection += (forward * (curSpeedX * (5f * Time.deltaTime)));
         }
         else
         {
@@ -184,6 +186,7 @@ public class PlayerMovement : MonoBehaviour
         isSliding = true;
         slideDirection = new Vector3(moveDirection.x, 0, moveDirection.z).normalized;
         moveSpeed *= slideSpeedMultiplier;
+        StartCoroutine(SpawnSlideVFX());
         //Crouch();
     }
 
@@ -208,6 +211,13 @@ public class PlayerMovement : MonoBehaviour
             Crouch();
             Debug.Log("You were sliding a bit to slow, so you stopped sliding and started crouching");
         }
+    }
+
+    private IEnumerator SpawnSlideVFX()
+    {
+        slideVFX.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        slideVFX.SetActive(false);
     }
 
     void Crouch()
