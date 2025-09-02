@@ -109,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
             if (!Input.GetKey(KeyCode.LeftControl) && (isCrouching || isSliding) && characterController.isGrounded && horizontalMoveSpeed.sqrMagnitude <
                 baseMoveSpeed * baseMoveSpeed + 1f) // Stop Crouching/Sliding
             {
-                Debug.Log("Conditions for isUncrouching/StoppingSlide were met");
+                //Debug.Log("Conditions for isUncrouching/StoppingSlide were met");
                 if (!Physics.Raycast(transform.position + Vector3.down * 0.3f, transform.up, playerHeight * 1.4f))// These floats are just fine-tuning, so we get the ray cast to align with the newly created player collider (collider when player is crouching)
                 {
                     isCrouching = false;
@@ -122,11 +122,6 @@ public class PlayerMovement : MonoBehaviour
             if (isSliding)
             {
                 HandleSlide();
-                Debug.Log("Is Sliding");
-            }
-            else
-            {
-                //Debug.Log("StoppedSliding");
             }
 
             if (weaponHandler.isAiming && !isSliding)
@@ -142,9 +137,9 @@ public class PlayerMovement : MonoBehaviour
                 moveSpeed = baseMoveSpeed;
             }
         }
-        Debug.Log("baseMoveSpeed * baseMoveSpeed + 1f: " + baseMoveSpeed * baseMoveSpeed + 1f + ", horizontalMoveSpeed.sqrMagnitude: " + horizontalMoveSpeed.sqrMagnitude);
-        Debug.Log("isCrouching: " + isCrouching);
-        Debug.Log("isSliding: " + isSliding);
+        //Debug.Log("baseMoveSpeed * baseMoveSpeed + 1f: " + baseMoveSpeed * baseMoveSpeed + 1f + ", horizontalMoveSpeed.sqrMagnitude: " + horizontalMoveSpeed.sqrMagnitude);
+        //Debug.Log("isCrouching: " + isCrouching);
+        //Debug.Log("isSliding: " + isSliding);
         //Debug.Log("horizontalMoveSpeed.y.sqrMagnitude: " + horizontalMoveSpeed.y);
         //Debug.Log("MoveSpeed: " + moveSpeed);
     }

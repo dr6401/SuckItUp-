@@ -33,8 +33,8 @@ public class RunAugmentData : ScriptableObject
         chosenAugments.Clear();
     }
     
-// This was meant to clear the augments when exiting play mode but it's not even needed apparently lol
-/*#if UNITY_EDITOR
+// This was meant to clear the augments when exiting play mode, but it's not even needed apparently lol
+#if UNITY_EDITOR
     private void OnEnable() => EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
     private void OnDisable() => EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
 
@@ -45,5 +45,5 @@ public class RunAugmentData : ScriptableObject
             ResetChosenAugments();
         }
     }
-#endif*/
+#endif
 }

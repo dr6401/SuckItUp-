@@ -75,7 +75,7 @@ public class AugmentSelectionUI : MonoBehaviour
     public void TriggerAugmentSelection(GameObject playerRef, AugmentTier tier)
     {
         player = playerRef;
-        List<Augment> pool = GetPoolByTier(tier);// this parameter should be "tier" for production, set to custom for testing
+        List<Augment> pool = GetPoolByTier(AugmentTier.Silver);// this parameter should be "tier" for production, set to custom for testing
         pool.RemoveAll(augment => runAugmentData.IsAugmentInChosenAugments(augment));
         List<Augment> choices = GetRandomAugments(pool, numberOfChoices);
         
