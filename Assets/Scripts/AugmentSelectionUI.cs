@@ -16,6 +16,8 @@ public class AugmentSelectionUI : MonoBehaviour
     private int availableAugmentsAtStart;
     [Header("Augment Persistence")]
     [SerializeField] private RunAugmentData runAugmentData;
+    [Header("-----TESTING-----")]
+    [SerializeField] private bool testing_offerOnlySilverAugments = false;
     
     private void Awake()
     {
@@ -48,7 +50,7 @@ public class AugmentSelectionUI : MonoBehaviour
         Debug.Log("availableAugmentsAtStart: " + availableAugmentsAtStart);
     }
 
-    public void TestAugmentSelection()
+    /*public void TestAugmentSelection()
     {
         List<Augment> silverPool = GetPoolByTier(AugmentTier.Silver);
         silverPool.RemoveAll(augment => runAugmentData.IsAugmentInChosenAugments(augment));
@@ -70,16 +72,37 @@ public class AugmentSelectionUI : MonoBehaviour
         {
             TestAugmentSelection();
         }
-    }
+    }*/
 
     public void TriggerAugmentSelection(GameObject playerRef, AugmentTier tier)
     {
         player = playerRef;
-        List<Augment> pool = GetPoolByTier(AugmentTier.Silver);// this parameter should be "tier" for production, set to custom for testing
+        List<Augment> pool = testing_offerOnlySilverAugments ? GetPoolByTier(AugmentTier.Silver) : GetPoolByTier(tier);// if we're testing, enable only silver augments
         pool.RemoveAll(augment => runAugmentData.IsAugmentInChosenAugments(augment));
+        Debug.Log(tier + " pool: " + string.Join(", ", pool.Select(a => a.augmentName)));
         List<Augment> choices = GetRandomAugments(pool, numberOfChoices);
+        Debug.Log(tier + " choices: " + string.Join(", ", choices.Select(a => a.augmentName)));
         
         Debug.Log("Current pool of " + tier + " augments: " + string.Join(", ", pool.Select(a => a.augmentName)));
+
+        if (pool.Count <= 0) // If there are no more augments left in this tier, try again
+        {
+            if (areAllAugmentsTaken())
+            {
+                Debug.Log("All Augments taken!");
+                return;
+            }
+            int augmentChance = Random.Range(1, 100);
+            AugmentTier augmentTier = augmentChance switch
+            {
+                <= 50 => AugmentTier.Silver,
+                <= 80 => AugmentTier.Gold,
+                _ => AugmentTier.Prismatic
+            };
+            Debug.Log("Tier: " + tier + " did not have any augments left. Retrying augments with tier: " + augmentTier);
+            TriggerAugmentSelection(playerRef, augmentTier);
+            return;
+        }
 
         foreach (var choice in choices)
         {
@@ -129,7 +152,7 @@ public class AugmentSelectionUI : MonoBehaviour
             AugmentTier.Silver => silverAugments,
             AugmentTier.Gold => goldAugments,
             AugmentTier.Prismatic => prismaticAugments,
-            _ => silverAugments,
+            //_ => silverAugments,
         };
     }
 
