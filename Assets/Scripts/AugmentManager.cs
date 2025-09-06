@@ -57,8 +57,8 @@ public class AugmentManager : MonoBehaviour
             int augmentChance = Random.Range(1, 100);
             AugmentTier augmentTier = augmentChance switch
             {
-                <= 10 => AugmentTier.Silver,
-                <= 80 => AugmentTier.Gold,
+                <= 40 => AugmentTier.Silver,
+                <= 75 => AugmentTier.Gold,
                 _ => AugmentTier.Prismatic
             };
             augmentTriggerTreshold *= augmentTriggerTresholdDuplicator;
