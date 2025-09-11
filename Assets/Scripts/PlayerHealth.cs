@@ -34,15 +34,15 @@ public class PlayerHealth : MonoBehaviour
         }
         healthText.text = health.ToString();
     }
-
     private void Die()
     {
         _gameManager.gameOver = true;
         GameEvents.OnPlayerDeath?.Invoke();
-        gameOverText.GameObject().SetActive(true);
-        tryAgainText.GameObject().SetActive(true);
+        gameOverText.gameObject.SetActive(true);
+        tryAgainText.gameObject.SetActive(true);
         Destroy(gameObject);
     }
+
 
     public void TakeDamage(int damage)
     {
