@@ -98,7 +98,6 @@ public class GameManager : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
-
         float targetTime = keyBindingTextToggled ? 0f : 1f;
         SetTimeScale(targetTime);
         playerMovement.inputBlocked = keyBindingTextToggled;

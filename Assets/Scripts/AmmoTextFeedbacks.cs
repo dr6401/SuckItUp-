@@ -7,12 +7,14 @@ public class AmmoTextFeedbacks : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private MMFeedbacks ammoIncrease;
+    [SerializeField] private MMFeedbacks dustScoreIncrease;
     [SerializeField] private MMFeedbacks noAmmoLeft;
 
     
     private void PlayAmmoIncrease()
     {
         ammoIncrease?.PlayFeedbacks();
+        dustScoreIncrease?.PlayFeedbacks();
     }
     private void PlayNoAmmoLeft()
     {
