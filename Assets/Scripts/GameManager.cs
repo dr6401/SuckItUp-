@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour
     {
         float start = Time.timeScale;
         float elapsed = 0f;
-        float easeTime = 2f;
+        float easeTime = 1f;
 
         while (elapsed < easeTime)
         {
