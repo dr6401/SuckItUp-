@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     private Transform enemiesFolder;
     private float timeToLoadNextScene = 5f;
+    private Coroutine timeScaleCoroutine;
     
     List<GameObject> dustParticles = new List<GameObject>();
 
@@ -98,9 +99,36 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
 
-        Time.timeScale = keyBindingTextToggled ? 0f : 1f;
+        float targetTime = keyBindingTextToggled ? 0f : 1f;
+        SetTimeScale(targetTime);
         playerMovement.inputBlocked = keyBindingTextToggled;
         weaponHandler.inputBlocked = keyBindingTextToggled;
+    }
+
+    private void SetTimeScale(float targetTime)
+    {
+        if (timeScaleCoroutine != null) // Check if there is already a Coroutine running
+        {
+            StopCoroutine(timeScaleCoroutine); // If it is, stop it and only then start a new one, so there are never 2 Coroutines executing at the same time
+        }
+
+        timeScaleCoroutine = StartCoroutine(EaseInOrOutPauseGame(targetTime));
+    }
+
+    private IEnumerator EaseInOrOutPauseGame(float targetTime)
+    {
+        float start = Time.timeScale;
+        float elapsed = 0f;
+        float easeTime = 2f;
+
+        while (elapsed < easeTime)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            Time.timeScale = Mathf.Lerp(start, targetTime, (elapsed / easeTime) * (elapsed / easeTime)); // Multiply, so we get a squared function instead of linear
+            yield return null;
+        }
+        Time.timeScale = targetTime;
+        timeScaleCoroutine = null;
     }
 
     private void TrackRemainingDust()
