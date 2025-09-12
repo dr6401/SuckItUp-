@@ -44,5 +44,6 @@ public class AugmentButton : MonoBehaviour
         augment.Apply(player);
         augmentSelectionUI.CloseUI();
         Debug.Log("Selected " + augment.augmentName + "!");
+        GameEvents.OnHasSettingsUICoveredUpAugmentUI?.Invoke(false);
     }
 }

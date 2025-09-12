@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
     private Transform enemiesFolder;
     private float timeToLoadNextScene = 5f;
     private Coroutine timeScaleCoroutine;
+    private Coroutine settingsFadeCoroutine;
+    private CanvasGroup settingsCanvasGroup;
+    [SerializeField] private AugmentSelectionUI augmentSelectionUI;
+    private bool hasSettingsCoveredUpAugmentUI = false;
     
     List<GameObject> dustParticles = new List<GameObject>();
 
@@ -43,22 +47,39 @@ public class GameManager : MonoBehaviour
             folder = new GameObject("EnemiesFolder");
         }
         enemiesFolder = folder.transform;
+        // Canvas stuff
+        if (augmentSelectionUI == null)
+        {
+            augmentSelectionUI = FindAnyObjectByType<AugmentSelectionUI>();
+        }       
+        if (settingsCanvas != null)
+        {
+            settingsCanvasGroup = settingsCanvas.GetComponent<CanvasGroup>();
+            settingsCanvasGroup.alpha = 0f;
+        }
     }
 
     private void OnEnable()
     {
         EnemySpawnManager.AllSpawnerDead += HandleAllSpawnersDead;
+        GameEvents.OnHasSettingsUICoveredUpAugmentUI += SetHasSettingsUICoveredUpAugmentUI;
     }
     
     private void OnDisable()
     {
         EnemySpawnManager.AllSpawnerDead -= HandleAllSpawnersDead;
+        GameEvents.OnHasSettingsUICoveredUpAugmentUI -= SetHasSettingsUICoveredUpAugmentUI;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !gameOver){
+        if (Input.GetKeyDown(KeyCode.Escape) && !gameOver && hasSettingsCoveredUpAugmentUI)
+        {
+            ToggleSettingsCanvasVisibility(hasSettingsCoveredUpAugmentUI);
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && !gameOver){
             TogglePauseGame();
         }
 
@@ -83,7 +104,72 @@ public class GameManager : MonoBehaviour
     public void TogglePauseGame()
     {
         keyBindingTextToggled = !keyBindingTextToggled;
-        settingsCanvas.SetActive(keyBindingTextToggled);
+        if (keyBindingTextToggled) FadeInSettingsUI();
+        if (!keyBindingTextToggled) FadeOutSettingsUI();
+        
+        objectiveText.SetActive(false);
+
+        if (keyBindingTextToggled)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        float targetTime = keyBindingTextToggled ? 0f : 1f;
+        SetTimeScale(targetTime);
+        playerMovement.inputBlocked = keyBindingTextToggled;
+        weaponHandler.inputBlocked = keyBindingTextToggled;
+    }
+
+    public void ToggleTimeStop(float target)
+    {
+        float targetTime = target;
+        SetTimeScale(targetTime);
+    }
+
+    public void ToggleSettingsCanvasVisibility(bool shouldBeToggledOn)
+    {
+        if (shouldBeToggledOn) FadeInSettingsUI();
+        else FadeOutSettingsUI();
+        
+        objectiveText.SetActive(false);
+    }
+
+    public void TogglePlayerInputBlocked(float target)
+    {
+        if (target == 0)
+        {
+            playerMovement.inputBlocked = true;
+            weaponHandler.inputBlocked = true;
+        }
+        if (target == 1)
+        {
+            playerMovement.inputBlocked = false;
+            weaponHandler.inputBlocked = false;
+        }
+    }
+
+    public void ToggleMouseVisibility(float target)
+    {
+        if (target == 1)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        if (target == 0)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+    
+    public void TogglePauseGameWithoutSettingsMenu()
+    {
+        keyBindingTextToggled = !keyBindingTextToggled;
 
         objectiveText.SetActive(false);
 
@@ -114,6 +200,7 @@ public class GameManager : MonoBehaviour
         timeScaleCoroutine = StartCoroutine(EaseInOrOutPauseGame(targetTime));
     }
 
+
     private IEnumerator EaseInOrOutPauseGame(float targetTime)
     {
         float start = Time.timeScale;
@@ -129,7 +216,54 @@ public class GameManager : MonoBehaviour
         Time.timeScale = targetTime;
         timeScaleCoroutine = null;
     }
-
+    
+    private void FadeInSettingsUI()
+    {
+        if (settingsFadeCoroutine != null)
+        {
+            StopCoroutine(settingsFadeCoroutine);
+        }
+        settingsCanvas.SetActive(true);
+        StartCoroutine(FadeInOrOutSettingsCanvas(1));
+        if (augmentSelectionUI.gameObject.activeSelf)
+        {
+            augmentSelectionUI.FadeOutAugmentsUI();
+            hasSettingsCoveredUpAugmentUI = true;
+            //GameEvents.OnHasSettingsUICoveredUpAugmentUI?.Invoke(true);
+        }
+    }
+    private void FadeOutSettingsUI()
+    {
+        if (settingsFadeCoroutine != null)
+        {
+            StopCoroutine(settingsFadeCoroutine);
+        }
+        StartCoroutine(FadeInOrOutSettingsCanvas(0));
+        if (hasSettingsCoveredUpAugmentUI)
+        {
+            augmentSelectionUI.FadeInAugmentsUI();
+            hasSettingsCoveredUpAugmentUI = false;
+        }
+    }
+    
+    private IEnumerator FadeInOrOutSettingsCanvas(float targetAlpha)
+    {
+        float start = settingsCanvasGroup.alpha;
+        float elapsed = 0f;
+        float easeTime = GameConstants.fadeInOrOutDuration;
+        if (targetAlpha == 0) easeTime = GameConstants.shortFadeInOrOutDuration;
+        Debug.Log("Currently in FadeInOrOut(), canvasGroup = " + settingsCanvasGroup);
+        while (elapsed < easeTime)
+        {
+            Debug.Log("Elapsed time / easeTime: " + elapsed + " < " + easeTime);
+            elapsed += Time.unscaledDeltaTime;
+            settingsCanvasGroup.alpha = Mathf.Lerp(start, targetAlpha,(elapsed / easeTime) * (elapsed / easeTime)); // Multiply, so we get a squared function instead of linear
+            yield return null;
+        }
+        settingsCanvasGroup.alpha = targetAlpha;
+        if (targetAlpha == 0) settingsCanvas.SetActive(false);
+        settingsFadeCoroutine = null;
+    }
     private void TrackRemainingDust()
     {
         GameObject[] dustParticlesInRoom = GameObject.FindGameObjectsWithTag("DustPickup");
@@ -186,5 +320,10 @@ public class GameManager : MonoBehaviour
         /*yield return new WaitForSeconds(timeToLoadNextScene);
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex + 1);*/
+    }
+    
+    private void SetHasSettingsUICoveredUpAugmentUI(bool hasSettingsUICoveredUpAugmentUI1)
+    {
+        hasSettingsCoveredUpAugmentUI = hasSettingsUICoveredUpAugmentUI1;
     }
 }

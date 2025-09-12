@@ -21,6 +21,8 @@ public class AugmentSelectionUI : MonoBehaviour
     [SerializeField] private RunAugmentData runAugmentData;
     [Header("-----TESTING-----")]
     [SerializeField] private bool testing_offerOnlySilverAugments = false;
+
+    private bool hasSettingsCoveredUpAugmentUI;
     
     private void Awake()
     {
@@ -127,7 +129,7 @@ public class AugmentSelectionUI : MonoBehaviour
 
     public void CloseUI()
     {
-        gameManager.TogglePauseGame();
+        gameManager.TogglePauseGameWithoutSettingsMenu();
         FadeOutAugmentsUI();
     }
 
@@ -167,16 +169,16 @@ public class AugmentSelectionUI : MonoBehaviour
         return runAugmentData.NumberOfChosenAugments() >= availableAugmentsAtStart;
     }
 
-    private void FadeInAugmentsUI()
+    public void FadeInAugmentsUI()
     {
+        if (hasSettingsCoveredUpAugmentUI) return;
         if (fadeInCoroutine != null)
         {
             StopCoroutine(fadeInCoroutine);
         }
-        Debug.Log("Gonna start FadeInOrOut() from FadeInAugmentsUI()");
         StartCoroutine(FadeInOrOut(1));
     }
-    private void FadeOutAugmentsUI()
+    public void FadeOutAugmentsUI()
     {
         if (fadeInCoroutine != null)
         {
@@ -191,10 +193,8 @@ public class AugmentSelectionUI : MonoBehaviour
         float elapsed = 0f;
         float easeTime = GameConstants.fadeInOrOutDuration;
         if (targetAlpha == 0) easeTime = GameConstants.shortFadeInOrOutDuration;
-        Debug.Log("Currently in FadeInOrOut(), canvasGroup = " + canvasGroup);
         while (elapsed < easeTime)
         {
-            Debug.Log("Elapsed time / easeTime: " + elapsed + " < " + easeTime);
             elapsed += Time.unscaledDeltaTime;
             canvasGroup.alpha = Mathf.Lerp(start, targetAlpha,(elapsed / easeTime) * (elapsed / easeTime)); // Multiply, so we get a squared function instead of linear
             yield return null;

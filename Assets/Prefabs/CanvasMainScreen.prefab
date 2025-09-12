@@ -1723,6 +1723,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6362574044006870479}
+  - component: {fileID: 5954243329571540678}
   m_Layer: 0
   m_Name: SettingsCanvas
   m_TagString: Untagged
@@ -1747,6 +1748,18 @@ Transform:
   - {fileID: 3074813171249667592}
   m_Father: {fileID: 3950734686692476239}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!225 &5954243329571540678
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4357632313227432635}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4526955994602337397
 GameObject:
   m_ObjectHideFlags: 0
@@ -3473,7 +3486,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &518823731916825147
 MonoBehaviour:

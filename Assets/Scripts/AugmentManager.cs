@@ -51,7 +51,7 @@ public class AugmentManager : MonoBehaviour
         }
         if (currentSuckedDust >= augmentTriggerTreshold && !augmentSelectionUI.areAllAugmentsTaken())
         {
-            gameManager.TogglePauseGame();
+            gameManager.TogglePauseGameWithoutSettingsMenu();
             Debug.Log("Current sucked dust was " + currentSuckedDust + "! Setting new currentSuckedDust to 0 and the threshold to " + augmentTriggerTreshold * 2);
             currentSuckedDust = 0;
             int augmentChance = Random.Range(1, 100);
