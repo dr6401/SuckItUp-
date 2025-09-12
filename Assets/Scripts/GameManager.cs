@@ -26,7 +26,8 @@ public class GameManager : MonoBehaviour
     private Coroutine settingsFadeCoroutine;
     private CanvasGroup settingsCanvasGroup;
     [SerializeField] private AugmentSelectionUI augmentSelectionUI;
-    private bool hasSettingsCoveredUpAugmentUI = false;
+    private bool isAugmentUIOpenedEvenMaybeUnderSettingsCanvas = false;
+    private bool isSettingsCanvasCoveringAugmentUI = false;
     
     List<GameObject> dustParticles = new List<GameObject>();
 
@@ -75,9 +76,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !gameOver && hasSettingsCoveredUpAugmentUI)
+        if (Input.GetKeyDown(KeyCode.Escape) && !gameOver && isAugmentUIOpenedEvenMaybeUnderSettingsCanvas)
         {
-            ToggleSettingsCanvasVisibility(hasSettingsCoveredUpAugmentUI);
+            ToggleSettingsCanvasVisibility(1f);
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && !gameOver){
             TogglePauseGame();
@@ -131,9 +132,11 @@ public class GameManager : MonoBehaviour
         SetTimeScale(targetTime);
     }
 
-    public void ToggleSettingsCanvasVisibility(bool shouldBeToggledOn)
+    public void ToggleSettingsCanvasVisibility(float target)
     {
-        if (shouldBeToggledOn) FadeInSettingsUI();
+        isSettingsCanvasCoveringAugmentUI = !isSettingsCanvasCoveringAugmentUI;
+        Debug.Log("In ToggleSettingsCanvasVisibility; isAugmentUIOpenedEvenMaybeUnderSettingsCanvas: " + isAugmentUIOpenedEvenMaybeUnderSettingsCanvas + ", isSettingsCanvasCoveringAugmentUI: " + isSettingsCanvasCoveringAugmentUI);
+        if (isSettingsCanvasCoveringAugmentUI) FadeInSettingsUI();
         else FadeOutSettingsUI();
         
         objectiveText.SetActive(false);
@@ -170,7 +173,8 @@ public class GameManager : MonoBehaviour
     public void TogglePauseGameWithoutSettingsMenu()
     {
         keyBindingTextToggled = !keyBindingTextToggled;
-
+        Debug.Log("In TogglePauseGameWithoutSettingsMenu; keyBindingTextToggled: " + keyBindingTextToggled);
+        
         objectiveText.SetActive(false);
 
         //Enabling/Disabling the cursor if the game is paused
@@ -227,8 +231,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(FadeInOrOutSettingsCanvas(1));
         if (augmentSelectionUI.gameObject.activeSelf)
         {
-            augmentSelectionUI.FadeOutAugmentsUI();
-            hasSettingsCoveredUpAugmentUI = true;
+            augmentSelectionUI.FadeOutAugmentsUIWithoutDestroyingIt();
             //GameEvents.OnHasSettingsUICoveredUpAugmentUI?.Invoke(true);
         }
     }
@@ -239,10 +242,10 @@ public class GameManager : MonoBehaviour
             StopCoroutine(settingsFadeCoroutine);
         }
         StartCoroutine(FadeInOrOutSettingsCanvas(0));
-        if (hasSettingsCoveredUpAugmentUI)
+        if (isAugmentUIOpenedEvenMaybeUnderSettingsCanvas)
         {
             augmentSelectionUI.FadeInAugmentsUI();
-            hasSettingsCoveredUpAugmentUI = false;
+            //isAugmentUIOpenedEvenMaybeUnderSettingsCanvas = false;
         }
     }
     
@@ -255,7 +258,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("Currently in FadeInOrOut(), canvasGroup = " + settingsCanvasGroup);
         while (elapsed < easeTime)
         {
-            Debug.Log("Elapsed time / easeTime: " + elapsed + " < " + easeTime);
             elapsed += Time.unscaledDeltaTime;
             settingsCanvasGroup.alpha = Mathf.Lerp(start, targetAlpha,(elapsed / easeTime) * (elapsed / easeTime)); // Multiply, so we get a squared function instead of linear
             yield return null;
@@ -324,6 +326,6 @@ public class GameManager : MonoBehaviour
     
     private void SetHasSettingsUICoveredUpAugmentUI(bool hasSettingsUICoveredUpAugmentUI1)
     {
-        hasSettingsCoveredUpAugmentUI = hasSettingsUICoveredUpAugmentUI1;
+        isAugmentUIOpenedEvenMaybeUnderSettingsCanvas = hasSettingsUICoveredUpAugmentUI1;
     }
 }

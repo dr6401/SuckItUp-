@@ -122,8 +122,6 @@ public class AugmentSelectionUI : MonoBehaviour
             var btnObjScript = btnObj.GetComponent<AugmentButton>();
             btnObjScript.Setup(choice, player, this);
         }
-        gameObject.SetActive(true);
-        Debug.Log("Gonna start FadeInAugmentUI()");
         FadeInAugmentsUI();
     }
 
@@ -176,7 +174,8 @@ public class AugmentSelectionUI : MonoBehaviour
         {
             StopCoroutine(fadeInCoroutine);
         }
-        StartCoroutine(FadeInOrOut(1));
+        gameObject.SetActive(true);
+        StartCoroutine(FadeInOrOutAugmentsUI(1));
     }
     public void FadeOutAugmentsUI()
     {
@@ -184,10 +183,10 @@ public class AugmentSelectionUI : MonoBehaviour
         {
             StopCoroutine(fadeInCoroutine);
         }
-        StartCoroutine(FadeInOrOut(0));
+        StartCoroutine(FadeInOrOutAugmentsUI(0));
     }
     
-    private IEnumerator FadeInOrOut(float targetAlpha)
+    private IEnumerator FadeInOrOutAugmentsUI(float targetAlpha)
     {
         float start = canvasGroup.alpha;
         float elapsed = 0f;
@@ -208,6 +207,27 @@ public class AugmentSelectionUI : MonoBehaviour
             }
             gameObject.SetActive(false);
         }
+        fadeInCoroutine = null;
+    }
+    
+    public void FadeOutAugmentsUIWithoutDestroyingIt()
+    {
+        if (fadeInCoroutine != null) StopCoroutine(fadeInCoroutine);
+        StartCoroutine(FadeInOrOutAugmentsUIWithoutDestroyingIt(0));
+    }
+    private IEnumerator FadeInOrOutAugmentsUIWithoutDestroyingIt(float targetAlpha)
+    {
+        float start = canvasGroup.alpha;
+        float elapsed = 0f;
+        float easeTime = GameConstants.fadeInOrOutDuration;
+        if (targetAlpha == 0) easeTime = GameConstants.shortFadeInOrOutDuration;
+        while (elapsed < easeTime)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            canvasGroup.alpha = Mathf.Lerp(start, targetAlpha,(elapsed / easeTime) * (elapsed / easeTime)); // Multiply, so we get a squared function instead of linear
+            yield return null;
+        }
+        canvasGroup.alpha = targetAlpha;
         fadeInCoroutine = null;
     }
 }
