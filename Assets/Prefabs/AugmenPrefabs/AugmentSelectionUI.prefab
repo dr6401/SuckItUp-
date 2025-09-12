@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 896342222548076843}
   - component: {fileID: 2241849468328464145}
   - component: {fileID: 3131451191998948869}
+  - component: {fileID: 1087490639857874896}
   m_Layer: 5
   m_Name: AugmentSelectionUI
   m_TagString: Untagged
@@ -304,4 +305,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a1bcb9ae296c5f44e9d7a483c9ca4927, type: 2}
   - {fileID: 11400000, guid: d41e3df84278e7644806e10b7d940bee, type: 2}
   numberOfChoices: 3
+  canvasGroup: {fileID: 1087490639857874896}
   runAugmentData: {fileID: 11400000, guid: 345c27a68c7aa5640b4db38dbdda85be, type: 2}
+  testing_offerOnlySilverAugments: 0
+--- !u!225 &1087490639857874896
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4983728029310571243}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
