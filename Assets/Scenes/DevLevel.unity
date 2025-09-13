@@ -15802,7 +15802,7 @@ PrefabInstance:
     - target: {fileID: 8763557131505957745, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
       propertyPath: 'musicThemes.Array.data[0]'
       value: 
-      objectReference: {fileID: 8300000, guid: a81cdd08a61f11341b185393c66f1857, type: 3}
+      objectReference: {fileID: 8300000, guid: 4b1de4b509c39ce41bda4419cc2723b8, type: 3}
     - target: {fileID: 8763557131505957745, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
       propertyPath: 'shootingSFX.Array.data[0]'
       value: 
@@ -16331,6 +16331,10 @@ PrefabInstance:
     - target: {fileID: 5030005378581562621, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5666044982448068472, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
+      propertyPath: maxAmmo
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 5666044982448068472, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: ammoText

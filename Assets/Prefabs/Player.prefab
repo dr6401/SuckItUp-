@@ -376,7 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shooterWeapon: {fileID: 2820727171891771674}
   vacuumWeapon: {fileID: 5461264481300806616}
-  fireRate: 0.2
+  fireRate: 0.1785
   camera: {fileID: 1193547500841403564}
   hitEffectPrefab: {fileID: 3790989708882211815, guid: 2747cb491fc6dd948abc03eaceb84f28, type: 3}
   enemyHitEffectPrefab: {fileID: 3790989708882211815, guid: 2747cb491fc6dd948abc03eaceb84f28, type: 3}
