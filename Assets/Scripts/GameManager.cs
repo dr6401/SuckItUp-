@@ -228,7 +228,7 @@ public class GameManager : MonoBehaviour
             StopCoroutine(settingsFadeCoroutine);
         }
         settingsCanvas.SetActive(true);
-        StartCoroutine(FadeInOrOutSettingsCanvas(1));
+        settingsFadeCoroutine = StartCoroutine(FadeInOrOutSettingsCanvas(1));
         if (augmentSelectionUI.gameObject.activeSelf)
         {
             augmentSelectionUI.FadeOutAugmentsUIWithoutDestroyingIt();
@@ -241,7 +241,7 @@ public class GameManager : MonoBehaviour
         {
             StopCoroutine(settingsFadeCoroutine);
         }
-        StartCoroutine(FadeInOrOutSettingsCanvas(0));
+        settingsFadeCoroutine = StartCoroutine(FadeInOrOutSettingsCanvas(0));
         if (isAugmentUIOpenedEvenMaybeUnderSettingsCanvas)
         {
             augmentSelectionUI.FadeInAugmentsUI();
@@ -255,7 +255,6 @@ public class GameManager : MonoBehaviour
         float elapsed = 0f;
         float easeTime = GameConstants.fadeInOrOutDuration;
         if (targetAlpha == 0) easeTime = GameConstants.shortFadeInOrOutDuration;
-        Debug.Log("Currently in FadeInOrOut(), canvasGroup = " + settingsCanvasGroup);
         while (elapsed < easeTime)
         {
             elapsed += Time.unscaledDeltaTime;

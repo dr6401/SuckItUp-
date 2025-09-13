@@ -175,7 +175,7 @@ public class AugmentSelectionUI : MonoBehaviour
             StopCoroutine(fadeInCoroutine);
         }
         gameObject.SetActive(true);
-        StartCoroutine(FadeInOrOutAugmentsUI(1));
+        fadeInCoroutine = StartCoroutine(FadeInOrOutAugmentsUI(1));
     }
     public void FadeOutAugmentsUI()
     {
@@ -183,7 +183,7 @@ public class AugmentSelectionUI : MonoBehaviour
         {
             StopCoroutine(fadeInCoroutine);
         }
-        StartCoroutine(FadeInOrOutAugmentsUI(0));
+        fadeInCoroutine = StartCoroutine(FadeInOrOutAugmentsUI(0));
     }
     
     private IEnumerator FadeInOrOutAugmentsUI(float targetAlpha)
@@ -213,7 +213,7 @@ public class AugmentSelectionUI : MonoBehaviour
     public void FadeOutAugmentsUIWithoutDestroyingIt()
     {
         if (fadeInCoroutine != null) StopCoroutine(fadeInCoroutine);
-        StartCoroutine(FadeInOrOutAugmentsUIWithoutDestroyingIt(0));
+        fadeInCoroutine = StartCoroutine(FadeInOrOutAugmentsUIWithoutDestroyingIt(0));
     }
     private IEnumerator FadeInOrOutAugmentsUIWithoutDestroyingIt(float targetAlpha)
     {
