@@ -12,7 +12,7 @@ public class WeaponHandler : MonoBehaviour
     public GameObject vacuumWeapon;
     private bool isShooterWeaponActive = true;
     private bool isVacuumWeaponActive;
-    private float shooterWeaponDamage = 5f;
+    [SerializeField] private float shooterWeaponDamage = 5f;
     private float shootingRange = 100f;
     [SerializeField] private float fireRate = 0.2f;
     private float timeSinceLastShot = 0;
@@ -236,6 +236,16 @@ public class WeaponHandler : MonoBehaviour
     public void ApplyMinigunCarnage()
     {
         fireRate /= 1.5f;
+    }
+
+    public void ApplyHitHarder()
+    {
+        shooterWeaponDamage *= 1.5f;
+    }
+    
+    public void ApplyHitHarderer()
+    {
+        shooterWeaponDamage *= 2f;
     }
 
     /*private void OnDrawGizmos()

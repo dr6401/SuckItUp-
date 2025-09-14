@@ -231,6 +231,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1687572245}
+  - {fileID: 1002611742}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &12850834
@@ -3641,7 +3642,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1320188318267757704, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1958061831142115717, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: maxHealth
@@ -3657,7 +3658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1960802332229744666, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2725402623183118778, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_LocalScale.x
@@ -3737,7 +3738,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6149801562829461563, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8545371770531275925, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[7].m_Overridden
@@ -3753,7 +3754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9183940832177295276, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6943,7 +6944,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 11064113}
     m_Modifications:
     - target: {fileID: 368880430705902358, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: m_Pivot.x
@@ -7063,7 +7064,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 345c27a68c7aa5640b4db38dbdda85be, type: 2}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: goldAugments.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: silverAugments.Array.size
@@ -7082,8 +7083,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 851f2df0f6add36479c6281f617755b4, type: 2}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
+      propertyPath: 'goldAugments.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 5a52f4b7faa8e50429ac585848323322, type: 2}
+    - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: prismaticAugments.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: 'silverAugments.Array.data[0]'
@@ -7113,6 +7118,10 @@ PrefabInstance:
       propertyPath: 'prismaticAugments.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: f43d45904180cf340a2b66cb54fc918a, type: 2}
+    - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
+      propertyPath: 'prismaticAugments.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 7e710d81f2705b24eba3caf40091596f, type: 2}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: testing_offerOnlySilverAugments
       value: 0
@@ -7147,6 +7156,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
+--- !u!224 &1002611742 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 368880430705902358, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
+  m_PrefabInstance: {fileID: 1002611741}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1002611743 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
@@ -9817,7 +9831,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1320188318267757704, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1958061831142115717, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: maxHealth
@@ -9833,7 +9847,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1960802332229744666, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2725402623183118778, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_LocalScale.x
@@ -9905,11 +9919,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6149801562829461563, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9183940832177295276, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19207,7 +19221,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 559923847819973065, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3309773760090981982, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_Name
@@ -19215,7 +19229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3309773760090981982, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3547289171739182595, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_IsActive
@@ -19311,7 +19325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7170008885388502655, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7177251947794946016, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: maxHealth
@@ -19327,7 +19341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7702446211941141229, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8154225777116116252, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: spawnerText
@@ -19458,4 +19472,3 @@ SceneRoots:
   - {fileID: 1743764893}
   - {fileID: 1576073584}
   - {fileID: 11064113}
-  - {fileID: 1002611741}
