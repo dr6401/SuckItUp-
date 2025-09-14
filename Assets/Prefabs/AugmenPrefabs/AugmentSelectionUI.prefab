@@ -174,9 +174,9 @@ GameObject:
   m_Component:
   - component: {fileID: 368880430705902358}
   - component: {fileID: 1721107961564738319}
+  - component: {fileID: 3131451191998948869}
   - component: {fileID: 896342222548076843}
   - component: {fileID: 2241849468328464145}
-  - component: {fileID: 3131451191998948869}
   - component: {fileID: 1087490639857874896}
   m_Layer: 5
   m_Name: AugmentSelectionUI
@@ -229,6 +229,45 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &3131451191998948869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4983728029310571243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def9195a269fb2745a8cd2ec646b8b0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  buttonParent: {fileID: 3462484511507193320}
+  augmentButtonPrefab: {fileID: 111587063980478251, guid: 5c8e3ed702343c04ea37e79f75fc5bb0, type: 3}
+  gameManager: {fileID: 0}
+  silverAugments:
+  - {fileID: 11400000, guid: bcfc8d6c588d6f847b38072c18dd4c1d, type: 2}
+  - {fileID: 11400000, guid: 6342a3d204d1f4343992c986d4937c6a, type: 2}
+  - {fileID: 11400000, guid: cea9c6e725ed1204ea7bc0be376fb579, type: 2}
+  - {fileID: 11400000, guid: 4687281702bc50e47984aca3aa6a8f50, type: 2}
+  - {fileID: 11400000, guid: 356481b966db9b84499ec0a6771f3eec, type: 2}
+  - {fileID: 11400000, guid: 8be6ca093424f994f8325cecc6b33556, type: 2}
+  goldAugments:
+  - {fileID: 11400000, guid: 9a75e76d6f989304bacab570702fac7b, type: 2}
+  - {fileID: 11400000, guid: 4f9b6d2d7af0b2a43ad4868f48ad0738, type: 2}
+  - {fileID: 11400000, guid: 82b21ae2b20766d40b70ab3793cc5bb8, type: 2}
+  - {fileID: 11400000, guid: 8acd97c9c788927419f50235c77afabd, type: 2}
+  - {fileID: 11400000, guid: e18cbcf47e351cf4dba27caaa5d14b38, type: 2}
+  prismaticAugments:
+  - {fileID: 11400000, guid: ca77d6b6188d11a4ca9da2b884b50753, type: 2}
+  - {fileID: 11400000, guid: 8c558521c2d05f648895c609b584e674, type: 2}
+  - {fileID: 11400000, guid: 24133d3878ba2114aba4a04a191fedb6, type: 2}
+  - {fileID: 11400000, guid: a1bcb9ae296c5f44e9d7a483c9ca4927, type: 2}
+  - {fileID: 11400000, guid: d41e3df84278e7644806e10b7d940bee, type: 2}
+  numberOfChoices: 3
+  canvasGroup: {fileID: 1087490639857874896}
+  runAugmentData: {fileID: 11400000, guid: 345c27a68c7aa5640b4db38dbdda85be, type: 2}
+  testing_offerOnlySilverAugments: 0
 --- !u!114 &896342222548076843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,45 +308,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3131451191998948869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4983728029310571243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: def9195a269fb2745a8cd2ec646b8b0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  buttonParent: {fileID: 3462484511507193320}
-  augmentButtonPrefab: {fileID: 111587063980478251, guid: 5c8e3ed702343c04ea37e79f75fc5bb0, type: 3}
-  gameManager: {fileID: 0}
-  silverAugments:
-  - {fileID: 11400000, guid: bcfc8d6c588d6f847b38072c18dd4c1d, type: 2}
-  - {fileID: 11400000, guid: 6342a3d204d1f4343992c986d4937c6a, type: 2}
-  - {fileID: 11400000, guid: cea9c6e725ed1204ea7bc0be376fb579, type: 2}
-  - {fileID: 11400000, guid: 4687281702bc50e47984aca3aa6a8f50, type: 2}
-  - {fileID: 11400000, guid: 356481b966db9b84499ec0a6771f3eec, type: 2}
-  - {fileID: 11400000, guid: 8be6ca093424f994f8325cecc6b33556, type: 2}
-  goldAugments:
-  - {fileID: 11400000, guid: 9a75e76d6f989304bacab570702fac7b, type: 2}
-  - {fileID: 11400000, guid: 4f9b6d2d7af0b2a43ad4868f48ad0738, type: 2}
-  - {fileID: 11400000, guid: 82b21ae2b20766d40b70ab3793cc5bb8, type: 2}
-  - {fileID: 11400000, guid: 8acd97c9c788927419f50235c77afabd, type: 2}
-  - {fileID: 11400000, guid: e18cbcf47e351cf4dba27caaa5d14b38, type: 2}
-  prismaticAugments:
-  - {fileID: 11400000, guid: ca77d6b6188d11a4ca9da2b884b50753, type: 2}
-  - {fileID: 11400000, guid: 8c558521c2d05f648895c609b584e674, type: 2}
-  - {fileID: 11400000, guid: 24133d3878ba2114aba4a04a191fedb6, type: 2}
-  - {fileID: 11400000, guid: a1bcb9ae296c5f44e9d7a483c9ca4927, type: 2}
-  - {fileID: 11400000, guid: d41e3df84278e7644806e10b7d940bee, type: 2}
-  numberOfChoices: 3
-  canvasGroup: {fileID: 1087490639857874896}
-  runAugmentData: {fileID: 11400000, guid: 345c27a68c7aa5640b4db38dbdda85be, type: 2}
-  testing_offerOnlySilverAugments: 0
 --- !u!225 &1087490639857874896
 CanvasGroup:
   m_ObjectHideFlags: 0

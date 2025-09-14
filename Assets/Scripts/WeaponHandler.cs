@@ -228,6 +228,16 @@ public class WeaponHandler : MonoBehaviour
         SuckDustParticlesIn(false);
     }
 
+    public void ApplyMinigunMayhem()
+    {
+        fireRate /= 1.25f;
+    }
+    
+    public void ApplyMinigunCarnage()
+    {
+        fireRate /= 1.5f;
+    }
+
     /*private void OnDrawGizmos()
     {
         if (camera.transform == null)
