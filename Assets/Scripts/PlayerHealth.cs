@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
@@ -12,14 +14,22 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private TMP_Text healthText;
     [SerializeField] private TMP_Text gameOverText;
     [SerializeField] private TMP_Text tryAgainText;
-    [SerializeField] private GameManager _gameManager;
+    [SerializeField] private GameManager gameManager;
+    [SerializeField] private WeaponHandler weaponHandler;
+    
+    // AUGMENTS STUFF
+    private int healFromVampireAmount = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (_gameManager == null)
+        if (gameManager == null)
         {
-            _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+            gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        }
+        if (weaponHandler == null)
+        {
+            weaponHandler = GetComponent<WeaponHandler>();
         }
         
         health = maxHealth;
@@ -36,16 +46,39 @@ public class PlayerHealth : MonoBehaviour
     }
     private void Die()
     {
-        _gameManager.gameOver = true;
+        gameManager.gameOver = true;
         GameEvents.OnPlayerDeath?.Invoke();
         gameOverText.gameObject.SetActive(true);
         tryAgainText.gameObject.SetActive(true);
         Destroy(gameObject);
     }
 
-
     public void TakeDamage(int damage)
     {
         health -= damage;
+    }
+
+    public void ApplyDirtyVampire(int healAmount)
+    {
+        healFromVampireAmount += healAmount;
+    }
+
+    public void ApplyDirtyDracula(int healAmount)
+    {
+        healFromVampireAmount += healAmount;
+    }
+
+    private void HealFromVampire()
+    {
+        if (weaponHandler.ReturnCurrentAmmo() >= 100) health += healFromVampireAmount;
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.OnSuckDust += HealFromVampire;
+    }
+    private void OnDisable()
+    {
+        GameEvents.OnSuckDust -= HealFromVampire;
     }
 }

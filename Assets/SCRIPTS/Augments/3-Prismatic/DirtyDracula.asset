@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8118c722121015c4e98bec727b806f93, type: 3}
-  m_Name: DirtyVampire
+  m_Script: {fileID: 11500000, guid: bcfecf30d0ea4da48babd1708eed9e31, type: 3}
+  m_Name: DirtyDracula
   m_EditorClassIdentifier: 
-  augmentName: Dirty Vampire
-  description: While above 100 Ammo, vacuuming heals you +2HP instead of adding ammo.
-  icon: {fileID: 21300000, guid: 8f3ad5bdb44696842b4e5d87987d4fd9, type: 3}
-  tier: 1
+  augmentName: Dirty Dracula
+  description: While above 100 Ammo, vacuuming heals you +5HP instead of adding ammo.
+  icon: {fileID: 21300000, guid: 8739968ea7484e742b590600c97b5219, type: 3}
+  tier: 2
   category: 3

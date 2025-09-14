@@ -22,8 +22,8 @@ public class WeaponHandler : MonoBehaviour
     [SerializeField] private GameObject muzzleFlashPrefab;
     [SerializeField] private Transform endOfBarrel;
     public RawImage crossHair;
-    [SerializeField] private float maxAmmo = 0f;
-    private float currentAmmo;
+    [SerializeField] private int maxAmmo = 0;
+    private int currentAmmo;
     [SerializeField] private TMP_Text ammoText;
     public Animator primaryWeaponAnimator;
     public bool isAiming;
@@ -38,8 +38,11 @@ public class WeaponHandler : MonoBehaviour
 
     public static event Action OnAmmoIncrease;
     public static event Action OnNoAmmoLeft;
+    public static event Action OnHealthIncrease;
     // Update is called once per frame
-
+    
+    // AUGMENT STUFF
+    private bool isVampire = false;
     private void Start()
     {
         vacuumWeapon.SetActive(false);
@@ -172,6 +175,11 @@ public class WeaponHandler : MonoBehaviour
 
     public void RefillAmmo(int reloadAmmount)
     {
+        if (isVampire && currentAmmo >= 100)
+        {
+            OnHealthIncrease?.Invoke();
+            return;
+        }
         if (reloadAmmount > 0)
         {
             OnAmmoIncrease?.Invoke();
@@ -228,6 +236,11 @@ public class WeaponHandler : MonoBehaviour
         SuckDustParticlesIn(false);
     }
 
+    public int ReturnCurrentAmmo()
+    {
+        return currentAmmo;
+    }
+
     public void ApplyMinigunMayhem()
     {
         fireRate /= 1.25f;
@@ -246,6 +259,11 @@ public class WeaponHandler : MonoBehaviour
     public void ApplyHitHarderer()
     {
         shooterWeaponDamage *= 2f;
+    }
+
+    public void ApplyDirtyVampireOrDracula()
+    {
+        isVampire = true;
     }
 
     /*private void OnDrawGizmos()
