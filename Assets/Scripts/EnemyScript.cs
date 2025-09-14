@@ -57,7 +57,7 @@ public class EnemyScript : MonoBehaviour
     {
         //Debug.Log("Hit yo ass");
         timeSinceAttack = 0;
-        playerHealth.TakeDamage(attackDamage);
+        playerHealth.TakeDamage((int) attackDamage);
     }
 
     private void StopChasingPlayer()

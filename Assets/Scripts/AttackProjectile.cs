@@ -26,7 +26,7 @@ public class AttackProjectile : MonoBehaviour
     {
         if (other.collider.CompareTag("Player"))
         {
-            playerHealth.TakeDamage(attackDamage);
+            playerHealth.TakeDamage((int) attackDamage);
         }
         Instantiate(projectileExplotandoVFX, transform.position, Quaternion.identity);
         Destroy(gameObject);

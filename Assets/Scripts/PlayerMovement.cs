@@ -311,6 +311,12 @@ public class PlayerMovement : MonoBehaviour
         gravity *= 0.5f;
     }
 
+    public void ApplySwiftness()
+    {
+        baseMoveSpeed *= 1.25f;
+        UpdateHalvedMovementSpeed();
+    }
+
     public void ApplyZoomies()
     {
         isZooming = true;

@@ -75,7 +75,7 @@ public class EnemyBossScript : MonoBehaviour
         if ((transform.position - playerPosition).sqrMagnitude <  attackRange * attackRange * 0.76) // If the player is near enough the enemy at the time of "hit"
         // part of the animation being played he takes the dmg, if he moved away in time, he doesn't 
         {
-            playerHealth.TakeDamage(attackDamage);
+            playerHealth.TakeDamage((int) attackDamage);
         }
     }
 
