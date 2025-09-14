@@ -56,6 +56,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        GameEvents.OnDamageTaken?.Invoke();
     }
 
     public void ApplyDirtyVampire(int healAmount)

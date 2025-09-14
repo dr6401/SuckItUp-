@@ -10,6 +10,7 @@ public class AmmoTextFeedbacks : MonoBehaviour
     [SerializeField] private MMFeedbacks dustScoreIncrease;
     [SerializeField] private MMFeedbacks noAmmoLeft;
     [SerializeField] private MMFeedbacks healthIncrease;
+    [SerializeField] private MMFeedbacks healthDecrease;
 
     
     private void PlayAmmoIncrease()
@@ -26,18 +27,24 @@ public class AmmoTextFeedbacks : MonoBehaviour
     {
         healthIncrease?.PlayFeedbacks();
     }
-        
+
+    private void PlayHealthDecrease()
+    {
+        healthDecrease?.PlayFeedbacks();
+    }
     
     private void OnEnable()
     {
         WeaponHandler.OnAmmoIncrease += PlayAmmoIncrease;
         WeaponHandler.OnNoAmmoLeft += PlayNoAmmoLeft;
         WeaponHandler.OnHealthIncrease += PlayHealthIncrease;
+        GameEvents.OnDamageTaken += PlayHealthDecrease;
     }
     private void OnDisable()
     {
         WeaponHandler.OnAmmoIncrease -= PlayAmmoIncrease;
         WeaponHandler.OnNoAmmoLeft -= PlayNoAmmoLeft;
         WeaponHandler.OnHealthIncrease -= PlayHealthIncrease;
+        GameEvents.OnDamageTaken -= PlayHealthDecrease;
     }
 }

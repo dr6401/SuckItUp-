@@ -9,4 +9,5 @@ public static class GameEvents
         public static Action OnPlayerDeath;
         public static Action OnSuckDust;
         public static Action<bool> OnHasSettingsUICoveredUpAugmentUI;
+        public static Action OnDamageTaken;
 }
