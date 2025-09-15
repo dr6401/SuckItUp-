@@ -8,7 +8,7 @@ public class DirtyVampire : Augment
         //When above 100 ammo, each dust sucked heals you for HP.
         PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
         WeaponHandler weaponHandler = player.GetComponent<WeaponHandler>();
-        playerHealth.ApplyDirtyDracula(1);
+        playerHealth.ApplyDirtyVampire(1);
         weaponHandler.ApplyDirtyVampireOrDracula();
     }
 }
