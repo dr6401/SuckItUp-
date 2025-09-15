@@ -357,10 +357,11 @@ MonoBehaviour:
   mouseSensitivity: 0.5
   gravity: 90.81
   inputBlocked: 0
-  cameraTransform: {fileID: 3534616509636871620}
+  playerHitBox: {fileID: 2350221138099607896}
   weaponHandler: {fileID: 5666044982448068472}
   slideSpeedMultiplier: 1.5
   slideVFX: {fileID: 4902150992389582382}
+  cameraTransform: {fileID: 3534616509636871620}
   camera: {fileID: 1193547500841403564}
 --- !u!114 &5666044982448068472
 MonoBehaviour:
@@ -376,6 +377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shooterWeapon: {fileID: 2820727171891771674}
   vacuumWeapon: {fileID: 5461264481300806616}
+  shooterWeaponDamage: 5
   fireRate: 0.1785
   camera: {fileID: 1193547500841403564}
   hitEffectPrefab: {fileID: 3790989708882211815, guid: 2747cb491fc6dd948abc03eaceb84f28, type: 3}
@@ -412,7 +414,8 @@ MonoBehaviour:
   healthText: {fileID: 0}
   gameOverText: {fileID: 0}
   tryAgainText: {fileID: 0}
-  _gameManager: {fileID: 0}
+  gameManager: {fileID: 0}
+  weaponHandler: {fileID: 0}
 --- !u!23 &507313879733409927
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -712,13 +715,13 @@ GameObject:
   - component: {fileID: 853893418059457444}
   - component: {fileID: 1421336524718244630}
   - component: {fileID: 2350221138099607896}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: FeetCollider
-  m_TagString: Untagged
+  m_TagString: PlayerHitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4540171911956484529
 Transform:
   m_ObjectHideFlags: 0
@@ -802,7 +805,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

@@ -44,6 +44,15 @@ public class EnemyScript : MonoBehaviour
             timeSinceAttack += Time.deltaTime;
         }
     }
+    
+    private void OnTriggerStay(Collider other)
+    {
+        Debug.Log("Collided with player, timeSinceAttack: " + timeSinceAttack);
+        if (other.CompareTag("PlayerHitBox") && timeSinceAttack > attackCooldown)
+        {
+            HitPlayer();
+        }
+    }
 
     private void ChasePlayer()
     {
@@ -64,6 +73,7 @@ public class EnemyScript : MonoBehaviour
     {
         canChasePlayer = false;
     }
+
     private void OnEnable()
     {
         GameEvents.OnPlayerDeath += StopChasingPlayer;

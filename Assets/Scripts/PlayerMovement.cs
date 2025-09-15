@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.Android;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
@@ -16,8 +19,8 @@ public class PlayerMovement : MonoBehaviour
     private bool canMove = true;
     private bool isRunning = false;
     public bool inputBlocked = false;
+    [SerializeField] private SphereCollider playerHitBox;
 
-    public Transform cameraTransform; // Store camera reference 
     private float verticalRotation = 0f;
     private float verticalVelocity = 0f;
     CharacterController characterController;
@@ -42,8 +45,10 @@ public class PlayerMovement : MonoBehaviour
     private bool isZooming = false;
     private bool currentZoomiesSpeed;
     private float beforeZoomingMovementSpeed;
-    
+    private float sizeScale = 1f;
+
     [Header("Camera")]
+    public Transform cameraTransform;
     [SerializeField] private Camera camera;
 
     void Start()
@@ -223,38 +228,26 @@ public class PlayerMovement : MonoBehaviour
     void Crouch()
     {
         isCrouching = true;
-        characterController.height = 1;
+        characterController.height = 1 * sizeScale;
         characterController.center = new Vector3(0, -playerHeight, 0);
         if (!cameraLowered)
         {
-            cameraTransform.localPosition = originalCameraTransform + Vector3.down * 1.2f;
+            cameraTransform.localPosition = originalCameraTransform + Vector3.down * (1.2f);
             cameraLowered = true;
         }
-        //LowerCamera();
     }
 
     void DeCrouch()
     {
-        characterController.height = 2;
+        characterController.height = 2 * sizeScale;
         characterController.center = new Vector3(0, 0, 0);
         if (cameraLowered)
         {
-            cameraTransform.localPosition = originalCameraTransform;
+            cameraTransform.localPosition = originalCameraTransform * sizeScale;
             cameraLowered = false;
         }
     }
-
-    void LowerCamera()
-    {
-        if (!cameraLowered)
-        {
-            cameraTransform.localPosition += Vector3.down * 0.05f;    
-        }
-        else
-        {
-            cameraLowered = true;
-        }
-    }
+    
 
     void ApplyGravity()
     {
@@ -321,6 +314,21 @@ public class PlayerMovement : MonoBehaviour
     {
         isZooming = true;
         beforeZoomingMovementSpeed = baseMoveSpeed;
+    }
+
+    public void ApplyColossalCleaner(float scale)
+    {
+        characterController.height *= scale;
+        characterController.radius *= scale * 0.8f;
+        sizeScale *= scale;
+
+        cameraTransform.localPosition = new Vector3(
+            cameraTransform.localPosition.x,
+            0.917f * characterController.height,
+            cameraTransform.localPosition.z
+        );
+        playerHitBox.radius *= scale * 1.2f; // Make the hit box a bit bigger for safety
+        playerHitBox.center = new Vector3(0, playerHitBox.radius, 0);
     }
     
     /*private void OnDrawGizmos()

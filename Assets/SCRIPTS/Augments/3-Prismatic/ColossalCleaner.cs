@@ -7,7 +7,9 @@ public class ColossalCleaner : Augment
     {
         PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
         WeaponHandler weaponHandler = player.GetComponent<WeaponHandler>();
+        PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
         playerHealth.ApplyColossalCleaner(0.5f);
-        //weaponHandler.ApplyDirtyVampireOrDracula();
+        weaponHandler.ApplyColossalCleaner(1.15f);
+        playerMovement.ApplyColossalCleaner(3f);
     }
 }

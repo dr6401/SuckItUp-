@@ -266,6 +266,11 @@ public class WeaponHandler : MonoBehaviour
         isVampire = true;
     }
 
+    public void ApplyColossalCleaner(float dmgMultiplier)
+    {
+        shooterWeaponDamage *= dmgMultiplier;
+    }
+
     /*private void OnDrawGizmos()
     {
         if (camera.transform == null)
