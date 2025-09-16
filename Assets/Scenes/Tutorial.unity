@@ -733,7 +733,8 @@ PrefabInstance:
       propertyPath: dustPickupPrefab
       value: 
       objectReference: {fileID: 595504505390220050, guid: 7e261cc1e30b57146aebdee255ac2ff3, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7792817727808660720, guid: 5528ffbfe6df25d48b09b8317394e660, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8917,20 +8918,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2941959870385526756, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
   m_PrefabInstance: {fileID: 4747978659578087548}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1852384497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1852384492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b917f7b6bf6dd544b8f799cbda84277, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  phoneHandler: {fileID: 0}
-  phoneAnimator: {fileID: 0}
 --- !u!114 &1904294770 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 638308616459228889, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
@@ -9805,9 +9792,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6845708594331843543, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1852384495}
-    - targetCorrespondingSourceObject: {fileID: 6845708594331843543, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1852384497}
     - targetCorrespondingSourceObject: {fileID: 7758444335894640426, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4747978659578087550}

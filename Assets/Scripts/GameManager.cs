@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         // Canvas stuff
         if (augmentSelectionUI == null)
         {
-            augmentSelectionUI = FindAnyObjectByType<AugmentSelectionUI>();
+            augmentSelectionUI = GameObject.FindWithTag("AugmentSelectionUI").GetComponent<AugmentSelectionUI>();
         }       
         if (settingsCanvas != null)
         {

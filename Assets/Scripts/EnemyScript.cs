@@ -42,6 +42,7 @@ public class EnemyScript : MonoBehaviour
                 HitPlayer();
             }
             timeSinceAttack += Time.deltaTime;
+            LookAtPlayer();
         }
     }
     
@@ -72,6 +73,12 @@ public class EnemyScript : MonoBehaviour
     private void StopChasingPlayer()
     {
         canChasePlayer = false;
+    }
+    
+    private void LookAtPlayer()
+    {
+        Vector3 lookDirection = playerPosition - transform.position;
+        transform.rotation = Quaternion.LookRotation(lookDirection);
     }
 
     private void OnEnable()

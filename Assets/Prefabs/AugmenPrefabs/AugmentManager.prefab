@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4527854e133334f4fa2e467bf86e0111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  augmentTriggerTreshold: 100
   player: {fileID: 0}
   augmentSelectionUI: {fileID: 0}
   dustScoreText: {fileID: 0}
   gameManager: {fileID: 0}
-  augmentTriggerTresholdDuplicator: 2
+  augmentTriggerTresholdDuplicator: 1.25

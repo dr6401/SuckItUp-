@@ -7,15 +7,54 @@ using UnityEngine.SceneManagement;
 public class AugmentManager : MonoBehaviour
 {
     private int currentSuckedDust = 0;
-    [SerializeField] private float augmentTriggerTreshold = 20;
+    [SerializeField] private int augmentTriggerTreshold = 20;
     [SerializeField] private GameObject player;
     [SerializeField] private AugmentSelectionUI augmentSelectionUI;
     [SerializeField] private TMP_Text dustScoreText;
     [SerializeField] private GameManager gameManager;
     [SerializeField] public float augmentTriggerTresholdDuplicator = 1f;
+
+    private static AugmentManager instance;
     private void Awake()
     {
+
+        AugmentManager[] managers = FindObjectsByType<AugmentManager>(sortMode: FindObjectsSortMode.InstanceID);
+
+        if (managers.Length > 1)
+        {
+            foreach (var m in managers)
+            {
+                if (m != this && m.gameObject.scene.name == "DontDestroyOnLoad")
+                {
+                    Destroy(gameObject);
+                    return;
+                }
+            }
+            
+            
+            foreach (var m in managers)
+            {
+                if (m != this)
+                {
+                    if (managers[0] != this)
+                    {
+                        Destroy(gameObject);
+                        return;
+                    }
+                }
+            }
+        }
+        
+        if (instance != null && instance != this)
+        {
+            Debug.Log("Another Augment Manager found in the scene. This one with id " + GetInstanceID() + " will self destruct now.");
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
         DontDestroyOnLoad(gameObject);
+        Debug.Log("Augment Manager ID: " + GetInstanceID());
     }
 
     void Start()
@@ -53,7 +92,8 @@ public class AugmentManager : MonoBehaviour
         {
             gameManager.TogglePauseGameWithoutSettingsMenu();
             GameEvents.OnHasSettingsUICoveredUpAugmentUI?.Invoke(true);
-            Debug.Log("Current sucked dust was " + currentSuckedDust + "! Setting new currentSuckedDust to 0 and the threshold to " + augmentTriggerTreshold * 2);
+            float tempAugmentTriggerTreshold = augmentTriggerTreshold * augmentTriggerTresholdDuplicator;
+            Debug.Log("Current sucked dust was " + currentSuckedDust + "! Setting new currentSuckedDust to 0 and the threshold to " + (int) tempAugmentTriggerTreshold);
             currentSuckedDust = 0;
             int augmentChance = Random.Range(1, 100);
             AugmentTier augmentTier = augmentChance switch
@@ -62,7 +102,7 @@ public class AugmentManager : MonoBehaviour
                 <= 75 => AugmentTier.Gold,
                 _ => AugmentTier.Prismatic
             };
-            augmentTriggerTreshold *= augmentTriggerTresholdDuplicator;
+            augmentTriggerTreshold = (int) tempAugmentTriggerTreshold;
             augmentSelectionUI.TriggerAugmentSelection(player, augmentTier);
         }
     }
