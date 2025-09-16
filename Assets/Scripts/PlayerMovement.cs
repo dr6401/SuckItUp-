@@ -328,7 +328,7 @@ public class PlayerMovement : MonoBehaviour
             cameraTransform.localPosition.z
         );
         playerHitBox.radius *= scale * 1.2f; // Make the hit box a bit bigger for safety
-        playerHitBox.center = new Vector3(0, playerHitBox.radius, 0);
+        playerHitBox.center = new Vector3(0, -playerHitBox.radius * 0.8f, 0); // * 0.5f for fine tunning
     }
     
     /*private void OnDrawGizmos()
