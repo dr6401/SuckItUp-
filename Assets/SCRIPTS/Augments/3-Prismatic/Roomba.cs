@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Augment", menuName = "Augments/Prismatic/Utility/DustClone")]
-public class DustClone : Augment
+[CreateAssetMenu(fileName = "Augment", menuName = "Augments/Prismatic/Cleaning/Roomba")]
+public class Roomba : Augment
 {
     public override void Apply(GameObject player)
     {

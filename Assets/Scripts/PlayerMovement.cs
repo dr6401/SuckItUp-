@@ -316,6 +316,10 @@ public class PlayerMovement : MonoBehaviour
         beforeZoomingMovementSpeed = baseMoveSpeed;
     }
 
+    public void ApplySpringstep(float jumpIncrease)
+    {
+        jumpForce *= jumpIncrease;
+    }
     public void ApplyColossalCleaner(float scale)
     {
         characterController.height *= scale;

@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: RocketJump
   m_EditorClassIdentifier: 
   augmentName: Rocket Jump
-  description: Pressing jump while mid-air launches you upward and backward, consuming
-    10 ammo.
+  description: Jumping launches a rocket straight down.
   icon: {fileID: 21300000, guid: 7a8c30212355d97468f50edef732e761, type: 3}
   tier: 1
   category: 1

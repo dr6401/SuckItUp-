@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AmmoIsPower
   m_EditorClassIdentifier: 
   augmentName: Ammo Is Power
-  description: Damage scales with current ammo \u2014 +0.2% per bullet over 100.
+  description: Damage scales with current ammo +0.2% per bullet over 100.
   icon: {fileID: 21300000, guid: 8151aff031789764c845143eb81d4c4c, type: 3}
   tier: 2
   category: 0
