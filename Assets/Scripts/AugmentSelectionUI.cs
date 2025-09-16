@@ -24,10 +24,11 @@ public class AugmentSelectionUI : MonoBehaviour
 
     private bool hasSettingsCoveredUpAugmentUI;
     
+    private static AugmentSelectionUI instance;
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-    }
+        //DontDestroyOnLoad(gameObject);
+    }    
     void Start()
     {
         if (player == null)
@@ -58,32 +59,7 @@ public class AugmentSelectionUI : MonoBehaviour
         {
             availableAugmentsAtStart++;
         }
-        //Debug.Log("availableAugmentsAtStart: " + availableAugmentsAtStart);
     }
-
-    /*public void TestAugmentSelection()
-    {
-        List<Augment> silverPool = GetPoolByTier(AugmentTier.Silver);
-        silverPool.RemoveAll(augment => runAugmentData.IsAugmentInChosenAugments(augment));
-        List<Augment> goldPool = GetPoolByTier(AugmentTier.Gold);
-        goldPool.RemoveAll(augment => runAugmentData.IsAugmentInChosenAugments(augment));
-        List<Augment> prismaticPool = GetPoolByTier(AugmentTier.Prismatic);
-        prismaticPool.RemoveAll(augment => runAugmentData.IsAugmentInChosenAugments(augment));
-        if (silverPool.Count == 0 && goldPool.Count == 0 && prismaticPool.Count == 0)
-        {
-            Debug.Log("No more Augments left!");
-            return;
-        }
-        AugmentTier tier = (AugmentTier)Random.Range(0, System.Enum.GetValues(typeof(AugmentTier)).Length);
-        if (GetPoolByTier(tier).Count != 0)
-        {
-            TriggerAugmentSelection(player, tier);
-        }
-        else
-        {
-            TestAugmentSelection();
-        }
-    }*/
 
     public void TriggerAugmentSelection(GameObject playerRef, AugmentTier tier)
     {
@@ -230,4 +206,5 @@ public class AugmentSelectionUI : MonoBehaviour
         canvasGroup.alpha = targetAlpha;
         fadeInCoroutine = null;
     }
+    
 }

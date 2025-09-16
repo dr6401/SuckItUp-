@@ -17,44 +17,13 @@ public class AugmentManager : MonoBehaviour
     private static AugmentManager instance;
     private void Awake()
     {
-
-        AugmentManager[] managers = FindObjectsByType<AugmentManager>(sortMode: FindObjectsSortMode.InstanceID);
-
-        if (managers.Length > 1)
-        {
-            foreach (var m in managers)
-            {
-                if (m != this && m.gameObject.scene.name == "DontDestroyOnLoad")
-                {
-                    Destroy(gameObject);
-                    return;
-                }
-            }
-            
-            
-            foreach (var m in managers)
-            {
-                if (m != this)
-                {
-                    if (managers[0] != this)
-                    {
-                        Destroy(gameObject);
-                        return;
-                    }
-                }
-            }
-        }
-        
         if (instance != null && instance != this)
         {
-            Debug.Log("Another Augment Manager found in the scene. This one with id " + GetInstanceID() + " will self destruct now.");
             Destroy(gameObject);
             return;
         }
-
         instance = this;
         DontDestroyOnLoad(gameObject);
-        Debug.Log("Augment Manager ID: " + GetInstanceID());
     }
 
     void Start()
