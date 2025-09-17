@@ -13,6 +13,7 @@ public class AugmentManager : MonoBehaviour
     [SerializeField] private TMP_Text dustScoreText;
     [SerializeField] private GameManager gameManager;
     [SerializeField] public float augmentTriggerTresholdDuplicator = 1f;
+    [Header("TESTING")] [SerializeField] private bool useTestingEqualAugmentOdds = false;
 
     private static AugmentManager instance;
     private void Awake()
@@ -71,6 +72,15 @@ public class AugmentManager : MonoBehaviour
                 <= 75 => AugmentTier.Gold,
                 _ => AugmentTier.Prismatic
             };
+            if (useTestingEqualAugmentOdds)
+            {
+                augmentTier = augmentChance switch
+                {
+                    <= 33 => AugmentTier.Silver,
+                    <= 34 => AugmentTier.Gold,
+                    _ => AugmentTier.Prismatic
+                };
+            }
             augmentTriggerTreshold = (int) tempAugmentTriggerTreshold;
             augmentSelectionUI.TriggerAugmentSelection(player, augmentTier);
         }
