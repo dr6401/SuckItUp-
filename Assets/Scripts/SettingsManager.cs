@@ -7,6 +7,7 @@ public class SettingsManager : MonoBehaviour
 
     [SerializeField] private Slider sensitivitySlider;
     [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private Texture2D cursorSprite;
     void Start()
     {
         if (playerMovement == null)
@@ -19,6 +20,8 @@ public class SettingsManager : MonoBehaviour
             sensitivitySlider.value = PlayerPrefs.GetFloat("sensitivity");
         }
         sensitivitySlider.onValueChanged.AddListener(OnSensitivityChanged);
+        Vector2 hotspot = new Vector2(cursorSprite.width / 2f, cursorSprite.height / 2f);
+        Cursor.SetCursor(cursorSprite, hotspot, CursorMode.Auto);
     }
 
     private void OnSensitivityChanged(float sensitivity)

@@ -2321,11 +2321,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: spawnInterval
-      value: 13
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: maxSpawnedEnemies
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3744722369772636606, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_IsActive
@@ -6894,11 +6894,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: spawnInterval
-      value: 13
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: maxSpawnedEnemies
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6149801562829461563, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Name
@@ -8351,11 +8351,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 345c27a68c7aa5640b4db38dbdda85be, type: 2}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: goldAugments.Array.size
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: silverAugments.Array.size
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: 'goldAugments.Array.data[1]'
@@ -8368,18 +8368,18 @@ PrefabInstance:
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: 'goldAugments.Array.data[3]'
       value: 
-      objectReference: {fileID: 11400000, guid: 8acd97c9c788927419f50235c77afabd, type: 2}
+      objectReference: {fileID: 11400000, guid: 4f9b6d2d7af0b2a43ad4868f48ad0738, type: 2}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: 'goldAugments.Array.data[4]'
       value: 
-      objectReference: {fileID: 11400000, guid: e18cbcf47e351cf4dba27caaa5d14b38, type: 2}
+      objectReference: {fileID: 11400000, guid: 8acd97c9c788927419f50235c77afabd, type: 2}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: 'goldAugments.Array.data[5]'
       value: 
-      objectReference: {fileID: 11400000, guid: 4f9b6d2d7af0b2a43ad4868f48ad0738, type: 2}
+      objectReference: {fileID: 11400000, guid: e18cbcf47e351cf4dba27caaa5d14b38, type: 2}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: prismaticAugments.Array.size
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: 'silverAugments.Array.data[0]'
@@ -8404,7 +8404,7 @@ PrefabInstance:
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: 'silverAugments.Array.data[5]'
       value: 
-      objectReference: {fileID: 11400000, guid: 8be6ca093424f994f8325cecc6b33556, type: 2}
+      objectReference: {fileID: 11400000, guid: bcfc8d6c588d6f847b38072c18dd4c1d, type: 2}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: 'prismaticAugments.Array.data[0]'
       value: 
@@ -8424,13 +8424,17 @@ PrefabInstance:
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: 'prismaticAugments.Array.data[4]'
       value: 
-      objectReference: {fileID: 11400000, guid: f43d45904180cf340a2b66cb54fc918a, type: 2}
+      objectReference: {fileID: 11400000, guid: ca77d6b6188d11a4ca9da2b884b50753, type: 2}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: 'prismaticAugments.Array.data[5]'
       value: 
-      objectReference: {fileID: 11400000, guid: 0184b631b9ccb184c9c494735805a0d4, type: 2}
+      objectReference: {fileID: 11400000, guid: 24133d3878ba2114aba4a04a191fedb6, type: 2}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: 'prismaticAugments.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0184b631b9ccb184c9c494735805a0d4, type: 2}
+    - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
+      propertyPath: 'prismaticAugments.Array.data[7]'
       value: 
       objectReference: {fileID: 11400000, guid: d41e3df84278e7644806e10b7d940bee, type: 2}
     - target: {fileID: 3462484511507193320, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
@@ -13326,7 +13330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5988429782968315471, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6873471778256948619, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
       propertyPath: m_Material
@@ -14852,11 +14856,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5878903646017234297, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: spawnInterval
-      value: 13
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5878903646017234297, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: maxSpawnedEnemies
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6724917399087893350, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_Name
@@ -15043,8 +15047,8 @@ SceneRoots:
   - {fileID: 1906739396}
   - {fileID: 1017221370}
   - {fileID: 1937594189}
-  - {fileID: 8518886280173072524}
   - {fileID: 4747978659578087548}
+  - {fileID: 8518886280173072524}
   - {fileID: 385039202}
   - {fileID: 137608710}
   - {fileID: 263551145}
