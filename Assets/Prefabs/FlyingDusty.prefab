@@ -286,16 +286,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 053395dc53350e1408f603f32b471465, type: 2}
     - target: {fileID: -2400815295472822130, guid: 80b1662b160b6254ab9bc89e07b6e630, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 65.15
+      objectReference: {fileID: 0}
+    - target: {fileID: -2400815295472822130, guid: 80b1662b160b6254ab9bc89e07b6e630, type: 3}
       propertyPath: m_LocalScale.y
-      value: 96.1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -2400815295472822130, guid: 80b1662b160b6254ab9bc89e07b6e630, type: 3}
       propertyPath: m_LocalScale.z
-      value: 150
+      value: 190
       objectReference: {fileID: 0}
     - target: {fileID: -2400815295472822130, guid: 80b1662b160b6254ab9bc89e07b6e630, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.022
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -2400815295472822130, guid: 80b1662b160b6254ab9bc89e07b6e630, type: 3}
       propertyPath: m_LocalPosition.z
@@ -358,7 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e3a06ba73ddc9b499290851cc30a8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  propellerSpeed: 20000
+  propellerSpeed: 2500
 --- !u!1001 &6291802776912040815
 PrefabInstance:
   m_ObjectHideFlags: 0
