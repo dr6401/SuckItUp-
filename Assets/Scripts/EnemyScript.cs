@@ -35,7 +35,7 @@ public class EnemyScript : MonoBehaviour
         if (canChasePlayer)
         {
             playerPosition = player.transform.position;
-            ChasePlayer();
+            //ChasePlayer(); COMMENTED OUT FOR STEAM STUFF SO ENEMIES DON'T MOVE AROUND
 
             if ((transform.position - playerPosition).sqrMagnitude < attackRange * attackRange && timeSinceAttack > attackCooldown)
             {
