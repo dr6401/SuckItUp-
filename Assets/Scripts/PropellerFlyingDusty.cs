@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PropellerFlyingDusty : MonoBehaviour
 {
-    [SerializeField] private float propellerSpeed = 5f; 
+    [SerializeField] private float propellerSpeed = 20000f; 
 
     // Update is called once per frame
     void Update()
