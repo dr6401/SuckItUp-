@@ -63,7 +63,7 @@ public class FlyingPatrolEnemy : MonoBehaviour
             playerPosition = player.transform.position;
             if ((transform.position - playerPosition).sqrMagnitude < attackRange * attackRange && timeSinceAttack > attackCooldown)
             {
-                AttackPlayer();
+                 //AttackPlayer(); DISABLED FOR STEAM CREATIVE BUILD
             }
             timeSinceAttack += Time.deltaTime;
 

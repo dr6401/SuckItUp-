@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
             ApplyGravity();
             //if (isZooming) Zoom();
             Move();
-            RotatePlayer();
+            //RotatePlayer(); DISABLED FOR STEAM CREATIVES
             if (Input.GetKey(KeyCode.Space) && characterController.isGrounded) // Jump
             {
                 if (!Physics.Raycast(transform.position - Vector3.down * 0.25f, transform.up, playerHeight * 1.4f))
