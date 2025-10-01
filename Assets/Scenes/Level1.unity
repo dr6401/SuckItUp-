@@ -14289,7 +14289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2338545943200346280, guid: ff8b101283a34154f995ad06287bda90, type: 3}
       propertyPath: augmentTriggerTresholdDuplicator
-      value: 1
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 6025747524574074662, guid: ff8b101283a34154f995ad06287bda90, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15059,5 +15059,5 @@ SceneRoots:
   - {fileID: 1495674173}
   - {fileID: 1675578932}
   - {fileID: 1576073584}
-  - {fileID: 1573264200}
   - {fileID: 904864550464547262}
+  - {fileID: 1573264200}
