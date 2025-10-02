@@ -20143,8 +20143,9 @@ GameObject:
   - component: {fileID: 2050322045298942519}
   - component: {fileID: 6557359228061571939}
   - component: {fileID: 62185837477970950}
+  - component: {fileID: 2828911153040633088}
   m_Layer: 5
-  m_Name: TestSettingsCanvas
+  m_Name: SettingsMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20221,7 +20222,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &6557359228061571939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20283,6 +20284,18 @@ MonoBehaviour:
   sensitivityXSlider: {fileID: 6818306765870118388}
   sensitivityYSlider: {fileID: 8938932733965791885}
   mouseSmoothSlider: {fileID: 1890146257755224591}
+--- !u!225 &2828911153040633088
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6901148865862449980}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6933743523889144958
 GameObject:
   m_ObjectHideFlags: 0
