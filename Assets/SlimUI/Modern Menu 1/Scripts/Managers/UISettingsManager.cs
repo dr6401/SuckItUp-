@@ -34,7 +34,7 @@ namespace SlimUI.ModernMenu{
 		public GameObject cameraeffectstext; 
 
 		[Header("GAME SETTINGS")]
-		public GameObject showhudtext;
+		//public GameObject showhudtext; Disabled since game doesn't need this
 		public GameObject tooltipstext;
 		public GameObject difficultynormaltext;
 		public GameObject difficultynormaltextLINE;
@@ -46,6 +46,7 @@ namespace SlimUI.ModernMenu{
 
 		// sliders
 		public GameObject musicSlider;
+		public GameObject sfxSlider;
 		public GameObject sensitivityXSlider;
 		public GameObject sensitivityYSlider;
 		public GameObject mouseSmoothSlider;
@@ -70,6 +71,7 @@ namespace SlimUI.ModernMenu{
 
 			// check slider values
 			musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
+			sfxSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SFXVolume");
 			sensitivityXSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("XSensitivity");
 			sensitivityYSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("YSensitivity");
 			mouseSmoothSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MouseSmoothing");
@@ -83,12 +85,12 @@ namespace SlimUI.ModernMenu{
 			}
 
 			// check hud value
-			if(PlayerPrefs.GetInt("ShowHUD")==0){
+			/*if(PlayerPrefs.GetInt("ShowHUD")==0){
 				showhudtext.GetComponent<TMP_Text>().text = "off";
 			}
 			else{
 				showhudtext.GetComponent<TMP_Text>().text = "on";
-			}
+			}*/
 
 			// check tool tip value
 			if(PlayerPrefs.GetInt("ToolTips")==0){
@@ -222,6 +224,11 @@ namespace SlimUI.ModernMenu{
 			PlayerPrefs.SetFloat("MusicVolume", musicSlider.GetComponent<Slider>().value);
 		}
 
+		public void SFXSlider (){
+			//PlayerPrefs.SetFloat("MusicVolume", sliderValue);
+			PlayerPrefs.SetFloat("SFXVolume", sfxSlider.GetComponent<Slider>().value);
+		}
+		
 		public void SensitivityXSlider (){
 			PlayerPrefs.SetFloat("XSensitivity", sliderValueXSensitivity);
 		}
@@ -236,7 +243,7 @@ namespace SlimUI.ModernMenu{
 		}
 
 		// the playerprefs variable that is checked to enable hud while in game
-		public void ShowHUD (){
+		/*public void ShowHUD (){
 			if(PlayerPrefs.GetInt("ShowHUD")==0){
 				PlayerPrefs.SetInt("ShowHUD",1);
 				showhudtext.GetComponent<TMP_Text>().text = "on";
@@ -245,7 +252,7 @@ namespace SlimUI.ModernMenu{
 				PlayerPrefs.SetInt("ShowHUD",0);
 				showhudtext.GetComponent<TMP_Text>().text = "off";
 			}
-		}
+		}*/
 
 		// the playerprefs variable that is checked to enable mobile sfx while in game
 		public void MobileSFXMute (){
