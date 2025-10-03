@@ -19,20 +19,20 @@ namespace SlimUI.ModernMenu{
 
 		[Header("VIDEO SETTINGS")]
 		public GameObject fullscreentext;
-		public GameObject ambientocclusiontext;
+		//public GameObject ambientocclusiontext;
 		public GameObject shadowofftextLINE;
 		public GameObject shadowlowtextLINE;
 		public GameObject shadowhightextLINE;
-		public GameObject aaofftextLINE;
-		public GameObject aa2xtextLINE;
-		public GameObject aa4xtextLINE;
-		public GameObject aa8xtextLINE;
+		//public GameObject aaofftextLINE;
+		//public GameObject aa2xtextLINE;
+		//public GameObject aa4xtextLINE;
+		//public GameObject aa8xtextLINE;
 		public GameObject vsynctext;
-		public GameObject motionblurtext;
+		//public GameObject motionblurtext;
 		public GameObject texturelowtextLINE;
 		public GameObject texturemedtextLINE;
 		public GameObject texturehightextLINE;
-		public GameObject cameraeffectstext; 
+		//public GameObject cameraeffectstext; 
 
 		[Header("GAME SETTINGS")]
 		//public GameObject showhudtext; Disabled since game doesn't need this
@@ -166,20 +166,20 @@ namespace SlimUI.ModernMenu{
 			}
 
 			// check motion blur
-			if(PlayerPrefs.GetInt("MotionBlur")==0){
+			/*if(PlayerPrefs.GetInt("MotionBlur")==0){
 				motionblurtext.GetComponent<TMP_Text>().text = "off";
 			}
 			else if(PlayerPrefs.GetInt("MotionBlur")==1){
 				motionblurtext.GetComponent<TMP_Text>().text = "on";
-			}
+			}*/
 
 			// check ambient occlusion
-			if(PlayerPrefs.GetInt("AmbientOcclusion")==0){
+			/*if(PlayerPrefs.GetInt("AmbientOcclusion")==0){
 				ambientocclusiontext.GetComponent<TMP_Text>().text = "off";
 			}
 			else if(PlayerPrefs.GetInt("AmbientOcclusion")==1){
 				ambientocclusiontext.GetComponent<TMP_Text>().text = "on";
-			}
+			}*/
 
 			// check texture quality
 			if(PlayerPrefs.GetInt("Textures") == 0){
@@ -382,7 +382,7 @@ namespace SlimUI.ModernMenu{
 			}
 		}
 
-		public void MotionBlur (){
+		/*public void MotionBlur (){
 			if(PlayerPrefs.GetInt("MotionBlur")==0){
 				PlayerPrefs.SetInt("MotionBlur",1);
 				motionblurtext.GetComponent<TMP_Text>().text = "on";
@@ -391,9 +391,9 @@ namespace SlimUI.ModernMenu{
 				PlayerPrefs.SetInt("MotionBlur",0);
 				motionblurtext.GetComponent<TMP_Text>().text = "off";
 			}
-		}
+		}*/
 
-		public void AmbientOcclusion (){
+		/*public void AmbientOcclusion (){
 			if(PlayerPrefs.GetInt("AmbientOcclusion")==0){
 				PlayerPrefs.SetInt("AmbientOcclusion",1);
 				ambientocclusiontext.GetComponent<TMP_Text>().text = "on";
@@ -402,9 +402,9 @@ namespace SlimUI.ModernMenu{
 				PlayerPrefs.SetInt("AmbientOcclusion",0);
 				ambientocclusiontext.GetComponent<TMP_Text>().text = "off";
 			}
-		}
+		}*/
 
-		public void CameraEffects (){
+		/*public void CameraEffects (){
 			if(PlayerPrefs.GetInt("CameraEffects")==0){
 				PlayerPrefs.SetInt("CameraEffects",1);
 				cameraeffectstext.GetComponent<TMP_Text>().text = "on";
@@ -413,7 +413,7 @@ namespace SlimUI.ModernMenu{
 				PlayerPrefs.SetInt("CameraEffects",0);
 				cameraeffectstext.GetComponent<TMP_Text>().text = "off";
 			}
-		}
+		}*/
 
 		public void TexturesLow (){
 			PlayerPrefs.SetInt("Textures",0);
