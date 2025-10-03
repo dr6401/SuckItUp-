@@ -15,9 +15,9 @@ public class SettingsManager : MonoBehaviour
             playerMovement = GameObject.FindFirstObjectByType<PlayerMovement>();
         }
 
-        if (PlayerPrefs.HasKey("sensitivity"))
+        if (PlayerPrefs.HasKey("Sensitivity"))
         {
-            sensitivitySlider.value = PlayerPrefs.GetFloat("sensitivity");
+            sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity");
         }
         sensitivitySlider.onValueChanged.AddListener(OnSensitivityChanged);
         Vector2 hotspot = new Vector2(cursorSprite.width / 2f, cursorSprite.height / 2f);

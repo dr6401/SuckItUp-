@@ -3637,7 +3637,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 114540422115068172}
           m_TargetAssemblyTypeName: 
-          m_MethodName: SensitivityXSlider
+          m_MethodName: SensitivitySlider
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

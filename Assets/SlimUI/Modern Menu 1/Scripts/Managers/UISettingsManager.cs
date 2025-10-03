@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Serialization;
 
 namespace SlimUI.ModernMenu{
 	public class UISettingsManager : MonoBehaviour {
@@ -47,13 +48,13 @@ namespace SlimUI.ModernMenu{
 		// sliders
 		public GameObject musicSlider;
 		public GameObject sfxSlider;
-		public GameObject sensitivityXSlider;
-		public GameObject sensitivityYSlider;
-		public GameObject mouseSmoothSlider;
+		public GameObject sensitivitySlider;
+		//public GameObject sensitivityYSlider;
+		//public GameObject mouseSmoothSlider;
 
 		private float sliderValue = 0.0f;
-		private float sliderValueXSensitivity = 0.0f;
-		private float sliderValueYSensitivity = 0.0f;
+		private float sliderValueSensitivity = 0.0f;
+		//private float sliderValueYSensitivity = 0.0f;
 		private float sliderValueSmoothing = 0.0f;
 		
 
@@ -72,9 +73,9 @@ namespace SlimUI.ModernMenu{
 			// check slider values
 			musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
 			sfxSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SFXVolume");
-			sensitivityXSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("XSensitivity");
-			sensitivityYSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("YSensitivity");
-			mouseSmoothSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MouseSmoothing");
+			sensitivitySlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Sensitivity");
+			//sensitivityYSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("YSensitivity");
+			//mouseSmoothSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MouseSmoothing");
 
 			// check full screen
 			if(Screen.fullScreen == true){
@@ -203,9 +204,9 @@ namespace SlimUI.ModernMenu{
 
 		public void Update (){
 			//sliderValue = musicSlider.GetComponent<Slider>().value;
-			sliderValueXSensitivity = sensitivityXSlider.GetComponent<Slider>().value;
-			sliderValueYSensitivity = sensitivityYSlider.GetComponent<Slider>().value;
-			sliderValueSmoothing = mouseSmoothSlider.GetComponent<Slider>().value;
+			sliderValueSensitivity = sensitivitySlider.GetComponent<Slider>().value;
+			//sliderValueYSensitivity = sensitivityYSlider.GetComponent<Slider>().value;
+			//sliderValueSmoothing = mouseSmoothSlider.GetComponent<Slider>().value;
 		}
 
 		public void FullScreen (){
@@ -229,18 +230,18 @@ namespace SlimUI.ModernMenu{
 			PlayerPrefs.SetFloat("SFXVolume", sfxSlider.GetComponent<Slider>().value);
 		}
 		
-		public void SensitivityXSlider (){
-			PlayerPrefs.SetFloat("XSensitivity", sliderValueXSensitivity);
+		public void SensitivitySlider (){ // Needs to be implemented in PlayerMovement 
+			PlayerPrefs.SetFloat("Sensitivity", sliderValueSensitivity);
 		}
 
-		public void SensitivityYSlider (){
+		/*public void SensitivityYSlider (){
 			PlayerPrefs.SetFloat("YSensitivity", sliderValueYSensitivity);
-		}
+		}*/
 
-		public void SensitivitySmoothing (){
+		/*public void SensitivitySmoothing (){ // Can delete
 			PlayerPrefs.SetFloat("MouseSmoothing", sliderValueSmoothing);
 			Debug.Log(PlayerPrefs.GetFloat("MouseSmoothing"));
-		}
+		}*/
 
 		// the playerprefs variable that is checked to enable hud while in game
 		/*public void ShowHUD (){
@@ -278,7 +279,7 @@ namespace SlimUI.ModernMenu{
 		}
 
 		// show tool tips like: 'How to Play' control pop ups
-		public void ToolTips (){
+		public void ToolTips (){ // Needs to be implemented in UI
 			if(PlayerPrefs.GetInt("ToolTips")==0){
 				PlayerPrefs.SetInt("ToolTips",1);
 				tooltipstext.GetComponent<TMP_Text>().text = "on";
@@ -289,14 +290,14 @@ namespace SlimUI.ModernMenu{
 			}
 		}
 
-		public void NormalDifficulty (){
+		public void NormalDifficulty (){ // Needs to be implemented in enemy scripts
 			difficultyhardcoretextLINE.gameObject.SetActive(false);
 			difficultynormaltextLINE.gameObject.SetActive(true);
 			PlayerPrefs.SetInt("NormalDifficulty",1);
 			PlayerPrefs.SetInt("HardCoreDifficulty",0);
 		}
 
-		public void HardcoreDifficulty (){
+		public void HardcoreDifficulty (){ // Needs to be implemented in enemy scripts 
 			difficultyhardcoretextLINE.gameObject.SetActive(true);
 			difficultynormaltextLINE.gameObject.SetActive(false);
 			PlayerPrefs.SetInt("NormalDifficulty",0);
@@ -368,7 +369,7 @@ namespace SlimUI.ModernMenu{
 			}
 		}
 
-		public void InvertMouse (){
+		public void InvertMouse (){ // Needs to be implemented in PlayerMovement 
 			if(PlayerPrefs.GetInt("Inverted")==0){
 				PlayerPrefs.SetInt("Inverted",1);
 				invertmousetext.GetComponent<TMP_Text>().text = "on";
