@@ -10,4 +10,7 @@ public static class GameEvents
         public static Action OnSuckDust;
         public static Action<bool> OnHasSettingsUICoveredUpAugmentUI;
         public static Action OnDamageTaken;
+        
+        // SETTINGS
+        public static Action<int> OnMouseInverted;
 }

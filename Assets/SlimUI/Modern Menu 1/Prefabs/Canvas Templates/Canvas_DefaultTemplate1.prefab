@@ -9921,7 +9921,7 @@ GameObject:
   - component: {fileID: 393787756404608360}
   - component: {fileID: 393209909789029002}
   m_Layer: 5
-  m_Name: SensitivityXSlider
+  m_Name: SensitivitySlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24316,9 +24316,7 @@ MonoBehaviour:
   invertmousetext: {fileID: 352737170872467444}
   musicSlider: {fileID: 352423760116714556}
   sfxSlider: {fileID: 4374175223615293679}
-  sensitivityXSlider: {fileID: 352538889094378674}
-  sensitivityYSlider: {fileID: 0}
-  mouseSmoothSlider: {fileID: 0}
+  sensitivitySlider: {fileID: 0}
 --- !u!1 &353327324914912596
 GameObject:
   m_ObjectHideFlags: 0

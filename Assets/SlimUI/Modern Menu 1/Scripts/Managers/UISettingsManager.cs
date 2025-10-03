@@ -373,10 +373,12 @@ namespace SlimUI.ModernMenu{
 			if(PlayerPrefs.GetInt("Inverted")==0){
 				PlayerPrefs.SetInt("Inverted",1);
 				invertmousetext.GetComponent<TMP_Text>().text = "on";
+				GameEvents.OnMouseInverted?.Invoke(-1);
 			}
 			else if(PlayerPrefs.GetInt("Inverted")==1){
 				PlayerPrefs.SetInt("Inverted",0);
 				invertmousetext.GetComponent<TMP_Text>().text = "off";
+				GameEvents.OnMouseInverted?.Invoke(1);
 			}
 		}
 

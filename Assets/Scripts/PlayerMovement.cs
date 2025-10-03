@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public float sprintMultiplier = 1.5f;
     public float jumpForce = 5f;
     public float mouseSensitivity = 0.5f; // Controls mouse sensitivity
+    private int isMouseInverted = 1;
     public float gravity = 9.81f;
     private bool canMove = true;
     private bool isRunning = false;
@@ -66,15 +67,15 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        if (!PlayerPrefs.HasKey("sensitivity"))
+        if (!PlayerPrefs.HasKey("Sensitivity"))
         {
-            PlayerPrefs.SetFloat("sensitivity", mouseSensitivity);
-            Debug.Log("Player didnt have sensitivity yet. Setting it to: " + PlayerPrefs.GetFloat("sensitivity"));
+            PlayerPrefs.SetFloat("Sensitivity", mouseSensitivity);
+            Debug.Log("Player didnt have sensitivity yet. Setting it to: " + PlayerPrefs.GetFloat("Sensitivity"));
         }
         else
         {
-            mouseSensitivity = PlayerPrefs.GetFloat("sensitivity");
-            Debug.Log("Player already had defined sensitivity: " + PlayerPrefs.GetFloat("sensitivity"));
+            mouseSensitivity = PlayerPrefs.GetFloat("Sensitivity");
+            Debug.Log("Player already had defined sensitivity: " + PlayerPrefs.GetFloat("Sensitivity"));
         }
 
     }
@@ -267,7 +268,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Get mouse input
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * isMouseInverted;
 
         // Rotate player left/right
         transform.Rotate(Vector3.up * mouseX);
@@ -281,8 +282,13 @@ public class PlayerMovement : MonoBehaviour
     public void SetSensitivity(float sensitivity)
     {
         mouseSensitivity = sensitivity;
-        PlayerPrefs.SetFloat("sensitivity", sensitivity);
-        
+        PlayerPrefs.SetFloat("Sensitivity", sensitivity);
+    }
+
+    public void InvertSensitivity(int isInverted)
+    {
+        isMouseInverted = isInverted;
+        Debug.Log("isInverted: " + isInverted);
     }
 
     // AUGMENT FUNCTIONS
@@ -349,4 +355,14 @@ public class PlayerMovement : MonoBehaviour
 
     Gizmos.DrawRay(shootOrigin, shootDirection * playerHeight * 1.4f);
     }*/
+
+    private void OnEnable()
+    {
+        GameEvents.OnMouseInverted += InvertSensitivity;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnMouseInverted -= InvertSensitivity;
+    }
 }
