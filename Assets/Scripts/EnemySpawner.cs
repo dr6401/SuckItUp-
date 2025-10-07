@@ -69,7 +69,7 @@ public class EnemySpawner : MonoBehaviour
                     Random.Range(-spawnOffset, spawnOffset)
                 );
             
-                isClear = !Physics.CheckSphere(spawnPosition, enemyClearanceRadius * 0.01f);
+                isClear = !Physics.CheckSphere(spawnPosition, enemyClearanceRadius * 0.1f);
                 if (isClear)
                 {
                     if (nonSpawningZoneCollider != null)
@@ -165,7 +165,7 @@ public class EnemySpawner : MonoBehaviour
         GameEvents.OnPlayerDeath -= DisableEnemySpawning;
     }
     
-     /*private void OnDrawGizmos()
+     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(1f, 0.5f, 0f, 0.3f); // orange with transparency
         Gizmos.DrawSphere(transform.position, spawnOffset); // visualize spawn area
@@ -182,5 +182,5 @@ public class EnemySpawner : MonoBehaviour
             Vector3 samplePoint = transform.position + randomOffset;
             Gizmos.DrawWireSphere(samplePoint, 2f); // show attempted spawn positions
         }
-    }*/
+    }
 }
