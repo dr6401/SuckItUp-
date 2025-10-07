@@ -6900,6 +6900,10 @@ PrefabInstance:
       propertyPath: maxSpawnedEnemies
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
+      propertyPath: nonSpawningZoneCollider
+      value: 
+      objectReference: {fileID: 642528846}
     - target: {fileID: 6149801562829461563, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Name
       value: EnemySpawner (2)
