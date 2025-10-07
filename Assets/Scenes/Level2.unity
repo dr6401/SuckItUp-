@@ -2561,6 +2561,14 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
+      propertyPath: spawnInterval
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963608202159946524, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
+      propertyPath: maxSpawnedEnemies
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963608202159946524, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
       propertyPath: flyingEnemyClearanceRadius
       value: 2
       objectReference: {fileID: 0}
@@ -3468,7 +3476,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: spawnInterval
-      value: 7
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
+      propertyPath: maxSpawnedEnemies
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6149801562829461563, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Name
@@ -7264,7 +7276,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: spawnInterval
-      value: 7
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
+      propertyPath: maxSpawnedEnemies
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6149801562829461563, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Name
@@ -11988,7 +12004,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5878903646017234297, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: spawnInterval
-      value: 7
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5878903646017234297, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
+      propertyPath: maxSpawnedEnemies
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6724917399087893350, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_Name
