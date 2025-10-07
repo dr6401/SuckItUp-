@@ -19,7 +19,6 @@ public class EnemySpawner : MonoBehaviour
     private bool canSpawnEnemies = true;
     [SerializeField] private int maxSpawnedEnemies = 20;
     private bool isClear;
-    private bool foundValidSpot = false;
     
     [Header("Flying Dusty stuff")]
     [SerializeField] private float chanceToSpawnFluffyDusty = 0f;
@@ -53,6 +52,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
+        bool foundValidSpot = false;
         Vector3 thisObjectPosition = transform.position;
         
         float spawnFluffyOrFlyingDustyChance = Random.Range(0.1f, 1f);
@@ -60,7 +60,9 @@ public class EnemySpawner : MonoBehaviour
         // Ground-based FluffyDusty
         if (spawnFluffyOrFlyingDustyChance > chanceToSpawnFluffyDusty)
         {
+            
             Vector3 spawnPosition = thisObjectPosition;
+            Vector3 finalSpawnPosition = Vector3.zero;
             for (int i = 0; i < maxSpawnAttempts; i++)
             {
                 spawnPosition = thisObjectPosition + new Vector3(
@@ -79,29 +81,28 @@ public class EnemySpawner : MonoBehaviour
                             if (!nonSpawningZoneCollider.bounds.Contains(spawnPosition))
                             {
                                 foundValidSpot = true;
+                                finalSpawnPosition = hit.position;
                                 break;
                             }
                         }
                         else
                         {
                             foundValidSpot = true;
+                            finalSpawnPosition = hit.position;
                             Debug.Log("You might have forgotten to assign a Non-Spawn-Area-Collider Object to spawner " + name);
                             break;
                         }
                     }
-                    if (foundValidSpot)
-                    {
-                        GameObject enemy = Instantiate(fluffyDustyPrefab, hit.position, Quaternion.identity);
-                        enemy.transform.SetParent(enemiesFolder);
-                        timeSinceSpawned = 0;
-                    }
-                    else Debug.Log("Found the NavMesh spot, but there wasn't enough space for spawning fluffy");
-                }
-                else
-                {
-                    Debug.Log("Couldn't spawn FluffyDusty on NavMesh, foundValidSpot: " + foundValidSpot + ". Name of spawner: " + name + ", canSpawnEnemies: " + canSpawnEnemies + ", isClear: " + isClear);
                 }
             }
+            if (foundValidSpot)
+            {
+                GameObject enemy = Instantiate(fluffyDustyPrefab, finalSpawnPosition, Quaternion.identity);
+                enemy.transform.SetParent(enemiesFolder);
+                timeSinceSpawned = 0;
+                foundValidSpot = false;
+            }
+            else Debug.Log("Couldn't spawn FluffyDusty on NavMesh. " + " Name of spawner: " + name + ", canSpawnEnemies: " + canSpawnEnemies + ", isClear: " + isClear);
         }
         
         else
@@ -145,6 +146,7 @@ public class EnemySpawner : MonoBehaviour
                 GameObject enemy = Instantiate(flyingDustyPrefab, flyingSpawnPos, Quaternion.identity);
                 enemy.transform.SetParent(enemiesFolder);
                 timeSinceSpawned = 0;
+                //foundValidSpot = false;
             }
             else
             {
