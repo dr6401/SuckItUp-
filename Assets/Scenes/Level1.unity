@@ -2320,12 +2320,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
+      propertyPath: spawnOffset
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: spawnInterval
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: maxSpawnedEnemies
-      value: 30
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3744722369772636606, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_IsActive
@@ -6790,7 +6794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: maxSpawnedEnemies
-      value: 30
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: nonSpawningZoneCollider
@@ -9546,7 +9550,7 @@ Transform:
   m_GameObject: {fileID: 1828480641}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.22, y: -17.02, z: 79.75}
+  m_LocalPosition: {x: -1.97, y: -17.02, z: 79.75}
   m_LocalScale: {x: 3.9, y: 18.2, z: 40}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14873,7 +14877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5878903646017234297, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: maxSpawnedEnemies
-      value: 30
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6724917399087893350, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_Name

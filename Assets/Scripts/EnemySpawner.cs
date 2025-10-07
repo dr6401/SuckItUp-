@@ -18,11 +18,13 @@ public class EnemySpawner : MonoBehaviour
     private Transform enemiesFolder;
     private bool canSpawnEnemies = true;
     [SerializeField] private int maxSpawnedEnemies = 20;
+    private bool isClear;
+    private bool foundValidSpot = false;
     
     [Header("Flying Dusty stuff")]
     [SerializeField] private float chanceToSpawnFluffyDusty = 0f;
-    [SerializeField] private float flyingEnemyClearanceRadius = 2f;
-    [SerializeField] private int maxFlyingSpawnAttempts = 100;
+    [SerializeField] private float enemyClearanceRadius = 2f;
+    [FormerlySerializedAs("maxFlyingSpawnAttempts")] [SerializeField] private int maxSpawnAttempts = 100;
     [SerializeField] private Collider nonSpawningZoneCollider;
 
     void Start()
@@ -54,17 +56,40 @@ public class EnemySpawner : MonoBehaviour
         Vector3 thisObjectPosition = transform.position;
         
         float spawnFluffyOrFlyingDustyChance = Random.Range(0.1f, 1f);
-
+        
+        // Ground-based FluffyDusty
         if (spawnFluffyOrFlyingDustyChance > chanceToSpawnFluffyDusty)
         {
-            // Ground-based FluffyDusty
-            Vector3 spawnPosition = thisObjectPosition + new Vector3(
-                Random.Range(-spawnOffset, spawnOffset),
-                0f,
-                Random.Range(-spawnOffset, spawnOffset)
-            );
+            Vector3 spawnPosition = thisObjectPosition;
+            for (int i = 0; i < maxSpawnAttempts; i++)
+            {
+                spawnPosition = thisObjectPosition + new Vector3(
+                    Random.Range(-spawnOffset, spawnOffset),
+                    0f,
+                    Random.Range(-spawnOffset, spawnOffset)
+                );
+            
+                isClear = !Physics.CheckSphere(spawnPosition, enemyClearanceRadius * 0.01f);
+                if (isClear)
+                {
+                    if (nonSpawningZoneCollider != null)
+                    {
+                        if (!nonSpawningZoneCollider.bounds.Contains(spawnPosition))
+                        {
+                            foundValidSpot = true;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        foundValidSpot = true;
+                        Debug.Log("You might have forgotten to assign a Non-Spawn-Area-Collider Object to spawner " + name);
+                        break;
+                    }
+                }
+            }
 
-            if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 2f, NavMesh.AllAreas))
+            if (foundValidSpot && NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 2f, NavMesh.AllAreas))
             {
                 GameObject enemy = Instantiate(fluffyDustyPrefab, hit.position, Quaternion.identity);
                 enemy.transform.SetParent(enemiesFolder);
@@ -72,7 +97,7 @@ public class EnemySpawner : MonoBehaviour
             }
             else
             {
-                Debug.Log("Couldn't spawn FluffyDusty on NavMesh.");
+                Debug.Log("Couldn't spawn FluffyDusty on NavMesh, foundValidSpot: " + foundValidSpot + ". Name of spawner: " + name + ", canSpawnEnemies: " + canSpawnEnemies + ", isClear: " + isClear);
             }
         }
         
@@ -80,9 +105,8 @@ public class EnemySpawner : MonoBehaviour
         {
             // FlyingDusty
             Vector3 flyingSpawnPos = Vector3.zero;
-            bool foundValidSpot = false;
 
-            for (int i = 0; i < maxFlyingSpawnAttempts; i++)
+            for (int i = 0; i < maxSpawnAttempts; i++)
             {
                 Vector3 offsetXZ = new Vector3(
                     Random.Range(-spawnOffset, spawnOffset),
@@ -92,7 +116,7 @@ public class EnemySpawner : MonoBehaviour
 
                 flyingSpawnPos = thisObjectPosition + offsetXZ;
 
-                bool isClear = !Physics.CheckSphere(flyingSpawnPos, flyingEnemyClearanceRadius);
+                isClear = !Physics.CheckSphere(flyingSpawnPos, enemyClearanceRadius);
 
                 if (isClear)
                 {
