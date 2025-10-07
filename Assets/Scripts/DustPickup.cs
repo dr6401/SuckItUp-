@@ -39,7 +39,7 @@ public class DustPickup : MonoBehaviour
         moveSpeed *= accelerationFactor;
         transform.position = Vector3.Slerp(transform.position, target.position, moveSpeed * Time.deltaTime);
 
-        if ((transform.position - target.position).sqrMagnitude < minGetSuckedUpDistance * minGetSuckedUpDistance && Time.timeScale <= 1f) // use .sqrMagnitude to bypass calculating sqrRoot of target.position and transform.position (operation .magnitude would need to calculate that)
+        if ((transform.position - target.position).sqrMagnitude < minGetSuckedUpDistance * minGetSuckedUpDistance && Time.timeScale >= 1f) // use .sqrMagnitude to bypass calculating sqrRoot of target.position and transform.position (operation .magnitude would need to calculate that)
         {
             weaponHandler?.RefillAmmo(1);
             soundManager?.PlayDustSuction();
