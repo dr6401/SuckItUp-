@@ -65,39 +65,42 @@ public class EnemySpawner : MonoBehaviour
             {
                 spawnPosition = thisObjectPosition + new Vector3(
                     Random.Range(-spawnOffset, spawnOffset),
-                    0f,
+                    Random.Range(0f, 1f),
                     Random.Range(-spawnOffset, spawnOffset)
                 );
-            
-                isClear = !Physics.CheckSphere(spawnPosition, enemyClearanceRadius * 0.1f);
-                if (isClear)
+
+                if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 2f, NavMesh.AllAreas))
                 {
-                    if (nonSpawningZoneCollider != null)
+                    isClear = !Physics.CheckSphere(spawnPosition, enemyClearanceRadius * 0.75f);
+                    if (isClear)
                     {
-                        if (!nonSpawningZoneCollider.bounds.Contains(spawnPosition))
+                        if (nonSpawningZoneCollider != null)
+                        {
+                            if (!nonSpawningZoneCollider.bounds.Contains(spawnPosition))
+                            {
+                                foundValidSpot = true;
+                                break;
+                            }
+                        }
+                        else
                         {
                             foundValidSpot = true;
+                            Debug.Log("You might have forgotten to assign a Non-Spawn-Area-Collider Object to spawner " + name);
                             break;
                         }
                     }
-                    else
+                    if (foundValidSpot)
                     {
-                        foundValidSpot = true;
-                        Debug.Log("You might have forgotten to assign a Non-Spawn-Area-Collider Object to spawner " + name);
-                        break;
+                        GameObject enemy = Instantiate(fluffyDustyPrefab, hit.position, Quaternion.identity);
+                        enemy.transform.SetParent(enemiesFolder);
+                        timeSinceSpawned = 0;
                     }
+                    else Debug.Log("Found the NavMesh spot, but there wasn't enough space for spawning fluffy");
                 }
-            }
-
-            if (foundValidSpot && NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 2f, NavMesh.AllAreas))
-            {
-                GameObject enemy = Instantiate(fluffyDustyPrefab, hit.position, Quaternion.identity);
-                enemy.transform.SetParent(enemiesFolder);
-                timeSinceSpawned = 0;
-            }
-            else
-            {
-                Debug.Log("Couldn't spawn FluffyDusty on NavMesh, foundValidSpot: " + foundValidSpot + ". Name of spawner: " + name + ", canSpawnEnemies: " + canSpawnEnemies + ", isClear: " + isClear);
+                else
+                {
+                    Debug.Log("Couldn't spawn FluffyDusty on NavMesh, foundValidSpot: " + foundValidSpot + ". Name of spawner: " + name + ", canSpawnEnemies: " + canSpawnEnemies + ", isClear: " + isClear);
+                }
             }
         }
         
@@ -168,7 +171,7 @@ public class EnemySpawner : MonoBehaviour
      private void OnDrawGizmos()
     {
         Gizmos.color = new Color(1f, 0.5f, 0f, 0.3f); // orange with transparency
-        Gizmos.DrawSphere(transform.position, spawnOffset); // visualize spawn area
+        Gizmos.DrawSphere(transform.position, spawnOffset);//spawnOffset); // visualize spawn area
 
         // Optional: draw individual sample points
         Gizmos.color = Color.cyan;
@@ -180,7 +183,7 @@ public class EnemySpawner : MonoBehaviour
                 Random.Range(-spawnOffset, spawnOffset)
             );
             Vector3 samplePoint = transform.position + randomOffset;
-            Gizmos.DrawWireSphere(samplePoint, 2f); // show attempted spawn positions
+            Gizmos.DrawWireSphere(samplePoint, enemyClearanceRadius * 0.75f); // show attempted spawn positions
         }
     }
 }
