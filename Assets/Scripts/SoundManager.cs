@@ -135,7 +135,7 @@ public class SoundManager : MonoBehaviour
             currentMusicVolume = PlayerPrefs.GetFloat("MusicVolume");
         }
         music.volume = currentMusicVolume;
-        SFX.volume = currentMusicVolume;
+        SFX.volume = currentSFXVolume;
         music.loop = true;
         PlayMainTheme();
         SFXSounds = new AudioClip[][] { dustParticlesCrumblings, mouseClicks, vacuumingSounds };
