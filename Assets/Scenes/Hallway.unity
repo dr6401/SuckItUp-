@@ -695,7 +695,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2338545943200346280, guid: ff8b101283a34154f995ad06287bda90, type: 3}
       propertyPath: augmentTriggerTresholdDuplicator
-      value: 1
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 6025747524574074662, guid: ff8b101283a34154f995ad06287bda90, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1262,6 +1262,10 @@ PrefabInstance:
     - target: {fileID: 2146215352521112408, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
       propertyPath: m_text
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529981447541002970, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3610220829686327308, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
       propertyPath: m_IsActive

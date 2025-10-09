@@ -18,11 +18,12 @@ public class EnemySpawner : MonoBehaviour
     private Transform enemiesFolder;
     private bool canSpawnEnemies = true;
     [SerializeField] private int maxSpawnedEnemies = 20;
+    private bool isClear;
     
     [Header("Flying Dusty stuff")]
     [SerializeField] private float chanceToSpawnFluffyDusty = 0f;
-    [SerializeField] private float flyingEnemyClearanceRadius = 2f;
-    [SerializeField] private int maxFlyingSpawnAttempts = 100;
+    [SerializeField] private float enemyClearanceRadius = 2f;
+    [FormerlySerializedAs("maxFlyingSpawnAttempts")] [SerializeField] private int maxSpawnAttempts = 100;
     [SerializeField] private Collider nonSpawningZoneCollider;
 
     void Start()
@@ -51,38 +52,65 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
+        bool foundValidSpot = false;
         Vector3 thisObjectPosition = transform.position;
         
         float spawnFluffyOrFlyingDustyChance = Random.Range(0.1f, 1f);
-
+        
+        // Ground-based FluffyDusty
         if (spawnFluffyOrFlyingDustyChance > chanceToSpawnFluffyDusty)
         {
-            // Ground-based FluffyDusty
-            Vector3 spawnPosition = thisObjectPosition + new Vector3(
-                Random.Range(-spawnOffset, spawnOffset),
-                0f,
-                Random.Range(-spawnOffset, spawnOffset)
-            );
-
-            if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 2f, NavMesh.AllAreas))
+            
+            Vector3 spawnPosition = thisObjectPosition;
+            Vector3 finalSpawnPosition = Vector3.zero;
+            for (int i = 0; i < maxSpawnAttempts; i++)
             {
-                GameObject enemy = Instantiate(fluffyDustyPrefab, hit.position, Quaternion.identity);
+                spawnPosition = thisObjectPosition + new Vector3(
+                    Random.Range(-spawnOffset, spawnOffset),
+                    Random.Range(0f, 1f),
+                    Random.Range(-spawnOffset, spawnOffset)
+                );
+
+                if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 2f, NavMesh.AllAreas))
+                {
+                    isClear = !Physics.CheckSphere(spawnPosition, enemyClearanceRadius * 0.01f);
+                    if (isClear)
+                    {
+                        if (nonSpawningZoneCollider != null)
+                        {
+                            if (!nonSpawningZoneCollider.bounds.Contains(spawnPosition))
+                            {
+                                foundValidSpot = true;
+                                finalSpawnPosition = hit.position;
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            foundValidSpot = true;
+                            finalSpawnPosition = hit.position;
+                            Debug.Log("You might have forgotten to assign a Non-Spawn-Area-Collider Object to spawner " + name);
+                            break;
+                        }
+                    }
+                }
+            }
+            if (foundValidSpot)
+            {
+                GameObject enemy = Instantiate(fluffyDustyPrefab, finalSpawnPosition, Quaternion.identity);
                 enemy.transform.SetParent(enemiesFolder);
                 timeSinceSpawned = 0;
+                foundValidSpot = false;
             }
-            else
-            {
-                Debug.Log("Couldn't spawn FluffyDusty on NavMesh.");
-            }
+            else Debug.Log("Couldn't spawn FluffyDusty on NavMesh. " + " Name of spawner: " + name + ", canSpawnEnemies: " + canSpawnEnemies + ", isClear: " + isClear);
         }
         
         else
         {
             // FlyingDusty
             Vector3 flyingSpawnPos = Vector3.zero;
-            bool foundValidSpot = false;
 
-            for (int i = 0; i < maxFlyingSpawnAttempts; i++)
+            for (int i = 0; i < maxSpawnAttempts; i++)
             {
                 Vector3 offsetXZ = new Vector3(
                     Random.Range(-spawnOffset, spawnOffset),
@@ -92,7 +120,7 @@ public class EnemySpawner : MonoBehaviour
 
                 flyingSpawnPos = thisObjectPosition + offsetXZ;
 
-                bool isClear = !Physics.CheckSphere(flyingSpawnPos, flyingEnemyClearanceRadius);
+                isClear = !Physics.CheckSphere(flyingSpawnPos, enemyClearanceRadius);
 
                 if (isClear)
                 {
@@ -118,6 +146,7 @@ public class EnemySpawner : MonoBehaviour
                 GameObject enemy = Instantiate(flyingDustyPrefab, flyingSpawnPos, Quaternion.identity);
                 enemy.transform.SetParent(enemiesFolder);
                 timeSinceSpawned = 0;
+                //foundValidSpot = false;
             }
             else
             {
@@ -144,7 +173,7 @@ public class EnemySpawner : MonoBehaviour
      /*private void OnDrawGizmos()
     {
         Gizmos.color = new Color(1f, 0.5f, 0f, 0.3f); // orange with transparency
-        Gizmos.DrawSphere(transform.position, spawnOffset); // visualize spawn area
+        Gizmos.DrawSphere(transform.position, spawnOffset);//spawnOffset); // visualize spawn area
 
         // Optional: draw individual sample points
         Gizmos.color = Color.cyan;
@@ -156,7 +185,7 @@ public class EnemySpawner : MonoBehaviour
                 Random.Range(-spawnOffset, spawnOffset)
             );
             Vector3 samplePoint = transform.position + randomOffset;
-            Gizmos.DrawWireSphere(samplePoint, 2f); // show attempted spawn positions
+            Gizmos.DrawWireSphere(samplePoint, enemyClearanceRadius * 0.75f); // show attempted spawn positions
         }
     }*/
 }

@@ -2561,6 +2561,14 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
+      propertyPath: spawnInterval
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963608202159946524, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
+      propertyPath: maxSpawnedEnemies
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963608202159946524, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
       propertyPath: flyingEnemyClearanceRadius
       value: 2
       objectReference: {fileID: 0}
@@ -3468,7 +3476,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: spawnInterval
-      value: 7
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
+      propertyPath: maxSpawnedEnemies
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6149801562829461563, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Name
@@ -6893,7 +6905,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2338545943200346280, guid: ff8b101283a34154f995ad06287bda90, type: 3}
       propertyPath: augmentTriggerTreshold
-      value: 30
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2338545943200346280, guid: ff8b101283a34154f995ad06287bda90, type: 3}
       propertyPath: useTestingEqualAugmentOdds
@@ -7264,7 +7276,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: spawnInterval
-      value: 7
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
+      propertyPath: maxSpawnedEnemies
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6149801562829461563, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Name
@@ -10397,6 +10413,10 @@ PrefabInstance:
       propertyPath: m_ReferenceResolution.y
       value: 1080
       objectReference: {fileID: 0}
+    - target: {fileID: 2529981447541002970, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3843215747273724815, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
       propertyPath: m_Value
       value: 0.5
@@ -11984,7 +12004,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5878903646017234297, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: spawnInterval
-      value: 7
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5878903646017234297, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
+      propertyPath: maxSpawnedEnemies
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6724917399087893350, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_Name
@@ -12057,10 +12081,10 @@ PrefabInstance:
       insertIndex: 0
       addedObject: {fileID: 469088255}
     - targetCorrespondingSourceObject: {fileID: 3725459132352759293, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
-      insertIndex: -1
+      insertIndex: 2
       addedObject: {fileID: 1412038445}
     - targetCorrespondingSourceObject: {fileID: 3725459132352759293, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
-      insertIndex: -1
+      insertIndex: 3
       addedObject: {fileID: 630131978}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
