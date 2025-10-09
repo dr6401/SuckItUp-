@@ -76,8 +76,8 @@ public class AugmentManager : MonoBehaviour
             {
                 augmentTier = augmentChance switch
                 {
-                    <= 33 => AugmentTier.Silver,
-                    <= 34 => AugmentTier.Gold,
+                    <= 5 => AugmentTier.Silver,  // SET TO 33 After steam stuff
+                    <= 98 => AugmentTier.Gold, // SET TO 67 After steam stuff
                     _ => AugmentTier.Prismatic
                 };
             }

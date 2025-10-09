@@ -5138,7 +5138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
       propertyPath: maxSpawnedEnemies
-      value: 120
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 3744722369772636606, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
       propertyPath: m_IsActive
@@ -6809,7 +6809,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: maxSpawnedEnemies
-      value: 120
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6149801562829461563, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Name
@@ -13321,7 +13321,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
       propertyPath: maxSpawnedEnemies
-      value: 120
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 5299706483782244454, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
       propertyPath: m_IsActive
@@ -22328,7 +22328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5878903646017234297, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: maxSpawnedEnemies
-      value: 120
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6724917399087893350, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_Name
@@ -22397,10 +22397,10 @@ PrefabInstance:
       insertIndex: 0
       addedObject: {fileID: 469088255}
     - targetCorrespondingSourceObject: {fileID: 3725459132352759293, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
-      insertIndex: -1
+      insertIndex: 2
       addedObject: {fileID: 1412038445}
     - targetCorrespondingSourceObject: {fileID: 3725459132352759293, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
-      insertIndex: -1
+      insertIndex: 3
       addedObject: {fileID: 630131978}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
