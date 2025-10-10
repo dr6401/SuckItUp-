@@ -84,10 +84,10 @@ public class WeaponHandler : MonoBehaviour
         {
             timeSinceLastShot += Time.deltaTime;
 
-            if (Input.GetKeyDown(KeyCode.Q))
+            /*if (Input.GetKeyDown(KeyCode.Q))
             {
                 WeaponSwitch();
-            }
+            }*/
             // Shoot
             if (isShooterWeaponActive && Input.GetMouseButton(0) && timeSinceLastShot >= fireRate)
             {
@@ -206,8 +206,9 @@ public class WeaponHandler : MonoBehaviour
     }
 
 
-    private void WeaponSwitch()
+    private void WeaponSwitch(InputAction.CallbackContext context)
     {
+        if (inputBlocked) return;
         isShooterWeaponActive = !isShooterWeaponActive;
         isVacuumWeaponActive = !isVacuumWeaponActive;
         shooterWeapon.SetActive(isShooterWeaponActive);
@@ -310,7 +311,7 @@ public class WeaponHandler : MonoBehaviour
     private void OnEnable()
     {
         controls.Player.Enable();
-        controls.Player. += WeaponSwitch();
+        controls.Player.SwitchWeapon.performed += WeaponSwitch;
     }
     private void OnDisable()
     {
