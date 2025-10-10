@@ -12,18 +12,23 @@ public class EnemySpawner : MonoBehaviour
     //
     [SerializeField] GameObject fluffyDustyPrefab;
     [SerializeField] private GameObject flyingDustyPrefab;
-    [SerializeField] float spawnInterval = 3f;
+    float spawnInterval;
+    [SerializeField] float normalspawnInterval = 10f;
+    [SerializeField] float hardcoreSpawnInterval = 3f;
     [SerializeField] public float spawnOffset = 20f;
     private float timeSinceSpawned = 0f;
     private Transform enemiesFolder;
     private bool canSpawnEnemies = true;
-    [SerializeField] private int maxSpawnedEnemies = 20;
+    private int maxSpawnedEnemies;
+    [SerializeField] private int normalMaxSpawnedEnemies = 20;
+    [SerializeField] private int hardcoreMaxSpawnedEnemies = 80;
     private bool isClear;
+    public bool isDifficultyHardcore = false;
     
     [Header("Flying Dusty stuff")]
     [SerializeField] private float chanceToSpawnFluffyDusty = 0f;
     [SerializeField] private float enemyClearanceRadius = 2f;
-    [FormerlySerializedAs("maxFlyingSpawnAttempts")] [SerializeField] private int maxSpawnAttempts = 100;
+    [SerializeField] private int maxSpawnAttempts = 100;
     [SerializeField] private Collider nonSpawningZoneCollider;
 
     void Start()
@@ -37,6 +42,18 @@ public class EnemySpawner : MonoBehaviour
             folder.transform.parent = parent;
         }
         enemiesFolder = folder.transform;
+        isDifficultyHardcore = SettingsManager.Instance.isDifficultyHardcore;
+        if (!isDifficultyHardcore)
+        {
+            spawnInterval = normalspawnInterval;
+            maxSpawnedEnemies = normalMaxSpawnedEnemies;
+        }
+        else
+        {
+            spawnInterval = hardcoreSpawnInterval;
+            maxSpawnedEnemies = hardcoreMaxSpawnedEnemies;
+        }
+
     }
 
     // Update is called once per frame
@@ -160,14 +177,21 @@ public class EnemySpawner : MonoBehaviour
         canSpawnEnemies = false;
     }
 
+    private void UpdateDifficulty(bool hasDifficultyBeenSetToHardcore)
+    {
+        isDifficultyHardcore = hasDifficultyBeenSetToHardcore;
+    }
+
     private void OnEnable()
     {
         GameEvents.OnPlayerDeath += DisableEnemySpawning;
+        SettingsManager.OnDifficultySetToHardcoreFromSettingsManager += UpdateDifficulty;
     }
     
     private void OnDisable()
     {
         GameEvents.OnPlayerDeath -= DisableEnemySpawning;
+        SettingsManager.OnDifficultySetToHardcoreFromSettingsManager -= UpdateDifficulty;
     }
     
      /*private void OnDrawGizmos()

@@ -264,12 +264,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fluffyDustyPrefab: {fileID: 6985164944301197437, guid: 5528ffbfe6df25d48b09b8317394e660, type: 3}
   flyingDustyPrefab: {fileID: 894411595714582602, guid: 82af18ff07b29e74c9dc18a1eab84064, type: 3}
-  spawnInterval: 5
+  normalSpawnInterval: 10
+  hardcoreSpawnInterval: 3
   spawnOffset: 20
-  maxSpawnedEnemies: 7
+  normalMaxSpawnedEnemies: 20
+  hardcoreMaxSpawnedEnemies: 80
+  isDifficultyHardcore: 0
   chanceToSpawnFluffyDusty: 1
-  flyingEnemyClearanceRadius: 1.5
-  maxFlyingSpawnAttempts: 10
+  enemyClearanceRadius: 2
+  maxSpawnAttempts: 100
   nonSpawningZoneCollider: {fileID: 6318677512812404496}
 --- !u!114 &1958061831142115717
 MonoBehaviour:
@@ -283,12 +286,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8188ec51b800cf9488087babe33601ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  normalMaxHealth: 100
+  hardcoreMaxHealth: 200
   currentHealth: 0
   dustPickupPrefab: {fileID: 595504505390220050, guid: 6b7f082c78ed8a146aadd8c036b32730, type: 3}
   deathExplosionPrefab: {fileID: 3361933763249969519, guid: cd59b4e8dd669984ab8a5a2819f8b7f0, type: 3}
-  minSpawnedDustParticles: 60
-  maxSpawnedDustParticles: 80
+  minSpawnedDustParticles: 20
+  maxSpawnedDustParticles: 40
   enemySpawnManager: {fileID: 0}
   smokeBleed1VFXprefab: {fileID: 4309857886803190102, guid: 01054062d55121845b611be964433e18, type: 3}
 --- !u!1001 &269849682009331535

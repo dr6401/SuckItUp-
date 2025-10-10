@@ -130,7 +130,8 @@ MonoBehaviour:
   minPlayerChasingDistance: 100
   attackRange: 2
   attackCooldown: 2
-  attackDamage: 5
+  normalAttackDamage: 5
+  hardcoreAttackDamage: 10
   playerHealth: {fileID: 0}
 --- !u!114 &9063275716246866882
 MonoBehaviour:
@@ -144,7 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64079dda5faeede4db7dbbf342f4a77a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  normalMaxHealth: 20
+  hardcoreMaxHealth: 30
   currentHealth: 0
   dustPickupPrefab: {fileID: 595504505390220050, guid: 6b7f082c78ed8a146aadd8c036b32730, type: 3}
   deathExplosionPrefab: {fileID: 3361933763249969519, guid: 2a58533abeb33584fbe929d0a9ad02d0, type: 3}
@@ -207,14 +209,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8437377777178859107}
     m_Modifications:
-    - target: {fileID: -7511558181221131132, guid: 52357c9ab98e8954084775f71bc466f9, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: bf2c5a8a7c0ca5c4b9d43787f954abc9, type: 2}
-    - target: {fileID: -7511558181221131132, guid: ecfe37842f5736f45b05bd20693daf6f, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: bf2c5a8a7c0ca5c4b9d43787f954abc9, type: 2}
     - target: {fileID: -8679921383154817045, guid: 9c183973d307ea14c9a1a62dcaf2a9b2, type: 3}
       propertyPath: m_LocalScale.x
       value: 100
@@ -275,6 +269,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: FluffyDusty
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 52357c9ab98e8954084775f71bc466f9, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bf2c5a8a7c0ca5c4b9d43787f954abc9, type: 2}
+    - target: {fileID: -7511558181221131132, guid: ecfe37842f5736f45b05bd20693daf6f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bf2c5a8a7c0ca5c4b9d43787f954abc9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -3,16 +3,20 @@ using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class AugmentManager : MonoBehaviour
 {
+    private bool isDifficultyHardcore = false;
     private int currentSuckedDust = 0;
     [SerializeField] private int augmentTriggerTreshold = 20;
     [SerializeField] private GameObject player;
     [SerializeField] private AugmentSelectionUI augmentSelectionUI;
     [SerializeField] private TMP_Text dustScoreText;
     [SerializeField] private GameManager gameManager;
-    [SerializeField] public float augmentTriggerTresholdDuplicator = 1f;
+    public float augmentTriggerThresholdDuplicator;
+    [SerializeField] public float normalAugmentTriggerThresholdDuplicator = 1.25f;
+    [SerializeField] public float hardcoreAugmentTriggerThresholdDuplicator = 1.25f;
     [Header("TESTING")] [SerializeField] private bool useTestingEqualAugmentOdds = false;
 
     private static AugmentManager instance;
@@ -49,6 +53,10 @@ public class AugmentManager : MonoBehaviour
             Debug.Log("DustScoreText not found, looking for it in the scene");
             dustScoreText = GameObject.FindGameObjectWithTag("DustScoreText").GetComponent<TMP_Text>();
         }
+
+        isDifficultyHardcore = SettingsManager.Instance.isDifficultyHardcore;
+        if (!isDifficultyHardcore) augmentTriggerThresholdDuplicator = normalAugmentTriggerThresholdDuplicator;
+        else augmentTriggerThresholdDuplicator = hardcoreAugmentTriggerThresholdDuplicator;
     }
 
     // Update is called once per frame
@@ -62,7 +70,7 @@ public class AugmentManager : MonoBehaviour
         {
             gameManager.TogglePauseGameWithoutSettingsMenu();
             GameEvents.OnHasSettingsUICoveredUpAugmentUI?.Invoke(true);
-            float tempAugmentTriggerTreshold = augmentTriggerTreshold * augmentTriggerTresholdDuplicator;
+            float tempAugmentTriggerTreshold = augmentTriggerTreshold * augmentTriggerThresholdDuplicator;
             Debug.Log("Current sucked dust was " + currentSuckedDust + "! Setting new currentSuckedDust to 0 and the threshold to " + (int) tempAugmentTriggerTreshold);
             currentSuckedDust = 0;
             int augmentChance = Random.Range(1, 100);

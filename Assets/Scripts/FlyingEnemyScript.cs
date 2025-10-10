@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-public class FlyingPatrolEnemy : MonoBehaviour
+public class FlyingEnemyScript : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] GameObject player;
@@ -12,14 +12,19 @@ public class FlyingPatrolEnemy : MonoBehaviour
     [SerializeField] private float movementSpeed = 100f;
     [SerializeField] float minPlayerChasingDistance = 50f;
     [SerializeField] float attackRange = 40f;
-    [SerializeField] float attackCooldown = 5f;
-    [SerializeField] private int attackDamage = 5;
+    private float attackCooldown;
+    [SerializeField] private float normalAttackCooldown = 5f;
+    [SerializeField] private float hardcoreAttackCooldown = 5f;
+    private int attackDamage;
+    [SerializeField] private int normalAttackDamage = 5;
+    [SerializeField] private int hardcoreAttackDamage = 10;
     [SerializeField] private int projectileSpeed = 200;
     [SerializeField] private float wanderingDistance = 30f;
     private float timeSinceAttack = 2;
     [SerializeField] private GameObject attackProjectilePrefab;
     [SerializeField] private Transform FiringPoint;
-    
+
+    [SerializeField] private bool isDifficultyHardcore = false;
     private Rigidbody rb;
     private Rigidbody attackProjectileRigidbody;
     private AttackProjectile attackProjectileScript;
@@ -52,6 +57,17 @@ public class FlyingPatrolEnemy : MonoBehaviour
             minFlyingHeight = minFlyingHeightSetter.transform.position.y;
         }
         rb = GetComponent<Rigidbody>();
+        isDifficultyHardcore = SettingsManager.Instance.isDifficultyHardcore;
+        if (!isDifficultyHardcore)
+        {
+            attackDamage = normalAttackDamage;
+            attackCooldown = normalAttackCooldown;
+        }
+        else
+        {
+            attackDamage = hardcoreAttackDamage;
+            attackCooldown = hardcoreAttackCooldown;
+        }
     }
 
     // Update is called once per frame

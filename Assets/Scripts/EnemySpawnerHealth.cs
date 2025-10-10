@@ -9,6 +9,7 @@ public class EnemySpawnerHealth : EnemyHealth
     private bool hasSmokeBleedAlreadySpawnedTwice = false;
     private void Start()
     {
+        base.Start();
         currentHealth = maxHealth;
         enemySpawnManager = GetComponentInParent<EnemySpawnManager>();
     }

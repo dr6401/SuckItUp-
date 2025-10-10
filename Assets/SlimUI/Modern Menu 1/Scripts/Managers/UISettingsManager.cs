@@ -295,6 +295,7 @@ namespace SlimUI.ModernMenu{
 			difficultynormaltextLINE.gameObject.SetActive(true);
 			PlayerPrefs.SetInt("NormalDifficulty",1);
 			PlayerPrefs.SetInt("HardCoreDifficulty",0);
+			GameEvents.OnDifficultyChangedToHardcore?.Invoke(false);
 		}
 
 		public void HardcoreDifficulty (){ // Needs to be implemented in enemy scripts 
@@ -302,6 +303,7 @@ namespace SlimUI.ModernMenu{
 			difficultynormaltextLINE.gameObject.SetActive(false);
 			PlayerPrefs.SetInt("NormalDifficulty",0);
 			PlayerPrefs.SetInt("HardCoreDifficulty",1);
+			GameEvents.OnDifficultyChangedToHardcore?.Invoke(true);
 		}
 
 		public void ShadowsOff (){

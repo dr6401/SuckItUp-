@@ -3,11 +3,13 @@ using UnityEngine.UI;
 using System.Collections;
 using TMPro;
 using System;
+using UnityEngine.Serialization;
 
 public class WeaponHandler : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
+    private bool isDifficultyHardcore;
     public GameObject shooterWeapon;
     public GameObject vacuumWeapon;
     private bool isShooterWeaponActive = true;
@@ -22,7 +24,9 @@ public class WeaponHandler : MonoBehaviour
     [SerializeField] private GameObject muzzleFlashPrefab;
     [SerializeField] private Transform endOfBarrel;
     public RawImage crossHair;
-    [SerializeField] private int maxAmmo = 0;
+    private int startingAmmo;
+    [SerializeField] private int normalStartingAmmo = 0;
+    [SerializeField] private int hardcoreStartingAmmo = 50;
     private int currentAmmo;
     [SerializeField] private TMP_Text ammoText;
     public Animator primaryWeaponAnimator;
@@ -49,7 +53,13 @@ public class WeaponHandler : MonoBehaviour
         isVacuumWeaponActive = false;
         camera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         crossHair.enabled = false;
-        currentAmmo = maxAmmo;
+
+        isDifficultyHardcore = SettingsManager.Instance.isDifficultyHardcore;
+        if (!isDifficultyHardcore) startingAmmo = normalStartingAmmo;
+        else startingAmmo = hardcoreStartingAmmo;
+        currentAmmo = startingAmmo;
+        
+        
         if (endOfBarrel == null)
         {
             endOfBarrel = GetComponentInChildren<Transform>().Find("EndOfBarrel");

@@ -5,15 +5,21 @@ using Random = UnityEngine.Random;
 public class EnemyHealth : MonoBehaviour
 {
 
-    [SerializeField] protected float maxHealth = 20;
+    private bool isDifficultyHardcore;
+    protected float maxHealth;
+    [SerializeField] protected float normalMaxHealth = 20;
+    [SerializeField] protected float hardcoreMaxHealth = 50;
     [SerializeField] protected float currentHealth;
     [SerializeField] protected GameObject dustPickupPrefab;
     [SerializeField] protected GameObject deathExplosionPrefab;
     [SerializeField] protected int minSpawnedDustParticles = 8;
     [SerializeField] protected int maxSpawnedDustParticles = 20;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected virtual void Start()
     {
+        isDifficultyHardcore = SettingsManager.Instance.isDifficultyHardcore;
+        if (!isDifficultyHardcore) maxHealth = normalMaxHealth;
+        else maxHealth = hardcoreMaxHealth;
         currentHealth = maxHealth;
     }
 

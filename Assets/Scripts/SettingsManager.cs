@@ -7,11 +7,15 @@ public class SettingsManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     public static SettingsManager Instance;
+    
+    public static Action<int> OnMouseInvertedFromSettingsManager;
+    public static Action<bool> OnDifficultySetToHardcoreFromSettingsManager;
 
     //[SerializeField] private Slider sensitivitySlider;
     //[SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private Texture2D cursorSprite;
     public bool isMouseInverted = false;
+    public bool isDifficultyHardcore = false;
 
     private void Awake()
     {
@@ -25,7 +29,9 @@ public class SettingsManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         isMouseInverted = PlayerPrefs.GetInt("Inverted", 0) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
+        isDifficultyHardcore = PlayerPrefs.GetInt("HardCoreDifficulty", 0) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
 
+        
     }
     void Start()
     {
@@ -53,18 +59,30 @@ public class SettingsManager : MonoBehaviour
         isMouseInverted = hasMouseBeenInverted;
         if (isMouseInverted)
         {
-            GameEvents.OnMouseInvertedFromSettingsManager?.Invoke(-1); // Send event to player to invert mouse
+            OnMouseInvertedFromSettingsManager?.Invoke(-1); // Send event to player to invert mouse
         }
-        else GameEvents.OnMouseInvertedFromSettingsManager?.Invoke(1);
+        else OnMouseInvertedFromSettingsManager?.Invoke(1);
+    }
+    
+    private void UpdateDifficulty(bool hasDifficultyBeenSetToHardcore)
+    {
+        isDifficultyHardcore = hasDifficultyBeenSetToHardcore;
+        if (isDifficultyHardcore)
+        {
+            OnMouseInvertedFromSettingsManager?.Invoke(-1); // Send event to player to invert mouse
+        }
+        else OnMouseInvertedFromSettingsManager?.Invoke(1);
     }
 
     private void OnEnable()
     {
         GameEvents.OnMouseInverted += UpdateIsMouseInverted;
+        GameEvents.OnDifficultyChangedToHardcore += UpdateDifficulty;
     }
     
     private void OnDisable()
     {
         GameEvents.OnMouseInverted -= UpdateIsMouseInverted;
+        GameEvents.OnDifficultyChangedToHardcore -= UpdateDifficulty;
     }
 }

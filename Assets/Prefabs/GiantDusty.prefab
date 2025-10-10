@@ -240,7 +240,8 @@ MonoBehaviour:
   minPlayerChasingDistance: 50
   attackRange: 10
   attackCooldown: 1
-  attackDamage: 5
+  normalAttackDamage: 20
+  hardcoreAttackDamage: 20
   playerHealth: {fileID: 0}
 --- !u!114 &1505858724263679729
 MonoBehaviour:
@@ -254,7 +255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64079dda5faeede4db7dbbf342f4a77a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 500
+  normalMaxHealth: 100
+  hardcoreMaxHealth: 500
   currentHealth: 0
   dustPickupPrefab: {fileID: 595504505390220050, guid: 6b7f082c78ed8a146aadd8c036b32730, type: 3}
   deathExplosionPrefab: {fileID: 3361933763249969519, guid: 2a58533abeb33584fbe929d0a9ad02d0, type: 3}
@@ -415,10 +417,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8231865434020439608}
     m_Modifications:
-    - target: {fileID: -7511558181221131132, guid: 52357c9ab98e8954084775f71bc466f9, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 80fd0ed1e9218ff4290edede45d470bc, type: 2}
     - target: {fileID: -8679921383154817045, guid: 9c183973d307ea14c9a1a62dcaf2a9b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -471,6 +469,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 52357c9ab98e8954084775f71bc466f9, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 80fd0ed1e9218ff4290edede45d470bc, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -659,10 +661,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8231865434020439608}
     m_Modifications:
-    - target: {fileID: -7511558181221131132, guid: 52357c9ab98e8954084775f71bc466f9, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 80fd0ed1e9218ff4290edede45d470bc, type: 2}
     - target: {fileID: -8679921383154817045, guid: 9c183973d307ea14c9a1a62dcaf2a9b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -715,6 +713,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 52357c9ab98e8954084775f71bc466f9, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 80fd0ed1e9218ff4290edede45d470bc, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

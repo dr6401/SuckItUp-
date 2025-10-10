@@ -49,4 +49,7 @@ MonoBehaviour:
   augmentSelectionUI: {fileID: 0}
   dustScoreText: {fileID: 0}
   gameManager: {fileID: 0}
-  augmentTriggerTresholdDuplicator: 1.25
+  augmentTriggerThresholdDuplicator: 0
+  normalAugmentTriggerThresholdDuplicator: 1.25
+  hardcoreAugmentTriggerThresholdDuplicator: 1.25
+  useTestingEqualAugmentOdds: 0

@@ -13,5 +13,5 @@ public static class GameEvents
         
         // SETTINGS
         public static Action<bool> OnMouseInverted;
-        public static Action<int> OnMouseInvertedFromSettingsManager;
+        public static Action<bool> OnDifficultyChangedToHardcore;
 }

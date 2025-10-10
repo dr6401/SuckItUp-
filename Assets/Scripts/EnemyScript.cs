@@ -7,11 +7,14 @@ public class EnemyScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     [SerializeField] GameObject player;
+    private bool isDifficultyHardcore;
     [Header("Stats")]
     [SerializeField] float minPlayerChasingDistance = 50f;
     [SerializeField] float attackRange = 2f;
     [SerializeField] float attackCooldown = 1f;
-    [SerializeField] private int attackDamage = 5;
+    private int attackDamage;
+    [SerializeField] private int normalAttackDamage = 5;
+    [SerializeField] private int hardcoreAttackDamage = 10;
     private float timeSinceAttack = 5;
     //[SerializeField] float chaseSpeed = 5f;
     private Vector3 playerPosition;
@@ -27,6 +30,9 @@ public class EnemyScript : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player");
         }
         playerHealth = player.GetComponent<PlayerHealth>();
+        isDifficultyHardcore = SettingsManager.Instance.isDifficultyHardcore;
+        if (!isDifficultyHardcore) attackDamage = normalAttackDamage;
+        else attackDamage = hardcoreAttackDamage;
     }
 
     // Update is called once per frame

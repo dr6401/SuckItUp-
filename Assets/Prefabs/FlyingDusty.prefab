@@ -214,12 +214,15 @@ MonoBehaviour:
   movementSpeed: 100
   minPlayerChasingDistance: 75
   attackRange: 50
-  attackCooldown: 5
-  attackDamage: 5
+  normalAttackCooldown: 5
+  hardcoreAttackCooldown: 5
+  normalAttackDamage: 5
+  hardcoreAttackDamage: 10
   projectileSpeed: 15
   wanderingDistance: 30
   attackProjectilePrefab: {fileID: 3140219601708675230, guid: 9ecc1109d3ac6854c9fb912b0ccad209, type: 3}
   FiringPoint: {fileID: 938193821657929114}
+  isDifficultyHardcore: 0
   yFrequency: 5
   flyingAmplitude: 0.1
   minFlyingHeight: -24
@@ -238,7 +241,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64079dda5faeede4db7dbbf342f4a77a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  normalMaxHealth: 10
+  hardcoreMaxHealth: 25
   currentHealth: 0
   dustPickupPrefab: {fileID: 595504505390220050, guid: 6b7f082c78ed8a146aadd8c036b32730, type: 3}
   deathExplosionPrefab: {fileID: 3361933763249969519, guid: 2a58533abeb33584fbe929d0a9ad02d0, type: 3}
