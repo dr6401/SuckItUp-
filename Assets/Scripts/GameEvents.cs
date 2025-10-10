@@ -12,5 +12,6 @@ public static class GameEvents
         public static Action OnDamageTaken;
         
         // SETTINGS
-        public static Action<int> OnMouseInverted;
+        public static Action<bool> OnMouseInverted;
+        public static Action<int> OnMouseInvertedFromSettingsManager;
 }

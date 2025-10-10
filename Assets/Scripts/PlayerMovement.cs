@@ -62,6 +62,11 @@ public class PlayerMovement : MonoBehaviour
         cameraTransform = Camera.main.transform;
         originalCameraTransform = cameraTransform.localPosition;
         weaponHandler = GetComponent<WeaponHandler>();
+        if (SettingsManager.Instance.isMouseInverted)
+        {
+            isMouseInverted = -1;
+        }
+        else isMouseInverted = 1;
 
         // Lock the cursor so it feels like an FPS
         Cursor.lockState = CursorLockMode.Locked;
@@ -358,11 +363,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEvents.OnMouseInverted += InvertSensitivity;
+        GameEvents.OnMouseInvertedFromSettingsManager += InvertSensitivity;
     }
 
     private void OnDisable()
     {
-        GameEvents.OnMouseInverted -= InvertSensitivity;
+        GameEvents.OnMouseInvertedFromSettingsManager -= InvertSensitivity;
     }
 }
