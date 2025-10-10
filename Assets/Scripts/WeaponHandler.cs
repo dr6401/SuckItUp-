@@ -83,13 +83,9 @@ public class WeaponHandler : MonoBehaviour
         if (!inputBlocked)
         {
             timeSinceLastShot += Time.deltaTime;
-
-            /*if (Input.GetKeyDown(KeyCode.Q))
-            {
-                WeaponSwitch();
-            }*/
-            // Shoot
-            if (isShooterWeaponActive && Input.GetMouseButton(0) && timeSinceLastShot >= fireRate)
+            
+            // Shoot    
+            if (isShooterWeaponActive && controls.Player.Shoot.ReadValue<float>() > 0 && timeSinceLastShot >= fireRate)
             {
                 if (currentAmmo <= 0)
                 {
@@ -103,7 +99,7 @@ public class WeaponHandler : MonoBehaviour
             }
             // Suck
 
-            if (!isShooterWeaponActive && Input.GetMouseButton(0))
+            if (!isShooterWeaponActive && controls.Player.Shoot.ReadValue<float>() > 0)
             {
                 Vacuum();
             }
@@ -147,6 +143,10 @@ public class WeaponHandler : MonoBehaviour
         ammoText.text = currentAmmo.ToString();
     }
 
+    private void ShootOrVacuum(InputAction.CallbackContext context)
+    {
+        
+    }
     private void Shoot()
     {
         int layerMask = ~LayerMask.GetMask("Player", "Projectile");
@@ -260,6 +260,7 @@ public class WeaponHandler : MonoBehaviour
         return currentAmmo;
     }
 
+    #region Augments
     public void ApplyMinigunMayhem()
     {
         fireRate /= 1.25f;
@@ -289,6 +290,8 @@ public class WeaponHandler : MonoBehaviour
     {
         shooterWeaponDamage *= dmgMultiplier;
     }
+    
+    #endregion
 
     /*private void OnDrawGizmos()
     {
@@ -316,5 +319,6 @@ public class WeaponHandler : MonoBehaviour
     private void OnDisable()
     {
         controls.Player.Disable();
+        controls.Player.SwitchWeapon.performed -= WeaponSwitch;
     }
 }
