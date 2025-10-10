@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using System.Collections;
 using TMPro;
 using System;
@@ -38,6 +39,8 @@ public class WeaponHandler : MonoBehaviour
     private float zoomSpeed = 6f;
     private bool isAlreadySucking;
 
+    private PlayerControls controls;
+
     private SoundManager soundManager;
 
     public static event Action OnAmmoIncrease;
@@ -47,6 +50,11 @@ public class WeaponHandler : MonoBehaviour
     
     // AUGMENT STUFF
     private bool isVampire = false;
+
+    private void Awake()
+    {
+        controls = new PlayerControls();
+    }
     private void Start()
     {
         vacuumWeapon.SetActive(false);
@@ -298,4 +306,14 @@ public class WeaponHandler : MonoBehaviour
 
         Gizmos.DrawRay(shootOrigin, shootDirection * 100f);
     }*/
+
+    private void OnEnable()
+    {
+        controls.Player.Enable();
+        controls.Player. += WeaponSwitch();
+    }
+    private void OnDisable()
+    {
+        controls.Player.Disable();
+    }
 }
