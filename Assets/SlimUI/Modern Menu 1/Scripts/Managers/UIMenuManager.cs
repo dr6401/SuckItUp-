@@ -138,9 +138,18 @@ namespace SlimUI.ModernMenu{
 		}
 
 		public void LoadScene(string scene){
-			if(scene != ""){
-				StartCoroutine(LoadAsynchronously(scene));
+			if(!string.IsNullOrEmpty(scene))
+			{
+				if (SceneExists(scene))
+				{
+					SceneManager.LoadSceneAsync(scene);	
+				}
+				else
+				{
+					Debug.Log($"No scene with name {scene} exists!");
+				}
 			}
+			else Debug.Log("The button has no name for the scene as the parameter");
 		}
 
 		public void  DisablePlayCampaign(){
@@ -285,6 +294,17 @@ namespace SlimUI.ModernMenu{
 
 				yield return null;
 			}
+		}
+
+		private bool SceneExists(string sceneName)
+		{
+			for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+			{
+				string path = SceneUtility.GetScenePathByBuildIndex(i);
+				string name = System.IO.Path.GetFileNameWithoutExtension(path);
+				if (name == sceneName) return true;
+			}
+			return false;
 		}
 	}
 }
