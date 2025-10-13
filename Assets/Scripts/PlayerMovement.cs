@@ -104,13 +104,6 @@ public class PlayerMovement : MonoBehaviour
             //if (isZooming) Zoom();
             Move();
             RotatePlayer();
-            if (Input.GetKey(KeyCode.Space) && characterController.isGrounded) // Jump
-            {
-                if (!Physics.Raycast(transform.position - Vector3.down * 0.25f, transform.up, playerHeight * 1.4f))
-                {
-                    Jump();
-                }
-            }
             
             horizontalMoveSpeed = new Vector3(moveDirection.x, moveDirection.y * 0.2f, moveDirection.z);
             if (Input.GetKey(KeyCode.LeftControl) && characterController.isGrounded) // Crouch or Slide
@@ -196,10 +189,15 @@ public class PlayerMovement : MonoBehaviour
         characterController.Move(moveDirection * Time.deltaTime);
     }
 
-    void Jump()
+    void Jump(InputAction.CallbackContext context)
     {
-        verticalVelocity = jumpForce;
-        if (isSliding) verticalVelocity *= 1.2f; //bigger jump after jumping from slide - B-hopping
+        if (inputBlocked) return;
+        if (characterController.isGrounded && 
+            !Physics.Raycast(transform.position - Vector3.down * 0.25f, transform.up, playerHeight * 1.4f))
+        {
+            verticalVelocity = jumpForce;
+            if (isSliding) verticalVelocity *= 1.2f; //bigger jump after jumping from slide - B-hopping
+        }
     }
 
     void StartSlide()
@@ -375,6 +373,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         controls.Player.Enable();
+        controls.Player.Jump.performed += Jump;
         SettingsManager.OnMouseInvertedFromSettingsManager += InvertSensitivity;
     }
 
