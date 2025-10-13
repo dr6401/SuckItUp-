@@ -1,3 +1,4 @@
+using System;
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
@@ -15,13 +16,20 @@ public class IntroText : MonoBehaviour
     [SerializeField] private Image blackBgImage;
     [SerializeField] private GameObject mainCanvas;
     private int currentText = 1;
+    private PlayerControls controls;
 
     private GameObject player;
     private PlayerMovement playerMovement;
     private WeaponHandler weaponHandler;
     [SerializeField] private TutorialManager tutorialManager;
     private bool hasPlayerInputBeenGranted = false;
-    
+
+
+    private void Awake()
+    {
+        controls = new PlayerControls();
+    }
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -34,7 +42,7 @@ public class IntroText : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !hasPlayerInputBeenGranted)
+        if ((controls.UI.Click.triggered || controls.UI.Submit.triggered) && !hasPlayerInputBeenGranted)
         {
             UpdateText();
         }
@@ -85,5 +93,14 @@ public class IntroText : MonoBehaviour
 
         yield return new WaitForSeconds(5f);
         mainCanvas.SetActive(true);
+    }
+
+    private void OnEnable()
+    {
+        controls.UI.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.UI.Disable();
     }
 }
