@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Numerics;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.Android;
 using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
@@ -45,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 moveDirection = Vector3.zero;
     private Vector2 moveInput;
+    private Vector2 lookDelta;
     
     // AUGMENT STUFF
     private bool isZooming = false;
@@ -281,9 +281,10 @@ public class PlayerMovement : MonoBehaviour
 
     void RotatePlayer()
     {
+        lookDelta = controls.Player.Look.ReadValue<Vector2>();
         // Get mouse input
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * isMouseInverted;
+        float mouseX = lookDelta.x * mouseSensitivity * 0.05f; // Add the 0.1f because the ReadValue<Vector2> returns hella big numbers
+        float mouseY = lookDelta.y * mouseSensitivity * isMouseInverted * 0.05f; // Add the 0.1f because the ReadValue<Vector2> returns hella big numbers
 
         // Rotate player left/right
         transform.Rotate(Vector3.up * mouseX);

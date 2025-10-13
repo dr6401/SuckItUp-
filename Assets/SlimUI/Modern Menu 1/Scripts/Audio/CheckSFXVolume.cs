@@ -19,7 +19,7 @@ namespace SlimUI.ModernMenu{
 			{
 				audioMixer.SetFloat("SFXVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("SFXVolume", 0.75f), 0.0001f, 1f)) * 20);
 			}
-			Debug.Log("Updated SFX Volume: " + PlayerPrefs.GetFloat("SFXVolume"));
+			//Debug.Log("Updated SFX Volume: " + PlayerPrefs.GetFloat("SFXVolume"));
 		}
 	}
 }
