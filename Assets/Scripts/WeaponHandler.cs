@@ -114,7 +114,7 @@ public class WeaponHandler : MonoBehaviour
             }
 
             // Aim
-            if (Input.GetMouseButton(1) && isShooterWeaponActive)
+            if (controls.Player.Aim.IsPressed() && isShooterWeaponActive)
             {
                 if (!isAiming)
                 {
