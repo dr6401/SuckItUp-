@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
 public class TutorialManager : MonoBehaviour
@@ -14,6 +16,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private WeaponHandler weaponHandler;
     private bool keyBindingTextToggled = false;
     private bool firstTimeTutorial = true;
+    private PlayerControls controls;
     
     private int maxNumberOfDust;
     public int aliveDustParticles;
@@ -21,7 +24,11 @@ public class TutorialManager : MonoBehaviour
 
     public bool hasInputBeenGranted = true;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void Awake()
+    {
+        controls = new PlayerControls();
+    }
+
     void Start()
     {
         objectiveText.SetActive(false);
@@ -52,7 +59,7 @@ public class TutorialManager : MonoBehaviour
             }
         }
         
-        if (Input.GetKeyDown(KeyCode.Escape) && hasInputBeenGranted){
+        if (controls.GameEvents.PauseGame.triggered && hasInputBeenGranted){
             keyBindingTextToggled = !keyBindingTextToggled;
             settingsCanvas.SetActive(keyBindingTextToggled);
 
@@ -76,7 +83,7 @@ public class TutorialManager : MonoBehaviour
             weaponHandler.inputBlocked = keyBindingTextToggled;
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && firstTimeTutorial)
+        if (controls.Player.SwitchWeapon.triggered && firstTimeTutorial)
         {
             firstTimeTutorial = false;
             StartCoroutine(DisplayVacuumTutorialText());
@@ -93,7 +100,7 @@ public class TutorialManager : MonoBehaviour
     
     private IEnumerator DisplayVacuumTutorialText()
     {
-        toggleWeaponTextObject.GetComponent<TMP_Text>().text = "Hold Left Click with Vacuum 3000 to suck up dust. Sucking dust up fills your ammo";
+        toggleWeaponTextObject.GetComponent<TMP_Text>().text = $"Hold Left Click with Vacuum 3000 to suck up dust. Sucking dust up fills your ammo";
         yield return new WaitForSeconds(objectiveTextDuration);
         toggleWeaponTextObject.SetActive(false);
         objectiveText.SetActive(true);
@@ -112,5 +119,16 @@ public class TutorialManager : MonoBehaviour
     public void SetObjectiveTextVisible()
     {
         objectiveText.SetActive(true);
+    }
+
+    private void OnEnable()
+    {
+        controls.Player.Enable();
+        controls.GameEvents.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.Player.Disable();
+        controls.GameEvents.Disable();
     }
 }

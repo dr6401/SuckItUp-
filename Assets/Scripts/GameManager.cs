@@ -28,11 +28,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AugmentSelectionUI augmentSelectionUI;
     private bool isAugmentUIOpenedEvenMaybeUnderSettingsCanvas = false;
     private bool isSettingsCanvasCoveringAugmentUI = false;
+    private PlayerControls controls;
     
     List<GameObject> dustParticles = new List<GameObject>();
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    private void Awake()
+    {
+        controls = new PlayerControls();
+    }
+
     void Start()
     {
         StartCoroutine(DisableText());
@@ -68,12 +75,14 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
+        controls.GameEvents.Enable();
         EnemySpawnManager.AllSpawnerDead += HandleAllSpawnersDead;
         GameEvents.OnHasSettingsUICoveredUpAugmentUI += SetHasSettingsUICoveredUpAugmentUI;
     }
     
     private void OnDisable()
     {
+        controls.GameEvents.Disable();
         EnemySpawnManager.AllSpawnerDead -= HandleAllSpawnersDead;
         GameEvents.OnHasSettingsUICoveredUpAugmentUI -= SetHasSettingsUICoveredUpAugmentUI;
 
@@ -82,17 +91,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !gameOver && isAugmentUIOpenedEvenMaybeUnderSettingsCanvas)
+        if (controls.GameEvents.PauseGame.triggered && !gameOver && isAugmentUIOpenedEvenMaybeUnderSettingsCanvas)
         {
             ToggleSettingsCanvasVisibility(1f);
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && !gameOver){
+        else if (controls.GameEvents.PauseGame.triggered && !gameOver){
             TogglePauseGame();
         }
 
         if (gameOver)
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (controls.GameEvents.Restart.triggered)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
