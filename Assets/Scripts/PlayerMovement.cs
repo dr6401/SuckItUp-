@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
             }
             
             horizontalMoveSpeed = new Vector3(moveDirection.x, moveDirection.y * 0.2f, moveDirection.z);
-            if (Input.GetKey(KeyCode.LeftControl) && characterController.isGrounded) // Crouch or Slide
+            if (controls.Player.Crouch.IsPressed() && characterController.isGrounded) // Crouch or Slide
             {
                 if (!isSliding && horizontalMoveSpeed.sqrMagnitude >
                     baseMoveSpeed * baseMoveSpeed + 1f)
@@ -127,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
 
-            if (!Input.GetKey(KeyCode.LeftControl) && (isCrouching || isSliding) && characterController.isGrounded && horizontalMoveSpeed.sqrMagnitude <
+            if (!controls.Player.Crouch.IsPressed() && (isCrouching || isSliding) && characterController.isGrounded && horizontalMoveSpeed.sqrMagnitude <
                 baseMoveSpeed * baseMoveSpeed + 1f) // Stop Crouching/Sliding
             {
                 //Debug.Log("Conditions for isUncrouching/StoppingSlide were met");
