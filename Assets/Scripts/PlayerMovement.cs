@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Numerics;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Android;
 using Quaternion = UnityEngine.Quaternion;
+using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
 [RequireComponent(typeof(CharacterController))]
@@ -21,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isRunning = false;
     public bool inputBlocked = false;
     [SerializeField] private SphereCollider playerHitBox;
+    private PlayerControls controls;
 
     private float verticalRotation = 0f;
     private float verticalVelocity = 0f;
@@ -41,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 originalCameraTransform;
 
     Vector3 moveDirection = Vector3.zero;
+    private Vector2 moveInput;
     
     // AUGMENT STUFF
     private bool isZooming = false;
@@ -51,6 +55,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("Camera")]
     public Transform cameraTransform;
     [SerializeField] private Camera camera;
+
+
+    private void Awake()
+    {
+        controls = new PlayerControls();
+    }
 
     void Start()
     {
@@ -159,26 +169,27 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
+        moveInput = controls.Player.Move.ReadValue<Vector2>();
 
         isRunning = (Input.GetKey(KeyCode.LeftShift) &&
                      !weaponHandler.isAiming); // Enable sprint only if player isn't aiming
 
         float curSpeedX =
-            canMove ? (isRunning ? moveSpeed * sprintMultiplier : moveSpeed) * Input.GetAxis("Vertical") : 0;
+            canMove ? (isRunning ? moveSpeed * sprintMultiplier : moveSpeed) * moveInput.x : 0;
         float curSpeedZ =
-            canMove ? (isRunning ? moveSpeed * sprintMultiplier : moveSpeed) * Input.GetAxis("Horizontal") : 0;
+            canMove ? (isRunning ? moveSpeed * sprintMultiplier : moveSpeed) * moveInput.y : 0;
 
         if (characterController.isGrounded)
         {
-            moveDirection = (forward * curSpeedX) + (right * curSpeedZ);    
+            moveDirection = (forward * curSpeedZ) + (right * curSpeedX);    
         }
         else if (isSliding)
         {
-            moveDirection += (forward * (curSpeedX * (5f * Time.deltaTime)));
+            moveDirection += (forward * (curSpeedZ * (5f * Time.deltaTime)));
         }
         else
         {
-            moveDirection = (forward * curSpeedX) + (right * curSpeedZ);    
+            moveDirection = (forward * curSpeedZ) + (right * curSpeedX);    
         }
         moveDirection.y = verticalVelocity;
 
@@ -363,11 +374,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
+        controls.Player.Enable();
         SettingsManager.OnMouseInvertedFromSettingsManager += InvertSensitivity;
     }
 
     private void OnDisable()
     {
+        controls.Player.Disable();
         SettingsManager.OnMouseInvertedFromSettingsManager -= InvertSensitivity;
     }
 }
