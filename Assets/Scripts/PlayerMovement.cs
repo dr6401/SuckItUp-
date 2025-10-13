@@ -171,8 +171,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 right = transform.TransformDirection(Vector3.right);
         moveInput = controls.Player.Move.ReadValue<Vector2>();
 
-        isRunning = (Input.GetKey(KeyCode.LeftShift) &&
-                     !weaponHandler.isAiming); // Enable sprint only if player isn't aiming
+        isRunning = controls.Player.Sprint.IsPressed() && !weaponHandler.isAiming; // Enable sprint only if player isn't aiming
 
         float curSpeedX =
             canMove ? (isRunning ? moveSpeed * sprintMultiplier : moveSpeed) * moveInput.x : 0;
