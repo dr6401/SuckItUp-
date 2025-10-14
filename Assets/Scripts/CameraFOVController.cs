@@ -17,9 +17,10 @@ public class CameraFOVController : MonoBehaviour
 
     void Start()
     {
+        targetFOV = PlayerPrefs.GetFloat("FOV", 80);
         if (camera != null)
         {
-            targetFOV = camera.fieldOfView;   
+            camera.fieldOfView = targetFOV;   
         }
     }
     void Update()
@@ -27,7 +28,7 @@ public class CameraFOVController : MonoBehaviour
         camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, targetFOV, fovChangeSpeed * Time.deltaTime);
     }
 
-    public void requestCameraFOVChange(float requestedFOV)
+    public void RequestCameraFOVChange(float requestedFOV)
     {
         if (!isAiming)
         {
@@ -35,8 +36,17 @@ public class CameraFOVController : MonoBehaviour
         }
     }
 
-    public void requestCameraFOVForAiming(float requestedFOV)
+    public void RequestCameraFOVForAiming(float requestedFOV)
     {
         targetFOV = requestedFOV;
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.OnFOVChanged += RequestCameraFOVForAiming;
+    }
+    private void OnDisable()
+    {
+        GameEvents.OnFOVChanged -= RequestCameraFOVForAiming;
     }
 }

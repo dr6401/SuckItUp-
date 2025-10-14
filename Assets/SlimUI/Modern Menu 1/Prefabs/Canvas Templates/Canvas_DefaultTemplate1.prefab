@@ -7898,13 +7898,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 576008454720606634}
   m_HandleRect: {fileID: 576374346597661990}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.1
   m_MaxValue: 10
   m_WholeNumbers: 0
   m_Value: 10
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 393724386806664306}
+        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UISettingsManager, Assembly-CSharp
+        m_MethodName: SensitivitySlider
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &393209909789029002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7921,19 +7933,7 @@ MonoBehaviour:
   - eventID: 5
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 393724386806664306}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: SensitivitySlider
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!1 &352543549021718132
 GameObject:
   m_ObjectHideFlags: 0
@@ -23974,28 +23974,16 @@ MonoBehaviour:
   m_FillRect: {fileID: 7852727277662255771}
   m_HandleRect: {fileID: 256575408690332996}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: 60
+  m_MaxValue: 110
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 80
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 393724386806664306}
         m_TargetAssemblyTypeName: SlimUI.ModernMenu.UISettingsManager, Assembly-CSharp
-        m_MethodName: SFXSlider
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3576585007736082539}
-        m_TargetAssemblyTypeName: SlimUI.ModernMenu.CheckSFXVolume, Assembly-CSharp
-        m_MethodName: UpdateVolume
+        m_MethodName: FOVSlider
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -24021,31 +24009,7 @@ MonoBehaviour:
   - eventID: 5
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 393724386806664306}
-          m_TargetAssemblyTypeName: SlimUI.ModernMenu.UISettingsManager, Assembly-CSharp
-          m_MethodName: SFXSlider
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 3576585007736082539}
-          m_TargetAssemblyTypeName: SlimUI.ModernMenu.CheckSFXVolume, Assembly-CSharp
-          m_MethodName: UpdateVolume
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!1 &3419197038321065453
 GameObject:
   m_ObjectHideFlags: 0

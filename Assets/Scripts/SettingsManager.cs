@@ -16,6 +16,7 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private Texture2D cursorSprite;
     public bool isMouseInverted = false;
     public bool isDifficultyHardcore = false;
+    public float fOV;
 
     private void Awake()
     {
@@ -28,10 +29,9 @@ public class SettingsManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
+        fOV = PlayerPrefs.GetFloat("FOV", 70);
         isMouseInverted = PlayerPrefs.GetInt("Inverted", 0) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
         isDifficultyHardcore = PlayerPrefs.GetInt("HardCoreDifficulty", 0) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
-
-        
     }
     void Start()
     {
@@ -74,15 +74,23 @@ public class SettingsManager : MonoBehaviour
         else OnDifficultySetToHardcoreFromSettingsManager?.Invoke(false); // this unnecessary code, as changing the difficulty during the game is not possible
     }
 
+    private void UpdateFOV(float targetFOV)
+    {
+        fOV = targetFOV;
+        PlayerPrefs.SetFloat("FOV", targetFOV);
+    }
+
     private void OnEnable()
     {
         GameEvents.OnMouseInverted += UpdateIsMouseInverted;
         GameEvents.OnDifficultyChangedToHardcore += UpdateDifficulty;
+        GameEvents.OnFOVChanged += UpdateFOV;
     }
     
     private void OnDisable()
     {
         GameEvents.OnMouseInverted -= UpdateIsMouseInverted;
         GameEvents.OnDifficultyChangedToHardcore -= UpdateDifficulty;
+        GameEvents.OnFOVChanged -= UpdateFOV;
     }
 }

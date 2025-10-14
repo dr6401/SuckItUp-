@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 1193547500841403564}
   - component: {fileID: 15014402946400098}
   - component: {fileID: 615040776990848394}
+  - component: {fileID: 7080447408459662462}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -299,6 +300,20 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &7080447408459662462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5290455578677226658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d3921b14a0477c4c8fcb7dd2eb14ed1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 1193547500841403564}
+  fovChangeSpeed: 10
 --- !u!1 &5856168188944468224
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +400,8 @@ MonoBehaviour:
   muzzleFlashPrefab: {fileID: 5882845429730421325, guid: ffe4d091efa6c294caa503a244a38a9f, type: 3}
   endOfBarrel: {fileID: 3095398930143407492}
   crossHair: {fileID: 0}
-  maxAmmo: 0
+  normalStartingAmmo: 0
+  hardcoreStartingAmmo: 50
   ammoText: {fileID: 0}
   primaryWeaponAnimator: {fileID: 5334811845218082478}
   isAiming: 0
