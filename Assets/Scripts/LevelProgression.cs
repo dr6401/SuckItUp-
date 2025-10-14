@@ -47,8 +47,8 @@ public class LevelProgression : MonoBehaviour
     {
         adjustedPlayerPosition = player.transform.position + Vector3.down;
 
-        if (isPlayerInsideBounds(level1Area.bounds, adjustedPlayerPosition) && PlayerPrefs.GetInt("TutorialCompleted") == 1)
-        {
+        if (isPlayerInsideBounds(level1Area.bounds, adjustedPlayerPosition))// && PlayerPrefs.GetInt("TutorialCompleted") == 1) - Lvl1 should always be accessible for play
+        {                                                                   // since users can always just skip tutorial
             level1AreaMr.enabled = true;
             loadingLevelTextObject.SetActive(true);
             currentTimer += Time.deltaTime;
