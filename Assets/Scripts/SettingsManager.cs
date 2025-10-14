@@ -33,21 +33,6 @@ public class SettingsManager : MonoBehaviour
         isMouseInverted = PlayerPrefs.GetInt("Inverted", 0) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
         isDifficultyHardcore = PlayerPrefs.GetInt("HardCoreDifficulty", 0) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
     }
-    void Start()
-    {
-        /*if (playerMovement == null)
-        {
-            playerMovement = GameObject.FindFirstObjectByType<PlayerMovement>();
-        }
-
-        if (PlayerPrefs.HasKey("Sensitivity"))
-        {
-            sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity");
-        }
-        sensitivitySlider.onValueChanged.AddListener(OnSensitivityChanged);
-        Vector2 hotspot = new Vector2(cursorSprite.width / 2f, cursorSprite.height / 2f);
-        Cursor.SetCursor(cursorSprite, hotspot, CursorMode.Auto);*/
-    }
 
     /*private void OnSensitivityChanged(float sensitivity)
     {

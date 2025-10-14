@@ -19,6 +19,7 @@ namespace SlimUI.ModernMenu{
 
 		[Header("VIDEO SETTINGS")]
 		public GameObject fullscreentext;
+		private bool isFullscreen;
 		//public GameObject ambientocclusiontext;
 		public GameObject shadowofftextLINE;
 		public GameObject shadowlowtextLINE;
@@ -80,11 +81,16 @@ namespace SlimUI.ModernMenu{
 			//mouseSmoothSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MouseSmoothing");
 
 			// check full screen
-			if(Screen.fullScreen == true){
+			if(Screen.fullScreen == true)
+			{
 				fullscreentext.GetComponent<TMP_Text>().text = "on";
+				PlayerPrefs.SetInt("Fullscreen", 1);
+				isFullscreen = true;
 			}
 			else if(Screen.fullScreen == false){
 				fullscreentext.GetComponent<TMP_Text>().text = "off";
+				PlayerPrefs.SetInt("Fullscreen", 0);
+				isFullscreen = false;
 			}
 
 			// check hud value
@@ -213,12 +219,15 @@ namespace SlimUI.ModernMenu{
 
 		public void FullScreen (){
 			Screen.fullScreen = !Screen.fullScreen;
+			isFullscreen = !isFullscreen;
 
-			if(Screen.fullScreen == true){
+			if(isFullscreen){
 				fullscreentext.GetComponent<TMP_Text>().text = "on";
+				PlayerPrefs.SetInt("Fullscreen", 1);
 			}
-			else if(Screen.fullScreen == false){
+			else if(!isFullscreen){
 				fullscreentext.GetComponent<TMP_Text>().text = "off";
+				PlayerPrefs.SetInt("Fullscreen", 0);
 			}
 		}
 
