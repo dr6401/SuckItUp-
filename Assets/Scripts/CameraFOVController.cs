@@ -17,7 +17,7 @@ public class CameraFOVController : MonoBehaviour
 
     void Start()
     {
-        targetFOV = PlayerPrefs.GetFloat("FOV", 80);
+        targetFOV = PlayerPrefs.GetFloat("FOV", GameConstants.defaultFOV);
         if (camera != null)
         {
             camera.fieldOfView = targetFOV;   

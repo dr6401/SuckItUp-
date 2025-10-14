@@ -406,6 +406,7 @@ MonoBehaviour:
   primaryWeaponAnimator: {fileID: 5334811845218082478}
   isAiming: 0
   inputBlocked: 0
+  cameraFOVController: {fileID: 7080447408459662462}
 --- !u!33 &6918828009483187376
 MeshFilter:
   m_ObjectHideFlags: 0

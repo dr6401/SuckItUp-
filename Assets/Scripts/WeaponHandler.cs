@@ -33,8 +33,10 @@ public class WeaponHandler : MonoBehaviour
     public Animator primaryWeaponAnimator;
     public bool isAiming;
     public bool inputBlocked = false;
-    private float notAminingCameraFOV = 60f;
-    private float aimingCameraFOV = 45f;
+    private float notAminingCameraFOV = 80f;
+    private float aimingCameraFOVMultiplier = 0.6f;
+    private float minAimingFOV = 45f;
+    private float maxAimingFOV = 60f;
     private float targetFOV;
     private float zoomSpeed = 6f;
     private bool isAlreadySucking;
@@ -42,6 +44,7 @@ public class WeaponHandler : MonoBehaviour
     private PlayerControls controls;
 
     private SoundManager soundManager;
+    public CameraFOVController cameraFOVController;
 
     public static event Action OnAmmoIncrease;
     public static event Action OnNoAmmoLeft;
@@ -61,6 +64,7 @@ public class WeaponHandler : MonoBehaviour
         isVacuumWeaponActive = false;
         camera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         crossHair.enabled = false;
+        notAminingCameraFOV = PlayerPrefs.GetFloat("FOV", GameConstants.defaultFOV);
 
         isDifficultyHardcore = SettingsManager.Instance.isDifficultyHardcore;
         if (!isDifficultyHardcore) startingAmmo = normalStartingAmmo;
@@ -135,9 +139,8 @@ public class WeaponHandler : MonoBehaviour
                 primaryWeaponAnimator.SetBool("IsAiming", false);
             }
             //Changing FOV for aiming transition
-            targetFOV = isAiming ? aimingCameraFOV : notAminingCameraFOV;
-            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
-
+            targetFOV = isAiming ? Mathf.Clamp(notAminingCameraFOV * aimingCameraFOVMultiplier, minAimingFOV, maxAimingFOV) : notAminingCameraFOV;
+            cameraFOVController.RequestCameraFOVForAiming(targetFOV);
 
         }
         ammoText.text = currentAmmo.ToString();
@@ -260,6 +263,11 @@ public class WeaponHandler : MonoBehaviour
         return currentAmmo;
     }
 
+    public void SetNewFOV(float newFov)
+    {
+        notAminingCameraFOV = newFov;
+    }
+
     #region Augments
     public void ApplyMinigunMayhem()
     {
@@ -315,10 +323,12 @@ public class WeaponHandler : MonoBehaviour
     {
         controls.Player.Enable();
         controls.Player.SwitchWeapon.performed += WeaponSwitch;
+        GameEvents.OnFOVChanged += SetNewFOV;
     }
     private void OnDisable()
     {
         controls.Player.Disable();
         controls.Player.SwitchWeapon.performed -= WeaponSwitch;
+        GameEvents.OnFOVChanged -= SetNewFOV;
     }
 }
