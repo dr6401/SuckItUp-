@@ -49,11 +49,12 @@ namespace SlimUI.ModernMenu{
 		public GameObject musicSlider;
 		public GameObject sfxSlider;
 		public GameObject sensitivitySlider;
+		public GameObject fOVSlider;
 		//public GameObject sensitivityYSlider;
 		//public GameObject mouseSmoothSlider;
 
 		private float sliderValue = 0.0f;
-		private float sliderValueSensitivity = 0.0f;
+		//private float sliderValueSensitivity = 0.0f;
 		//private float sliderValueYSensitivity = 0.0f;
 		private float sliderValueSmoothing = 0.0f;
 		
@@ -74,6 +75,7 @@ namespace SlimUI.ModernMenu{
 			musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
 			sfxSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SFXVolume");
 			sensitivitySlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Sensitivity");
+			fOVSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("FOV");
 			//sensitivityYSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("YSensitivity");
 			//mouseSmoothSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MouseSmoothing");
 
@@ -204,7 +206,7 @@ namespace SlimUI.ModernMenu{
 
 		public void Update (){
 			//sliderValue = musicSlider.GetComponent<Slider>().value;
-			sliderValueSensitivity = sensitivitySlider.GetComponent<Slider>().value;
+			//sliderValueSensitivity = sensitivitySlider.GetComponent<Slider>().value;
 			//sliderValueYSensitivity = sensitivityYSlider.GetComponent<Slider>().value;
 			//sliderValueSmoothing = mouseSmoothSlider.GetComponent<Slider>().value;
 		}
@@ -230,8 +232,14 @@ namespace SlimUI.ModernMenu{
 			PlayerPrefs.SetFloat("SFXVolume", sfxSlider.GetComponent<Slider>().value);
 		}
 		
-		public void SensitivitySlider (){ // Needs to be implemented in PlayerMovement 
-			PlayerPrefs.SetFloat("Sensitivity", sliderValueSensitivity);
+		public void SensitivitySlider (){ // Implemented in PlayerMovement 
+			PlayerPrefs.SetFloat("Sensitivity", sensitivitySlider.GetComponent<Slider>().value);
+			GameEvents.OnSensitivityChanged?.Invoke(sensitivitySlider.GetComponent<Slider>().value);
+		}
+		
+		public void FOVSlider (){ // Implemented in PlayerMovement 
+			PlayerPrefs.SetFloat("FOV", fOVSlider.GetComponent<Slider>().value);
+			GameEvents.OnFOVChanged?.Invoke(fOVSlider.GetComponent<Slider>().value);
 		}
 
 		/*public void SensitivityYSlider (){

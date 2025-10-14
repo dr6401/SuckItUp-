@@ -69,9 +69,9 @@ public class SettingsManager : MonoBehaviour
         isDifficultyHardcore = hasDifficultyBeenSetToHardcore;
         if (isDifficultyHardcore)
         {
-            OnMouseInvertedFromSettingsManager?.Invoke(-1); // Send event to player to invert mouse
+            OnDifficultySetToHardcoreFromSettingsManager?.Invoke(true); // this unnecessary code, as changing the difficulty during the game is not possible
         }
-        else OnMouseInvertedFromSettingsManager?.Invoke(1);
+        else OnDifficultySetToHardcoreFromSettingsManager?.Invoke(false); // this unnecessary code, as changing the difficulty during the game is not possible
     }
 
     private void OnEnable()

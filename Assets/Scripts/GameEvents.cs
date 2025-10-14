@@ -14,4 +14,6 @@ public static class GameEvents
         // SETTINGS
         public static Action<bool> OnMouseInverted;
         public static Action<bool> OnDifficultyChangedToHardcore;
+        public static Action<float> OnSensitivityChanged;
+        public static Action<float> OnFOVChanged;
 }

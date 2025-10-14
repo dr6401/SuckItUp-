@@ -376,11 +376,13 @@ public class PlayerMovement : MonoBehaviour
     {
         controls.Player.Enable();
         SettingsManager.OnMouseInvertedFromSettingsManager += InvertSensitivity;
+        GameEvents.OnSensitivityChanged += SetSensitivity;
     }
 
     private void OnDisable()
     {
         controls.Player.Disable();
         SettingsManager.OnMouseInvertedFromSettingsManager -= InvertSensitivity;
+        GameEvents.OnSensitivityChanged -= SetSensitivity;
     }
 }
