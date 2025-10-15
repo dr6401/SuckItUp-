@@ -2179,7 +2179,7 @@ GameObject:
   - component: {fileID: 393972497189597394}
   - component: {fileID: 351990854447269047}
   m_Layer: 0
-  m_Name: notassigned (2)
+  m_Name: SwitchWeaponText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3029,8 +3029,9 @@ GameObject:
   - component: {fileID: 393648847881477600}
   - component: {fileID: 394473734218618632}
   - component: {fileID: 352030351004282081}
+  - component: {fileID: 8594960338076580094}
   m_Layer: 5
-  m_Name: Btn_Assign
+  m_Name: AimBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3194,6 +3195,23 @@ MonoBehaviour:
   themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
   hasImage: 1
   isText: 0
+--- !u!114 &8594960338076580094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352030351004282082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a91d8e3939375614f970242733f32c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionToRebind: {fileID: -4211224099901493824, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  bindingIndex: 0
+  rebindingButton: {fileID: 393648847881477600}
+  buttonText: {fileID: 393147297839015016}
+  keyConformation: {fileID: 353412523533774890}
 --- !u!1 &352037858392210800
 GameObject:
   m_ObjectHideFlags: 0
@@ -3436,7 +3454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &576410623523246344
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3535,7 +3553,7 @@ GameObject:
   - component: {fileID: 394347930022257164}
   - component: {fileID: 352107548111466689}
   m_Layer: 0
-  m_Name: notassigned
+  m_Name: ShootText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3736,8 +3754,9 @@ GameObject:
   - component: {fileID: 393658429527725098}
   - component: {fileID: 394055849306388978}
   - component: {fileID: 352116461770298543}
+  - component: {fileID: 317002789755682712}
   m_Layer: 5
-  m_Name: Btn_Assign
+  m_Name: SwitchWeaponBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3901,6 +3920,23 @@ MonoBehaviour:
   themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
   hasImage: 1
   isText: 0
+--- !u!114 &317002789755682712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352116461770298536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a91d8e3939375614f970242733f32c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionToRebind: {fileID: 8379694334145852024, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  bindingIndex: 0
+  rebindingButton: {fileID: 393658429527725098}
+  buttonText: {fileID: 393972497189597394}
+  keyConformation: {fileID: 353412523533774890}
 --- !u!1 &352120424929170918
 GameObject:
   m_ObjectHideFlags: 0
@@ -4166,7 +4202,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &575543858900544274
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5739,8 +5775,9 @@ GameObject:
   - component: {fileID: 394060826801475770}
   - component: {fileID: 393146528054569882}
   - component: {fileID: 352490118545139803}
+  - component: {fileID: 526089291198978612}
   m_Layer: 5
-  m_Name: Btn_Assign
+  m_Name: PauseBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5904,6 +5941,23 @@ MonoBehaviour:
   themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
   hasImage: 1
   isText: 0
+--- !u!114 &526089291198978612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352490118545139812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a91d8e3939375614f970242733f32c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionToRebind: {fileID: 7885252881048261217, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  bindingIndex: 0
+  rebindingButton: {fileID: 394060826801475770}
+  buttonText: {fileID: 392999647929437016}
+  keyConformation: {fileID: 353412523533774890}
 --- !u!1 &352496286431876856
 GameObject:
   m_ObjectHideFlags: 0
@@ -6402,8 +6456,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 576321355215020608}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 8, y: 0}
   m_SizeDelta: {x: 36, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7118,8 +7172,9 @@ GameObject:
   - component: {fileID: 394413699478740010}
   - component: {fileID: 394007644049944368}
   - component: {fileID: 352530026542586701}
+  - component: {fileID: 3617832916448075895}
   m_Layer: 5
-  m_Name: Btn_Assign
+  m_Name: CrouchBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7283,6 +7338,23 @@ MonoBehaviour:
   themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
   hasImage: 1
   isText: 0
+--- !u!114 &3617832916448075895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352530026542586702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a91d8e3939375614f970242733f32c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionToRebind: {fileID: 7040659881675835329, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  bindingIndex: 0
+  rebindingButton: {fileID: 394413699478740010}
+  buttonText: {fileID: 393022534637509482}
+  keyConformation: {fileID: 353412523533774890}
 --- !u!1 &352538889094378674
 GameObject:
   m_ObjectHideFlags: 0
@@ -8503,8 +8575,9 @@ GameObject:
   - component: {fileID: 394010511071281050}
   - component: {fileID: 394375192052056386}
   - component: {fileID: 352603868677527509}
+  - component: {fileID: 510795775735918199}
   m_Layer: 5
-  m_Name: Btn_Assign
+  m_Name: ShootBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8668,6 +8741,23 @@ MonoBehaviour:
   themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
   hasImage: 1
   isText: 0
+--- !u!114 &510795775735918199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352603868677527510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a91d8e3939375614f970242733f32c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionToRebind: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  bindingIndex: 0
+  rebindingButton: {fileID: 394010511071281050}
+  buttonText: {fileID: 394347930022257164}
+  keyConformation: {fileID: 353412523533774890}
 --- !u!1 &352604830807212642
 GameObject:
   m_ObjectHideFlags: 0
@@ -9516,7 +9606,7 @@ RectTransform:
   m_Father: {fileID: 575555566817394362}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10602,7 +10692,7 @@ GameObject:
   - component: {fileID: 393147297839015016}
   - component: {fileID: 352722615383292597}
   m_Layer: 0
-  m_Name: notassigned (1)
+  m_Name: AimText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13083,7 +13173,7 @@ GameObject:
   - component: {fileID: 352881915160921685}
   - component: {fileID: 7198144001604355479}
   m_Layer: 5
-  m_Name: Btn_Assign
+  m_Name: JumpBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13668,8 +13758,9 @@ GameObject:
   - component: {fileID: 393671571693214118}
   - component: {fileID: 393818214446840432}
   - component: {fileID: 352949558082340671}
+  - component: {fileID: 3179081533583312162}
   m_Layer: 5
-  m_Name: Btn_Assign
+  m_Name: SprintBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13833,6 +13924,23 @@ MonoBehaviour:
   themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
   hasImage: 1
   isText: 0
+--- !u!114 &3179081533583312162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352949558082340664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a91d8e3939375614f970242733f32c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionToRebind: {fileID: -7471211009204490832, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  bindingIndex: 0
+  rebindingButton: {fileID: 393671571693214118}
+  buttonText: {fileID: 394371833914187286}
+  keyConformation: {fileID: 353412523533774890}
 --- !u!1 &352952878310410944
 GameObject:
   m_ObjectHideFlags: 0
@@ -19586,7 +19694,7 @@ GameObject:
   - component: {fileID: 394390018470776658}
   - component: {fileID: 353473635670730577}
   m_Layer: 5
-  m_Name: Btn_Assign
+  m_Name: MoveBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19740,7 +19848,7 @@ GameObject:
   - component: {fileID: 392999647929437016}
   - component: {fileID: 353477158502395105}
   m_Layer: 0
-  m_Name: notassigned (1)
+  m_Name: PauseText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21733,7 +21841,7 @@ RectTransform:
   m_Father: {fileID: 5453298772461297319}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -26213,8 +26321,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 452468457436968696}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 8, y: 0}
   m_SizeDelta: {x: 36, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -26270,8 +26378,9 @@ GameObject:
   - component: {fileID: 2504851592694580532}
   - component: {fileID: 3915852269330512028}
   - component: {fileID: 7496767775312588482}
+  - component: {fileID: 7436840090572602824}
   m_Layer: 5
-  m_Name: Btn_Assign (1)
+  m_Name: RetryLevelBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26435,6 +26544,23 @@ MonoBehaviour:
   themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
   hasImage: 1
   isText: 0
+--- !u!114 &7436840090572602824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8106449095173598243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a91d8e3939375614f970242733f32c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionToRebind: {fileID: 9070024057236082255, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  bindingIndex: 0
+  rebindingButton: {fileID: 2504851592694580532}
+  buttonText: {fileID: 893317545637738232}
+  keyConformation: {fileID: 353412523533774890}
 --- !u!1 &8218900168735217130
 GameObject:
   m_ObjectHideFlags: 0
@@ -26716,7 +26842,7 @@ GameObject:
   - component: {fileID: 893317545637738232}
   - component: {fileID: 2909608075032189842}
   m_Layer: 0
-  m_Name: notassigned (1)
+  m_Name: RetryLevelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
