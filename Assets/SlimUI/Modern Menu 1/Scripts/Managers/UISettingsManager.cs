@@ -116,9 +116,10 @@ namespace SlimUI.ModernMenu{
 				if(PlayerPrefs.GetInt("Shadows") == 0){
 					//QualitySettings.shadowCascades = 0;
 					//QualitySettings.shadowDistance = 0;
-					urpAsset.shadowCascadeCount = 0;
+					urpAsset.shadowCascadeCount = 1;
 					urpAsset.shadowDistance = 0;
 					urpAsset.mainLightShadowmapResolution = 256;
+					urpAsset.maxAdditionalLightsCount = 0;
 					urpAsset.additionalLightsShadowmapResolution = 0;
 					shadowofftextLINE.gameObject.SetActive(true);
 					shadowlowtextLINE.gameObject.SetActive(false);
@@ -130,6 +131,7 @@ namespace SlimUI.ModernMenu{
 					urpAsset.shadowCascadeCount = 2;
 					urpAsset.shadowDistance = 75f;
 					urpAsset.mainLightShadowmapResolution = 1024;
+					urpAsset.maxAdditionalLightsCount = 2;
 					urpAsset.additionalLightsShadowmapResolution = 512;
 					shadowofftextLINE.gameObject.SetActive(false);
 					shadowlowtextLINE.gameObject.SetActive(true);
@@ -141,6 +143,7 @@ namespace SlimUI.ModernMenu{
 					urpAsset.shadowCascadeCount = 4;
 					urpAsset.shadowDistance = 500;
 					urpAsset.mainLightShadowmapResolution = 4096;
+					urpAsset.maxAdditionalLightsCount = 8;
 					urpAsset.additionalLightsShadowmapResolution = 256;
 					shadowofftextLINE.gameObject.SetActive(false);
 					shadowlowtextLINE.gameObject.SetActive(false);
@@ -150,7 +153,7 @@ namespace SlimUI.ModernMenu{
 				if(PlayerPrefs.GetInt("MobileShadows") == 0){
 					//QualitySettings.shadowCascades = 0;
 					//QualitySettings.shadowDistance = 0;
-					urpAsset.shadowCascadeCount = 0;
+					urpAsset.shadowCascadeCount = 1;
 					urpAsset.shadowDistance = 0;
 					urpAsset.mainLightShadowmapResolution = 256;
 					mobileShadowofftextLINE.gameObject.SetActive(true);
@@ -350,7 +353,7 @@ namespace SlimUI.ModernMenu{
 			PlayerPrefs.SetInt("Shadows",0);
 			//QualitySettings.shadowCascades = 0;
 			//QualitySettings.shadowDistance = 0;
-			urpAsset.shadowCascadeCount = 0;
+			urpAsset.shadowCascadeCount = 1;
 			urpAsset.shadowDistance = 0f;
 			urpAsset.mainLightShadowmapResolution = 256;
 			urpAsset.additionalLightsShadowmapResolution = 0;
@@ -389,7 +392,7 @@ namespace SlimUI.ModernMenu{
 			PlayerPrefs.SetInt("MobileShadows",0);
 			//QualitySettings.shadowCascades = 0;
 			//QualitySettings.shadowDistance = 0;
-			urpAsset.shadowCascadeCount = 0;
+			urpAsset.shadowCascadeCount = 1;
 			urpAsset.shadowDistance = 0f;
 			urpAsset.mainLightShadowmapResolution = 256;
 			mobileShadowofftextLINE.gameObject.SetActive(true);
