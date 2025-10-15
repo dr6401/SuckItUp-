@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Serialization;
+using UnityEngine.Rendering.Universal;
 
 namespace SlimUI.ModernMenu{
 	public class UISettingsManager : MonoBehaviour {
@@ -17,7 +18,8 @@ namespace SlimUI.ModernMenu{
 		public GameObject mobileShadowlowtextLINE;
 		public GameObject mobileShadowhightextLINE;
 
-		[Header("VIDEO SETTINGS")]
+		[Header("VIDEO SETTINGS")] 
+		public UniversalRenderPipelineAsset urpAsset;
 		public GameObject fullscreentext;
 		private bool isFullscreen;
 		//public GameObject ambientocclusiontext;
@@ -112,44 +114,65 @@ namespace SlimUI.ModernMenu{
 			// check shadow distance/enabled
 			if(platform == Platform.Desktop){
 				if(PlayerPrefs.GetInt("Shadows") == 0){
-					QualitySettings.shadowCascades = 0;
-					QualitySettings.shadowDistance = 0;
+					//QualitySettings.shadowCascades = 0;
+					//QualitySettings.shadowDistance = 0;
+					urpAsset.shadowCascadeCount = 0;
+					urpAsset.shadowDistance = 0;
+					urpAsset.mainLightShadowmapResolution = 256;
+					urpAsset.additionalLightsShadowmapResolution = 0;
 					shadowofftextLINE.gameObject.SetActive(true);
 					shadowlowtextLINE.gameObject.SetActive(false);
 					shadowhightextLINE.gameObject.SetActive(false);
 				}
 				else if(PlayerPrefs.GetInt("Shadows") == 1){
-					QualitySettings.shadowCascades = 2;
-					QualitySettings.shadowDistance = 75;
+					//QualitySettings.shadowCascades = 2;
+					//QualitySettings.shadowDistance = 75;
+					urpAsset.shadowCascadeCount = 2;
+					urpAsset.shadowDistance = 75f;
+					urpAsset.mainLightShadowmapResolution = 1024;
+					urpAsset.additionalLightsShadowmapResolution = 512;
 					shadowofftextLINE.gameObject.SetActive(false);
 					shadowlowtextLINE.gameObject.SetActive(true);
 					shadowhightextLINE.gameObject.SetActive(false);
 				}
 				else if(PlayerPrefs.GetInt("Shadows") == 2){
-					QualitySettings.shadowCascades = 4;
-					QualitySettings.shadowDistance = 500;
+					//QualitySettings.shadowCascades = 4;
+					//QualitySettings.shadowDistance = 500;
+					urpAsset.shadowCascadeCount = 4;
+					urpAsset.shadowDistance = 500;
+					urpAsset.mainLightShadowmapResolution = 4096;
+					urpAsset.additionalLightsShadowmapResolution = 256;
 					shadowofftextLINE.gameObject.SetActive(false);
 					shadowlowtextLINE.gameObject.SetActive(false);
 					shadowhightextLINE.gameObject.SetActive(true);
 				}
 			}else if(platform == Platform.Mobile){
 				if(PlayerPrefs.GetInt("MobileShadows") == 0){
-					QualitySettings.shadowCascades = 0;
-					QualitySettings.shadowDistance = 0;
+					//QualitySettings.shadowCascades = 0;
+					//QualitySettings.shadowDistance = 0;
+					urpAsset.shadowCascadeCount = 0;
+					urpAsset.shadowDistance = 0;
+					urpAsset.mainLightShadowmapResolution = 256;
 					mobileShadowofftextLINE.gameObject.SetActive(true);
 					mobileShadowlowtextLINE.gameObject.SetActive(false);
 					mobileShadowhightextLINE.gameObject.SetActive(false);
 				}
 				else if(PlayerPrefs.GetInt("MobileShadows") == 1){
-					QualitySettings.shadowCascades = 2;
-					QualitySettings.shadowDistance = 75;
+					//QualitySettings.shadowCascades = 2;
+					//QualitySettings.shadowDistance = 75;
+					urpAsset.shadowCascadeCount = 2;
+					urpAsset.shadowDistance = 75f;
+					urpAsset.mainLightShadowmapResolution = 1024;
 					mobileShadowofftextLINE.gameObject.SetActive(false);
 					mobileShadowlowtextLINE.gameObject.SetActive(true);
 					mobileShadowhightextLINE.gameObject.SetActive(false);
 				}
 				else if(PlayerPrefs.GetInt("MobileShadows") == 2){
-					QualitySettings.shadowCascades = 4;
-					QualitySettings.shadowDistance = 100;
+					//QualitySettings.shadowCascades = 4;
+					//QualitySettings.shadowDistance = 100;
+					urpAsset.shadowCascadeCount = 4;
+					urpAsset.shadowDistance = 500;
+					urpAsset.mainLightShadowmapResolution = 4096;
 					mobileShadowofftextLINE.gameObject.SetActive(false);
 					mobileShadowlowtextLINE.gameObject.SetActive(false);
 					mobileShadowhightextLINE.gameObject.SetActive(true);
@@ -325,8 +348,12 @@ namespace SlimUI.ModernMenu{
 
 		public void ShadowsOff (){
 			PlayerPrefs.SetInt("Shadows",0);
-			QualitySettings.shadowCascades = 0;
-			QualitySettings.shadowDistance = 0;
+			//QualitySettings.shadowCascades = 0;
+			//QualitySettings.shadowDistance = 0;
+			urpAsset.shadowCascadeCount = 0;
+			urpAsset.shadowDistance = 0f;
+			urpAsset.mainLightShadowmapResolution = 256;
+			urpAsset.additionalLightsShadowmapResolution = 0;
 			shadowofftextLINE.gameObject.SetActive(true);
 			shadowlowtextLINE.gameObject.SetActive(false);
 			shadowhightextLINE.gameObject.SetActive(false);
@@ -334,8 +361,12 @@ namespace SlimUI.ModernMenu{
 
 		public void ShadowsLow (){
 			PlayerPrefs.SetInt("Shadows",1);
-			QualitySettings.shadowCascades = 2;
-			QualitySettings.shadowDistance = 75;
+			//QualitySettings.shadowCascades = 2;
+			//QualitySettings.shadowDistance = 75;
+			urpAsset.shadowCascadeCount = 2;
+			urpAsset.shadowDistance = 75f;
+			urpAsset.mainLightShadowmapResolution = 1024;
+			urpAsset.additionalLightsShadowmapResolution = 512;
 			shadowofftextLINE.gameObject.SetActive(false);
 			shadowlowtextLINE.gameObject.SetActive(true);
 			shadowhightextLINE.gameObject.SetActive(false);
@@ -343,17 +374,24 @@ namespace SlimUI.ModernMenu{
 
 		public void ShadowsHigh (){
 			PlayerPrefs.SetInt("Shadows",2);
-			QualitySettings.shadowCascades = 4;
-			QualitySettings.shadowDistance = 500;
+			//QualitySettings.shadowCascades = 4;
+			//QualitySettings.shadowDistance = 500;
+			urpAsset.shadowCascadeCount = 4;
+			urpAsset.shadowDistance = 500f;
+			urpAsset.mainLightShadowmapResolution = 4096;
+			urpAsset.additionalLightsShadowmapResolution = 1024;
 			shadowofftextLINE.gameObject.SetActive(false);
 			shadowlowtextLINE.gameObject.SetActive(false);
 			shadowhightextLINE.gameObject.SetActive(true);
 		}
 
-		public void MobileShadowsOff (){
+		public void MobileShadowsOff (){ 
 			PlayerPrefs.SetInt("MobileShadows",0);
-			QualitySettings.shadowCascades = 0;
-			QualitySettings.shadowDistance = 0;
+			//QualitySettings.shadowCascades = 0;
+			//QualitySettings.shadowDistance = 0;
+			urpAsset.shadowCascadeCount = 0;
+			urpAsset.shadowDistance = 0f;
+			urpAsset.mainLightShadowmapResolution = 256;
 			mobileShadowofftextLINE.gameObject.SetActive(true);
 			mobileShadowlowtextLINE.gameObject.SetActive(false);
 			mobileShadowhightextLINE.gameObject.SetActive(false);
@@ -361,8 +399,11 @@ namespace SlimUI.ModernMenu{
 
 		public void MobileShadowsLow (){
 			PlayerPrefs.SetInt("MobileShadows",1);
-			QualitySettings.shadowCascades = 2;
-			QualitySettings.shadowDistance = 75;
+			//QualitySettings.shadowCascades = 2;
+			//QualitySettings.shadowDistance = 75;
+			urpAsset.shadowCascadeCount = 1;
+			urpAsset.shadowDistance = 50f;
+			urpAsset.mainLightShadowmapResolution = 512;
 			mobileShadowofftextLINE.gameObject.SetActive(false);
 			mobileShadowlowtextLINE.gameObject.SetActive(true);
 			mobileShadowhightextLINE.gameObject.SetActive(false);
@@ -370,8 +411,11 @@ namespace SlimUI.ModernMenu{
 
 		public void MobileShadowsHigh (){
 			PlayerPrefs.SetInt("MobileShadows",2);
-			QualitySettings.shadowCascades = 4;
-			QualitySettings.shadowDistance = 500;
+			//QualitySettings.shadowCascades = 4;
+			//QualitySettings.shadowDistance = 500;
+			urpAsset.shadowCascadeCount = 2;
+			urpAsset.shadowDistance = 150f;
+			urpAsset.mainLightShadowmapResolution = 1024;
 			mobileShadowofftextLINE.gameObject.SetActive(false);
 			mobileShadowlowtextLINE.gameObject.SetActive(false);
 			mobileShadowhightextLINE.gameObject.SetActive(true);
