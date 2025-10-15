@@ -5077,6 +5077,7 @@ GameObject:
   - component: {fileID: 393809947348744882}
   - component: {fileID: 393534039899263060}
   - component: {fileID: 352464477612580375}
+  - component: {fileID: 8046831441865530211}
   m_Layer: 5
   m_Name: Btn_No
   m_TagString: Untagged
@@ -5198,6 +5199,18 @@ MonoBehaviour:
           m_StringArgument: IntroCinematic
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8046831441865530211}
+        m_TargetAssemblyTypeName: CancelInputRebind, GameStuff
+        m_MethodName: CancelRebinding
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &393534039899263060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5242,6 +5255,18 @@ MonoBehaviour:
   themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
   hasImage: 1
   isText: 0
+--- !u!114 &8046831441865530211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352464477612580368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ef2c47324d69d43b3f07d110cd17ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &352470063020359896
 GameObject:
   m_ObjectHideFlags: 0
