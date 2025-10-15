@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor;
 using UnityEngine.Serialization;
 using UnityEngine.Rendering.Universal;
 
@@ -53,6 +54,7 @@ namespace SlimUI.ModernMenu{
 		public GameObject sfxSlider;
 		public GameObject sensitivitySlider;
 		public GameObject fOVSlider;
+		public GameObject graphicsSlider;
 		//public GameObject sensitivityYSlider;
 		//public GameObject mouseSmoothSlider;
 
@@ -79,6 +81,7 @@ namespace SlimUI.ModernMenu{
 			sfxSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SFXVolume");
 			sensitivitySlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Sensitivity");
 			fOVSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("FOV");
+			graphicsSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Graphics", 1);
 			//sensitivityYSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("YSensitivity");
 			//mouseSmoothSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MouseSmoothing");
 
@@ -275,6 +278,12 @@ namespace SlimUI.ModernMenu{
 		public void FOVSlider (){ // Implemented in PlayerMovement 
 			PlayerPrefs.SetFloat("FOV", fOVSlider.GetComponent<Slider>().value);
 			GameEvents.OnFOVChanged?.Invoke(fOVSlider.GetComponent<Slider>().value);
+		}
+
+		public void GraphicsSlider()
+		{
+			PlayerPrefs.SetFloat("Graphics", graphicsSlider.GetComponent<Slider>().value);
+			urpAsset.renderScale = graphicsSlider.GetComponent<Slider>().value;
 		}
 
 		/*public void SensitivityYSlider (){
