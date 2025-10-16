@@ -3,6 +3,7 @@ using System.Collections;
 using System.Numerics;
 using UnityEngine;
 using UnityEngine.Android;
+using UnityEngine.InputSystem;
 using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
@@ -59,11 +60,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        controls = new PlayerControls();
+        controls = SettingsManager.controls;
     }
 
     void Start()
     {
+        Debug.Log($"PlayerControls name: {controls.asset.name}");
+        Debug.Log($"Jump binding: {InputControlPath.ToHumanReadableString(controls.Player.Jump.bindings[0].overridePath, InputControlPath.HumanReadableStringOptions.OmitDevice)}");
+        
         camera = Camera.main;
 
         halvedBaseMoveSpeed = baseMoveSpeed / 2;

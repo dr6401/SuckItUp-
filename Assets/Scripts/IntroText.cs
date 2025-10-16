@@ -27,7 +27,7 @@ public class IntroText : MonoBehaviour
 
     private void Awake()
     {
-        controls = new PlayerControls();
+        controls = SettingsManager.controls;
     }
 
     void Start()

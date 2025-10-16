@@ -20,6 +20,8 @@ public class SettingsManager : MonoBehaviour
     public float fOV;
     public bool isWeaponSwitchWithScrollEnabled = true;
 
+    public static PlayerControls controls;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -31,6 +33,13 @@ public class SettingsManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
+        if (controls == null)
+        {
+            controls = new PlayerControls();
+            controls.Player.Enable();
+            controls.UI.Enable();
+            controls.GameEvents.Enable();
+        }
         fOV = PlayerPrefs.GetFloat("FOV", 70);
         isMouseInverted = PlayerPrefs.GetInt("Inverted", 0) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
         isDifficultyHardcore = PlayerPrefs.GetInt("HardCoreDifficulty", 0) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs

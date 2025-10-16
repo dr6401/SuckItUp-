@@ -59,7 +59,7 @@ public class WeaponHandler : MonoBehaviour
 
     private void Awake()
     {
-        controls = new PlayerControls();
+        controls = SettingsManager.controls;
     }
     private void Start()
     {

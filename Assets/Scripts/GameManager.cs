@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        controls = new PlayerControls();
+        controls = SettingsManager.controls;
     }
 
     void Start()

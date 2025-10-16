@@ -25,7 +25,7 @@ public class TutorialManager : MonoBehaviour
 
     private void Awake()
     {
-        controls = new PlayerControls();
+        controls = SettingsManager.controls;
     }
 
     void Start()
