@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
@@ -40,16 +41,31 @@ public class SettingsManager : MonoBehaviour
             controls.UI.Enable();
             controls.GameEvents.Enable();
         }
+        ApplyAllSavedBindings();
         fOV = PlayerPrefs.GetFloat("FOV", 70);
         isMouseInverted = PlayerPrefs.GetInt("Inverted", 0) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
         isDifficultyHardcore = PlayerPrefs.GetInt("HardCoreDifficulty", 0) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
         isWeaponSwitchWithScrollEnabled = PlayerPrefs.GetInt("WeaponSwitchScroll", 0) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
     }
 
-    /*private void OnSensitivityChanged(float sensitivity)
+    private void ApplyAllSavedBindings()
     {
-        playerMovement.SetSensitivity(sensitivity);
-    }*/
+        foreach (var map in controls.asset.actionMaps) // Loop over all actionMaps (Player, UI, GameEvents)
+        {
+            foreach (var action in map.actions) // Loop over all actions in that actionMap
+            {
+                for (int i = 0; i < action.bindings.Count; i++) // loop over all bindings for the action and load those which exist
+                {
+                    string key = action.name + "_binding" + i;
+                    if (PlayerPrefs.HasKey(key))
+                    {
+                        string savedPath = PlayerPrefs.GetString(key);
+                        action.ApplyBindingOverride(i, savedPath);
+                    }
+                }
+            }
+        }
+    }
 
     private void UpdateIsMouseInverted(bool hasMouseBeenInverted)
     {
