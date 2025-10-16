@@ -42,6 +42,9 @@ public class WeaponHandler : MonoBehaviour
     private bool isAlreadySucking;
 
     private PlayerControls controls;
+    private bool canWeaponSwitchWithScroll = true;
+    private float timePassedSinceLastWeaponSwitch = 0f;
+    private float weaponSwitchCooldown = 0.2f;
 
     private SoundManager soundManager;
     public CameraFOVController cameraFOVController;
@@ -69,6 +72,7 @@ public class WeaponHandler : MonoBehaviour
         isDifficultyHardcore = SettingsManager.Instance.isDifficultyHardcore;
         if (!isDifficultyHardcore) startingAmmo = normalStartingAmmo;
         else startingAmmo = hardcoreStartingAmmo;
+        canWeaponSwitchWithScroll = SettingsManager.Instance.isWeaponSwitchWithScrollEnabled;
         currentAmmo = startingAmmo;
         
         
@@ -87,6 +91,7 @@ public class WeaponHandler : MonoBehaviour
         if (!inputBlocked)
         {
             timeSinceLastShot += Time.deltaTime;
+            timePassedSinceLastWeaponSwitch += Time.deltaTime;
             
             // Shoot    
             if (isShooterWeaponActive && controls.Player.Shoot.ReadValue<float>() > 0 && timeSinceLastShot >= fireRate)
@@ -217,6 +222,23 @@ public class WeaponHandler : MonoBehaviour
         shooterWeapon.SetActive(isShooterWeaponActive);
         vacuumWeapon.SetActive(isVacuumWeaponActive);
     }
+    
+    private void WeaponSwitchWithScroll(InputAction.CallbackContext context)
+    {
+        if (timePassedSinceLastWeaponSwitch >= weaponSwitchCooldown)
+        {
+            if (inputBlocked || !canWeaponSwitchWithScroll) return;
+            timePassedSinceLastWeaponSwitch = 0f;
+            isShooterWeaponActive = !isShooterWeaponActive;
+            isVacuumWeaponActive = !isVacuumWeaponActive;
+            shooterWeapon.SetActive(isShooterWeaponActive);
+            vacuumWeapon.SetActive(isVacuumWeaponActive);
+        }
+    }
+    private void ToggleWeaponSwitchWithScroll(bool canWeaponSwitchWithScrollBtn)
+    {
+        canWeaponSwitchWithScroll = canWeaponSwitchWithScrollBtn;
+    }
 
     private IEnumerator EnableSightsWhenAiming()
     {
@@ -323,12 +345,16 @@ public class WeaponHandler : MonoBehaviour
     {
         controls.Player.Enable();
         controls.Player.SwitchWeapon.performed += WeaponSwitch;
+        controls.Player.SwitchWeaponScroll.performed += WeaponSwitchWithScroll;
         GameEvents.OnFOVChanged += SetNewFOV;
+        SettingsManager.OnWeaponSwitchWithScrollEnabledFromSettingsManager += ToggleWeaponSwitchWithScroll;
     }
     private void OnDisable()
     {
         controls.Player.Disable();
         controls.Player.SwitchWeapon.performed -= WeaponSwitch;
+        controls.Player.SwitchWeaponScroll.performed -= WeaponSwitchWithScroll;
         GameEvents.OnFOVChanged -= SetNewFOV;
+        SettingsManager.OnWeaponSwitchWithScrollEnabledFromSettingsManager -= ToggleWeaponSwitchWithScroll;
     }
 }

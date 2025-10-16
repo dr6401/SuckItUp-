@@ -16,4 +16,5 @@ public static class GameEvents
         public static Action<bool> OnDifficultyChangedToHardcore;
         public static Action<float> OnSensitivityChanged;
         public static Action<float> OnFOVChanged;
+        public static Action<bool> OnWeaponSwitchScrollChanged;
 }

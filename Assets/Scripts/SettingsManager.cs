@@ -10,6 +10,7 @@ public class SettingsManager : MonoBehaviour
     
     public static Action<int> OnMouseInvertedFromSettingsManager;
     public static Action<bool> OnDifficultySetToHardcoreFromSettingsManager;
+    public static Action<bool> OnWeaponSwitchWithScrollEnabledFromSettingsManager;
 
     //[SerializeField] private Slider sensitivitySlider;
     //[SerializeField] private PlayerMovement playerMovement;
@@ -17,6 +18,7 @@ public class SettingsManager : MonoBehaviour
     public bool isMouseInverted = false;
     public bool isDifficultyHardcore = false;
     public float fOV;
+    public bool isWeaponSwitchWithScrollEnabled = true;
 
     private void Awake()
     {
@@ -32,6 +34,7 @@ public class SettingsManager : MonoBehaviour
         fOV = PlayerPrefs.GetFloat("FOV", 70);
         isMouseInverted = PlayerPrefs.GetInt("Inverted", 0) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
         isDifficultyHardcore = PlayerPrefs.GetInt("HardCoreDifficulty", 0) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
+        isWeaponSwitchWithScrollEnabled = PlayerPrefs.GetInt("WeaponSwitchScroll", 0) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
     }
 
     /*private void OnSensitivityChanged(float sensitivity)
@@ -64,12 +67,23 @@ public class SettingsManager : MonoBehaviour
         fOV = targetFOV;
         PlayerPrefs.SetFloat("FOV", targetFOV);
     }
+    
+    private void UpdateWeaponSwitchWithScroll(bool canWeaponSwitchWithScrollBtn)
+    {
+        isWeaponSwitchWithScrollEnabled = canWeaponSwitchWithScrollBtn;
+        if (isWeaponSwitchWithScrollEnabled)
+        {
+            OnWeaponSwitchWithScrollEnabledFromSettingsManager?.Invoke(true); // this unnecessary code, as changing the difficulty during the game is not possible
+        }
+        else OnWeaponSwitchWithScrollEnabledFromSettingsManager?.Invoke(false); // this unnecessary code, as changing the difficulty during the game is not possible
+    }
 
     private void OnEnable()
     {
         GameEvents.OnMouseInverted += UpdateIsMouseInverted;
         GameEvents.OnDifficultyChangedToHardcore += UpdateDifficulty;
         GameEvents.OnFOVChanged += UpdateFOV;
+        GameEvents.OnWeaponSwitchScrollChanged += UpdateWeaponSwitchWithScroll;
     }
     
     private void OnDisable()
@@ -77,5 +91,6 @@ public class SettingsManager : MonoBehaviour
         GameEvents.OnMouseInverted -= UpdateIsMouseInverted;
         GameEvents.OnDifficultyChangedToHardcore -= UpdateDifficulty;
         GameEvents.OnFOVChanged -= UpdateFOV;
+        GameEvents.OnWeaponSwitchScrollChanged -= UpdateWeaponSwitchWithScroll;
     }
 }

@@ -62,6 +62,9 @@ namespace SlimUI.ModernMenu{
 		//private float sliderValueSensitivity = 0.0f;
 		//private float sliderValueYSensitivity = 0.0f;
 		private float sliderValueSmoothing = 0.0f;
+
+		[Header("KEYBIND SETTINGS")]
+		public GameObject weaponswitchscrollText;
 		
 
 		public void  Start (){
@@ -201,6 +204,15 @@ namespace SlimUI.ModernMenu{
 			else if(PlayerPrefs.GetInt("Inverted")==1){
 				invertmousetext.GetComponent<TMP_Text>().text = "on";
 			}
+			
+			// check weapon switch scroll
+			
+			if(PlayerPrefs.GetInt("WeaponSwitchScroll")==0){
+				weaponswitchscrollText.GetComponent<TMP_Text>().text = "off";
+			}
+			else if(PlayerPrefs.GetInt("WeaponSwitchScroll")==1){
+				weaponswitchscrollText.GetComponent<TMP_Text>().text = "on";
+			}
 
 			// check motion blur
 			/*if(PlayerPrefs.GetInt("MotionBlur")==0){
@@ -273,6 +285,19 @@ namespace SlimUI.ModernMenu{
 		public void SensitivitySlider (){ // Implemented in PlayerMovement 
 			PlayerPrefs.SetFloat("Sensitivity", sensitivitySlider.GetComponent<Slider>().value);
 			GameEvents.OnSensitivityChanged?.Invoke(sensitivitySlider.GetComponent<Slider>().value);
+		}
+		
+		public void InvertMouse(){ // Needs to be implemented in PlayerMovement 
+			if(PlayerPrefs.GetInt("Inverted")==0){
+				PlayerPrefs.SetInt("Inverted",1);
+				invertmousetext.GetComponent<TMP_Text>().text = "on";
+				GameEvents.OnMouseInverted?.Invoke(true);
+			}
+			else if(PlayerPrefs.GetInt("Inverted")==1){
+				PlayerPrefs.SetInt("Inverted",0);
+				invertmousetext.GetComponent<TMP_Text>().text = "off";
+				GameEvents.OnMouseInverted?.Invoke(false);
+			}
 		}
 		
 		public void FOVSlider (){ // Implemented in PlayerMovement 
@@ -443,17 +468,17 @@ namespace SlimUI.ModernMenu{
 				vsynctext.GetComponent<TMP_Text>().text = "off";
 			}
 		}
-
-		public void InvertMouse (){ // Needs to be implemented in PlayerMovement 
-			if(PlayerPrefs.GetInt("Inverted")==0){
-				PlayerPrefs.SetInt("Inverted",1);
-				invertmousetext.GetComponent<TMP_Text>().text = "on";
-				GameEvents.OnMouseInverted?.Invoke(true);
+		
+		public void ToggleWeaponSwitchScroll(){ // Needs to be implemented in PlayerMovement 
+			if(PlayerPrefs.GetInt("WeaponSwitchScroll")==0){
+				PlayerPrefs.SetInt("WeaponSwitchScroll",1);
+				weaponswitchscrollText.GetComponent<TMP_Text>().text = "on";
+				GameEvents.OnWeaponSwitchScrollChanged?.Invoke(true);
 			}
-			else if(PlayerPrefs.GetInt("Inverted")==1){
-				PlayerPrefs.SetInt("Inverted",0);
-				invertmousetext.GetComponent<TMP_Text>().text = "off";
-				GameEvents.OnMouseInverted?.Invoke(false);
+			else if(PlayerPrefs.GetInt("WeaponSwitchScroll")==1){
+				PlayerPrefs.SetInt("WeaponSwitchScroll",0);
+				weaponswitchscrollText.GetComponent<TMP_Text>().text = "off";
+				GameEvents.OnWeaponSwitchScrollChanged?.Invoke(false);
 			}
 		}
 
