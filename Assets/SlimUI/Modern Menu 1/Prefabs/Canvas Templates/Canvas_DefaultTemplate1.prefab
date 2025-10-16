@@ -3212,6 +3212,7 @@ MonoBehaviour:
   rebindingButton: {fileID: 393648847881477600}
   buttonText: {fileID: 393147297839015016}
   keyConformation: {fileID: 353412523533774890}
+  canMouseBtnBeUsedToRebind: 1
 --- !u!1 &352037858392210800
 GameObject:
   m_ObjectHideFlags: 0
@@ -3937,6 +3938,7 @@ MonoBehaviour:
   rebindingButton: {fileID: 393658429527725098}
   buttonText: {fileID: 393972497189597394}
   keyConformation: {fileID: 353412523533774890}
+  canMouseBtnBeUsedToRebind: 1
 --- !u!1 &352120424929170918
 GameObject:
   m_ObjectHideFlags: 0
@@ -5958,6 +5960,7 @@ MonoBehaviour:
   rebindingButton: {fileID: 394060826801475770}
   buttonText: {fileID: 392999647929437016}
   keyConformation: {fileID: 353412523533774890}
+  canMouseBtnBeUsedToRebind: 0
 --- !u!1 &352496286431876856
 GameObject:
   m_ObjectHideFlags: 0
@@ -7355,6 +7358,7 @@ MonoBehaviour:
   rebindingButton: {fileID: 394413699478740010}
   buttonText: {fileID: 393022534637509482}
   keyConformation: {fileID: 353412523533774890}
+  canMouseBtnBeUsedToRebind: 0
 --- !u!1 &352538889094378674
 GameObject:
   m_ObjectHideFlags: 0
@@ -8758,6 +8762,7 @@ MonoBehaviour:
   rebindingButton: {fileID: 394010511071281050}
   buttonText: {fileID: 394347930022257164}
   keyConformation: {fileID: 353412523533774890}
+  canMouseBtnBeUsedToRebind: 1
 --- !u!1 &352604830807212642
 GameObject:
   m_ObjectHideFlags: 0
@@ -13293,18 +13298,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 7198144001604355479}
-        m_TargetAssemblyTypeName: InputRebinding, GameStuff
-        m_MethodName: RebindInput
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!114 &393673357251385514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13366,6 +13359,7 @@ MonoBehaviour:
   rebindingButton: {fileID: 393537953429181386}
   buttonText: {fileID: 394450893397346072}
   keyConformation: {fileID: 353412523533774890}
+  canMouseBtnBeUsedToRebind: 0
 --- !u!1 &352908800344087276
 GameObject:
   m_ObjectHideFlags: 0
@@ -13941,6 +13935,7 @@ MonoBehaviour:
   rebindingButton: {fileID: 393671571693214118}
   buttonText: {fileID: 394371833914187286}
   keyConformation: {fileID: 353412523533774890}
+  canMouseBtnBeUsedToRebind: 0
 --- !u!1 &352952878310410944
 GameObject:
   m_ObjectHideFlags: 0
@@ -26561,6 +26556,7 @@ MonoBehaviour:
   rebindingButton: {fileID: 2504851592694580532}
   buttonText: {fileID: 893317545637738232}
   keyConformation: {fileID: 353412523533774890}
+  canMouseBtnBeUsedToRebind: 0
 --- !u!1 &8218900168735217130
 GameObject:
   m_ObjectHideFlags: 0

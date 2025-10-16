@@ -5,10 +5,12 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class InputRebinding : MonoBehaviour
+public class InputRebindingScroll : MonoBehaviour
 {
-    [SerializeField] private InputActionReference actionToRebind;
+    [SerializeField] private InputActionReference actionToRebindWithButton;
+    [SerializeField] private InputActionReference actionToRebindWithScroll;
     [SerializeField] private int bindingIndex = 0;
+    [SerializeField] private int bindingIndexForScrollAction = 0;
     [SerializeField] private Button rebindingButton;
     [SerializeField] private TMP_Text buttonText;
     [SerializeField] private GameObject keyConformation;
@@ -25,9 +27,9 @@ public class InputRebinding : MonoBehaviour
 
     private void UpdateButtonText()
     {
-        if (actionToRebind != null)
+        if (actionToRebindWithButton != null)
         {
-            var path = actionToRebind.action.bindings[bindingIndex].effectivePath;
+            var path = actionToRebindWithButton.action.bindings[bindingIndex].effectivePath;
             buttonText.text =
                 InputControlPath.ToHumanReadableString(path, InputControlPath.HumanReadableStringOptions.OmitDevice);
         }
@@ -35,17 +37,17 @@ public class InputRebinding : MonoBehaviour
 
     public void RebindInput()
     {
-        if (actionToRebind == null) return;
+        if (actionToRebindWithButton == null) return;
         if (currentRebind != null) return; // already rebinding
 
-        actionToRebind.action.Disable();
+        actionToRebindWithButton.action.Disable();
         rebindingButton.interactable = false;
         buttonText.text = "Press a key...";
 
         Debug.Log(
-            $"Default binding for action {actionToRebind.action.name}: {InputControlPath.ToHumanReadableString(actionToRebind.action.bindings[bindingIndex].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice)}");
+            $"Default binding for action {actionToRebindWithButton.action.name}: {InputControlPath.ToHumanReadableString(actionToRebindWithButton.action.bindings[bindingIndex].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice)}");
         
-        currentRebind = actionToRebind.action.PerformInteractiveRebinding(bindingIndex);
+        currentRebind = actionToRebindWithButton.action.PerformInteractiveRebinding(bindingIndex);
             if (!canMouseBtnBeUsedToRebind) currentRebind.WithControlsExcluding("Mouse"); // Disable Mouse rebinding if button shouldn't have it
             
             currentRebind
@@ -60,17 +62,25 @@ public class InputRebinding : MonoBehaviour
     private void FinishedRebind()
     {
         if (currentRebind == null) return;
+
+        var control = currentRebind.selectedControl;
+
+        if (control.layout == "Button")
+        {
+            
+        }
+        
         currentRebind.Dispose();
         currentRebind = null;
         
-        actionToRebind.action.Enable();
+        actionToRebindWithButton.action.Enable();
         rebindingButton.interactable = true;
 
         UpdateButtonText();
         
-        PlayerPrefs.SetString(actionToRebind.action.name + "_binding" + bindingIndex,
-            actionToRebind.action.bindings[bindingIndex].overridePath);
-        Debug.Log($"\n New binding for action {actionToRebind.action.name}: {InputControlPath.ToHumanReadableString(actionToRebind.action.bindings[bindingIndex].overridePath, InputControlPath.HumanReadableStringOptions.OmitDevice)}");
+        PlayerPrefs.SetString(actionToRebindWithButton.action.name + "_binding" + bindingIndex,
+            actionToRebindWithButton.action.bindings[bindingIndex].overridePath);
+        Debug.Log($"\n New binding for action {actionToRebindWithButton.action.name}: {InputControlPath.ToHumanReadableString(actionToRebindWithButton.action.bindings[bindingIndex].overridePath, InputControlPath.HumanReadableStringOptions.OmitDevice)}");
         keyConformation.SetActive(false);
     }
 
@@ -84,7 +94,7 @@ public class InputRebinding : MonoBehaviour
             currentRebind = null;
             Debug.Log("Rebinding cancelled");
             
-            actionToRebind.action.Enable();
+            actionToRebindWithButton.action.Enable();
             rebindingButton.interactable = true;
             keyConformation.SetActive(false);
             UpdateButtonText();
@@ -92,10 +102,10 @@ public class InputRebinding : MonoBehaviour
     }
     public void LoadSavedBinding()
     {
-        string saved = PlayerPrefs.GetString(actionToRebind.action.name + "_binding" + bindingIndex, "");
+        string saved = PlayerPrefs.GetString(actionToRebindWithButton.action.name + "_binding" + bindingIndex, "");
         if (!string.IsNullOrEmpty(saved))
         {
-            actionToRebind.action.ApplyBindingOverride(bindingIndex, saved);
+            actionToRebindWithButton.action.ApplyBindingOverride(bindingIndex, saved);
             UpdateButtonText();
         }
     }
@@ -105,7 +115,7 @@ public class InputRebinding : MonoBehaviour
     {
         CancelInputRebind.OnCancelRebind += CancelRebindingProcess;
         rebindingButton.onClick.AddListener(RebindInput);
-        Debug.Log($"Added function RebindInput on button {rebindingButton.name} for action {actionToRebind.action.name}");
+        Debug.Log($"Added function RebindInput on button {rebindingButton.name} for action {actionToRebindWithButton.action.name}");
     }
 
     private void OnDisable()
