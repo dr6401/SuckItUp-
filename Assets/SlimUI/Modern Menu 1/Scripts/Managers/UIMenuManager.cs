@@ -306,5 +306,10 @@ namespace SlimUI.ModernMenu{
 			}
 			return false;
 		}
+		
+		public void WishlistOnSteam()
+		{
+			Application.OpenURL("https://store.steampowered.com/app/3951270/Suck_It_Up/");
+		}
 	}
 }
