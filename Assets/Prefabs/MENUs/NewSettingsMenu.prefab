@@ -41,7 +41,7 @@ AudioSource:
   m_GameObject: {fileID: 14256208358732758}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -7128067719386893152, guid: 204ae77320b536d459d12c2126255a73, type: 2}
+  OutputAudioMixerGroup: {fileID: 5505774061515577387, guid: 6de2cc9ccd7156847a9049dce43557fe, type: 2}
   m_audioClip: {fileID: 8300000, guid: 1e7a587164fcbef45b40536469e6c432, type: 3}
   m_Resource: {fileID: 8300000, guid: 1e7a587164fcbef45b40536469e6c432, type: 3}
   m_PlayOnAwake: 0
@@ -3246,14 +3246,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3307,9 +3307,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2375050020883978456}
-        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UISettingsManager, Assembly-CSharp
-        m_MethodName: TexturesLow
+      - m_Target: {fileID: 6159212670740237196}
+        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UIMidGameSettings, Assembly-CSharp
+        m_MethodName: ShadowsLow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4970,6 +4970,7 @@ GameObject:
   - component: {fileID: 7052533385043983188}
   - component: {fileID: 4757858131972509217}
   - component: {fileID: 6602924918340204161}
+  - component: {fileID: 1016167520126158903}
   m_Layer: 5
   m_Name: FullScreen_Btn
   m_TagString: Untagged
@@ -5018,14 +5019,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 0.6862745, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5079,8 +5080,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2375050020883978456}
-        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UISettingsManager, Assembly-CSharp
+      - m_Target: {fileID: 6159212670740237196}
+        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UIMidGameSettings, Assembly-CSharp
         m_MethodName: FullScreen
         m_Mode: 1
         m_Arguments:
@@ -5091,6 +5092,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1016167520126158903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329281994643529655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
+  hasImage: 1
+  isText: 0
 --- !u!1 &1442157385754745861
 GameObject:
   m_ObjectHideFlags: 0
@@ -5151,14 +5167,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5212,8 +5228,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2375050020883978456}
-        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UISettingsManager, Assembly-CSharp
+      - m_Target: {fileID: 6159212670740237196}
+        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UIMidGameSettings, Assembly-CSharp
         m_MethodName: TexturesHigh
         m_Mode: 1
         m_Arguments:
@@ -5372,6 +5388,8 @@ GameObject:
   - component: {fileID: 7327169619004262492}
   - component: {fileID: 8874935574374597825}
   - component: {fileID: 3750518365132644385}
+  - component: {fileID: 5265839207122493567}
+  - component: {fileID: 7099086850943477948}
   m_Layer: 5
   m_Name: Inverse_Btn
   m_TagString: Untagged
@@ -5420,14 +5438,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 0.6862745, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5481,9 +5499,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2375050020883978456}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ToolTips
+      - m_Target: {fileID: 6159212670740237196}
+        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UIMidGameSettings, Assembly-CSharp
+        m_MethodName: InvertMouse
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5493,6 +5511,50 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5265839207122493567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520751033695696453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1483906337574145912}
+          m_TargetAssemblyTypeName: SlimUI.ModernMenu.UIMidGameMenuManager, Assembly-CSharp
+          m_MethodName: PlayHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &7099086850943477948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520751033695696453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
+  hasImage: 1
+  isText: 0
 --- !u!1 &1544989662639377282
 GameObject:
   m_ObjectHideFlags: 0
@@ -7062,6 +7124,7 @@ GameObject:
   - component: {fileID: 2674869203530146702}
   - component: {fileID: 6943689025723763686}
   - component: {fileID: 7823794215095249645}
+  - component: {fileID: 8043488479427925185}
   m_Layer: 5
   m_Name: VSync_Btn
   m_TagString: Untagged
@@ -7110,14 +7173,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 0.6862745, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7171,9 +7234,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2375050020883978456}
-        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UISettingsManager, Assembly-CSharp
-        m_MethodName: TexturesLow
+      - m_Target: {fileID: 6159212670740237196}
+        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UIMidGameSettings, Assembly-CSharp
+        m_MethodName: vsync
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7183,6 +7246,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8043488479427925185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896248269098401015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
+  hasImage: 1
+  isText: 0
 --- !u!1 &1902136690353604853
 GameObject:
   m_ObjectHideFlags: 0
@@ -9017,11 +9095,11 @@ MonoBehaviour:
   mobileShadowlowtextLINE: {fileID: 0}
   mobileShadowhightextLINE: {fileID: 0}
   urpAsset: {fileID: 11400000, guid: 4b83569d67af61e458304325a23e5dfd, type: 2}
-  fullscreentext: {fileID: 7275292231038749131}
+  fullscreentext: {fileID: 4951433545442350562}
   shadowofftextLINE: {fileID: 5210610170968218392}
   shadowlowtextLINE: {fileID: 1604421686411103661}
   shadowhightextLINE: {fileID: 139018598205903137}
-  vsynctext: {fileID: 6082791013635830929}
+  vsynctext: {fileID: 7915657041944212034}
   texturelowtextLINE: {fileID: 2310252310048301613}
   texturemedtextLINE: {fileID: 4413034954400474693}
   texturehightextLINE: {fileID: 5908711390206575763}
@@ -9570,8 +9648,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2375050020883978456}
-        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UISettingsManager, Assembly-CSharp
+      - m_Target: {fileID: 6159212670740237196}
+        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UIMidGameSettings, Assembly-CSharp
         m_MethodName: FOVSlider
         m_Mode: 1
         m_Arguments:
@@ -9595,10 +9673,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 5
+  - eventID: 0
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1483906337574145912}
+          m_TargetAssemblyTypeName: SlimUI.ModernMenu.UIMidGameMenuManager, Assembly-CSharp
+          m_MethodName: PlayHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2727714904594207193
 GameObject:
   m_ObjectHideFlags: 0
@@ -15557,7 +15647,7 @@ GameObject:
   - component: {fileID: 2139684735287971327}
   - component: {fileID: 5095841057272548866}
   m_Layer: 5
-  m_Name: tooltiptext
+  m_Name: FullScreenText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17263,8 +17353,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2375050020883978456}
-        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UISettingsManager, Assembly-CSharp
+      - m_Target: {fileID: 6159212670740237196}
+        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UIMidGameSettings, Assembly-CSharp
         m_MethodName: GraphicsSlider
         m_Mode: 1
         m_Arguments:
@@ -18185,7 +18275,7 @@ AudioSource:
   m_GameObject: {fileID: 5795039688879918593}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -7128067719386893152, guid: 204ae77320b536d459d12c2126255a73, type: 2}
+  OutputAudioMixerGroup: {fileID: 5505774061515577387, guid: 6de2cc9ccd7156847a9049dce43557fe, type: 2}
   m_audioClip: {fileID: 8300000, guid: c12d40421acc84a4b90823d6080bbad1, type: 3}
   m_Resource: {fileID: 8300000, guid: c12d40421acc84a4b90823d6080bbad1, type: 3}
   m_PlayOnAwake: 0
@@ -20543,14 +20633,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -20604,9 +20694,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2375050020883978456}
-        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UISettingsManager, Assembly-CSharp
-        m_MethodName: TexturesLow
+      - m_Target: {fileID: 6159212670740237196}
+        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UIMidGameSettings, Assembly-CSharp
+        m_MethodName: ShadowsOff
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20921,8 +21011,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2375050020883978456}
-        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UISettingsManager, Assembly-CSharp
+      - m_Target: {fileID: 6159212670740237196}
+        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UIMidGameSettings, Assembly-CSharp
         m_MethodName: SensitivitySlider
         m_Mode: 1
         m_Arguments:
@@ -21349,7 +21439,7 @@ AudioSource:
   m_GameObject: {fileID: 7139136532376758444}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -7128067719386893152, guid: 204ae77320b536d459d12c2126255a73, type: 2}
+  OutputAudioMixerGroup: {fileID: 5505774061515577387, guid: 6de2cc9ccd7156847a9049dce43557fe, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 35e0c0179d051e04f84ac3e04b705b65, type: 3}
   m_PlayOnAwake: 0
@@ -24395,7 +24485,7 @@ GameObject:
   - component: {fileID: 3699208744737713035}
   - component: {fileID: 1137542869602903188}
   m_Layer: 5
-  m_Name: ShadowsHigh
+  m_Name: vsyncText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25614,14 +25704,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -25675,8 +25765,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2375050020883978456}
-        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UISettingsManager, Assembly-CSharp
+      - m_Target: {fileID: 6159212670740237196}
+        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UIMidGameSettings, Assembly-CSharp
         m_MethodName: TexturesMed
         m_Mode: 1
         m_Arguments:
@@ -25747,14 +25837,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -25808,9 +25898,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2375050020883978456}
-        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UISettingsManager, Assembly-CSharp
-        m_MethodName: TexturesLow
+      - m_Target: {fileID: 6159212670740237196}
+        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UIMidGameSettings, Assembly-CSharp
+        m_MethodName: ShadowsHigh
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -27297,14 +27387,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -27358,8 +27448,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2375050020883978456}
-        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UISettingsManager, Assembly-CSharp
+      - m_Target: {fileID: 6159212670740237196}
+        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UIMidGameSettings, Assembly-CSharp
         m_MethodName: TexturesLow
         m_Mode: 1
         m_Arguments:

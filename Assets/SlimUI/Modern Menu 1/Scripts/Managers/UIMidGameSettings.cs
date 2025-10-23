@@ -464,10 +464,12 @@ namespace SlimUI.ModernMenu{
 			if(QualitySettings.vSyncCount == 0){
 				QualitySettings.vSyncCount = 1;
 				vsynctext.GetComponent<TMP_Text>().text = "on";
+				Debug.Log("Turned ON");
 			}
 			else if(QualitySettings.vSyncCount == 1){
 				QualitySettings.vSyncCount = 0;
 				vsynctext.GetComponent<TMP_Text>().text = "off";
+				Debug.Log("Turned OFF");
 			}
 		}
 		
