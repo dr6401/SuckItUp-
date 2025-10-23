@@ -360,10 +360,12 @@ namespace SlimUI.ModernMenu{
 			if(PlayerPrefs.GetInt("ToolTips")==0){
 				PlayerPrefs.SetInt("ToolTips",1);
 				tooltipstext.GetComponent<TMP_Text>().text = "on";
+				Debug.Log("Set to ON");
 			}
 			else if(PlayerPrefs.GetInt("ToolTips")==1){
 				PlayerPrefs.SetInt("ToolTips",0);
 				tooltipstext.GetComponent<TMP_Text>().text = "off";
+				Debug.Log("Set to OFF");
 			}
 		}
 
