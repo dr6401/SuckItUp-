@@ -28,8 +28,8 @@ namespace SlimUI.ModernMenu{
         public ThemedUIData themeController;
 
         [Header("PANELS")]
-        [Tooltip("The UI Panel parenting all sub menus")]
-        public GameObject mainCanvas;
+        //[Tooltip("The UI Panel parenting all sub menus")]
+        //public GameObject mainCanvas;
         [Tooltip("The UI Panel that holds the CONTROLS window tab")]
         public GameObject PanelControls;
         [Tooltip("The UI Panel that holds the VIDEO window tab")]
@@ -63,14 +63,14 @@ namespace SlimUI.ModernMenu{
         [Tooltip("Highlight Image for when GENERAL Sub-Tab is selected in KEY BINDINGS")]
         public GameObject lineGeneral;
 
-        [Header("LOADING SCREEN")]
+        /*[Header("LOADING SCREEN")]
 		[Tooltip("If this is true, the loaded scene won't load until receiving user input")]
 		public bool waitForInput = true;
         public GameObject loadingMenu;
 		[Tooltip("The loading bar Slider UI element in the Loading Screen")]
         public Slider loadingBar;
         public TMP_Text loadPromptText;
-		public KeyCode userPromptKey;
+		public KeyCode userPromptKey;*/
 
 		[Header("SFX")]
         [Tooltip("The GameObject holding the Audio Source component for the HOVER SOUND")]
@@ -271,10 +271,10 @@ namespace SlimUI.ModernMenu{
 		}
 
 		// Load Bar synching animation
-		IEnumerator LoadAsynchronously(string sceneName){ // scene name is just the name of the current scene being loaded
+		/*IEnumerator LoadAsynchronously(string sceneName){ // scene name is just the name of the current scene being loaded
 			AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
 			operation.allowSceneActivation = false;
-			mainCanvas.SetActive(false);
+			//mainCanvas.SetActive(false);
 			loadingMenu.SetActive(true);
 
 			while (!operation.isDone){
@@ -294,7 +294,7 @@ namespace SlimUI.ModernMenu{
 
 				yield return null;
 			}
-		}
+		}*/
 
 		private bool SceneExists(string sceneName)
 		{
