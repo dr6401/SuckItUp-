@@ -128,14 +128,14 @@ namespace SlimUI.ModernMenu{
 			if(extrasMenu) extrasMenu.SetActive(false);
 			playMenu.SetActive(true);
 			mainMenu.SetActive(false);
-		}
+		}*/
 
 		public void ReturnMenu(){
-			playMenu.SetActive(false);
-			if(extrasMenu) extrasMenu.SetActive(false);
+			//playMenu.SetActive(false);
+			//if(extrasMenu) extrasMenu.SetActive(false);
 			exitMenu.SetActive(false);
-			mainMenu.SetActive(true);
-		}*/
+			//mainMenu.SetActive(true);
+		}
 
 		public void LoadScene(string scene){
 			if(!string.IsNullOrEmpty(scene))
@@ -163,6 +163,32 @@ namespace SlimUI.ModernMenu{
 
 		public void Position1(){
 			CameraObject.SetFloat("Animate",0);
+		}
+
+		public void KeepPlaying()
+		{
+			EnablePanels();
+			exitMenu.SetActive(false);
+		}
+
+		void EnablePanels()
+		{
+			PanelControls.SetActive(false);
+			PanelVideo.SetActive(false);
+			PanelGame.SetActive(true);
+			PanelKeyBindings.SetActive(false);
+
+			lineGame.SetActive(false);
+			lineControls.SetActive(false);
+			lineVideo.SetActive(false);
+			lineKeyBindings.SetActive(false);
+
+			PanelMovement.SetActive(false);
+			lineMovement.SetActive(false);
+			PanelCombat.SetActive(false);
+			lineCombat.SetActive(false);
+			PanelGeneral.SetActive(false);
+			lineGeneral.SetActive(false);
 		}
 
 		void DisablePanels(){
@@ -244,6 +270,7 @@ namespace SlimUI.ModernMenu{
 
 		// Are You Sure - Quit Panel Pop Up
 		public void AreYouSure(){
+			DisablePanels();
 			exitMenu.SetActive(true);
 			/*if(extrasMenu) extrasMenu.SetActive(false);
 			DisablePlayCampaign();*/
