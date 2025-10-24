@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float hardcoreSpawnInterval = 3f;
     [SerializeField] public float spawnOffset = 20f;
     private float timeSinceSpawned = 0f;
-    private Transform enemiesFolder;
+    [SerializeField] private Transform enemiesFolder;
     private bool canSpawnEnemies = true;
     private int maxSpawnedEnemies;
     [SerializeField] private int normalMaxSpawnedEnemies = 20;
@@ -33,15 +33,18 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        Transform parent = transform.parent;
-        GameObject folder = GameObject.Find("EnemiesFolder");
+        Transform folder = transform.Find("LocalEnemiesFolder");
         if (folder == null)
         {
             Debug.Log("Folder is null, creating new folder");
-            folder = new GameObject("EnemiesFolder");
-            folder.transform.parent = parent;
+            GameObject newFolder = new GameObject("localEnemiesFolder");
+            enemiesFolder = newFolder.transform;
+            //newFolder.transform.parent = parent;
         }
-        enemiesFolder = folder.transform;
+        else
+        {
+            enemiesFolder = folder.transform;   
+        }
         isDifficultyHardcore = SettingsManager.Instance.isDifficultyHardcore;
         if (!isDifficultyHardcore)
         {
