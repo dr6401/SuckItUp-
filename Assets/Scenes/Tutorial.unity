@@ -372,11 +372,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 970900767031811075, guid: 7e261cc1e30b57146aebdee255ac2ff3, type: 3}
   m_PrefabInstance: {fileID: 99545949}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &167718863 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4357632313227432635, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
-  m_PrefabInstance: {fileID: 925031742}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &177967084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -889,17 +884,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7267542044105194087, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
   m_PrefabInstance: {fileID: 925031742}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &487651868 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3843215747273724815, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
-  m_PrefabInstance: {fileID: 925031742}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &495875419
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1090,6 +1074,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 970900767031811075, guid: 7e261cc1e30b57146aebdee255ac2ff3, type: 3}
   m_PrefabInstance: {fileID: 669998780}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &631872407 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 1372027476005117653, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
+  m_PrefabInstance: {fileID: 925031742}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &669998780
 PrefabInstance:
@@ -8016,6 +8005,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 970900767031811075, guid: 7e261cc1e30b57146aebdee255ac2ff3, type: 3}
   m_PrefabInstance: {fileID: 583872331}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1375081340 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6564420666027186882, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
+  m_PrefabInstance: {fileID: 925031742}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1379935360
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8911,10 +8905,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectiveTextDuration: 10
   objectiveText: {fileID: 485147605}
-  settingsCanvas: {fileID: 167718863}
+  settingsCanvas: {fileID: 1375081340}
   toggleWeaponTextObject: {fileID: 487651867}
   playerMovement: {fileID: 1426673974}
   weaponHandler: {fileID: 1426673973}
+  gameCanvas: {fileID: 631872407}
   aliveDustParticles: 0
   hasInputBeenGranted: 1
 --- !u!4 &1852384496 stripped
@@ -10082,7 +10077,7 @@ PrefabInstance:
     - target: {fileID: 5010069614515891488, guid: c8878c5af1e178249a581f7d569e0f08, type: 3}
       propertyPath: sensitivitySlider
       value: 
-      objectReference: {fileID: 487651868}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

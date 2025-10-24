@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     private Coroutine timeScaleCoroutine;
     private Coroutine settingsFadeCoroutine;
     private CanvasGroup settingsCanvasGroup;
+    [SerializeField] private CanvasGroup gameCanvas;
     [SerializeField] private AugmentSelectionUI augmentSelectionUI;
     private bool isAugmentUIOpenedEvenMaybeUnderSettingsCanvas = false;
     private bool isSettingsCanvasCoveringAugmentUI = false;
@@ -120,8 +121,17 @@ public class GameManager : MonoBehaviour
     public void TogglePauseGame()
     {
         keyBindingTextToggled = !keyBindingTextToggled;
-        if (keyBindingTextToggled) FadeInSettingsUI();
-        if (!keyBindingTextToggled) FadeOutSettingsUI();
+        if (keyBindingTextToggled)
+        {
+            FadeInSettingsUI();
+            gameCanvas.alpha = 0;
+        }
+
+        if (!keyBindingTextToggled)
+        {
+            FadeOutSettingsUI();
+            gameCanvas.alpha = 1;
+        }
         
         objectiveText.SetActive(false);
 

@@ -13,6 +13,7 @@ public class TutorialManager : MonoBehaviour
     [FormerlySerializedAs("toggleWeaponText")] [SerializeField] public GameObject toggleWeaponTextObject;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private WeaponHandler weaponHandler;
+    [SerializeField] private CanvasGroup gameCanvas;
     private bool keyBindingTextToggled = false;
     private bool firstTimeTutorial = true;
     private PlayerControls controls;
@@ -68,11 +69,13 @@ public class TutorialManager : MonoBehaviour
             //Enabling/Disabling the cursor if the game is paused
             if (keyBindingTextToggled)
             {
+                gameCanvas.alpha = 0;
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
             }
             else
             {
+                gameCanvas.alpha = 1;
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
             }
