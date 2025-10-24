@@ -158,9 +158,10 @@ MonoBehaviour:
   normalspawnInterval: 10
   hardcoreSpawnInterval: 3
   spawnOffset: 20
+  enemyFoldersFolder: {fileID: 0}
   enemiesFolder: {fileID: 0}
-  normalMaxSpawnedEnemies: 20
-  hardcoreMaxSpawnedEnemies: 80
+  normalMaxSpawnedEnemies: 15
+  hardcoreMaxSpawnedEnemies: 50
   isDifficultyHardcore: 0
   chanceToSpawnFluffyDusty: 0
   enemyClearanceRadius: 2

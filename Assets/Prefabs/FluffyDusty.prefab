@@ -131,7 +131,7 @@ MonoBehaviour:
   attackRange: 2
   attackCooldown: 2
   normalAttackDamage: 5
-  hardcoreAttackDamage: 10
+  hardcoreAttackDamage: 5
   playerHealth: {fileID: 0}
 --- !u!114 &9063275716246866882
 MonoBehaviour:
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalMaxHealth: 20
-  hardcoreMaxHealth: 30
+  hardcoreMaxHealth: 20
   currentHealth: 0
   dustPickupPrefab: {fileID: 595504505390220050, guid: 6b7f082c78ed8a146aadd8c036b32730, type: 3}
   deathExplosionPrefab: {fileID: 3361933763249969519, guid: 2a58533abeb33584fbe929d0a9ad02d0, type: 3}
