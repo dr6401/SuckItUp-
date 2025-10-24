@@ -4625,6 +4625,7 @@ GameObject:
   - component: {fileID: 8560183265620893562}
   - component: {fileID: 6850842134688649448}
   - component: {fileID: 7137626578661333722}
+  - component: {fileID: 2090794331037279028}
   m_Layer: 5
   m_Name: Btn_Yes
   m_TagString: Untagged
@@ -4730,13 +4731,13 @@ MonoBehaviour:
     m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 7664975118825250217}
+  m_TargetGraphic: {fileID: 7729975574873138233}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2127271119521177370}
-        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UIMidGameMenuManager, Assembly-CSharp
-        m_MethodName: QuitGame
+      - m_Target: {fileID: 2090794331037279028}
+        m_TargetAssemblyTypeName: LoadMainMenu, GameStuff
+        m_MethodName: LoadMainMenuScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4790,6 +4791,18 @@ MonoBehaviour:
   themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
   hasImage: 1
   isText: 0
+--- !u!114 &2090794331037279028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066014629766052414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c3face06de0b254a9d131f30821e310, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1067924675535642639
 GameObject:
   m_ObjectHideFlags: 0
@@ -13508,7 +13521,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quit
+  m_text: Main Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0b65c99348f068b49bef5db0bb76a6e4, type: 2}
   m_sharedMaterial: {fileID: 21809785584020342, guid: 0b65c99348f068b49bef5db0bb76a6e4, type: 2}
@@ -35968,7 +35981,7 @@ MonoBehaviour:
     m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 7664975118825250217}
+  m_TargetGraphic: {fileID: 6829689715782219929}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -37692,14 +37705,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5206668379868315107, guid: 817319833dd713d45af5c2121e9649c7, type: 3}
   m_PrefabInstance: {fileID: 2349071213669290686}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7664975118825250217 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5388246411556146967, guid: 817319833dd713d45af5c2121e9649c7, type: 3}
-  m_PrefabInstance: {fileID: 2349071213669290686}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

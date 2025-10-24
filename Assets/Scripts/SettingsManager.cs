@@ -118,4 +118,9 @@ public class SettingsManager : MonoBehaviour
         GameEvents.OnFOVChanged -= UpdateFOV;
         GameEvents.OnWeaponSwitchScrollChanged -= UpdateWeaponSwitchWithScroll;
     }
+
+    private void OnApplicationQuit()
+    {
+        controls.Dispose();
+    }
 }

@@ -51,7 +51,7 @@ public class AugmentManager : MonoBehaviour
         if (dustScoreText == null)
         {
             Debug.Log("DustScoreText not found, looking for it in the scene");
-            dustScoreText = GameObject.FindGameObjectWithTag("DustScoreText").GetComponent<TMP_Text>();
+            dustScoreText = GameObject.FindGameObjectWithTag("DustScoreText")?.GetComponent<TMP_Text>();
         }
 
         isDifficultyHardcore = SettingsManager.Instance.isDifficultyHardcore;
@@ -104,7 +104,7 @@ public class AugmentManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         gameManager = GameObject.FindAnyObjectByType<GameManager>();
         augmentSelectionUI = GameObject.FindAnyObjectByType<AugmentSelectionUI>();
-        dustScoreText = GameObject.FindGameObjectWithTag("DustScoreText").GetComponent<TMP_Text>();
+        dustScoreText = GameObject.FindGameObjectWithTag("DustScoreText")?.GetComponent<TMP_Text>();
         currentSuckedDust = 0;
     }
     

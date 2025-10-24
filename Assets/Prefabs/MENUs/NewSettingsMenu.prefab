@@ -4742,7 +4742,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quit
+  m_text: Main Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0b65c99348f068b49bef5db0bb76a6e4, type: 2}
   m_sharedMaterial: {fileID: 21809785584020342, guid: 0b65c99348f068b49bef5db0bb76a6e4, type: 2}
@@ -30382,6 +30382,7 @@ GameObject:
   - component: {fileID: 2469421501118321130}
   - component: {fileID: 1845983733839659059}
   - component: {fileID: 2787591025487735846}
+  - component: {fileID: 1818849827004523982}
   m_Layer: 5
   m_Name: Btn_Yes
   m_TagString: Untagged
@@ -30491,9 +30492,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1483906337574145912}
-        m_TargetAssemblyTypeName: SlimUI.ModernMenu.UIMidGameMenuManager, Assembly-CSharp
-        m_MethodName: QuitGame
+      - m_Target: {fileID: 1818849827004523982}
+        m_TargetAssemblyTypeName: LoadMainMenu, GameStuff
+        m_MethodName: LoadMainMenuScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -30547,6 +30548,18 @@ MonoBehaviour:
   themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
   hasImage: 1
   isText: 0
+--- !u!114 &1818849827004523982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8599739634247922486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c3face06de0b254a9d131f30821e310, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8608333201568119116
 GameObject:
   m_ObjectHideFlags: 0
