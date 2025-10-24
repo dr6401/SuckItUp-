@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     private bool keyBindingTextToggled = false;
     public bool gameOver = false;
     private GameObject player;
-    private Transform enemiesFolder;
+    [SerializeField] private Transform enemyFoldersFolder;
     private float timeToLoadNextScene = 5f;
     private Coroutine timeScaleCoroutine;
     private Coroutine settingsFadeCoroutine;
@@ -49,13 +49,11 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         
         // Getting access to the enemies folder for checking if enemies <= 0
-        GameObject folder = GameObject.Find("EnemiesFolder");
-        if (folder == null)
+        if (enemyFoldersFolder == null)
         {
-            Debug.Log("Folder is null, creating new folder");
-            folder = new GameObject("EnemiesFolder");
+            Debug.Log("Folder is null, Finding it in the scene");
+            enemyFoldersFolder = GameObject.Find("EnemyFoldersFolder").transform;
         }
-        enemiesFolder = folder.transform;
         // Canvas stuff
         if (augmentSelectionUI == null)
         {
@@ -108,7 +106,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (areAllSpawnersDestroyed && enemiesFolder.childCount <= 0)
+        if (areAllSpawnersDestroyed && !AnyEnemiesAlive())
         {
             TrackRemainingDust();
             if (CheckIfAllDustIsSuckedUp())
@@ -314,6 +312,18 @@ public class GameManager : MonoBehaviour
         {
             dustParticles.Remove(dust);
         }
+    }
+
+    private bool AnyEnemiesAlive()
+    {
+        foreach (Transform enemyFolder in enemyFoldersFolder)
+        {
+            if (enemyFolder.childCount > 0)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void EndLevel()
