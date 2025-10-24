@@ -38,7 +38,6 @@ Transform:
   - {fileID: 948980680731513328}
   - {fileID: 2576012012059982151}
   - {fileID: 4096021632817747388}
-  - {fileID: 6723463622087100471}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7975314905957079304
@@ -159,7 +158,7 @@ MonoBehaviour:
   normalspawnInterval: 10
   hardcoreSpawnInterval: 3
   spawnOffset: 20
-  enemiesFolder: {fileID: 6723463622087100471}
+  enemiesFolder: {fileID: 0}
   normalMaxSpawnedEnemies: 20
   hardcoreMaxSpawnedEnemies: 80
   isDifficultyHardcore: 0
@@ -188,37 +187,6 @@ MonoBehaviour:
   maxSpawnedDustParticles: 40
   enemySpawnManager: {fileID: 0}
   smokeBleed1VFXprefab: {fileID: 4309857886803190102, guid: 9de698744ee3f944bb0815e9e23f059b, type: 3}
---- !u!1 &8941750305929022518
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6723463622087100471}
-  m_Layer: 9
-  m_Name: LocalEnemiesFolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6723463622087100471
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8941750305929022518}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2725402623183118778}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &269849682009331535
 PrefabInstance:
   m_ObjectHideFlags: 0
