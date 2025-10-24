@@ -1180,6 +1180,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
+--- !u!1 &1427595088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1427595089}
+  m_Layer: 0
+  m_Name: EnemyFoldersFolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1427595089
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427595088}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1984037484}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1445765125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2012,6 +2043,10 @@ PrefabInstance:
       propertyPath: augmentSelectionUI
       value: 
       objectReference: {fileID: 1575441658}
+    - target: {fileID: 6966059444994119593, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
+      propertyPath: enemyFoldersFolder
+      value: 
+      objectReference: {fileID: 1427595089}
     - target: {fileID: 8763557131505957745, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
       propertyPath: musicThemes.Array.size
       value: 1
@@ -2022,7 +2057,10 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 4be231677b49fb242bb9ef92a8d52548, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2941959870385526756, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1427595089}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6845708594331843543, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
       insertIndex: -1
@@ -2056,6 +2094,11 @@ MonoBehaviour:
   level3AreaObject: {fileID: 1646680546}
   player: {fileID: 732642665}
   loadingLevelTextObject: {fileID: 436397093}
+--- !u!4 &1984037484 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2941959870385526756, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
+  m_PrefabInstance: {fileID: 1984037481}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2027015076
 PrefabInstance:
   m_ObjectHideFlags: 0
