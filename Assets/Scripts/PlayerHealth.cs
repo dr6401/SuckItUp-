@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -50,6 +51,12 @@ public class PlayerHealth : MonoBehaviour
         gameManager.gameOver = true;
         GameEvents.OnPlayerDeath?.Invoke();
         gameOverText.gameObject.SetActive(true);
+        var restartAction = SettingsManager.controls.asset.FindAction("Restart");
+        if (restartAction != null)
+        {
+            var path = restartAction.bindings[0].effectivePath;
+            tryAgainText.text = $"Press {InputControlPath.ToHumanReadableString(path, InputControlPath.HumanReadableStringOptions.OmitDevice)} to Try Again!";   
+        }
         tryAgainText.gameObject.SetActive(true);
         Destroy(gameObject);
     }
