@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     private bool areAllSpawnersDestroyed = false;
     private bool keyBindingTextToggled = false;
     public bool gameOver = false;
+    public bool gameLost = false;
     private GameObject player;
     [SerializeField] private Transform enemyFoldersFolder;
     private float timeToLoadNextScene = 5f;
@@ -98,11 +99,13 @@ public class GameManager : MonoBehaviour
             TogglePauseGame();
         }
 
-        if (gameOver)
+        if (gameOver && gameLost)
         {
+            PlayerPrefs.SetInt("Level1", 0); // lock all levels again if player lost
+            PlayerPrefs.SetInt("Level2", 0);
             if (controls.GameEvents.Restart.triggered)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                SceneManager.LoadScene("Hallway"); // After every death spawn player in hallway
             }
         }
 

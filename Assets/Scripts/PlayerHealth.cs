@@ -49,6 +49,7 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         gameManager.gameOver = true;
+        gameManager.gameLost = true;
         GameEvents.OnPlayerDeath?.Invoke();
         gameOverText.gameObject.SetActive(true);
         var restartAction = SettingsManager.controls.asset.FindAction("Restart");
