@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using TMPro;
@@ -79,8 +80,10 @@ namespace SlimUI.ModernMenu{
         public AudioSource sliderSound;
         [Tooltip("The GameObject holding the Audio Source component for the SWOOSH SOUND when switching to the Settings Screen")]
         public AudioSource swooshSound;
+        
 
-		void Start(){
+        void Start(){
+	        //Time.timeScale = 1f;
 			CameraObject = transform.GetComponent<Animator>();
 
 			playMenu.SetActive(false);
