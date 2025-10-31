@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 9063275716246866882}
   - component: {fileID: 4652571467288175064}
   - component: {fileID: 2198779796815906007}
+  - component: {fileID: 1716783164126375810}
   m_Layer: 8
   m_Name: FluffyDusty
   m_TagString: Enemy
@@ -201,6 +202,25 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1716783164126375810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6985164944301197437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bc8063c9e95401f9a8a38bc716750d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Method: 2
+  m_Curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &16333914856080127
 PrefabInstance:
   m_ObjectHideFlags: 0
