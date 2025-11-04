@@ -37,11 +37,6 @@ public class GameManager : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    private void Awake()
-    {
-        controls = SettingsManager.controls;
-    }
-
     void Start()
     {
         StartCoroutine(DisableText());
@@ -75,6 +70,7 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
+        controls = SettingsManager.controls;
         controls.GameEvents.Enable();
         EnemySpawnManager.AllSpawnerDead += HandleAllSpawnersDead;
         GameEvents.OnHasSettingsUICoveredUpAugmentUI += SetHasSettingsUICoveredUpAugmentUI;
@@ -91,7 +87,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (controls.GameEvents.PauseGame.triggered && !gameOver && isAugmentUIOpenedEvenMaybeUnderSettingsCanvas)
+            if (controls.GameEvents.PauseGame.triggered && !gameOver && isAugmentUIOpenedEvenMaybeUnderSettingsCanvas)
         {
             ToggleSettingsCanvasVisibility(1f);
         }
