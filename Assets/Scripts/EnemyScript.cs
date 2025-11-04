@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -24,7 +25,6 @@ public class EnemyScript : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");
@@ -32,7 +32,11 @@ public class EnemyScript : MonoBehaviour
         playerHealth = player.GetComponent<PlayerHealth>();
         isDifficultyHardcore = SettingsManager.Instance.isDifficultyHardcore;
         if (!isDifficultyHardcore) attackDamage = normalAttackDamage;
-        else attackDamage = hardcoreAttackDamage;
+        else
+        {
+            attackDamage = hardcoreAttackDamage;
+            agent.speed += Random.Range(-3f, 3f);
+        }
     }
 
     // Update is called once per frame
