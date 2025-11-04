@@ -4608,7 +4608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 3
   m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
+  m_AdditionalLightsShadowResolutionTier: 1
   m_LightLayerMask: 1
   m_RenderingLayers: 1
   m_CustomShadowLayers: 0
@@ -4629,7 +4629,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 0.945283, b: 0.72641504, a: 1}
   m_Intensity: 63.2
-  m_Range: 71
+  m_Range: 8.2
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -4667,7 +4667,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 4.73
@@ -6479,7 +6479,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 3
   m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
+  m_AdditionalLightsShadowResolutionTier: 1
   m_LightLayerMask: 1
   m_RenderingLayers: 1
   m_CustomShadowLayers: 0
@@ -6500,7 +6500,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 0.945283, b: 0.72641504, a: 1}
   m_Intensity: 63.2
-  m_Range: 71
+  m_Range: 8.2
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -6538,7 +6538,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 4.73
@@ -6562,7 +6562,7 @@ Transform:
   m_GameObject: {fileID: 1240354103}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -37.660904, y: 8.581806, z: 13.777901}
+  m_LocalPosition: {x: -35.43, y: 8.581806, z: 13.777901}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9979,7 +9979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 3
   m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
+  m_AdditionalLightsShadowResolutionTier: 1
   m_LightLayerMask: 1
   m_RenderingLayers: 1
   m_CustomShadowLayers: 0
@@ -10000,7 +10000,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 0.945283, b: 0.72641504, a: 1}
   m_Intensity: 63.2
-  m_Range: 71
+  m_Range: 8.2
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -10038,7 +10038,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 4.73
@@ -10062,7 +10062,7 @@ Transform:
   m_GameObject: {fileID: 1743764890}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -37.660904, y: 8.581806, z: -19.122103}
+  m_LocalPosition: {x: -35.43, y: 8.581806, z: -19.122103}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15658,6 +15658,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1495674173}
     m_Modifications:
+    - target: {fileID: 2063342560734124825, guid: 7cea4792b725fd447a8d85c72446925f, type: 3}
+      propertyPath: m_Range
+      value: 8.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2063342560734124825, guid: 7cea4792b725fd447a8d85c72446925f, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4717133527836091558, guid: 7cea4792b725fd447a8d85c72446925f, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7061205523592163218, guid: 7cea4792b725fd447a8d85c72446925f, type: 3}
       propertyPath: m_Name
       value: Point Light
@@ -15863,6 +15875,10 @@ PrefabInstance:
     - target: {fileID: 6724917399087893350, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_Name
       value: EnemySpawnerManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6724917399087893350, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6729580142714765279, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_LocalScale.x
