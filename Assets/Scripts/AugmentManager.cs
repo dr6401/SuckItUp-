@@ -9,6 +9,7 @@ public class AugmentManager : MonoBehaviour
 {
     private bool isDifficultyHardcore = false;
     private int currentSuckedDust = 0;
+    [SerializeField] private int defaultAugmentTriggerTreshold = 100;
     [SerializeField] private int augmentTriggerTreshold = 20;
     [SerializeField] private GameObject player;
     [SerializeField] private AugmentSelectionUI augmentSelectionUI;
@@ -107,17 +108,26 @@ public class AugmentManager : MonoBehaviour
         dustScoreText = GameObject.FindGameObjectWithTag("DustScoreText")?.GetComponent<TMP_Text>();
         currentSuckedDust = 0;
     }
+
+    private void ResetAugmentTriggerTreshold()
+    {
+        augmentTriggerTreshold = defaultAugmentTriggerTreshold;
+    }
     
     private void OnEnable()
     {
         GameEvents.OnSuckDust += IncreaseSuckedDust;
         SceneManager.sceneLoaded += ResetSceneParametersAndReferences;
+        GameEvents.OnPlayerDeath += ResetAugmentTriggerTreshold;
+        GameEvents.OnEnteredMainMenu += ResetAugmentTriggerTreshold;
     }
     
     private void OnDisable()
     {
         GameEvents.OnSuckDust -= IncreaseSuckedDust;
         SceneManager.sceneLoaded -= ResetSceneParametersAndReferences;
+        GameEvents.OnPlayerDeath -= ResetAugmentTriggerTreshold;
+        GameEvents.OnEnteredMainMenu -= ResetAugmentTriggerTreshold;
     }
     
     

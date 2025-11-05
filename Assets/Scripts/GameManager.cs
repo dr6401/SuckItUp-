@@ -348,7 +348,6 @@ public class GameManager : MonoBehaviour
     private IEnumerator LoadNextScene()
     {
         PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, 1);
-        Debug.Log("Saved to PlayerPrefs scene: " + SceneManager.GetActiveScene().name + " with value of 1");
         PlayerPrefs.Save();
         yield return new WaitForSeconds(timeToLoadNextScene);
         SceneManager.LoadScene("Hallway");
