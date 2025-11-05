@@ -148,6 +148,10 @@ public class WeaponHandler : MonoBehaviour
             cameraFOVController.RequestCameraFOVForAiming(targetFOV);
 
         }
+        else // If input is blocked
+        {
+            StopSuckingDustParticlesWhenInputBlocked();
+        }
         ammoText.text = currentAmmo.ToString();
     }
 
@@ -280,6 +284,16 @@ public class WeaponHandler : MonoBehaviour
         SuckDustParticlesIn(false);
     }
 
+    private void StopSuckingDustParticlesWhenInputBlocked()
+    {
+        StopSuckingDustParticles();
+        if (isAlreadySucking)
+        {
+            soundManager.PlayEndVacuuming();
+        }
+        isAlreadySucking = false;
+    }
+
     public int ReturnCurrentAmmo()
     {
         return currentAmmo;
@@ -347,6 +361,7 @@ public class WeaponHandler : MonoBehaviour
         controls.Player.SwitchWeapon.performed += WeaponSwitch;
         controls.Player.SwitchWeaponScroll.performed += WeaponSwitchWithScroll;
         GameEvents.OnFOVChanged += SetNewFOV;
+        GameEvents.OnPlayerDeath += StopSuckingDustParticlesWhenInputBlocked;
         SettingsManager.OnWeaponSwitchWithScrollEnabledFromSettingsManager += ToggleWeaponSwitchWithScroll;
     }
     private void OnDisable()
@@ -355,6 +370,7 @@ public class WeaponHandler : MonoBehaviour
         controls.Player.SwitchWeapon.performed -= WeaponSwitch;
         controls.Player.SwitchWeaponScroll.performed -= WeaponSwitchWithScroll;
         GameEvents.OnFOVChanged -= SetNewFOV;
+        GameEvents.OnPlayerDeath -= StopSuckingDustParticlesWhenInputBlocked;
         SettingsManager.OnWeaponSwitchWithScrollEnabledFromSettingsManager -= ToggleWeaponSwitchWithScroll;
     }
 }
