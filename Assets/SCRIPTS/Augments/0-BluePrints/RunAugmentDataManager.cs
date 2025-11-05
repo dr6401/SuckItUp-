@@ -16,5 +16,18 @@ public class RunAugmentDataManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        
+        GameEvents.OnEnteredMainMenu += RemoveAllChosenAugments;
+    }
+
+    private void RemoveAllChosenAugments()
+    {
+        runAugmentData.ResetChosenAugments();
+        Debug.Log($"Removed all chosen augments, ChosenAugments list: {runAugmentData.chosenAugments}");
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.OnEnteredMainMenu -= RemoveAllChosenAugments;
     }
 }

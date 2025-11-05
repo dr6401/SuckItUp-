@@ -65,9 +65,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        Debug.Log($"PlayerControls name: {controls.asset.name}");
-        Debug.Log($"Jump binding: {InputControlPath.ToHumanReadableString(controls.Player.Jump.bindings[0].overridePath, InputControlPath.HumanReadableStringOptions.OmitDevice)}");
-        
         camera = Camera.main;
 
         halvedBaseMoveSpeed = baseMoveSpeed / 2;
