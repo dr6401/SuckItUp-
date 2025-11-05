@@ -20198,6 +20198,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b7f082c78ed8a146aadd8c036b32730, type: 3}
+--- !u!114 &1434451573 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8586065926012007780, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
+  m_PrefabInstance: {fileID: 1906739396}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1437112392
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38707,6 +38718,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3445404165902326222, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
+      propertyPath: timerText
+      value: 
+      objectReference: {fileID: 1434451573}
+    - target: {fileID: 3445404165902326222, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
+      propertyPath: gameOverText
+      value: 
+      objectReference: {fileID: 1906739399}
     - target: {fileID: 6311604290768841780, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
       propertyPath: m_Volume
       value: 0

@@ -11,6 +11,7 @@ public class AmmoTextFeedbacks : MonoBehaviour
     [SerializeField] private MMFeedbacks noAmmoLeft;
     [SerializeField] private MMFeedbacks healthIncrease;
     [SerializeField] private MMFeedbacks healthDecrease;
+    [SerializeField] private MMFeedbacks lowLevelTimer;
 
     
     private void PlayAmmoIncrease()
@@ -33,12 +34,25 @@ public class AmmoTextFeedbacks : MonoBehaviour
         healthDecrease?.PlayFeedbacks();
     }
     
+    private void PlayLowLevelTimer()
+    {
+        lowLevelTimer?.PlayFeedbacks();
+    }
+
+    private void StopLowLevelTimer()
+    {
+        lowLevelTimer?.StopFeedbacks();
+    }
+    
     private void OnEnable()
     {
         WeaponHandler.OnAmmoIncrease += PlayAmmoIncrease;
         WeaponHandler.OnNoAmmoLeft += PlayNoAmmoLeft;
         WeaponHandler.OnHealthIncrease += PlayHealthIncrease;
         GameEvents.OnDamageTaken += PlayHealthDecrease;
+        GameEvents.OnLowLevelTimer += PlayLowLevelTimer;
+        GameEvents.OnLevelTimeRanOut += StopLowLevelTimer;
+        GameEvents.OnPlayerDeath += StopLowLevelTimer;
     }
     private void OnDisable()
     {
@@ -46,5 +60,8 @@ public class AmmoTextFeedbacks : MonoBehaviour
         WeaponHandler.OnNoAmmoLeft -= PlayNoAmmoLeft;
         WeaponHandler.OnHealthIncrease -= PlayHealthIncrease;
         GameEvents.OnDamageTaken -= PlayHealthDecrease;
+        GameEvents.OnLowLevelTimer -= PlayLowLevelTimer;
+        GameEvents.OnLevelTimeRanOut -= StopLowLevelTimer;
+        GameEvents.OnPlayerDeath -= StopLowLevelTimer;
     }
 }

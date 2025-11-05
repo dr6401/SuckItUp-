@@ -68,26 +68,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        controls = SettingsManager.controls;
-        controls.GameEvents.Enable();
-        EnemySpawnManager.AllSpawnerDead += HandleAllSpawnersDead;
-        GameEvents.OnHasSettingsUICoveredUpAugmentUI += SetHasSettingsUICoveredUpAugmentUI;
-    }
-    
-    private void OnDisable()
-    {
-        controls.GameEvents.Disable();
-        EnemySpawnManager.AllSpawnerDead -= HandleAllSpawnersDead;
-        GameEvents.OnHasSettingsUICoveredUpAugmentUI -= SetHasSettingsUICoveredUpAugmentUI;
-
-    }
-
     // Update is called once per frame
     void Update()
     {
-            if (controls.GameEvents.PauseGame.triggered && !gameOver && isAugmentUIOpenedEvenMaybeUnderSettingsCanvas)
+        if (controls.GameEvents.PauseGame.triggered && !gameOver && isAugmentUIOpenedEvenMaybeUnderSettingsCanvas)
         {
             ToggleSettingsCanvasVisibility(1f);
         }
@@ -359,5 +343,20 @@ public class GameManager : MonoBehaviour
     private void SetHasSettingsUICoveredUpAugmentUI(bool hasSettingsUICoveredUpAugmentUI1)
     {
         isAugmentUIOpenedEvenMaybeUnderSettingsCanvas = hasSettingsUICoveredUpAugmentUI1;
+    }
+    
+    private void OnEnable()
+    {
+        controls = SettingsManager.controls;
+        controls.GameEvents.Enable();
+        EnemySpawnManager.AllSpawnerDead += HandleAllSpawnersDead;
+        GameEvents.OnHasSettingsUICoveredUpAugmentUI += SetHasSettingsUICoveredUpAugmentUI;
+    }
+    
+    private void OnDisable()
+    {
+        controls.GameEvents.Disable();
+        EnemySpawnManager.AllSpawnerDead -= HandleAllSpawnersDead;
+        GameEvents.OnHasSettingsUICoveredUpAugmentUI -= SetHasSettingsUICoveredUpAugmentUI;
     }
 }

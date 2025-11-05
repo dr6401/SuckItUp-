@@ -83,6 +83,10 @@ MonoBehaviour:
   weaponHandler: {fileID: 0}
   victoryText: {fileID: 0}
   gameOver: 0
+  gameLost: 0
+  enemyFoldersFolder: {fileID: 0}
+  gameCanvas: {fileID: 0}
+  augmentSelectionUI: {fileID: 0}
 --- !u!1001 &1924225628340879379
 PrefabInstance:
   m_ObjectHideFlags: 0

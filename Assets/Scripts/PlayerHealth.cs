@@ -92,9 +92,11 @@ public class PlayerHealth : MonoBehaviour
     private void OnEnable()
     {
         GameEvents.OnSuckDust += HealFromVampire;
+        GameEvents.OnLevelTimeRanOut += Die;
     }
     private void OnDisable()
     {
         GameEvents.OnSuckDust -= HealFromVampire;
+        GameEvents.OnLevelTimeRanOut -= Die;
     }
 }

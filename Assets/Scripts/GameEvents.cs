@@ -11,6 +11,8 @@ public static class GameEvents
         public static Action<bool> OnHasSettingsUICoveredUpAugmentUI;
         public static Action OnDamageTaken;
         public static Action OnEnteredMainMenu;
+        public static Action OnLevelTimeRanOut;
+        public static Action OnLowLevelTimer;
         
         // SETTINGS
         public static Action<bool> OnMouseInverted;
