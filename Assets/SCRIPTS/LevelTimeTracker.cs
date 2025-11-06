@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using TMPro;
 public class LevelTimeTracker : MonoBehaviour
@@ -10,6 +11,14 @@ public class LevelTimeTracker : MonoBehaviour
     private float timeLeft;
     private bool timeRanOut = false;
     private bool signaledLowTimer = false;
+
+    private bool hasPlayerDied = false;
+
+    private void Awake()
+    {
+        Debug.Log("LevelTimeTracker AWAKED");
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,7 +31,7 @@ public class LevelTimeTracker : MonoBehaviour
     void Update()
     {
         if (timeRanOut) return;
-        if (Time.timeScale >= 1)
+        if (Time.timeScale >= 1 && !hasPlayerDied)
         {
             timeLeft -= Time.deltaTime;   
         }
@@ -56,5 +65,20 @@ public class LevelTimeTracker : MonoBehaviour
             float seconds = timeLeft % 60;
             timerText.text = $"{minutes:0}:{seconds:00.0}"; 
         }
+    }
+
+    private void SetHasPlayerDiedToTrue()
+    {
+        hasPlayerDied = true;
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.OnPlayerDeath += SetHasPlayerDiedToTrue;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnPlayerDeath -= SetHasPlayerDiedToTrue;
     }
 }
