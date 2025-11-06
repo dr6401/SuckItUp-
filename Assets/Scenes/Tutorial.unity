@@ -8327,6 +8327,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 569392927}
     - target: {fileID: 5666044982448068472, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
+      propertyPath: recoilAmount
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5666044982448068472, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: hitEffectPrefab
       value: 
       objectReference: {fileID: 3790989708882211815, guid: 2747cb491fc6dd948abc03eaceb84f28, type: 3}

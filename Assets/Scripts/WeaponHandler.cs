@@ -5,6 +5,7 @@ using System.Collections;
 using TMPro;
 using System;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class WeaponHandler : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class WeaponHandler : MonoBehaviour
     private int currentAmmo;
     [SerializeField] private TMP_Text ammoText;
     public Animator primaryWeaponAnimator;
+    [SerializeField] private float recoilAmount = 0.1f;
     public bool isAiming;
     public bool inputBlocked = false;
     private float notAminingCameraFOV = 80f;
@@ -168,6 +170,14 @@ public class WeaponHandler : MonoBehaviour
         RaycastHit hit;
         Vector3 shootOrigin = camera.transform.position;
         Vector3 shootDirection = camera.transform.forward;
+        if (!isAiming)
+        {
+            shootDirection = (shootDirection + new Vector3(
+                Random.Range(-recoilAmount, recoilAmount),
+                Random.Range(-recoilAmount, recoilAmount),
+                Random.Range(-recoilAmount, recoilAmount)
+            )).normalized;
+        }
         Instantiate(muzzleFlashPrefab, endOfBarrel.position + endOfBarrel.forward * 0.2f + endOfBarrel.up * -0.025f, endOfBarrel.rotation, endOfBarrel);
 
         //Debug.Log("Shooting!");
