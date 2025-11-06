@@ -117,7 +117,7 @@ namespace MoreMountains.Tools
 		}
 
 		/// <summary>
-		/// Every frame, we fill the bar smoothly according to loading progress
+		//// Every frame, we fill the bar smoothly according to loading progress
 		/// </summary>
 		protected virtual void Update()
 		{
