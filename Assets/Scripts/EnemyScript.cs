@@ -58,7 +58,7 @@ public class EnemyScript : MonoBehaviour
     
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("Collided with player, timeSinceAttack: " + timeSinceAttack);
+        //Debug.Log("Collided with player, timeSinceAttack: " + timeSinceAttack);
         if (other.CompareTag("PlayerHitBox") && timeSinceAttack > attackCooldown)
         {
             HitPlayer();

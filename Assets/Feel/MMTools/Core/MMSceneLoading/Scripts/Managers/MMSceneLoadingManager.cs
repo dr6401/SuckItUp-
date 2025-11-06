@@ -125,6 +125,7 @@ namespace MoreMountains.Tools
 			#if MM_UI
 				_progressBarImage.fillAmount = MMMaths.Approach(_progressBarImage.fillAmount,_fillTarget,Time.deltaTime*ProgressBarSpeed);
 			#endif
+			Debug.Log($"_asyncOperation.progress: {_asyncOperation?.progress}");
 		}
 
 		/// <summary>
@@ -146,7 +147,7 @@ namespace MoreMountains.Tools
 			// while the scene loads, we assign its progress to a target that we'll use to fill the progress bar smoothly
 			while (_asyncOperation.progress < 0.9f) 
 			{
-				_fillTarget = _asyncOperation.progress;
+				_fillTarget = Mathf.Clamp01(_asyncOperation.progress / 0.9f);
 				yield return null;
 			}
 			// when the load is close to the end (it'll never reach it), we set it to 100%
@@ -182,6 +183,7 @@ namespace MoreMountains.Tools
 			#if MM_UI
 			_progressBarImage.fillAmount = 0f;
 			LoadingText.text = _loadingTextValue;
+			StartCoroutine(MMFade.FadeCanvasGroup(LoadingCompleteAnimation,0.1f,1f));
 			#endif
 		}
 
@@ -195,7 +197,7 @@ namespace MoreMountains.Tools
 			#if MM_UI
 			StartCoroutine(MMFade.FadeCanvasGroup(LoadingProgressBar,0.1f,0f));
 			StartCoroutine(MMFade.FadeCanvasGroup(LoadingAnimation,0.1f,0f));
-			StartCoroutine(MMFade.FadeCanvasGroup(LoadingCompleteAnimation,0.1f,1f));
+			//StartCoroutine(MMFade.FadeCanvasGroup(LoadingCompleteAnimation,0.1f,1f));
 			#endif
 		}
 	}

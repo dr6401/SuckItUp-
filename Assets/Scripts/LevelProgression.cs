@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using MoreMountains.Feedbacks;
 
 public class LevelProgression : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class LevelProgression : MonoBehaviour
     [SerializeField] private GameObject level3AreaObject;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject loadingLevelTextObject;
+    [SerializeField] private MMFeedbacks loadLvl1SceneFeedback;
+    [SerializeField] private MMFeedbacks loadLvl2SceneFeedback;
+    [SerializeField] private MMFeedbacks loadLvl3SceneFeedback;
     private Vector3 adjustedPlayerPosition;
 
     private Collider level1Area;
@@ -54,7 +58,7 @@ public class LevelProgression : MonoBehaviour
             currentTimer += Time.deltaTime;
             if (currentTimer >= levelLoadingTime)
             {
-                SceneManager.LoadScene("Level1");
+                LoadLvl1Scene();
             }
         }
         else if (isPlayerInsideBounds(level2Area.bounds, adjustedPlayerPosition) && PlayerPrefs.GetInt("Level1") == 1)
@@ -64,7 +68,7 @@ public class LevelProgression : MonoBehaviour
             currentTimer += Time.deltaTime;
             if (currentTimer >= levelLoadingTime)
             {
-                SceneManager.LoadScene("Level2");
+                LoadLvl2Scene();
             }
         }
         else if (isPlayerInsideBounds(level3Area.bounds, adjustedPlayerPosition) && PlayerPrefs.GetInt("Level2") == 1)
@@ -74,7 +78,7 @@ public class LevelProgression : MonoBehaviour
             currentTimer += Time.deltaTime;
             if (currentTimer >= levelLoadingTime)
             {
-                SceneManager.LoadScene("Level3");
+                LoadLvl3Scene();
             }
         }
         else {
@@ -90,5 +94,18 @@ public class LevelProgression : MonoBehaviour
     {
         return player.x >= bounds.min.x && player.x <= bounds.max.x
             && player.z >= bounds.min.z && player.z <= bounds.max.z;
+    }
+    
+    private void LoadLvl1Scene()
+    {
+        loadLvl1SceneFeedback?.PlayFeedbacks();
+    }
+    private void LoadLvl2Scene()
+    {
+        loadLvl2SceneFeedback?.PlayFeedbacks();
+    }
+    private void LoadLvl3Scene()
+    {
+        loadLvl3SceneFeedback?.PlayFeedbacks();
     }
 }

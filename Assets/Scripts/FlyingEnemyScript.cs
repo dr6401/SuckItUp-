@@ -117,7 +117,7 @@ public class FlyingEnemyScript : MonoBehaviour
             randomDirection.y = Mathf.Abs(randomDirection.y); // Make sure the next direction will be upwards not downwards
             randomDirection.y *= 2f; // Make sure that y direction is not only positive but actually points steeply high
             randomDirection.Normalize();
-            Debug.Log("Enemy was low, so his next vector will be: X: " + randomDirection.x + " + Y: " + randomDirection.y + " + Z: "+ randomDirection.z);
+            //Debug.Log("Enemy was low, so his next vector will be: X: " + randomDirection.x + " + Y: " + randomDirection.y + " + Z: "+ randomDirection.z);
         }
                                                                   
         if (!Physics.Raycast(transform.position, randomDirection, wanderingDistance, layerMask)) {

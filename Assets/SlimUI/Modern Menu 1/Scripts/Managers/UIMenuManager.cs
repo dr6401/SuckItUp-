@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using MoreMountains.Feedbacks;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -72,6 +73,10 @@ namespace SlimUI.ModernMenu{
         public Slider loadingBar;
         public TMP_Text loadPromptText;
 		public KeyCode userPromptKey;
+
+		[Header("MM FEEDBACKS")] 
+		[SerializeField] private MMFeedbacks loadHallwaySceneFeedback;
+		[SerializeField] private MMFeedbacks loadTutorialSceneFeedback;
 
 		[Header("SFX")]
         [Tooltip("The GameObject holding the Audio Source component for the HOVER SOUND")]
@@ -153,6 +158,16 @@ namespace SlimUI.ModernMenu{
 				}
 			}
 			else Debug.Log("The button has no name for the scene as the parameter");
+		}
+		
+		public void PlayLoadSceneHallway()
+		{
+			loadHallwaySceneFeedback?.PlayFeedbacks();
+		}
+		
+		public void PlayLoadSceneTutorial()
+		{
+			loadTutorialSceneFeedback?.PlayFeedbacks();
 		}
 
 		public void  DisablePlayCampaign(){
@@ -274,6 +289,7 @@ namespace SlimUI.ModernMenu{
 		}
 
 		// Load Bar synching animation
+		// Loading done through Feel from MMFeedbacks
 		IEnumerator LoadAsynchronously(string sceneName){ // scene name is just the name of the current scene being loaded
 			AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
 			operation.allowSceneActivation = false;

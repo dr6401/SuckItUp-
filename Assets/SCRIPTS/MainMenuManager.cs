@@ -1,9 +1,12 @@
 using System.Collections;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
+    [SerializeField] private MMFeedbacks loadHallwaySceneFeedback;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,7 +23,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void LoadHallwayScene()
     {
-        SceneManager.LoadScene("Hallway");
+        loadHallwaySceneFeedback?.PlayFeedbacks();
     }
 
     public void QuiteGame()

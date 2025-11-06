@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using Cursor = UnityEngine.Cursor;
 
 public class GameManager : MonoBehaviour
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     private bool isAugmentUIOpenedEvenMaybeUnderSettingsCanvas = false;
     private bool isSettingsCanvasCoveringAugmentUI = false;
     private PlayerControls controls;
+    [SerializeField] private MMFeedbacks loadHallwaySceneFeedback;
     
     List<GameObject> dustParticles = new List<GameObject>();
 
@@ -85,7 +87,8 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("Level2", 0);
             if (controls.GameEvents.Restart.triggered)
             {
-                SceneManager.LoadScene("Hallway"); // After every death spawn player in hallway
+                Debug.Log("Triggered PlayLoadSceneHallway()");
+                PlayLoadSceneHallway(); // After every death spawn player in hallway
             }
         }
 
@@ -334,7 +337,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, 1);
         PlayerPrefs.Save();
         yield return new WaitForSeconds(timeToLoadNextScene);
-        SceneManager.LoadScene("Hallway");
+        PlayLoadSceneHallway();
         /*yield return new WaitForSeconds(timeToLoadNextScene);
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex + 1);*/
@@ -343,6 +346,11 @@ public class GameManager : MonoBehaviour
     private void SetHasSettingsUICoveredUpAugmentUI(bool hasSettingsUICoveredUpAugmentUI1)
     {
         isAugmentUIOpenedEvenMaybeUnderSettingsCanvas = hasSettingsUICoveredUpAugmentUI1;
+    }
+
+    private void PlayLoadSceneHallway()
+    {
+        loadHallwaySceneFeedback?.PlayFeedbacks();
     }
     
     private void OnEnable()

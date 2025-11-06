@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 
 public class PlayerEndLevelChecker : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class PlayerEndLevelChecker : MonoBehaviour
     private bool hasShownGoodJobMessage = false;
     private bool hasNotStartedTeleportingToLevel1Yet = true;
     private int sceneLoadingTimer = 5;
+    [SerializeField] private MMFeedbacks loadHallwaySceneFeedback;
     void Start()
     {
         if (tutorialManager == null)
@@ -78,6 +80,6 @@ public class PlayerEndLevelChecker : MonoBehaviour
             yield return new WaitForSeconds(1);
             sceneLoadingTimer--;
         }
-        SceneManager.LoadScene("Hallway");
+        loadHallwaySceneFeedback?.PlayFeedbacks();
     }
 }

@@ -20981,6 +20981,14 @@ PrefabInstance:
       propertyPath: gameOverText
       value: 
       objectReference: {fileID: 1906739399}
+    - target: {fileID: 8729331478503217124, guid: 74bfd1b1883b2644bbbe559b3ffd3798, type: 3}
+      propertyPath: normalMaxTime
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 8729331478503217124, guid: 74bfd1b1883b2644bbbe559b3ffd3798, type: 3}
+      propertyPath: hardcoreMaxTime
+      value: 300
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
