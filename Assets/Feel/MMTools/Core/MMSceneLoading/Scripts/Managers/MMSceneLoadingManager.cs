@@ -125,7 +125,6 @@ namespace MoreMountains.Tools
 			#if MM_UI
 				_progressBarImage.fillAmount = MMMaths.Approach(_progressBarImage.fillAmount,_fillTarget,Time.deltaTime*ProgressBarSpeed);
 			#endif
-			Debug.Log($"_asyncOperation.progress: {_asyncOperation?.progress}");
 		}
 
 		/// <summary>

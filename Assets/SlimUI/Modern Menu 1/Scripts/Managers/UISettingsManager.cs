@@ -69,7 +69,7 @@ namespace SlimUI.ModernMenu{
 
 		public void  Start (){
 			// check difficulty
-			if(PlayerPrefs.GetInt("NormalDifficulty") == 1){
+			if(PlayerPrefs.GetInt("NormalDifficulty", 1) == 1){
 				difficultynormaltextLINE.gameObject.SetActive(true);
 				difficultyhardcoretextLINE.gameObject.SetActive(false);
 			}
@@ -80,22 +80,23 @@ namespace SlimUI.ModernMenu{
 			}
 
 			// check slider values
-			musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
-			sfxSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SFXVolume");
-			sensitivitySlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Sensitivity");
-			fOVSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("FOV");
-			graphicsSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Graphics", 1);
+			musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume", GameConstants.defaultMusicVolume);
+			sfxSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SFXVolume", GameConstants.defaultSFXVolume);
+			sensitivitySlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Sensitivity", GameConstants.defaultSensitivity);
+			fOVSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("FOV", GameConstants.defaultFOV);
+			Debug.Log($"sensitivitySlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat(\"Sensitivity\", GameConstants.defaultSensitivity);: {PlayerPrefs.GetFloat("Sensitivity", GameConstants.defaultSensitivity)}");
+			graphicsSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Graphics", GameConstants.defaultGraphics);
 			//sensitivityYSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("YSensitivity");
 			//mouseSmoothSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MouseSmoothing");
 
 			// check full screen
-			if(Screen.fullScreen == true)
+			if(Screen.fullScreen)
 			{
 				fullscreentext.GetComponent<TMP_Text>().text = "on";
 				PlayerPrefs.SetInt("Fullscreen", 1);
 				isFullscreen = true;
 			}
-			else if(Screen.fullScreen == false){
+			else if(!Screen.fullScreen){
 				fullscreentext.GetComponent<TMP_Text>().text = "off";
 				PlayerPrefs.SetInt("Fullscreen", 0);
 				isFullscreen = false;
@@ -119,7 +120,7 @@ namespace SlimUI.ModernMenu{
 
 			// check shadow distance/enabled
 			if(platform == Platform.Desktop){
-				if(PlayerPrefs.GetInt("Shadows") == 0){
+				if(PlayerPrefs.GetInt("Shadows", GameConstants.defaultShadows) == 0){
 					//QualitySettings.shadowCascades = 0;
 					//QualitySettings.shadowDistance = 0;
 					urpAsset.shadowCascadeCount = 1;
@@ -131,7 +132,7 @@ namespace SlimUI.ModernMenu{
 					shadowlowtextLINE.gameObject.SetActive(false);
 					shadowhightextLINE.gameObject.SetActive(false);
 				}
-				else if(PlayerPrefs.GetInt("Shadows") == 1){
+				else if(PlayerPrefs.GetInt("Shadows", GameConstants.defaultShadows) == 1){
 					//QualitySettings.shadowCascades = 2;
 					//QualitySettings.shadowDistance = 75;
 					urpAsset.shadowCascadeCount = 2;
@@ -143,7 +144,7 @@ namespace SlimUI.ModernMenu{
 					shadowlowtextLINE.gameObject.SetActive(true);
 					shadowhightextLINE.gameObject.SetActive(false);
 				}
-				else if(PlayerPrefs.GetInt("Shadows") == 2){
+				else if(PlayerPrefs.GetInt("Shadows", GameConstants.defaultShadows) == 2){
 					//QualitySettings.shadowCascades = 4;
 					//QualitySettings.shadowDistance = 500;
 					urpAsset.shadowCascadeCount = 4;
@@ -198,19 +199,19 @@ namespace SlimUI.ModernMenu{
 			}
 
 			// check mouse inverse
-			if(PlayerPrefs.GetInt("Inverted")==0){
+			if(PlayerPrefs.GetInt("Inverted", GameConstants.defaultInvertedMouse)==0){
 				invertmousetext.GetComponent<TMP_Text>().text = "off";
 			}
-			else if(PlayerPrefs.GetInt("Inverted")==1){
+			else if(PlayerPrefs.GetInt("Inverted", GameConstants.defaultInvertedMouse)==1){
 				invertmousetext.GetComponent<TMP_Text>().text = "on";
 			}
 			
 			// check weapon switch scroll
 			
-			if(PlayerPrefs.GetInt("WeaponSwitchScroll")==0){
+			if(PlayerPrefs.GetInt("WeaponSwitchScroll", GameConstants.defaultWeaponSwitchScroll)==0){
 				weaponswitchscrollText.GetComponent<TMP_Text>().text = "off";
 			}
-			else if(PlayerPrefs.GetInt("WeaponSwitchScroll")==1){
+			else if(PlayerPrefs.GetInt("WeaponSwitchScroll", GameConstants.defaultWeaponSwitchScroll)==1){
 				weaponswitchscrollText.GetComponent<TMP_Text>().text = "on";
 			}
 
@@ -231,19 +232,19 @@ namespace SlimUI.ModernMenu{
 			}*/
 
 			// check texture quality
-			if(PlayerPrefs.GetInt("Textures") == 0){
+			if(PlayerPrefs.GetInt("Textures", GameConstants.defaultTextures) == 0){
 				QualitySettings.globalTextureMipmapLimit = 2;
 				texturelowtextLINE.gameObject.SetActive(true);
 				texturemedtextLINE.gameObject.SetActive(false);
 				texturehightextLINE.gameObject.SetActive(false);
 			}
-			else if(PlayerPrefs.GetInt("Textures") == 1){
+			else if(PlayerPrefs.GetInt("Textures", GameConstants.defaultTextures) == 1){
 				QualitySettings.globalTextureMipmapLimit = 1;
 				texturelowtextLINE.gameObject.SetActive(false);
 				texturemedtextLINE.gameObject.SetActive(true);
 				texturehightextLINE.gameObject.SetActive(false);
 			}
-			else if(PlayerPrefs.GetInt("Textures") == 2){
+			else if(PlayerPrefs.GetInt("Textures", GameConstants.defaultTextures) == 2){
 				QualitySettings.globalTextureMipmapLimit = 0;
 				texturelowtextLINE.gameObject.SetActive(false);
 				texturemedtextLINE.gameObject.SetActive(false);
@@ -310,6 +311,16 @@ namespace SlimUI.ModernMenu{
 			PlayerPrefs.SetFloat("Graphics", graphicsSlider.GetComponent<Slider>().value);
 			urpAsset.renderScale = graphicsSlider.GetComponent<Slider>().value;
 		}
+		
+		
+		/*public void DefaultSettings()
+		{
+			Debug.Log("Resetting all settings");
+			PlayerPrefs.DeleteAll();
+			PlayerPrefs.Save();
+			fOVSlider.GetComponent<Slider>().value = GameConstants.defaultFOV;
+			graphicsSlider.GetComponent<Slider>().value = GameConstants.defaultGraphics;
+		}*/
 
 		/*public void SensitivityYSlider (){
 			PlayerPrefs.SetFloat("YSensitivity", sliderValueYSensitivity);

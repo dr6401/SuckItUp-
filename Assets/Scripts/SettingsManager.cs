@@ -19,6 +19,7 @@ public class SettingsManager : MonoBehaviour
     public bool isMouseInverted = false;
     public bool isDifficultyHardcore = false;
     public float fOV;
+    public float sensitivity;
     public bool isWeaponSwitchWithScrollEnabled = true;
 
     public static PlayerControls controls;
@@ -42,10 +43,18 @@ public class SettingsManager : MonoBehaviour
             controls.GameEvents.Enable();
         }
         ApplyAllSavedBindings();
-        fOV = PlayerPrefs.GetFloat("FOV", 70);
-        isMouseInverted = PlayerPrefs.GetInt("Inverted", 0) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
-        isDifficultyHardcore = PlayerPrefs.GetInt("HardCoreDifficulty", 0) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
-        isWeaponSwitchWithScrollEnabled = PlayerPrefs.GetInt("WeaponSwitchScroll", 0) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
+        ApplyAllSavedBindings();
+        sensitivity = PlayerPrefs.GetFloat("Sensitivity", GameConstants.defaultSensitivity);
+        fOV = PlayerPrefs.GetFloat("FOV", GameConstants.defaultFOV);
+        isMouseInverted = PlayerPrefs.GetInt("Inverted", GameConstants.defaultInvertedMouse) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
+        isDifficultyHardcore = PlayerPrefs.GetInt("HardCoreDifficulty", GameConstants.defaultHardcoreDifficulty) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
+        isWeaponSwitchWithScrollEnabled = PlayerPrefs.GetInt("WeaponSwitchScroll", GameConstants.defaultWeaponSwitchScroll) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
+        PlayerPrefs.SetFloat("Sensitivity", sensitivity);
+        PlayerPrefs.SetFloat("FOV", fOV);
+        PlayerPrefs.SetInt("Inverted", isMouseInverted ? 1 : 0);
+        PlayerPrefs.SetInt("HardCoreDifficulty", isDifficultyHardcore ? 1 : 0);
+        PlayerPrefs.SetInt("WeaponSwitchScroll", isWeaponSwitchWithScrollEnabled ? 1 : 0);
+        PlayerPrefs.Save();
     }
 
     private void ApplyAllSavedBindings()
@@ -121,6 +130,7 @@ public class SettingsManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
+        PlayerPrefs.Save();
         controls.Dispose();
     }
 }

@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
         if (!PlayerPrefs.HasKey("Sensitivity"))
         {
             PlayerPrefs.SetFloat("Sensitivity", mouseSensitivity);
-            Debug.Log("Player didnt have sensitivity yet. Setting it to: " + PlayerPrefs.GetFloat("Sensitivity"));
+            Debug.Log("Player didn't have sensitivity yet. Setting it to: " + PlayerPrefs.GetFloat("Sensitivity"));
         }
         else
         {
