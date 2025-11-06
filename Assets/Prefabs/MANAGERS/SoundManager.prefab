@@ -305,6 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1191b09fcbaf0374fb21ad8ff6e93e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 6de2cc9ccd7156847a9049dce43557fe, type: 2}
   music: {fileID: 5558404743378611239}
   SFX: {fileID: 564658464915958062}
   loudSFX: {fileID: 7304434123828503156}

@@ -2155,6 +2155,10 @@ PrefabInstance:
       value: SettingsManager
       objectReference: {fileID: 0}
     - target: {fileID: 5010069614515891488, guid: c8878c5af1e178249a581f7d569e0f08, type: 3}
+      propertyPath: audioMixer
+      value: 
+      objectReference: {fileID: 24100000, guid: 6de2cc9ccd7156847a9049dce43557fe, type: 2}
+    - target: {fileID: 5010069614515891488, guid: c8878c5af1e178249a581f7d569e0f08, type: 3}
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 1699377965}

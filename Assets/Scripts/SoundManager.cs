@@ -1,9 +1,12 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
+    [Header("-------Audio Mixer-------")]
+    [SerializeField] private AudioMixer audioMixer;
     [Header("-------Audio Sources-------")]
     [SerializeField] private AudioSource music;
     [SerializeField] private AudioSource SFX;
@@ -124,18 +127,10 @@ public class SoundManager : MonoBehaviour
 
     private void SetupAudio()
     {
-        if (!PlayerPrefs.HasKey("SFXVolume"))
-        {
-            currentSFXVolume = 0.5f;
-            currentMusicVolume = 0.05f;
-        }
-        else
-        {
-            currentSFXVolume = PlayerPrefs.GetFloat("SFXVolume");
-            currentMusicVolume = PlayerPrefs.GetFloat("MusicVolume");
-        }
-        music.volume = currentMusicVolume;
-        SFX.volume = currentSFXVolume;
+        audioMixer.SetFloat("MusicVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("MusicVolume", GameConstants.defaultMusicVolume), 0.0001f, 1f)) * 20 - 10);
+        audioMixer.SetFloat("SFXVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("SFXVolume", GameConstants.defaultSFXVolume), 0.0001f, 1f)) * 20);
+        music.volume = 1;
+        SFX.volume = 1;
         music.loop = true;
         PlayMainTheme();
         SFXSounds = new AudioClip[][] { dustParticlesCrumblings, mouseClicks, vacuumingSounds };
