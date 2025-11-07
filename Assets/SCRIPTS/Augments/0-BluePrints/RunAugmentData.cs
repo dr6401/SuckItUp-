@@ -81,6 +81,7 @@ public class RunAugmentData : ScriptableObject
         if (state == PlayModeStateChange.ExitingPlayMode)
         {
             ResetChosenAugments();
+            ResetPermanentlyChosenAugments();
         }
     }
 #endif
