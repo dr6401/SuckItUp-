@@ -163,7 +163,7 @@ public class WeaponHandler : MonoBehaviour
     }
     private void Shoot()
     {
-        int layerMask = ~LayerMask.GetMask("Player", "Projectile");
+        int layerMask = ~LayerMask.GetMask("Player", "Projectile", "PlayerHitBox", "PlayerHeadHitBox");
 
         GameEvents.OnShoot?.Invoke();
         
