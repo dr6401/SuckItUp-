@@ -108,7 +108,7 @@ public class EnemySpawner : MonoBehaviour
                         {
                             foundValidSpot = true;
                             finalSpawnPosition = hit.position;
-                            Debug.Log("You might have forgotten to assign a Non-Spawn-Area-Collider Object to spawner " + name);
+                            //Debug.Log("You might have forgotten to assign a Non-Spawn-Area-Collider Object to spawner " + name);
                             break;
                         }
                     }

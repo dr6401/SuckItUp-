@@ -40,7 +40,7 @@ public class WeaponHandler : MonoBehaviour
     private float minAimingFOV = 45f;
     private float maxAimingFOV = 60f;
     private float targetFOV;
-    private float zoomSpeed = 6f;
+    //private float zoomSpeed = 6f;
     private bool isAlreadySucking;
 
     private PlayerControls controls;

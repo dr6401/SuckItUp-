@@ -4,6 +4,7 @@ using System.Numerics;
 using UnityEngine;
 using UnityEngine.Android;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
@@ -22,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canMove = true;
     private bool isRunning = false;
     public bool inputBlocked = false;
-    [SerializeField] private SphereCollider playerHitBox;
+    [SerializeField] private SphereCollider playerFeetColliderHitBox;
     private PlayerControls controls;
 
     private float verticalRotation = 0f;
@@ -107,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
             RotatePlayer();
             if (controls.Player.Jump.IsPressed() && characterController.isGrounded) // Jump
             {
-                if (!Physics.Raycast(transform.position - Vector3.down * 0.25f, transform.up, playerHeight * 1.4f))
+                if (!Physics.Raycast(transform.position - Vector3.down * 0.25f, transform.up, playerHeight * 1.4f, ~(1 << LayerMask.NameToLayer("PlayerHeadHitBox"))))
                 {
                     Jump();
                 }
@@ -164,6 +165,7 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("isSliding: " + isSliding);
         //Debug.Log("horizontalMoveSpeed.y.sqrMagnitude: " + horizontalMoveSpeed.y);
         //Debug.Log("MoveSpeed: " + moveSpeed);
+        //Debug.Log($"Vertical velocity: {verticalVelocity}");
     }
 
     void Move()
@@ -280,6 +282,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void AddVerticalVelocity()
+    {
+        Debug.Log($"Boutta reduce verticalVelocity by {Mathf.Abs(verticalVelocity)}");
+        verticalVelocity -= Mathf.Abs(verticalVelocity);
+    }
+
     void RotatePlayer()
     {
         lookDelta = controls.Player.Look.ReadValue<Vector2>();
@@ -354,8 +362,8 @@ public class PlayerMovement : MonoBehaviour
             0.917f * characterController.height,
             cameraTransform.localPosition.z
         );
-        playerHitBox.radius *= scale * 1.2f; // Make the hit box a bit bigger for safety
-        playerHitBox.center = new Vector3(0, -playerHitBox.radius * 0.8f, 0); // * 0.5f for fine tunning
+        playerFeetColliderHitBox.radius *= scale * 1.2f; // Make the hit box a bit bigger for safety
+        playerFeetColliderHitBox.center = new Vector3(0, -playerFeetColliderHitBox.radius * 0.8f, 0); // * 0.5f for fine tunning
     }
     
     /*private void OnDrawGizmos()
