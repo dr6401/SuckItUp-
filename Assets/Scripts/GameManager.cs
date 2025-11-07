@@ -314,6 +314,7 @@ public class GameManager : MonoBehaviour
 
     private void EndLevel()
     {
+        GameEvents.OnLevelCompleted?.Invoke();
         Destroy(player);
         victoryText.SetActive(true);
         gameOver = true;

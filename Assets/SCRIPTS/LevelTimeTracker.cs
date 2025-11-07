@@ -12,7 +12,7 @@ public class LevelTimeTracker : MonoBehaviour
     private bool timeRanOut = false;
     private bool signaledLowTimer = false;
 
-    private bool hasPlayerDied = false;
+    private bool canLevelTimerDecrease = false;
 
     private void Awake()
     {
@@ -31,7 +31,7 @@ public class LevelTimeTracker : MonoBehaviour
     void Update()
     {
         if (timeRanOut) return;
-        if (Time.timeScale >= 1 && !hasPlayerDied)
+        if (Time.timeScale >= 1 && !canLevelTimerDecrease)
         {
             timeLeft -= Time.deltaTime;   
         }
@@ -67,18 +67,20 @@ public class LevelTimeTracker : MonoBehaviour
         }
     }
 
-    private void SetHasPlayerDiedToTrue()
+    private void StopLevelTimer()
     {
-        hasPlayerDied = true;
+        canLevelTimerDecrease = true;
     }
 
     private void OnEnable()
     {
-        GameEvents.OnPlayerDeath += SetHasPlayerDiedToTrue;
+        GameEvents.OnPlayerDeath += StopLevelTimer;
+        GameEvents.OnLevelCompleted += StopLevelTimer;
     }
 
     private void OnDisable()
     {
-        GameEvents.OnPlayerDeath -= SetHasPlayerDiedToTrue;
+        GameEvents.OnPlayerDeath -= StopLevelTimer;
+        GameEvents.OnLevelCompleted -= StopLevelTimer;
     }
 }
