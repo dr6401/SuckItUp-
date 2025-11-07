@@ -129,6 +129,14 @@ public class SoundManager : MonoBehaviour
     {
         audioMixer.SetFloat("MusicVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("MusicVolume", GameConstants.defaultMusicVolume), 0.0001f, 1f)) * 20 - 10);
         audioMixer.SetFloat("SFXVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("SFXVolume", GameConstants.defaultSFXVolume), 0.0001f, 1f)) * 20);
+        if (PlayerPrefs.GetFloat("MusicVolume") < 0.001f)
+        {
+            audioMixer.SetFloat("MusicVolume", -80f);
+        }
+        if (PlayerPrefs.GetFloat("SFXVolume") < 0.001f)
+        {
+            audioMixer.SetFloat("SFXVolume", -80f);
+        }
         music.volume = 1;
         SFX.volume = 1;
         music.loop = true;
