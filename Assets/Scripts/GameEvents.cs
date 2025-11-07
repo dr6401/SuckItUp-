@@ -14,6 +14,7 @@ public static class GameEvents
         public static Action OnEnteredMainMenu;
         public static Action OnLevelTimeRanOut;
         public static Action OnLowLevelTimer;
+        public static Action OnResetHasPlayerDiedInPreviousScene;
         
         // SETTINGS
         public static Action<bool> OnMouseInverted;
