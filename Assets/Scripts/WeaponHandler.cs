@@ -72,6 +72,8 @@ public class WeaponHandler : MonoBehaviour
     private float nonOverchargedFireRate = 0.2f; // Set this to fireRate everytime it gets permanently changed (so like with MinigunMayhem, not with OverChargedVacuum)
     private bool isDuststormShellEnabled = false;
     [SerializeField] private GameObject shieldVFXObject;
+    private bool isAmmoNationEnabled = false;
+    private float ammoNationConversionIncrease = 1;
 
     private void Awake()
     {
@@ -244,17 +246,18 @@ public class WeaponHandler : MonoBehaviour
         SuckDustParticlesIn(true);
     }
 
-    public void RefillAmmo(int reloadAmmount)
+    public void RefillAmmo(int reloadAmount)
     {
         if (isVampire && currentAmmo >= 100)
         {
             OnHealthIncrease?.Invoke();
         }
 
-        else if (reloadAmmount > 0)
+        else if (reloadAmount > 0)
         {
             OnAmmoIncrease?.Invoke();
-            currentAmmo += reloadAmmount;
+            if (isAmmoNationEnabled) reloadAmount = Mathf.RoundToInt(reloadAmount * ammoNationConversionIncrease);
+            currentAmmo += reloadAmount;
         }
 
         if (isAlreadySucking && isOverchargedVacuumEnabled) // Overcharging should happen regardless of DirtyVampire being active
@@ -445,6 +448,12 @@ public class WeaponHandler : MonoBehaviour
     public void ApplyDuststormShell()
     {
         isDuststormShellEnabled = true;
+    }
+
+    public void ApplyAmmoNation(float conversionRateIncrease)
+    {
+        isAmmoNationEnabled = true;
+        ammoNationConversionIncrease = conversionRateIncrease;
     }
 
 #endregion

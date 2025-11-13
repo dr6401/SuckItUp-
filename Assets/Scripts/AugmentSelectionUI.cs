@@ -21,7 +21,7 @@ public class AugmentSelectionUI : MonoBehaviour
     [Header("Augment Persistence")]
     [SerializeField] private RunAugmentData runAugmentData;
     [Header("-----TESTING-----")]
-    [SerializeField] private bool testing_offerOnlyGoldAugments = false;
+    [SerializeField] private bool testing_offerOnlyPrismaticAugments = false;
 
     private bool hasSettingsCoveredUpAugmentUI;
     
@@ -65,7 +65,7 @@ public class AugmentSelectionUI : MonoBehaviour
     public void TriggerAugmentSelection(GameObject playerRef, AugmentTier tier)
     {
         player = playerRef;
-        List<Augment> pool = testing_offerOnlyGoldAugments ? GetPoolByTier(AugmentTier.Gold) : GetPoolByTier(tier);// if we're testing, enable only silver augments
+        List<Augment> pool = testing_offerOnlyPrismaticAugments ? GetPoolByTier(AugmentTier.Prismatic) : GetPoolByTier(tier);// if we're testing, enable only silver augments
         pool.RemoveAll(augment => runAugmentData.IsAugmentInChosenAugments(augment));
         Debug.Log(tier + " pool: " + string.Join(", ", pool.Select(a => a.augmentName)));
         List<Augment> choices = GetRandomAugments(pool, numberOfChoices);
