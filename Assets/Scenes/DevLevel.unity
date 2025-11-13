@@ -5806,7 +5806,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1087401177}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
+      propertyPath: goldAugments.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: silverAugments.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
+      propertyPath: prismaticAugments.Array.size
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
@@ -5821,6 +5829,10 @@ PrefabInstance:
       propertyPath: 'silverAugments.Array.data[5]'
       value: 
       objectReference: {fileID: 11400000, guid: 4687281702bc50e47984aca3aa6a8f50, type: 2}
+    - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
+      propertyPath: 'silverAugments.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b99cd4b739db7c74f84de5a39eec5a34, type: 2}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: testing_offerOnlyGoldAugments
       value: 1

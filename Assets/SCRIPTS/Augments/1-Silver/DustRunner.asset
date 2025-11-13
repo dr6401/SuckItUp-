@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c46a76169e6af346ab8b6d389ea55c9, type: 3}
+  m_Name: DustRunner
+  m_EditorClassIdentifier: 
+  augmentName: Dust Runner
+  description: Increase movement speed while vacuuming by 40%
+  icon: {fileID: 21300000, guid: ffefe8e77f94c1144bfc05675c59c9be, type: 3}
+  tier: 0
+  category: 1

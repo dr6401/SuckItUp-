@@ -53,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
     private bool currentZoomiesSpeed;
     private float beforeZoomingMovementSpeed;
     private float sizeScale = 1f;
+    private bool isDustRunnerEnabled = false;
+    private float dustRunnerSpeedMultiplier = 1f;
 
     [Header("Camera")]
     public Transform cameraTransform;
@@ -195,7 +197,13 @@ public class PlayerMovement : MonoBehaviour
         }
         moveDirection.y = verticalVelocity;
 
-        characterController.Move(moveDirection * Time.deltaTime);
+        float currentDustRunnerMultiplierValue = 1f;
+        if (isDustRunnerEnabled && weaponHandler.isAlreadySucking)
+        {
+            currentDustRunnerMultiplierValue = dustRunnerSpeedMultiplier;
+            Debug.Log("DUST RUNNING");
+        }
+        characterController.Move(moveDirection * (currentDustRunnerMultiplierValue * Time.deltaTime));
     }
 
     void Jump()
@@ -364,6 +372,12 @@ public class PlayerMovement : MonoBehaviour
         );
         playerFeetColliderHitBox.radius *= scale * 1.2f; // Make the hit box a bit bigger for safety
         playerFeetColliderHitBox.center = new Vector3(0, -playerFeetColliderHitBox.radius * 0.8f, 0); // * 0.5f for fine tunning
+    }
+
+    public void ApplyDustRunner(float speedMultiplier)
+    {
+        isDustRunnerEnabled = true;
+        dustRunnerSpeedMultiplier *= speedMultiplier;
     }
     
     /*private void OnDrawGizmos()
