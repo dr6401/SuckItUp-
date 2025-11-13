@@ -40,7 +40,9 @@ public class WeaponHandler : MonoBehaviour
     private float aimingCameraFOVMultiplier = 0.6f;
     private float minAimingFOV = 45f;
     private float maxAimingFOV = 60f;
+
     private float targetFOV;
+
     //private float zoomSpeed = 6f;
     private bool isAlreadySucking;
 
@@ -56,14 +58,17 @@ public class WeaponHandler : MonoBehaviour
     public static event Action OnNoAmmoLeft;
     public static event Action OnHealthIncrease;
     // Update is called once per frame
-    
+
     // AUGMENT STUFF
     private bool isVampire = false;
+    private bool ammoRecyclerIsEnabled = false;
+    private int chanceToRecycleAmmoThreshold = 20; // 20 is default, this is set by augmentScript anyways
 
     private void Awake()
     {
         controls = SettingsManager.controls;
     }
+
     private void Start()
     {
         vacuumWeapon.SetActive(false);
@@ -77,25 +82,26 @@ public class WeaponHandler : MonoBehaviour
         else startingAmmo = hardcoreStartingAmmo;
         canWeaponSwitchWithScroll = SettingsManager.Instance.isWeaponSwitchWithScrollEnabled;
         currentAmmo = startingAmmo;
-        
-        
+
+
         if (endOfBarrel == null)
         {
             endOfBarrel = GetComponentInChildren<Transform>().Find("EndOfBarrel");
         }
-        
+
         if (soundManager == null)
         {
             soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
         }
     }
+
     void Update()
     {
         if (!inputBlocked)
         {
             timeSinceLastShot += Time.deltaTime;
             timePassedSinceLastWeaponSwitch += Time.deltaTime;
-            
+
             // Shoot    
             if (isShooterWeaponActive && controls.Player.Shoot.ReadValue<float>() > 0 && timeSinceLastShot >= fireRate)
             {
@@ -106,7 +112,7 @@ public class WeaponHandler : MonoBehaviour
                 else
                 {
                     Shoot();
-                    timeSinceLastShot = 0;   
+                    timeSinceLastShot = 0;
                 }
             }
             // Suck
@@ -122,6 +128,7 @@ public class WeaponHandler : MonoBehaviour
                 {
                     soundManager.PlayEndVacuuming();
                 }
+
                 isAlreadySucking = false;
             }
 
@@ -137,8 +144,9 @@ public class WeaponHandler : MonoBehaviour
                 {
                     crossHair.enabled = true;
                 }
+
                 primaryWeaponAnimator.SetBool("IsAiming", true);
-                
+
             }
             else
             {
@@ -146,8 +154,11 @@ public class WeaponHandler : MonoBehaviour
                 crossHair.enabled = false;
                 primaryWeaponAnimator.SetBool("IsAiming", false);
             }
+
             //Changing FOV for aiming transition
-            targetFOV = isAiming ? Mathf.Clamp(notAminingCameraFOV * aimingCameraFOVMultiplier, minAimingFOV, maxAimingFOV) : notAminingCameraFOV;
+            targetFOV = isAiming
+                ? Mathf.Clamp(notAminingCameraFOV * aimingCameraFOVMultiplier, minAimingFOV, maxAimingFOV)
+                : notAminingCameraFOV;
             cameraFOVController.RequestCameraFOVForAiming(targetFOV);
 
         }
@@ -155,19 +166,21 @@ public class WeaponHandler : MonoBehaviour
         {
             StopSuckingDustParticlesWhenInputBlocked();
         }
+
         ammoText.text = currentAmmo.ToString();
     }
 
     private void ShootOrVacuum(InputAction.CallbackContext context)
     {
-        
+
     }
+
     private void Shoot()
     {
         int layerMask = ~LayerMask.GetMask("Player", "Projectile", "PlayerHitBox", "PlayerHeadHitBox");
 
         GameEvents.OnShoot?.Invoke();
-        
+
         RaycastHit hit;
         Vector3 shootOrigin = camera.transform.position;
         Vector3 shootDirection = camera.transform.forward;
@@ -179,7 +192,9 @@ public class WeaponHandler : MonoBehaviour
                 Random.Range(-recoilAmount, recoilAmount)
             )).normalized;
         }
-        Instantiate(muzzleFlashPrefab, endOfBarrel.position + endOfBarrel.forward * 0.2f + endOfBarrel.up * -0.025f, endOfBarrel.rotation, endOfBarrel);
+
+        Instantiate(muzzleFlashPrefab, endOfBarrel.position + endOfBarrel.forward * 0.2f + endOfBarrel.up * -0.025f,
+            endOfBarrel.rotation, endOfBarrel);
 
         //Debug.Log("Shooting!");
 
@@ -211,6 +226,7 @@ public class WeaponHandler : MonoBehaviour
             soundManager.PlayStartVacuuming();
             isAlreadySucking = true;
         }
+
         SuckDustParticlesIn(true);
     }
 
@@ -221,10 +237,12 @@ public class WeaponHandler : MonoBehaviour
             OnHealthIncrease?.Invoke();
             return;
         }
+
         if (reloadAmmount > 0)
         {
             OnAmmoIncrease?.Invoke();
         }
+
         currentAmmo += reloadAmmount;
     }
 
@@ -237,7 +255,7 @@ public class WeaponHandler : MonoBehaviour
         shooterWeapon.SetActive(isShooterWeaponActive);
         vacuumWeapon.SetActive(isVacuumWeaponActive);
     }
-    
+
     private void WeaponSwitchWithScroll(InputAction.CallbackContext context)
     {
         if (timePassedSinceLastWeaponSwitch >= weaponSwitchCooldown)
@@ -250,6 +268,7 @@ public class WeaponHandler : MonoBehaviour
             vacuumWeapon.SetActive(isVacuumWeaponActive);
         }
     }
+
     private void ToggleWeaponSwitchWithScroll(bool canWeaponSwitchWithScrollBtn)
     {
         canWeaponSwitchWithScroll = canWeaponSwitchWithScrollBtn;
@@ -277,7 +296,9 @@ public class WeaponHandler : MonoBehaviour
 
     private void SuckDustParticlesIn(bool isSucking)
     {
-        Collider[] dustPickups = Physics.OverlapSphere(transform.position, vacuumRange); // vacuumRange = radius in which player will detect if any dusts are going to become suckable
+        Collider[]
+            dustPickups =
+                Physics.OverlapSphere(transform.position, vacuumRange); // vacuumRange = radius in which player will detect if any dusts are going to become suckable
 
         foreach (Collider dust in dustPickups)
         {
@@ -302,6 +323,7 @@ public class WeaponHandler : MonoBehaviour
         {
             soundManager.PlayEndVacuuming();
         }
+
         isAlreadySucking = false;
     }
 
@@ -316,11 +338,12 @@ public class WeaponHandler : MonoBehaviour
     }
 
     #region Augments
+
     public void ApplyMinigunMayhem()
     {
         fireRate /= 1.25f;
     }
-    
+
     public void ApplyMinigunCarnage()
     {
         fireRate /= 1.5f;
@@ -330,7 +353,7 @@ public class WeaponHandler : MonoBehaviour
     {
         shooterWeaponDamage *= 1.5f;
     }
-    
+
     public void ApplyHitHarderer()
     {
         shooterWeaponDamage *= 2f;
@@ -348,11 +371,29 @@ public class WeaponHandler : MonoBehaviour
 
     public void ApplyDustMagnet(float rangeMultiplier)
     {
-        Debug.Log($"Increased vacuumRange from {vacuumRange} to {vacuumRange *= rangeMultiplier}");
         vacuumRange *= rangeMultiplier;
     }
-    
-    #endregion
+
+    public void ApplyAmmoRecycler(int chanceThreshold)
+    {
+        ammoRecyclerIsEnabled = true;
+        chanceToRecycleAmmoThreshold = chanceThreshold;
+    }
+
+    private void ExcecuteAmmoRecycler()
+    {
+        if (ammoRecyclerIsEnabled)
+        {
+            int chanceToRecycleAmmo = Random.Range(1, 100);
+            if (chanceToRecycleAmmo <= chanceToRecycleAmmoThreshold)
+            {
+                RefillAmmo(1);
+                Debug.Log($"Chance was {chanceToRecycleAmmo}, recycling ammo");
+            }
+        }
+    }
+
+#endregion
 
     /*private void OnDrawGizmos()
     {
@@ -380,6 +421,9 @@ public class WeaponHandler : MonoBehaviour
         GameEvents.OnFOVChanged += SetNewFOV;
         GameEvents.OnPlayerDeath += StopSuckingDustParticlesWhenInputBlocked;
         SettingsManager.OnWeaponSwitchWithScrollEnabledFromSettingsManager += ToggleWeaponSwitchWithScroll;
+        
+        // AUGMENTS
+        GameEvents.OnEnemyDeath += ExcecuteAmmoRecycler;
     }
     private void OnDisable()
     {
@@ -389,5 +433,8 @@ public class WeaponHandler : MonoBehaviour
         GameEvents.OnFOVChanged -= SetNewFOV;
         GameEvents.OnPlayerDeath -= StopSuckingDustParticlesWhenInputBlocked;
         SettingsManager.OnWeaponSwitchWithScrollEnabledFromSettingsManager -= ToggleWeaponSwitchWithScroll;
+        
+        // AUGMENTS
+        GameEvents.OnEnemyDeath -= ExcecuteAmmoRecycler;
     }
 }

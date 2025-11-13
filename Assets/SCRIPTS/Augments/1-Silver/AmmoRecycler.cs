@@ -6,5 +6,7 @@ public class AmmoRecycler : Augment
     public override void Apply(GameObject player)
     {
         //Killing enemies has a 20% chance to restore 1 ammo.
+        WeaponHandler weaponHandler = player.GetComponent<WeaponHandler>();
+        weaponHandler.ApplyAmmoRecycler(20);
     }
 }

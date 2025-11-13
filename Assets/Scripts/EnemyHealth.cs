@@ -61,8 +61,8 @@ public class EnemyHealth : MonoBehaviour
         {
             Instantiate(deathExplosionPrefab, transform.position, Quaternion.identity);
         }
-
+        GameEvents.OnEnemyDeath?.Invoke();
         Destroy(gameObject);
-        Debug.Log("Enemy " + name + " died!");
+        //Debug.Log("Enemy " + name + " died!");
     }
 }
