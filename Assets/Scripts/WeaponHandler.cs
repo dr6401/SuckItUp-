@@ -44,7 +44,7 @@ public class WeaponHandler : MonoBehaviour
     private float targetFOV;
 
     //private float zoomSpeed = 6f;
-    private bool isAlreadySucking;
+    public bool isAlreadySucking;
 
     private PlayerControls controls;
     private bool canWeaponSwitchWithScroll = true;
@@ -59,6 +59,7 @@ public class WeaponHandler : MonoBehaviour
     public static event Action OnHealthIncrease;
     // Update is called once per frame
 
+    [Header("Augment Stuff")]
     // AUGMENT STUFF
     private bool isVampire = false;
     private bool isAmmoRecyclerEnabled = false;
@@ -69,6 +70,8 @@ public class WeaponHandler : MonoBehaviour
     private float overchargedVacuumFireRateMultiplier = 1.75f;
     private Coroutine overchargedVacuumCoroutine;
     private float nonOverchargedFireRate = 0.2f; // Set this to fireRate everytime it gets permanently changed (so like with MinigunMayhem, not with OverChargedVacuum)
+    private bool isDuststormShellEnabled = false;
+    [SerializeField] private GameObject shieldVFXObject;
 
     private void Awake()
     {
@@ -126,9 +129,14 @@ public class WeaponHandler : MonoBehaviour
             if (!isShooterWeaponActive && controls.Player.Shoot.ReadValue<float>() > 0)
             {
                 Vacuum();
+                if (isDuststormShellEnabled)
+                {
+                    shieldVFXObject.SetActive(true);
+                }
             }
             else
             {
+                shieldVFXObject.SetActive(false);
                 StopSuckingDustParticles();
                 if (isAlreadySucking)
                 {
@@ -432,6 +440,11 @@ public class WeaponHandler : MonoBehaviour
         yield return new WaitForSeconds(duration);
         fireRate = nonOverchargedFireRate;
         Debug.Log($"Setting fireRate back to {fireRate} (oldFireRate: {nonOverchargedFireRate})");
+    }
+
+    public void ApplyDuststormShell()
+    {
+        isDuststormShellEnabled = true;
     }
 
 #endregion

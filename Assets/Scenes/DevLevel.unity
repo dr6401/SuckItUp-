@@ -3006,7 +3006,7 @@ PrefabInstance:
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: fluffyDustyPrefab
       value: 
-      objectReference: {fileID: 6985164944301197437, guid: 1894bb012d2d6e64ab969ef858aafd24, type: 3}
+      objectReference: {fileID: 6985164944301197437, guid: 5528ffbfe6df25d48b09b8317394e660, type: 3}
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: enemyFoldersFolder
       value: 
@@ -5823,7 +5823,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 4687281702bc50e47984aca3aa6a8f50, type: 2}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: testing_offerOnlyGoldAugments
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: testing_offerOnlySilverAugments
@@ -6790,6 +6790,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6227586045407868506, guid: e1be07180b4cc40488e0df1072a56958, type: 3}
   m_PrefabInstance: {fileID: 1127617683}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1129253723 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 2350221138099607896, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
+  m_PrefabInstance: {fileID: 9116042553627022918}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1133742255
 PrefabInstance:
@@ -8691,7 +8696,7 @@ PrefabInstance:
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: fluffyDustyPrefab
       value: 
-      objectReference: {fileID: 6985164944301197437, guid: 1894bb012d2d6e64ab969ef858aafd24, type: 3}
+      objectReference: {fileID: 6985164944301197437, guid: 5528ffbfe6df25d48b09b8317394e660, type: 3}
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: enemyFoldersFolder
       value: 
@@ -21345,7 +21350,7 @@ PrefabInstance:
     - target: {fileID: 5878903646017234297, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: fluffyDustyPrefab
       value: 
-      objectReference: {fileID: 6985164944301197437, guid: 1894bb012d2d6e64ab969ef858aafd24, type: 3}
+      objectReference: {fileID: 6985164944301197437, guid: 5528ffbfe6df25d48b09b8317394e660, type: 3}
     - target: {fileID: 5878903646017234297, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: enemyFoldersFolder
       value: 
@@ -21468,6 +21473,10 @@ PrefabInstance:
       propertyPath: slidingFOV
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 4313594062892892696, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
+      propertyPath: playerFeetColliderHitBox
+      value: 
+      objectReference: {fileID: 1129253723}
     - target: {fileID: 5030005378581562621, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40.3

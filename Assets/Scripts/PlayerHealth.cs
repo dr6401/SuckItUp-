@@ -21,6 +21,7 @@ public class PlayerHealth : MonoBehaviour
     // AUGMENTS STUFF
     private int healFromVampireAmount = 0;
     private float damageReduction = 1f;
+    private float dustStormDamageReduction = 1f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -64,9 +65,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= (int) (damage * damageReduction);
+        float dustStormDamageReductionMultiplier = weaponHandler.isAlreadySucking ? dustStormDamageReduction : 1f;
+        health -= (int) (damage * damageReduction * dustStormDamageReductionMultiplier);
         GameEvents.OnDamageTaken?.Invoke();
-        Debug.Log("taken " + (int) (damage * damageReduction) + " damage");
+        Debug.Log("taken " + (int)(damage * damageReduction * dustStormDamageReductionMultiplier) + " damage");
     }
 
     public void ApplyDirtyVampire(int healAmount)
@@ -87,6 +89,12 @@ public class PlayerHealth : MonoBehaviour
     public void ApplyColossalCleaner(float dmgReduction)
     {
         damageReduction *= dmgReduction;
+    }
+    
+    
+    public void ApplyDustStormShell(float dmgReduction)
+    {
+        dustStormDamageReduction = dmgReduction;
     }
 
     private void OnEnable()
