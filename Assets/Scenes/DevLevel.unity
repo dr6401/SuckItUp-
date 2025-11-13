@@ -5822,6 +5822,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 4687281702bc50e47984aca3aa6a8f50, type: 2}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
+      propertyPath: testing_offerOnlyGoldAugments
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: testing_offerOnlySilverAugments
       value: 1
       objectReference: {fileID: 0}

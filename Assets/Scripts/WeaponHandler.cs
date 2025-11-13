@@ -61,8 +61,14 @@ public class WeaponHandler : MonoBehaviour
 
     // AUGMENT STUFF
     private bool isVampire = false;
-    private bool ammoRecyclerIsEnabled = false;
-    private int chanceToRecycleAmmoThreshold = 20; // 20 is default, this is set by augmentScript anyways
+    private bool isAmmoRecyclerEnabled = false;
+    private int chanceToRecycleAmmoThreshold = 20; // 20 is default, this is set by augmentScript anyway
+    private bool isOverchargedVacuumEnabled = false;
+    private float overchargedVacuumDuration = 3f;
+    private float overchargedVacuumFireRate;
+    private float overchargedVacuumFireRateMultiplier = 1.75f;
+    private Coroutine overchargedVacuumCoroutine;
+    private float nonOverchargedFireRate = 0.2f; // Set this to fireRate everytime it gets permanently changed (so like with MinigunMayhem, not with OverChargedVacuum)
 
     private void Awake()
     {
@@ -235,15 +241,24 @@ public class WeaponHandler : MonoBehaviour
         if (isVampire && currentAmmo >= 100)
         {
             OnHealthIncrease?.Invoke();
-            return;
         }
 
-        if (reloadAmmount > 0)
+        else if (reloadAmmount > 0)
         {
             OnAmmoIncrease?.Invoke();
+            currentAmmo += reloadAmmount;
         }
 
-        currentAmmo += reloadAmmount;
+        if (isAlreadySucking && isOverchargedVacuumEnabled) // Overcharging should happen regardless of DirtyVampire being active
+        {
+            if (overchargedVacuumCoroutine != null)
+            {
+                StopCoroutine(overchargedVacuumCoroutine);
+                Debug.Log($"overchargedVacuumCoroutine was active, so I stopped it and gonna start a new one");
+            }
+            Debug.Log($"Current fireRate: {fireRate}, overchargedFireRate: {overchargedVacuumFireRate}");
+            overchargedVacuumCoroutine = StartCoroutine(OverchargeVacuum(overchargedVacuumDuration, overchargedVacuumFireRate));
+        }
     }
 
 
@@ -341,12 +356,20 @@ public class WeaponHandler : MonoBehaviour
 
     public void ApplyMinigunMayhem()
     {
-        fireRate /= 1.25f;
+        nonOverchargedFireRate = fireRate;
+        fireRate = nonOverchargedFireRate / 1.25f;
+        nonOverchargedFireRate = fireRate;
+        // If OverchargedVacuum is selected before selecting MinigunMayhem, update overchargedVacuumFireRate by using new fireRate for its calculation;
+        overchargedVacuumFireRate = fireRate / overchargedVacuumFireRateMultiplier;
     }
 
     public void ApplyMinigunCarnage()
     {
-        fireRate /= 1.5f;
+        nonOverchargedFireRate = fireRate;
+        fireRate = nonOverchargedFireRate / 1.5f;
+        nonOverchargedFireRate = fireRate;
+        // If OverchargedVacuum is selected before selecting MinigunCarnage, update overchargedVacuumFireRate by using new fireRate for its calculation;
+        overchargedVacuumFireRate = fireRate / overchargedVacuumFireRateMultiplier;
     }
 
     public void ApplyHitHarder()
@@ -376,13 +399,13 @@ public class WeaponHandler : MonoBehaviour
 
     public void ApplyAmmoRecycler(int chanceThreshold)
     {
-        ammoRecyclerIsEnabled = true;
+        isAmmoRecyclerEnabled = true;
         chanceToRecycleAmmoThreshold = chanceThreshold;
     }
 
     private void ExcecuteAmmoRecycler()
     {
-        if (ammoRecyclerIsEnabled)
+        if (isAmmoRecyclerEnabled)
         {
             int chanceToRecycleAmmo = Random.Range(1, 100);
             if (chanceToRecycleAmmo <= chanceToRecycleAmmoThreshold)
@@ -391,6 +414,24 @@ public class WeaponHandler : MonoBehaviour
                 Debug.Log($"Chance was {chanceToRecycleAmmo}, recycling ammo");
             }
         }
+    }
+
+    public void ApplyOverchargedVacuum(float duration, float fireRateMultiplier)
+    {
+        isOverchargedVacuumEnabled = true;
+        overchargedVacuumDuration = duration;
+        overchargedVacuumFireRateMultiplier = fireRateMultiplier;
+        overchargedVacuumFireRate = fireRate / overchargedVacuumFireRateMultiplier;
+        nonOverchargedFireRate = fireRate;
+    }
+
+    private IEnumerator OverchargeVacuum(float duration, float overchargedFireRate)
+    {
+        fireRate = overchargedFireRate;
+        Debug.Log($"Setting fireRate to {fireRate} for {duration} seconds");
+        yield return new WaitForSeconds(duration);
+        fireRate = nonOverchargedFireRate;
+        Debug.Log($"Setting fireRate back to {fireRate} (oldFireRate: {nonOverchargedFireRate})");
     }
 
 #endregion
