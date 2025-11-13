@@ -18,6 +18,7 @@ public class WeaponHandler : MonoBehaviour
     private bool isVacuumWeaponActive;
     [SerializeField] private float shooterWeaponDamage = 5f;
     private float shootingRange = 100f;
+    private float vacuumRange = 10f;
     [SerializeField] private float fireRate = 0.2f;
     private float timeSinceLastShot = 0;
     [SerializeField] private Camera camera;
@@ -276,7 +277,7 @@ public class WeaponHandler : MonoBehaviour
 
     private void SuckDustParticlesIn(bool isSucking)
     {
-        Collider[] dustPickups = Physics.OverlapSphere(transform.position, 10f); // 10f = radius in which player will detect if any dusts are going to become suckable
+        Collider[] dustPickups = Physics.OverlapSphere(transform.position, vacuumRange); // vacuumRange = radius in which player will detect if any dusts are going to become suckable
 
         foreach (Collider dust in dustPickups)
         {
@@ -343,6 +344,12 @@ public class WeaponHandler : MonoBehaviour
     public void ApplyColossalCleaner(float dmgMultiplier)
     {
         shooterWeaponDamage *= dmgMultiplier;
+    }
+
+    public void ApplyDustMagnet(float rangeMultiplier)
+    {
+        Debug.Log($"Increased vacuumRange from {vacuumRange} to {vacuumRange *= rangeMultiplier}");
+        vacuumRange *= rangeMultiplier;
     }
     
     #endregion
