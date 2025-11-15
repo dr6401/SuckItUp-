@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using MoreMountains.Tools;
 using TMPro;
@@ -12,9 +13,14 @@ public class AugmentSpinManager : MonoBehaviour
     private Augment augmentToKeep;
     [SerializeField] private TMP_Text keepAugmentText;
     [SerializeField] private TMP_Text keepAugmentDescriptionText;
+    [SerializeField] private TMP_Text keepAllAugmentsText;
     [SerializeField] private Image keepAugmentImage;
     [SerializeField] private CanvasGroup augmentSpinCanvas;
     [SerializeField] private CanvasGroup noNewAugmentKeptCanvas;
+    [SerializeField] private CanvasGroup keepAllAugmentsCanvas;
+
+    [Header("Death messages")]
+    [SerializeField] private List<string> normalDeathMessages;
     private float augmentUIShowTime = 3;
     private float augmentUIFadeTime = 2f;
     private float augmentUICurrentFadeOutTime = 0f;
@@ -36,7 +42,8 @@ public class AugmentSpinManager : MonoBehaviour
         if (!PlayerDeathManager.Instance.hasPlayerDiedInPreviousScene) return;
         if (!SettingsManager.Instance.isDifficultyHardcore)
         {
-            Debug.Log("You get to keep all your augments!");
+            keepAllAugmentsText.text = GetRandomNormalDeathMessage() + "\n \n You get to keep all your augments";
+            StartCoroutine(FadeOutKeepAllAugmentsCanvas());
             runAugmentData.AddChosenAugmentsToPermanentlyChosenAugments();
         }
         else
@@ -78,7 +85,7 @@ public class AugmentSpinManager : MonoBehaviour
         else
         {
             Debug.Log("All chosen augments are already permanent, not doing anything");
-            StartCoroutine(FadeOutAugmentSpinCanvasUIWithoutNewlyKeptAugment());
+            StartCoroutine(FadeOutNoNewlyKeptAugmentsCanvas());
         }
     }
 
@@ -97,9 +104,8 @@ public class AugmentSpinManager : MonoBehaviour
         }
     }
     
-    private IEnumerator FadeOutAugmentSpinCanvasUIWithoutNewlyKeptAugment()
+    private IEnumerator FadeOutNoNewlyKeptAugmentsCanvas()
     {
-        
         while (noNewAugmentKeptCanvas?.alpha < 1)
         {
             noNewAugmentKeptCanvas.alpha = Mathf.MoveTowards(noNewAugmentKeptCanvas.alpha, 1, Time.deltaTime / augmentUIFadeTime);
@@ -111,5 +117,30 @@ public class AugmentSpinManager : MonoBehaviour
             noNewAugmentKeptCanvas.alpha = Mathf.MoveTowards(noNewAugmentKeptCanvas.alpha, 0, Time.deltaTime / (augmentUIFadeTime));
             yield return null;
         }
+    }
+    
+    private IEnumerator FadeOutKeepAllAugmentsCanvas()
+    {
+        while (keepAllAugmentsCanvas?.alpha < 1)
+        {
+            keepAllAugmentsCanvas.alpha = Mathf.MoveTowards(keepAllAugmentsCanvas.alpha, 1, Time.deltaTime / augmentUIFadeTime);
+            yield return null;
+        }
+        yield return new WaitForSeconds(augmentUIShowTime);
+        while (keepAllAugmentsCanvas?.alpha > 0)
+        {
+            keepAllAugmentsCanvas.alpha = Mathf.MoveTowards(keepAllAugmentsCanvas.alpha, 0, Time.deltaTime / (augmentUIFadeTime));
+            yield return null;
+        }
+    }
+
+    private string GetRandomNormalDeathMessage()
+    {
+        if (normalDeathMessages.Count <= 0)
+        {
+            return "You fall… but your powers don’t.";
+        }
+        int index = Random.Range(0, normalDeathMessages.Count);
+        return normalDeathMessages[index];
     }
 }
