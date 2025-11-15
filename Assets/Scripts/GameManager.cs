@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private WeaponHandler weaponHandler;
     [SerializeField] private GameObject victoryText;
+    [SerializeField] private TMP_Text killedAllEnemiesText;
+    private bool hasKilledAllEnemiesTextBeenShown = false;
     private bool areAllSpawnersDestroyed = false;
     private bool keyBindingTextToggled = false;
     public bool gameOver = false;
@@ -95,6 +97,7 @@ public class GameManager : MonoBehaviour
         if (areAllSpawnersDestroyed && !AnyEnemiesAlive())
         {
             TrackRemainingDust();
+            ShowKilledAllEnemiesText();
             if (CheckIfAllDustIsSuckedUp())
             {
                 EndLevel();
@@ -316,6 +319,7 @@ public class GameManager : MonoBehaviour
     {
         GameEvents.OnLevelCompleted?.Invoke();
         Destroy(player);
+        killedAllEnemiesText.gameObject.SetActive(false);
         victoryText.SetActive(true);
         gameOver = true;
         StartCoroutine(LoadNextScene());
@@ -331,6 +335,28 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(objectiveTextDuration);
         objectiveText.SetActive(false);
+    }
+
+    private void ShowKilledAllEnemiesText()
+    {
+        if (!hasKilledAllEnemiesTextBeenShown)
+        {
+            hasKilledAllEnemiesTextBeenShown = true;
+            StartCoroutine(StartShowingKilledAllEnemiesText());
+        }
+    }
+
+    private IEnumerator StartShowingKilledAllEnemiesText()
+    {
+        killedAllEnemiesText.gameObject.SetActive(true);
+        float timer = 0f;
+        while (timer <= objectiveTextDuration)
+        {
+            killedAllEnemiesText.text = $"You exterminated all dusties!\nClean the remaining <color=#C3C3C3> {dustParticles.Count} </color> dust";
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        killedAllEnemiesText.gameObject.SetActive(false);
     }
 
     private IEnumerator LoadNextScene()
