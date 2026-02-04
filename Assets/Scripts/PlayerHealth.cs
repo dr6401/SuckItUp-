@@ -67,6 +67,7 @@ public class PlayerHealth : MonoBehaviour
     {
         float dustStormDamageReductionMultiplier = weaponHandler.isAlreadySucking ? dustStormDamageReduction : 1f;
         health -= (int) (damage * damageReduction * dustStormDamageReductionMultiplier);
+        health = Mathf.Clamp(health, 0, health);
         GameEvents.OnDamageTaken?.Invoke();
         Debug.Log("taken " + (int)(damage * damageReduction * dustStormDamageReductionMultiplier) + " damage");
     }

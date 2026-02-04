@@ -7,6 +7,8 @@ using UnityEngine.Serialization;
 
 public class AugmentManager : MonoBehaviour
 {
+    private bool didPlayerDieInLastRun = false;
+    
     private bool isDifficultyHardcore = false;
     private int currentSuckedDust = 0;
     [SerializeField] private int defaultAugmentTriggerTreshold = 100;
@@ -107,14 +109,19 @@ public class AugmentManager : MonoBehaviour
     private void ResetSceneParametersAndReferences(Scene scene, LoadSceneMode mode)
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        gameManager = GameObject.FindAnyObjectByType<GameManager>();
-        augmentSelectionUI = GameObject.FindAnyObjectByType<AugmentSelectionUI>();
+        gameManager = FindAnyObjectByType<GameManager>();
+        augmentSelectionUI = FindAnyObjectByType<AugmentSelectionUI>();
         dustScoreText = GameObject.FindGameObjectWithTag("DustScoreText")?.GetComponent<TMP_Text>();
         currentSuckedDust = 0;
+        if (PlayerDeathManager.Instance.hasPlayerDiedInPreviousScene)
+        {
+            augmentTriggerTreshold = defaultAugmentTriggerTreshold;
+        }
     }
 
-    private void ResetAugmentTriggerTreshold()
+    private void ResetAugmentTriggerThreshold() // Reset progress when exiting to main menu - remove this when adding level state persistence
     {
+        currentSuckedDust = 0;
         augmentTriggerTreshold = defaultAugmentTriggerTreshold;
     }
     
@@ -122,16 +129,14 @@ public class AugmentManager : MonoBehaviour
     {
         GameEvents.OnSuckDust += IncreaseSuckedDust;
         SceneManager.sceneLoaded += ResetSceneParametersAndReferences;
-        GameEvents.OnPlayerDeath += ResetAugmentTriggerTreshold;
-        GameEvents.OnEnteredMainMenu += ResetAugmentTriggerTreshold;
+        GameEvents.OnEnteredMainMenu += ResetAugmentTriggerThreshold;
     }
     
     private void OnDisable()
     {
         GameEvents.OnSuckDust -= IncreaseSuckedDust;
         SceneManager.sceneLoaded -= ResetSceneParametersAndReferences;
-        GameEvents.OnPlayerDeath -= ResetAugmentTriggerTreshold;
-        GameEvents.OnEnteredMainMenu -= ResetAugmentTriggerTreshold;
+        GameEvents.OnEnteredMainMenu -= ResetAugmentTriggerThreshold;
     }
     
     
