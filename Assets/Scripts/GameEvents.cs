@@ -17,6 +17,9 @@ public static class GameEvents
         public static Action OnResetHasPlayerDiedInPreviousScene;
         public static Action OnEnemyDeath;
         
+        // Augments
+        public static Action OnTriggerHealthIncreaseFeedback;
+        
         // SETTINGS
         public static Action<bool> OnMouseInverted;
         public static Action<bool> OnDifficultyChangedToHardcore;

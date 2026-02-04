@@ -10,7 +10,8 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
 
-    [SerializeField] private int maxHealth = 200;
+    [SerializeField] private int startingHealth = 100;
+    private int maxHealth = 200;
     private static int health;
     [SerializeField] private TMP_Text healthText;
     [SerializeField] private TMP_Text gameOverText;
@@ -35,7 +36,7 @@ public class PlayerHealth : MonoBehaviour
             weaponHandler = GetComponent<WeaponHandler>();
         }
         
-        health = maxHealth;
+        health = startingHealth;
     }
 
     // Update is called once per frame
@@ -67,7 +68,7 @@ public class PlayerHealth : MonoBehaviour
     {
         float dustStormDamageReductionMultiplier = weaponHandler.isAlreadySucking ? dustStormDamageReduction : 1f;
         health -= (int) (damage * damageReduction * dustStormDamageReductionMultiplier);
-        health = Mathf.Clamp(health, 0, health);
+        health = Mathf.Clamp(health, 0, maxHealth);
         GameEvents.OnDamageTaken?.Invoke();
         Debug.Log("taken " + (int)(damage * damageReduction * dustStormDamageReductionMultiplier) + " damage");
     }
@@ -84,7 +85,10 @@ public class PlayerHealth : MonoBehaviour
 
     private void HealFromVampire()
     {
+        if (health >= maxHealth) return;
         if (weaponHandler.ReturnCurrentAmmo() >= 100) health += healFromVampireAmount;
+        health = Mathf.Clamp(health, 0, maxHealth);
+        GameEvents.OnTriggerHealthIncreaseFeedback?.Invoke();
     }
 
     public void ApplyColossalCleaner(float dmgReduction)

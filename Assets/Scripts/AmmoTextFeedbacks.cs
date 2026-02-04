@@ -48,7 +48,7 @@ public class AmmoTextFeedbacks : MonoBehaviour
     {
         WeaponHandler.OnAmmoIncrease += PlayAmmoIncrease;
         WeaponHandler.OnNoAmmoLeft += PlayNoAmmoLeft;
-        WeaponHandler.OnHealthIncrease += PlayHealthIncrease;
+        GameEvents.OnTriggerHealthIncreaseFeedback += PlayHealthIncrease;
         GameEvents.OnDamageTaken += PlayHealthDecrease;
         GameEvents.OnLowLevelTimer += PlayLowLevelTimer;
         GameEvents.OnLevelTimeRanOut += StopLowLevelTimer;
@@ -58,7 +58,7 @@ public class AmmoTextFeedbacks : MonoBehaviour
     {
         WeaponHandler.OnAmmoIncrease -= PlayAmmoIncrease;
         WeaponHandler.OnNoAmmoLeft -= PlayNoAmmoLeft;
-        WeaponHandler.OnHealthIncrease -= PlayHealthIncrease;
+        GameEvents.OnTriggerHealthIncreaseFeedback -= PlayHealthIncrease;
         GameEvents.OnDamageTaken -= PlayHealthDecrease;
         GameEvents.OnLowLevelTimer -= PlayLowLevelTimer;
         GameEvents.OnLevelTimeRanOut -= StopLowLevelTimer;

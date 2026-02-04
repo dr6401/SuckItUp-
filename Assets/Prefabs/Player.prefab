@@ -576,7 +576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23555715ee96bb74f98b9b87fd14b972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  startingHealth: 100
   healthText: {fileID: 0}
   gameOverText: {fileID: 0}
   tryAgainText: {fileID: 0}
