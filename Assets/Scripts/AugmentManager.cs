@@ -11,13 +11,19 @@ public class AugmentManager : MonoBehaviour
     private int currentSuckedDust = 0;
     [SerializeField] private int defaultAugmentTriggerTreshold = 100;
     [SerializeField] private int augmentTriggerTreshold = 20;
+    
     [SerializeField] private GameObject player;
     [SerializeField] private AugmentSelectionUI augmentSelectionUI;
     [SerializeField] private TMP_Text dustScoreText;
     [SerializeField] private GameManager gameManager;
+    
     public float augmentTriggerThresholdDuplicator;
     [SerializeField] public float normalAugmentTriggerThresholdDuplicator = 1.25f;
     [SerializeField] public float hardcoreAugmentTriggerThresholdDuplicator = 1.25f;
+    
+    private float silverAugmentChance = 0.5f;
+    private float goldAugmentChance = 0.3f;
+    
     [Header("TESTING")] [SerializeField] private bool useTestingEqualAugmentOdds = false;
 
     private static AugmentManager instance;
@@ -74,13 +80,11 @@ public class AugmentManager : MonoBehaviour
             float tempAugmentTriggerTreshold = augmentTriggerTreshold * augmentTriggerThresholdDuplicator;
             Debug.Log("Current sucked dust was " + currentSuckedDust + "! Setting new currentSuckedDust to 0 and the threshold to " + (int) tempAugmentTriggerTreshold);
             currentSuckedDust = 0;
-            int augmentChance = Random.Range(1, 100);
-            AugmentTier augmentTier = augmentChance switch
-            {
-                <= 40 => AugmentTier.Silver,
-                <= 75 => AugmentTier.Gold,
-                _ => AugmentTier.Prismatic
-            };
+            int augmentChance = Random.Range(1, 101);
+            AugmentTier augmentTier;
+            if (augmentChance <= silverAugmentChance * 100) augmentTier = AugmentTier.Silver;
+            else if (augmentChance <= (silverAugmentChance + goldAugmentChance) * 100) augmentTier = AugmentTier.Gold;
+            else augmentTier = AugmentTier.Prismatic;
             if (useTestingEqualAugmentOdds)
             {
                 augmentTier = augmentChance switch

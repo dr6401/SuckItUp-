@@ -483,6 +483,7 @@ public class WeaponHandler : MonoBehaviour
         controls.Player.SwitchWeaponScroll.performed += WeaponSwitchWithScroll;
         GameEvents.OnFOVChanged += SetNewFOV;
         GameEvents.OnPlayerDeath += StopSuckingDustParticlesWhenInputBlocked;
+        GameEvents.OnLevelCompleted += StopSuckingDustParticlesWhenInputBlocked;
         SettingsManager.OnWeaponSwitchWithScrollEnabledFromSettingsManager += ToggleWeaponSwitchWithScroll;
         
         // AUGMENTS
@@ -495,6 +496,7 @@ public class WeaponHandler : MonoBehaviour
         controls.Player.SwitchWeaponScroll.performed -= WeaponSwitchWithScroll;
         GameEvents.OnFOVChanged -= SetNewFOV;
         GameEvents.OnPlayerDeath -= StopSuckingDustParticlesWhenInputBlocked;
+        GameEvents.OnLevelCompleted -= StopSuckingDustParticlesWhenInputBlocked;
         SettingsManager.OnWeaponSwitchWithScrollEnabledFromSettingsManager -= ToggleWeaponSwitchWithScroll;
         
         // AUGMENTS
