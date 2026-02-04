@@ -67,10 +67,11 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         float dustStormDamageReductionMultiplier = weaponHandler.isAlreadySucking ? dustStormDamageReduction : 1f;
-        health -= (int) (damage * damageReduction * dustStormDamageReductionMultiplier);
+        int damageTaken = (int) (damage * damageReduction * dustStormDamageReductionMultiplier);
+        health -= damageTaken;
         health = Mathf.Clamp(health, 0, maxHealth);
-        GameEvents.OnDamageTaken?.Invoke();
-        Debug.Log("taken " + (int)(damage * damageReduction * dustStormDamageReductionMultiplier) + " damage");
+        GameEvents.OnDamageTaken?.Invoke(damageTaken);
+        Debug.Log("taken " + damageTaken + " damage");
     }
 
     public void ApplyDirtyVampire(int healAmount)
@@ -85,10 +86,25 @@ public class PlayerHealth : MonoBehaviour
 
     private void HealFromVampire()
     {
-        if (health >= maxHealth) return;
+        if (health >= maxHealth || healFromVampireAmount <= 0) return;
+        int oldHealth = health;
+        
         if (weaponHandler.ReturnCurrentAmmo() >= 100) health += healFromVampireAmount;
         health = Mathf.Clamp(health, 0, maxHealth);
-        GameEvents.OnTriggerHealthIncreaseFeedback?.Invoke();
+        
+        int newHealth = health;
+        int normalHeal = Mathf.Clamp(newHealth, 0, 100) - 
+                         Mathf.Clamp(oldHealth, 0, 100);
+        if (normalHeal > 0)
+        {
+            GameEvents.OnTriggerHealthIncreaseFeedback?.Invoke(healFromVampireAmount);
+        }
+        int overHeal = Mathf.Clamp(newHealth - 100, 0, 100) - 
+                       Mathf.Clamp(oldHealth - 100, 0, 100);
+        if (overHeal > 0)
+        {
+            GameEvents.OnTriggerOverhealHealthIncreaseFeedback?.Invoke(overHeal);
+        }
     }
 
     public void ApplyColossalCleaner(float dmgReduction)
@@ -104,12 +120,12 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEvents.OnSuckDust += HealFromVampire;
+        WeaponHandler.OnHealthIncrease += HealFromVampire;
         GameEvents.OnLevelTimeRanOut += Die;
     }
     private void OnDisable()
     {
-        GameEvents.OnSuckDust -= HealFromVampire;
+        WeaponHandler.OnHealthIncrease -= HealFromVampire;
         GameEvents.OnLevelTimeRanOut -= Die;
     }
 }

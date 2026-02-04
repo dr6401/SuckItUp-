@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 #if MM_UI
 using UnityEngine.UI;
@@ -18,7 +18,7 @@ namespace MoreMountains.Tools
 	/// </summary>
 	[MMRequiresConstantRepaint]
 	[AddComponentMenu("More Mountains/Tools/GUI/MM Progress Bar")]
-	public class MMProgressBar : MMMonoBehaviour
+	public class OverhealProgressBar : MMMonoBehaviour
 	{
 		#if MM_UI
 		public enum MMProgressBarStates {Idle, Decreasing, Increasing, InDecreasingDelay, InIncreasingDelay }
@@ -477,7 +477,7 @@ namespace MoreMountains.Tools
 		protected virtual void OnEnable()
 		{
 			GameEvents.OnDamageTaken += DecreaseHealthBarAmount;
-			GameEvents.OnTriggerHealthIncreaseFeedback += IncreaseHealthBarAmount;
+			GameEvents.OnTriggerOverhealHealthIncreaseFeedback += IncreaseHealthBarAmount;
 			if (!_initialized)
 			{
 				return;
@@ -489,7 +489,7 @@ namespace MoreMountains.Tools
 		protected void OnDisable()
 		{
 			GameEvents.OnDamageTaken -= DecreaseHealthBarAmount;
-			GameEvents.OnTriggerHealthIncreaseFeedback -= IncreaseHealthBarAmount;
+			GameEvents.OnTriggerOverhealHealthIncreaseFeedback -= IncreaseHealthBarAmount;
 		}
 
 		public virtual void Initialization()

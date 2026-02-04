@@ -27,7 +27,7 @@ public class EnemySpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        spawnerText.text = aliveSpawners + "/" + maxSpawners;
+        //spawnerText.text = aliveSpawners + "/" + maxSpawners;
 
         if (aliveSpawners <= 0 && !actionSent)
         {

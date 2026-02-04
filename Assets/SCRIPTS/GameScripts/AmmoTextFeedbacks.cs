@@ -24,12 +24,13 @@ public class AmmoTextFeedbacks : MonoBehaviour
         noAmmoLeft?.PlayFeedbacks();
     }
 
-    private void PlayHealthIncrease()
+    private void PlayHealthIncrease(int increaseAmount)
     {
+        Debug.Log($"Health Increase: {increaseAmount}");
         healthIncrease?.PlayFeedbacks();
     }
 
-    private void PlayHealthDecrease()
+    private void PlayHealthDecrease(int damageTaken)
     {
         healthDecrease?.PlayFeedbacks();
     }

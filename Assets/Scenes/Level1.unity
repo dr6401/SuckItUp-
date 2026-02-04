@@ -16217,6 +16217,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5106484160641690828, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 47.170044
+      objectReference: {fileID: 0}
     - target: {fileID: 5504349128237449971, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
       propertyPath: KeepPlayModeChanges
       value: 0

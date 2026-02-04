@@ -9,7 +9,7 @@ public static class GameEvents
         public static Action OnPlayerDeath;
         public static Action OnSuckDust;
         public static Action<bool> OnHasSettingsUICoveredUpAugmentUI;
-        public static Action OnDamageTaken;
+        public static Action<int> OnDamageTaken;
         public static Action OnLevelCompleted;
         public static Action OnEnteredMainMenu;
         public static Action OnLevelTimeRanOut;
@@ -18,7 +18,10 @@ public static class GameEvents
         public static Action OnEnemyDeath;
         
         // Augments
-        public static Action OnTriggerHealthIncreaseFeedback;
+        public static Action<int> OnTriggerHealthIncreaseFeedback;
+        public static Action<int> OnTriggerOverhealHealthIncreaseFeedback;
+        public static Action<int> OnTriggerTakeDamageFeedback;
+        public static Action<int> OnTriggerTakeOverhealDamageFeedback;
         
         // SETTINGS
         public static Action<bool> OnMouseInverted;
