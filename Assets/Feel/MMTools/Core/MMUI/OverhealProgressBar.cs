@@ -476,7 +476,7 @@ namespace MoreMountains.Tools
 
 		protected virtual void OnEnable()
 		{
-			GameEvents.OnDamageTaken += DecreaseHealthBarAmount;
+			GameEvents.OnTriggerTakeOverhealDamageFeedback += DecreaseHealthBarAmount;
 			GameEvents.OnTriggerOverhealHealthIncreaseFeedback += IncreaseHealthBarAmount;
 			if (!_initialized)
 			{
@@ -488,7 +488,7 @@ namespace MoreMountains.Tools
 
 		protected void OnDisable()
 		{
-			GameEvents.OnDamageTaken -= DecreaseHealthBarAmount;
+			GameEvents.OnTriggerTakeOverhealDamageFeedback -= DecreaseHealthBarAmount;
 			GameEvents.OnTriggerOverhealHealthIncreaseFeedback -= IncreaseHealthBarAmount;
 		}
 

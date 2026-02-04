@@ -67,11 +67,26 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         float dustStormDamageReductionMultiplier = weaponHandler.isAlreadySucking ? dustStormDamageReduction : 1f;
+        int oldHealth = health;
         int damageTaken = (int) (damage * damageReduction * dustStormDamageReductionMultiplier);
         health -= damageTaken;
         health = Mathf.Clamp(health, 0, maxHealth);
         GameEvents.OnDamageTaken?.Invoke(damageTaken);
-        Debug.Log("taken " + damageTaken + " damage");
+        
+        int newHealth = health;
+        
+        int overhealDamage = Mathf.Clamp(oldHealth - 100, 0, maxHealth - 100) - 
+                             Mathf.Clamp(newHealth - 100, 0, maxHealth - 100);
+        if (overhealDamage > 0)
+        {
+            GameEvents.OnTriggerTakeOverhealDamageFeedback?.Invoke(overhealDamage);
+        }
+        int normalDamage = Mathf.Clamp(oldHealth, 0, 100) - 
+                         Mathf.Clamp(newHealth, 0, 100);
+        if (normalDamage > 0)
+        {
+            GameEvents.OnTriggerTakeDamageFeedback?.Invoke(normalDamage);
+        }
     }
 
     public void ApplyDirtyVampire(int healAmount)
@@ -97,7 +112,7 @@ public class PlayerHealth : MonoBehaviour
                          Mathf.Clamp(oldHealth, 0, 100);
         if (normalHeal > 0)
         {
-            GameEvents.OnTriggerHealthIncreaseFeedback?.Invoke(healFromVampireAmount);
+            GameEvents.OnTriggerHealthIncreaseFeedback?.Invoke(normalHeal);
         }
         int overHeal = Mathf.Clamp(newHealth - 100, 0, 100) - 
                        Mathf.Clamp(oldHealth - 100, 0, 100);
