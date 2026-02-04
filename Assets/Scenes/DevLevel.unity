@@ -5815,7 +5815,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: prismaticAugments.Array.size
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: 'silverAugments.Array.data[3]'
@@ -5839,7 +5839,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: testing_offerOnlySilverAugments
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3462484511507193320, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: m_SizeDelta.x
@@ -10594,6 +10594,10 @@ PrefabInstance:
     - target: {fileID: 2338545943200346280, guid: ff8b101283a34154f995ad06287bda90, type: 3}
       propertyPath: augmentTriggerTreshold
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2338545943200346280, guid: ff8b101283a34154f995ad06287bda90, type: 3}
+      propertyPath: useTestingEqualAugmentOdds
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2338545943200346280, guid: ff8b101283a34154f995ad06287bda90, type: 3}
       propertyPath: augmentTriggerTresholdDuplicator
@@ -21548,6 +21552,10 @@ PrefabInstance:
     - target: {fileID: 5856168188944468224, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6744291114504720482, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8921606334690861711, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: m_Layer
