@@ -77,7 +77,7 @@ public class EnemyBossScript : MonoBehaviour
         timeSinceAttack = 0;
         Debug.Log("Attack started and attack Timer reset");
         animator.Play("FluffyDustyAttack");
-        yield return new WaitForSeconds(0.45f); // It takes 0.225s for the "hit" part of the animation to be played
+        yield return new WaitForSeconds(0.9f); // It takes 0.225s for the "hit" part of the animation to be played
         if ((transform.position - playerPosition).sqrMagnitude <  attackRange * attackRange * 0.76) // If the player is near enough the enemy at the time of "hit"
         // part of the animation being played he takes the dmg, if he moved away in time, he doesn't 
         {

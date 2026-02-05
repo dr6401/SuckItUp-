@@ -205,7 +205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7938370277619822123, guid: 36196eb9956c82646a9c8f7289837f0c, type: 3}
       propertyPath: attackCooldown
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8231865434020439608, guid: 36196eb9956c82646a9c8f7289837f0c, type: 3}
       propertyPath: m_LocalScale.x

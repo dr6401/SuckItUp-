@@ -19,17 +19,20 @@ public class EnemySpawnerHealth : EnemyHealth
     }
     private void Update()
     {
-        float sqrDistanceToPlayer = (playerTransform.position - transform.position).sqrMagnitude;
-        if (sqrDistanceToPlayer >= disableHealthBarDistance * disableHealthBarDistance)
+        if (playerTransform != null)
         {
-            //Debug.Log("Player went too far from spawner, disabling it");
-            //EnemyHealthBar.ShowBar(false); // Hide health bar
-            EnemyHealthBar.ShowEnemyHealthBar(false);
-        }
-        else
-        {
-            EnemyHealthBar.UpdateBar(currentHealth, 0, maxHealth, true); // Show health bar
-            //Debug.Log("Player got close to spawner, enabling it");
+            float sqrDistanceToPlayer = (playerTransform.position - transform.position).sqrMagnitude;
+            if (sqrDistanceToPlayer >= disableHealthBarDistance * disableHealthBarDistance)
+            {
+                //Debug.Log("Player went too far from spawner, disabling it");
+                //EnemyHealthBar.ShowBar(false); // Hide health bar
+                EnemyHealthBar.ShowEnemyHealthBar(false);
+            }
+            else
+            {
+                EnemyHealthBar.UpdateBar(currentHealth, 0, maxHealth, true); // Show health bar
+                //Debug.Log("Player got close to spawner, enabling it");
+            }
         }
         if (currentHealth <= 0)
         {
