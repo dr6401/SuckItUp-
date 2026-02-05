@@ -18,6 +18,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip[] vacuumingSounds;
     [SerializeField] private AudioClip[] mouseClicks;
     [SerializeField] private AudioClip[] hitMarkerSFX;
+    [SerializeField] private AudioClip enemyDeathSFX;
     [SerializeField] private AudioClip noAmmoLeftSFX;
     private AudioClip[][] SFXSounds;
     private static SoundManager instance;
@@ -40,11 +41,13 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySFX(int clipNum)
     {
+        SFX.pitch = 1f;
         SFX.PlayOneShot(SFXSounds[clipNum][Random.Range(0, SFXSounds[clipNum].Length - 1)]);
     }
     
     public void PlayStartVacuuming()
     {
+        SFX.pitch = 1f;
         SFX.PlayOneShot(vacuumingSounds[0]);
         SFX.clip = vacuumingSounds[1];
         SFX.PlayDelayed(vacuumingSounds[0].length - 0.25f);
@@ -52,11 +55,13 @@ public class SoundManager : MonoBehaviour
     }
     public void PlayVacuuming()
     {
+        SFX.pitch = 1f;
         SFX.PlayOneShot(vacuumingSounds[1]);
     }
     
     public void PlayEndVacuuming()
     {
+        SFX.pitch = 1f;
         SFX.PlayOneShot(vacuumingSounds[2]);
         StartCoroutine(StopPlayingAfterDelay(0.03f));
     }
@@ -64,6 +69,7 @@ public class SoundManager : MonoBehaviour
     public IEnumerator PlaySFXAfterDelay(AudioClip audioClip, float time)
     {
         yield return new WaitForSeconds(time);
+        SFX.pitch = 1f;
         SFX.PlayOneShot(audioClip);
     }
     public IEnumerator StopPlayingAfterDelay(float time)
@@ -76,6 +82,7 @@ public class SoundManager : MonoBehaviour
     {
         if (currentSuctionSFXTimer >= maxSuctionSFXTimer)
         {
+            SFX.pitch = 1f;
             loudSFX.PlayOneShot(dustParticlesCrumblings[Random.Range(0, dustParticlesCrumblings.Length)]);
             currentSuctionSFXTimer = 0;
         }
@@ -162,6 +169,7 @@ public class SoundManager : MonoBehaviour
         GameEvents.OnShoot += PlayRandomShootSFX;
         GameEvents.OnHit += PlayRandomHitMarkerSFX;
         WeaponHandler.OnNoAmmoLeft += PlayNoAmmoLeftSFX;
+        GameEvents.OnEnemyDeath += PlayEnemyDeathSFX;
     }
     
     private void OnDisable()
@@ -169,23 +177,33 @@ public class SoundManager : MonoBehaviour
         GameEvents.OnShoot -= PlayRandomShootSFX;
         GameEvents.OnHit -= PlayRandomHitMarkerSFX;
         WeaponHandler.OnNoAmmoLeft -= PlayNoAmmoLeftSFX;
+        GameEvents.OnEnemyDeath -= PlayEnemyDeathSFX;
     }
 
     private void PlayNoAmmoLeftSFX()
     {
         if (noAmmoLeftSFX != null)
         {
+            //SFX.pitch = 1f;
             //SFX.PlayOneShot(noAmmoLeftSFX);
         }
     }
-
+    
     private void PlayRandomShootSFX()
     {
+        SFX.pitch = 1f;
         SFX.PlayOneShot(shootingSFX[Random.Range(0, shootingSFX.Length)]);
     }
     
     private void PlayRandomHitMarkerSFX()
     {
+        SFX.pitch = 1f;
         SFX.PlayOneShot(hitMarkerSFX[Random.Range(0, hitMarkerSFX.Length)]);
+    }
+
+    private void PlayEnemyDeathSFX()
+    {
+        SFX.pitch = Random.Range(0.9f, 1.3f);
+        SFX.PlayOneShot(enemyDeathSFX);
     }
 }
