@@ -34,6 +34,11 @@ namespace MoreMountains.Tools
 		[Header("Follow Rotation")]
 		/// whether or not the object is currently following its target's rotation
 		public bool FollowRotation = true;
+		
+		[Header("Follow Rotation At Player")]
+		/// whether or not the object is currently following its target's rotation
+		public bool FollowRotationAtPlayer = false;
+		
 
 		[Header("Follow Scale")]
 		/// whether or not the object is currently following its target's rotation
@@ -45,6 +50,7 @@ namespace MoreMountains.Tools
 		[Header("Target")]
 		/// the target to follow
 		public Transform Target;
+		private Transform PlayerTarget;
 		/// the offset to apply to the followed target
 		[MMCondition("FollowPosition", true)]
 		public Vector3 Offset;
@@ -374,7 +380,15 @@ namespace MoreMountains.Tools
 				return;
 			}
 
-			_newTargetRotation = Target.rotation;
+			if (!FollowRotationAtPlayer)
+			{
+				_newTargetRotation = Target.rotation;	
+			}
+			else
+			{
+				if (PlayerTarget == null) return;
+				_newTargetRotation = Quaternion.LookRotation(PlayerTarget.position - this.transform.position, Vector3.up);
+			}
 			
 			_newTargetRotationEulerAngles = Target.rotation.eulerAngles;
 			_currentRotationEulerAngles = this.transform.rotation.eulerAngles;
@@ -464,6 +478,12 @@ namespace MoreMountains.Tools
 		}
         
 		public virtual void ChangeFollowTarget(Transform newTarget) => Target = newTarget;
+
+		public virtual void SetFollowRotationLookAtPlayer(Transform playerTarget, bool lookAtPlayer)
+		{
+			FollowRotationAtPlayer = lookAtPlayer;
+			PlayerTarget = playerTarget;
+		}
 
 		protected virtual void OnDisable()
 		{

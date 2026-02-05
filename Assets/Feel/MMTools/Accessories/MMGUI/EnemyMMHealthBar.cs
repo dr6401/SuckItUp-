@@ -124,6 +124,9 @@ namespace MoreMountains.Tools
 		/// if this is true, the drawn health bar will adapt its rotation to match the one of its target
 		[Tooltip("if this is true, the drawn health bar will adapt its rotation to match the one of its target")]
 		public bool FollowRotation = false;
+		/// if this is true, the drawn health bar will adapt its rotation to match the one of its target
+		[Tooltip("if this is true, the drawn health bar will adapt its rotation look at the player")]
+		public bool FollowRotationAtPlayer = false;
 		/// if this is true, the drawn health bar will adapt its scale to match the one of its target
 		[Tooltip("if this is true, the drawn health bar will adapt its scale to match the one of its target")]
 		public bool FollowScale = true;
@@ -298,6 +301,11 @@ namespace MoreMountains.Tools
 			_followTransform.Offset = HealthBarOffset;
 			_followTransform.Target = this.transform;
 			_followTransform.FollowRotation = FollowRotation;
+			if (FollowRotationAtPlayer)
+			{
+				Transform player = GameObject.FindGameObjectWithTag("Player").transform;
+				_followTransform.SetFollowRotationLookAtPlayer(player, true);
+			}
 			_followTransform.FollowScale = FollowScale; 
 			_followTransform.InterpolatePosition = false;
 			_followTransform.InterpolateRotation = false;
