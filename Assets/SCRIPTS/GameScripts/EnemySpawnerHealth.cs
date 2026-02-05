@@ -7,14 +7,30 @@ public class EnemySpawnerHealth : EnemyHealth
     [SerializeField] private GameObject smokeBleed1VFXprefab;
     private bool hasSmokeBleedAlreadySpawnedOnce = false;
     private bool hasSmokeBleedAlreadySpawnedTwice = false;
+    private Transform playerTransform;
+    [SerializeField] private float disableHealthBarDistance = 50f;
     private void Start()
     {
         base.Start();
         currentHealth = maxHealth;
         enemySpawnManager = GetComponentInParent<EnemySpawnManager>();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        playerTransform = player.GetComponent<Transform>();
     }
     private void Update()
     {
+        float sqrDistanceToPlayer = (playerTransform.position - transform.position).sqrMagnitude;
+        if (sqrDistanceToPlayer >= disableHealthBarDistance * disableHealthBarDistance)
+        {
+            //Debug.Log("Player went too far from spawner, disabling it");
+            //EnemyHealthBar.ShowBar(false); // Hide health bar
+            EnemyHealthBar.ShowEnemyHealthBar(false);
+        }
+        else
+        {
+            EnemyHealthBar.UpdateBar(currentHealth, 0, maxHealth, true); // Show health bar
+            //Debug.Log("Player got close to spawner, enabling it");
+        }
         if (currentHealth <= 0)
         {
             Die();

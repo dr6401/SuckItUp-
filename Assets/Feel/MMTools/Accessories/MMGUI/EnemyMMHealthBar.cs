@@ -224,6 +224,12 @@ namespace MoreMountains.Tools
 		{
 			_progressBar.gameObject.SetActive(state);
 		}
+		
+		public virtual void ShowEnemyHealthBar(bool state)
+		{
+			//_progressBar.gameObject.SetActive(state);
+			_showBar = false;
+		}
 
 		/// <summary>
 		/// Whether or not the bar is currently active
@@ -516,6 +522,11 @@ namespace MoreMountains.Tools
 					_progressBar.Bump();
 				}
 			}
+		}
+
+		public virtual void HideEnemyHealthBar()
+		{
+			_progressBar.HideBar(HideBarAtZeroDelay);
 		}
 
 		/// <summary>

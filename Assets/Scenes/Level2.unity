@@ -2770,6 +2770,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1958061831142115717, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
+      propertyPath: disableHealthBarDistance
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 1960802332229744666, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -2853,6 +2857,10 @@ PrefabInstance:
     - target: {fileID: 2963608202159946524, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
       propertyPath: flyingEnemyClearanceRadius
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060588269284839999, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
+      propertyPath: AlwaysVisible
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6149801562829461563, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
       propertyPath: m_Name
@@ -3981,6 +3989,10 @@ PrefabInstance:
       propertyPath: minSpawnedDustParticles
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 1958061831142115717, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
+      propertyPath: disableHealthBarDistance
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 1960802332229744666, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -4068,6 +4080,10 @@ PrefabInstance:
     - target: {fileID: 6149801562829461563, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851779183019987124, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
+      propertyPath: AlwaysVisible
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9183940832177295276, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Enabled
@@ -7977,6 +7993,10 @@ PrefabInstance:
       propertyPath: minSpawnedDustParticles
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 1958061831142115717, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
+      propertyPath: disableHealthBarDistance
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 1960802332229744666, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -8064,6 +8084,10 @@ PrefabInstance:
     - target: {fileID: 6149801562829461563, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851779183019987124, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
+      propertyPath: AlwaysVisible
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9183940832177295276, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Enabled
@@ -13064,6 +13088,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2855491756108336849, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
+      propertyPath: AlwaysVisible
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2855491756108336849, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
+      propertyPath: HealthBarOffset.x
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3224572630360025620, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -13199,6 +13231,10 @@ PrefabInstance:
     - target: {fileID: 7177251947794946016, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: minSpawnedDustParticles
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7177251947794946016, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
+      propertyPath: disableHealthBarDistance
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7702446211941141229, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_Enabled

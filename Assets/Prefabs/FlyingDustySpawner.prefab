@@ -298,6 +298,7 @@ MonoBehaviour:
   maxSpawnedDustParticles: 40
   enemySpawnManager: {fileID: 0}
   smokeBleed1VFXprefab: {fileID: 4309857886803190102, guid: 01054062d55121845b611be964433e18, type: 3}
+  disableHealthBarDistance: 50
 --- !u!114 &5060588269284839999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,8 +478,8 @@ MonoBehaviour:
   Billboard: 0
   InstantiatedOnDeath: {fileID: 0}
   HealthBarOffset: {x: 0, y: 2.5, z: 0}
-  AlwaysVisible: 1
-  DisplayDurationOnHit: 10
+  AlwaysVisible: 0
+  DisplayDurationOnHit: 999
   HideBarAtZero: 1
   HideBarAtZeroDelay: 1
   TestMinHealth: 0
