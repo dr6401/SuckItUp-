@@ -12,7 +12,7 @@ namespace MoreMountains.Tools
 	/// You can either use a prefab for it, or have the component draw one at the start
 	/// </summary>
 	[AddComponentMenu("More Mountains/Tools/GUI/MM Health Bar")]
-	public class DustyMMHealthBar : MonoBehaviour 
+	public class EnemyMMHealthBar : MonoBehaviour 
 	{
 		#if MM_UI
 		/// the possible health bar types

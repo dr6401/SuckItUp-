@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +16,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] protected GameObject deathExplosionPrefab;
     [SerializeField] protected int minSpawnedDustParticles = 8;
     [SerializeField] protected int maxSpawnedDustParticles = 20;
+    protected EnemyMMHealthBar EnemyHealthBar;
     //[SerializeField] protected Image healthBarImage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
@@ -23,6 +25,7 @@ public class EnemyHealth : MonoBehaviour
         if (!isDifficultyHardcore) maxHealth = normalMaxHealth;
         else maxHealth = hardcoreMaxHealth;
         currentHealth = maxHealth;
+        EnemyHealthBar = GetComponent<EnemyMMHealthBar>();
     }
 
     // Update is called once per frame
@@ -38,6 +41,8 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        EnemyHealthBar.UpdateBar(currentHealth, 0, maxHealth, true);
+
         //healthBarImage.fillAmount = currentHealth / maxHealth;
         //Debug.Log("Enemy " + name + " took " + damage + " damage. " + currentHealth + " health remaining");
     }
