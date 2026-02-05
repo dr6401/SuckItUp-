@@ -28,6 +28,33 @@ public class SoundManager : MonoBehaviour
     private float currentSuctionSFXTimer = 0f;
     private float maxSuctionSFXTimer = 0.5f;
 
+    private float lastShootSfxPlayedTime = 0;
+    private float shootSfxTimeInterval = 0.06f;
+    
+    // Pooling
+    [SerializeField] private AudioMixerGroup sfxMixerGroup;
+    private int sfxPoolSize = 20;
+    private int poolIndex = 0;
+    [SerializeField] private AudioSource[] sfxAudioSourcePool;
+
+    
+    private void Awake()
+    {
+        sfxAudioSourcePool = new AudioSource[sfxPoolSize];
+        for (int i = 0; i < sfxPoolSize; i++)
+        {
+            sfxAudioSourcePool[i] = gameObject.AddComponent<AudioSource>();
+            sfxAudioSourcePool[i].playOnAwake = false;
+            sfxAudioSourcePool[i].loop = false;
+            sfxAudioSourcePool[i].outputAudioMixerGroup = sfxMixerGroup;
+        }
+    }
+
+    private void Start()
+    {
+        SetupAudio();
+    }
+    
     public void PlayMainTheme()
     {
         music.clip = musicThemes[0];
@@ -117,21 +144,6 @@ public class SoundManager : MonoBehaviour
         return music.clip.name;
     }
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else Destroy(gameObject);
-    }
-
-    private void Start()
-    {
-        SetupAudio();
-    }
-
     private void SetupAudio()
     {
         audioMixer.SetFloat("MusicVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("MusicVolume", GameConstants.defaultMusicVolume), 0.0001f, 1f)) * 20 - 10);
@@ -191,8 +203,21 @@ public class SoundManager : MonoBehaviour
     
     private void PlayRandomShootSFX()
     {
-        SFX.pitch = 1f;
-        SFX.PlayOneShot(shootingSFX[Random.Range(0, shootingSFX.Length)]);
+        if (Time.time - lastShootSfxPlayedTime < shootSfxTimeInterval) return;
+        lastShootSfxPlayedTime = Time.time;
+        if (sfxPoolSize > 0)
+        {
+            var source = sfxAudioSourcePool[poolIndex];
+            source.pitch = 1f;
+            source.PlayOneShot(shootingSFX[Random.Range(0, shootingSFX.Length)]);
+            poolIndex = (poolIndex + 1) % sfxPoolSize;
+        }
+        else
+        {
+            SFX.pitch = 1f;
+            SFX.PlayOneShot(shootingSFX[Random.Range(0, shootingSFX.Length)]);
+            //sfxAudioSource.pitch = 1f;
+        }
     }
     
     private void PlayRandomHitMarkerSFX()

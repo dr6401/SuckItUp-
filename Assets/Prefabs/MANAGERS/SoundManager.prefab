@@ -333,6 +333,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9a3df340ed41a9e4189ecce6564e0b99, type: 3}
   enemyDeathSFX: {fileID: 8300000, guid: a63ec0d2e1747044584f9294be8f54e2, type: 3}
   noAmmoLeftSFX: {fileID: 8300000, guid: d86a37b943fd0504e9cf7a9fd234ac6e, type: 3}
+  sfxMixerGroup: {fileID: 5505774061515577387, guid: 6de2cc9ccd7156847a9049dce43557fe, type: 2}
 --- !u!1 &8559753548214809764
 GameObject:
   m_ObjectHideFlags: 0
