@@ -46,6 +46,7 @@ public class WeaponHandler : MonoBehaviour
     //private float zoomSpeed = 6f;
     public bool isAlreadySucking;
 
+    private PlayerHealth playerHealth;
     private PlayerControls controls;
     private bool canWeaponSwitchWithScroll = true;
     private float timePassedSinceLastWeaponSwitch = 0f;
@@ -87,6 +88,10 @@ public class WeaponHandler : MonoBehaviour
         camera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         crossHair.enabled = false;
         notAminingCameraFOV = PlayerPrefs.GetFloat("FOV", GameConstants.defaultFOV);
+        if (playerHealth == null)
+        {
+            playerHealth = GetComponentInChildren<PlayerHealth>();
+        }
 
         isDifficultyHardcore = SettingsManager.Instance.isDifficultyHardcore;
         if (!isDifficultyHardcore) startingAmmo = normalStartingAmmo;
@@ -248,7 +253,7 @@ public class WeaponHandler : MonoBehaviour
 
     public void RefillAmmo(int reloadAmount)
     {
-        if (isVampire && currentAmmo >= 100)
+        if (isVampire && currentAmmo >= 100 && !playerHealth.IsPlayerAtMaxHealth())
         {
             OnHealthIncrease?.Invoke();
         }

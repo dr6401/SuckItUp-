@@ -12,7 +12,7 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] private int startingHealth = 100;
     private int maxHealth = 200;
-    private static int health;
+    private int health;
     [SerializeField] private TMP_Text healthText;
     [SerializeField] private TMP_Text gameOverText;
     [SerializeField] private TMP_Text tryAgainText;
@@ -87,6 +87,11 @@ public class PlayerHealth : MonoBehaviour
         {
             GameEvents.OnTriggerTakeDamageFeedback?.Invoke(normalDamage);
         }
+    }
+
+    public bool IsPlayerAtMaxHealth()
+    {
+        return health >= maxHealth;
     }
 
     public void ApplyDirtyVampire(int healAmount)

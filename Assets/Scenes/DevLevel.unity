@@ -10665,7 +10665,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2338545943200346280, guid: ff8b101283a34154f995ad06287bda90, type: 3}
       propertyPath: useTestingEqualAugmentOdds
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2338545943200346280, guid: ff8b101283a34154f995ad06287bda90, type: 3}
       propertyPath: augmentTriggerTresholdDuplicator
@@ -12106,7 +12106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 638308616459228889, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
       propertyPath: managedReferences[2249503198840881223].RemapZero
-      value: 36
+      value: 47
       objectReference: {fileID: 0}
     - target: {fileID: 638308616459228889, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
       propertyPath: managedReferences[2249503198840881223].StartsOff
@@ -17660,6 +17660,10 @@ PrefabInstance:
       propertyPath: managedReferences[2249503198840881224].FontSizeCurve.Curve.m_Curve.Array.data[2].weightedMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5106484160641690828, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 31
+      objectReference: {fileID: 0}
     - target: {fileID: 5504349128237449971, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
       propertyPath: KeepPlayModeChanges
       value: 0
@@ -21338,6 +21342,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8887928383120651108, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8948069455174708231, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
+      propertyPath: m_text
+      value: 696
+      objectReference: {fileID: 0}
+    - target: {fileID: 8948069455174708231, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
+      propertyPath: m_fontSize
+      value: 66.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8948069455174708231, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
+      propertyPath: m_enableAutoSizing
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

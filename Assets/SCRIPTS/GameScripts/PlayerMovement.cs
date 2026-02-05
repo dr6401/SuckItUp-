@@ -201,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
         if (isDustRunnerEnabled && weaponHandler.isAlreadySucking)
         {
             currentDustRunnerMultiplierValue = dustRunnerSpeedMultiplier;
-            Debug.Log("DUST RUNNING");
+            //Debug.Log("DUST RUNNING");
         }
         characterController.Move(moveDirection * (currentDustRunnerMultiplierValue * Time.deltaTime));
     }
