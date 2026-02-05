@@ -24935,7 +24935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1787566463648005555, guid: 778456b7d71c33b4e8be7e46ff02827c, type: 3}
       propertyPath: managedReferences[4596503409475977292].BumpScaleMax
-      value: 30
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1787566463648005555, guid: 778456b7d71c33b4e8be7e46ff02827c, type: 3}
       propertyPath: managedReferences[4596503409475977294].BumpScaleMax
@@ -26485,6 +26485,14 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4649725826874418339, guid: 778456b7d71c33b4e8be7e46ff02827c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649725826874418339, guid: 778456b7d71c33b4e8be7e46ff02827c, type: 3}
+      propertyPath: InitialFillValue
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6447626680709747667, guid: 778456b7d71c33b4e8be7e46ff02827c, type: 3}
       propertyPath: m_Name
       value: OverhealHealthBar
@@ -26614,7 +26622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce27d4d005c4e7499abb04e0194bc33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerID: 
+  PlayerID: Player1
   ForegroundBar: {fileID: 5420327668961144871}
   DelayedBarDecreasing: {fileID: 4922804634427841254}
   DelayedBarIncreasing: {fileID: 8392534396461445034}
@@ -27110,11 +27118,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1787566463648005555, guid: 778456b7d71c33b4e8be7e46ff02827c, type: 3}
       propertyPath: managedReferences[4596503409475977292].BumpScaleMax
-      value: 30
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1787566463648005555, guid: 778456b7d71c33b4e8be7e46ff02827c, type: 3}
       propertyPath: managedReferences[4596503409475977294].BumpScaleMax
-      value: 30
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1787566463648005555, guid: 778456b7d71c33b4e8be7e46ff02827c, type: 3}
       propertyPath: managedReferences[4596503409475977287].Timing.TimescaleMode
@@ -27891,6 +27899,10 @@ PrefabInstance:
     - target: {fileID: 6447626680709747667, guid: 778456b7d71c33b4e8be7e46ff02827c, type: 3}
       propertyPath: m_Name
       value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447626680709747667, guid: 778456b7d71c33b4e8be7e46ff02827c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7726757618975207753, guid: 778456b7d71c33b4e8be7e46ff02827c, type: 3}
       propertyPath: managedReferences[0].Active

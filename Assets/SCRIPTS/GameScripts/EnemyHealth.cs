@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class EnemyHealth : MonoBehaviour
@@ -14,6 +15,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] protected GameObject deathExplosionPrefab;
     [SerializeField] protected int minSpawnedDustParticles = 8;
     [SerializeField] protected int maxSpawnedDustParticles = 20;
+    //[SerializeField] protected Image healthBarImage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
@@ -36,6 +38,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        //healthBarImage.fillAmount = currentHealth / maxHealth;
         //Debug.Log("Enemy " + name + " took " + damage + " damage. " + currentHealth + " health remaining");
     }
 

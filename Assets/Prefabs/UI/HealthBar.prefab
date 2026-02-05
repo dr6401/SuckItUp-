@@ -512,7 +512,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1931756090676366633}
-  - component: {fileID: 8364126424970316401}
+  - component: {fileID: 4649725826874418339}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -545,7 +545,7 @@ RectTransform:
   m_AnchoredPosition: {x: 8.799696, y: 130}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8364126424970316401
+--- !u!114 &4649725826874418339
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -554,7 +554,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6447626680709747667}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a42a23ce4f9ed24abde69beacbef2f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 8199c36dd43076445ae868ee546e1194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerID: Player1
@@ -568,7 +568,7 @@ MonoBehaviour:
   BarDirection: 0
   FillMode: 0
   TimeScale: 0
-  BarFillMode: 1
+  BarFillMode: 0
   LerpForegroundBar: 1
   LerpForegroundBarSpeedDecreasing: 15
   LerpForegroundBarSpeedIncreasing: 15
@@ -693,7 +693,7 @@ MonoBehaviour:
   BumpDuration: 0.1
   ChangeColorWhenBumping: 1
   StoreBarColorOnPlay: 1
-  BumpColor: {r: 1, g: 1, b: 1, a: 0}
+  BumpColor: {r: 1, g: 1, b: 1, a: 1}
   BumpScaleAnimationCurve:
     serializedVersion: 2
     m_Curve:
@@ -767,7 +767,7 @@ MonoBehaviour:
     - serializedVersion: 3
       time: -0.15
       value: 1
-      inSlope: -0
+      inSlope: 0
       outSlope: -16.999998
       tangentMode: 69
       weightedMode: 0
@@ -785,7 +785,7 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0.15
-      inSlope: -0
+      inSlope: 0
       outSlope: 0
       tangentMode: 69
       weightedMode: 0
@@ -794,7 +794,7 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.1
       value: 0.15
-      inSlope: -0
+      inSlope: 0
       outSlope: 16.999998
       tangentMode: 69
       weightedMode: 0
@@ -812,7 +812,7 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: -0
+      inSlope: 0
       outSlope: 0
       tangentMode: 69
       weightedMode: 0
@@ -831,7 +831,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2205900537832073688}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: MoreMountains.Feedbacks.MMF_Player, MoreMountains.Tools
         m_MethodName: PlayFeedbacks
         m_Mode: 1
         m_Arguments:
@@ -846,7 +846,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1166635317602724931}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: MoreMountains.Feedbacks.MMF_Player, MoreMountains.Tools
         m_MethodName: PlayFeedbacks
         m_Mode: 1
         m_Arguments:
@@ -861,7 +861,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1787566463648005555}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: MoreMountains.Feedbacks.MMF_Player, MoreMountains.Tools
         m_MethodName: PlayFeedbacks
         m_Mode: 1
         m_Arguments:
@@ -876,7 +876,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7726757618975207753}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: MoreMountains.Feedbacks.MMF_Player, MoreMountains.Tools
         m_MethodName: PlayFeedbacks
         m_Mode: 1
         m_Arguments:
@@ -3661,7 +3661,7 @@ MonoBehaviour:
         MoveToMin: 1
         MoveToMax: 2
         BumpScaleMin: 20
-        BumpScaleMax: 30
+        BumpScaleMax: 25
     - rid: 4596503409475977294
       type: {class: MMF_SquashAndStretchSpring, ns: MoreMountains.Feedbacks, asm: MoreMountains.Tools}
       data:
@@ -3745,4 +3745,4 @@ MonoBehaviour:
         MoveToMin: 1
         MoveToMax: 2
         BumpScaleMin: 20
-        BumpScaleMax: 30
+        BumpScaleMax: 25

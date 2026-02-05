@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 #if MM_UI
 using UnityEngine.UI;
@@ -18,7 +18,7 @@ namespace MoreMountains.Tools
 	/// </summary>
 	[MMRequiresConstantRepaint]
 	[AddComponentMenu("More Mountains/Tools/GUI/MM Progress Bar")]
-	public class MMProgressBar : MMMonoBehaviour
+	public class HealthProgressBar : MMMonoBehaviour
 	{
 		#if MM_UI
 		public enum MMProgressBarStates {Idle, Decreasing, Increasing, InDecreasingDelay, InIncreasingDelay }
@@ -476,12 +476,20 @@ namespace MoreMountains.Tools
 
 		protected virtual void OnEnable()
 		{
+			GameEvents.OnTriggerTakeDamageFeedback += DecreaseHealthBarAmount;
+			GameEvents.OnTriggerHealthIncreaseFeedback += IncreaseHealthBarAmount;
 			if (!_initialized)
 			{
 				return;
 			}
 
 			StoreInitialColor();
+		}
+
+		protected void OnDisable()
+		{
+			GameEvents.OnTriggerTakeDamageFeedback -= DecreaseHealthBarAmount;
+			GameEvents.OnTriggerHealthIncreaseFeedback -= IncreaseHealthBarAmount;
 		}
 
 		public virtual void Initialization()
@@ -592,7 +600,20 @@ namespace MoreMountains.Tools
 
 
 		#endregion TESTS
+
+		public void IncreaseHealthBarAmount(int damage)
+		{
+			float newProgress = BarTarget + damage * 0.01f;
+			newProgress = Mathf.Clamp(newProgress, 0f, 1f);
+			UpdateBar01(newProgress);
+		}
 		
+		public void DecreaseHealthBarAmount(int damage)
+		{
+			float newProgress = BarTarget - damage * 0.01f;
+			newProgress = Mathf.Clamp(newProgress, 0f, 1f);
+			UpdateBar01(newProgress);
+		}
 
 		/// <summary>
 		/// Updates the text component of the progress bar
