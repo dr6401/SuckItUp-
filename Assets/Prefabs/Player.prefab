@@ -898,6 +898,7 @@ MonoBehaviour:
   camera: {fileID: 1193547500841403564}
   hitEffectPrefab: {fileID: 3790989708882211815, guid: 2747cb491fc6dd948abc03eaceb84f28, type: 3}
   enemyHitEffectPrefab: {fileID: 3790989708882211815, guid: 2747cb491fc6dd948abc03eaceb84f28, type: 3}
+  hitDamageNumber: {fileID: 3465973723300262403, guid: 2d153ea5f5a79a84a80d8a89eee25e57, type: 3}
   muzzleFlashPrefab: {fileID: 5882845429730421325, guid: ffe4d091efa6c294caa503a244a38a9f, type: 3}
   endOfBarrel: {fileID: 3095398930143407492}
   crossHair: {fileID: 0}

@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using TMPro;
 using System;
+using DamageNumbersPro;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
@@ -22,8 +23,11 @@ public class WeaponHandler : MonoBehaviour
     [SerializeField] private float fireRate = 0.2f;
     private float timeSinceLastShot = 0;
     [SerializeField] private Camera camera;
+    
     [SerializeField] private GameObject hitEffectPrefab;
     [SerializeField] private GameObject enemyHitEffectPrefab;
+    [SerializeField] private DamageNumber hitDamageNumber;
+    
     [SerializeField] private GameObject muzzleFlashPrefab;
     [SerializeField] private Transform endOfBarrel;
     public RawImage crossHair;
@@ -230,6 +234,7 @@ public class WeaponHandler : MonoBehaviour
                 EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
                 enemyHealth.TakeDamage(shooterWeaponDamage);
                 Instantiate(enemyHitEffectPrefab, hit.point, Quaternion.identity);
+                hitDamageNumber.Spawn(hit.point, shooterWeaponDamage);
             }
             else
             {
@@ -390,7 +395,7 @@ public class WeaponHandler : MonoBehaviour
 
     public void ApplyHitHarder()
     {
-        shooterWeaponDamage *= 1.5f;
+        shooterWeaponDamage *= 1.4f;
     }
 
     public void ApplyHitHarderer()
