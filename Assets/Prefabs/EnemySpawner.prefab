@@ -205,7 +205,7 @@ MonoBehaviour:
   TimeScale: 0
   HealthBarPrefab: {fileID: 0}
   TargetProgressBar: {fileID: 0}
-  Size: {x: 3, y: 0.3}
+  Size: {x: 2, y: 0.2}
   BackgroundPadding: {x: 0.01, y: 0.01}
   InitialRotationAngles: {x: 0, y: 180, z: 0}
   ForegroundColor:
@@ -362,14 +362,14 @@ MonoBehaviour:
     m_RotationOrder: 4
   FollowTargetMode: 2
   FollowRotation: 1
-  FollowRotationAtPlayer: 0
+  FollowRotationAtPlayer: 1
   FollowScale: 1
   NestDrawnHealthBar: 1
   Billboard: 0
   InstantiatedOnDeath: {fileID: 0}
   HealthBarOffset: {x: 0, y: 2.5, z: 0}
   AlwaysVisible: 1
-  DisplayDurationOnHit: 1
+  DisplayDurationOnHit: 10
   HideBarAtZero: 1
   HideBarAtZeroDelay: 1
   TestMinHealth: 0
