@@ -22641,6 +22641,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2855491756108336849, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
+      propertyPath: HealthBarOffset.x
+      value: 3.25
+      objectReference: {fileID: 0}
     - target: {fileID: 3224572630360025620, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_Enabled
       value: 0
