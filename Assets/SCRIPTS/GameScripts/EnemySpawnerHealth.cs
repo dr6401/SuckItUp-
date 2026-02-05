@@ -9,6 +9,11 @@ public class EnemySpawnerHealth : EnemyHealth
     private bool hasSmokeBleedAlreadySpawnedTwice = false;
     private Transform playerTransform;
     [SerializeField] private float disableHealthBarDistance = 50f;
+    
+    private void Awake()
+    {
+        // Override Awake() from EnemyHealth and do nothing
+    }
     private void Start()
     {
         base.Start();

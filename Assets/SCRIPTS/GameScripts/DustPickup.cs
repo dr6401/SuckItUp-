@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class DustPickup : MonoBehaviour
@@ -13,6 +15,12 @@ public class DustPickup : MonoBehaviour
     private SoundManager soundManager;
     private WeaponHandler weaponHandler;
     private GameManager gameManager;
+    [SerializeField] private Rigidbody rb;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     void Start()
     {
@@ -22,6 +30,12 @@ public class DustPickup : MonoBehaviour
         if (gameManager == null)
         {
             gameManager = GameObject.FindAnyObjectByType<GameManager>();
+        }
+
+        if (rb != null)
+        {
+            rb.useGravity = false;
+            StartCoroutine(UseGravityAfterExplosion());   
         }
     }
 
@@ -46,6 +60,13 @@ public class DustPickup : MonoBehaviour
             GameEvents.OnSuckDust?.Invoke();
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator UseGravityAfterExplosion()
+    {
+        yield return new WaitForSeconds(1f);
+        rb.useGravity = true;
+        rb.linearDamping = 15f;
     }
     
     private void OnDestroy()

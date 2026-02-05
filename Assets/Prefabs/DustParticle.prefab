@@ -125,6 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   isGettingSucked: 0
+  rb: {fileID: 4173758876119351911}
 --- !u!114 &8023997242781106954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +150,7 @@ Rigidbody:
   m_GameObject: {fileID: 595504505390220050}
   serializedVersion: 4
   m_Mass: 0.0000001
-  m_Drag: 15
+  m_Drag: 0.5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -162,7 +163,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 64
