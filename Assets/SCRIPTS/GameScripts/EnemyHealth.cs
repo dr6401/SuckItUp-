@@ -63,16 +63,26 @@ public class EnemyHealth : MonoBehaviour
     {
         if (dustPickupPrefab != null)
         {
-            for (int i = 0; i < Random.Range(minSpawnedDustParticles, maxSpawnedDustParticles); i++)
+            int amountOfSpawnedDustParticles = Random.Range(minSpawnedDustParticles, maxSpawnedDustParticles); 
+            float angleStep = 360f / amountOfSpawnedDustParticles;
+            for (int i = 0; i < amountOfSpawnedDustParticles; i++)
             {
+                float angle = i * angleStep * Mathf.Deg2Rad;
+
                 Vector3 spawnPosition = transform.position + Random.insideUnitSphere * 1f;
                 spawnPosition.y += 1f; // Increase the spawn height so things don't get spawned in the ground
                 GameObject spawnedDust = Instantiate(dustPickupPrefab, spawnPosition, Quaternion.identity);
+                
                 Rigidbody rb = spawnedDust.GetComponent<Rigidbody>();
                 if (rb != null)
                 {
-                    float launchForce = 200;
-                    Vector3 launchDirection = new Vector3(Random.Range(-1, 1), Random.Range(0, 1), Random.Range(-1, 1)).normalized;
+                    float launchForce = 150;
+                    Vector3 launchDirection = new Vector3(Mathf.Cos(angle),
+                        0,
+                        Mathf.Cos(angle)).normalized;
+                    launchDirection.y = 1f;
+                    
+                    
                     rb.AddForce(launchDirection * launchForce, ForceMode.Acceleration);
                     Debug.Log($"Launched that b with force: {launchForce}");
                 }

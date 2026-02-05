@@ -126,6 +126,32 @@ MonoBehaviour:
   target: {fileID: 0}
   isGettingSucked: 0
   rb: {fileID: 4173758876119351911}
+  dampingCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.5782315
+      outSlope: 1.5782315
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.0875
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 5.428578
+      outSlope: 5.428578
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.01666665
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  dampingDuration: 2.85
+  linearDampingTarget: 15
 --- !u!114 &8023997242781106954
 MonoBehaviour:
   m_ObjectHideFlags: 0

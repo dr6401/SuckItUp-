@@ -17,6 +17,11 @@ public class DustPickup : MonoBehaviour
     private GameManager gameManager;
     [SerializeField] private Rigidbody rb;
 
+    [Header("Explosion Damping")]
+    [SerializeField] private AnimationCurve dampingCurve;
+    [SerializeField] private float dampingDuration = 2f;
+    [SerializeField] private float linearDampingTarget = 15f;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -64,9 +69,20 @@ public class DustPickup : MonoBehaviour
 
     private IEnumerator UseGravityAfterExplosion()
     {
-        yield return new WaitForSeconds(1f);
+        float timeBeforeApplyGravity = 0f;
+        float startDamping = rb.linearDamping;
+
+        while (timeBeforeApplyGravity <= dampingDuration)
+        {
+            timeBeforeApplyGravity += Time.deltaTime;
+            float t = Mathf.Clamp01(timeBeforeApplyGravity / dampingDuration);
+            float curve = dampingCurve.Evaluate(t);
+            rb.linearDamping = Mathf.Lerp(startDamping, linearDampingTarget, curve);
+            //if (curve >= 0.8f) rb.useGravity = true;
+            yield return null;
+        }
+        rb.linearDamping = linearDampingTarget;
         rb.useGravity = true;
-        rb.linearDamping = 15f;
     }
     
     private void OnDestroy()
