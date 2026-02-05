@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using MoreMountains.Tools;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -6,7 +8,6 @@ using Random = UnityEngine.Random;
 
 public class EnemyHealth : MonoBehaviour
 {
-
     private bool isDifficultyHardcore;
     protected float maxHealth;
     [SerializeField] protected float normalMaxHealth = 20;
@@ -16,9 +17,20 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] protected GameObject deathExplosionPrefab;
     [SerializeField] protected int minSpawnedDustParticles = 8;
     [SerializeField] protected int maxSpawnedDustParticles = 20;
+    
     protected EnemyMMHealthBar EnemyHealthBar;
-    //[SerializeField] protected Image healthBarImage;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    [SerializeField] private Material mat;
+    [SerializeField] private Color originalEmissionColor;
+    private static readonly int EmissionColor = Shader.PropertyToID("_EmissionColor");
+
+
+    private void Awake()
+    {
+        mat = GetComponentInChildren<MeshRenderer>(false).material;
+        originalEmissionColor = mat.GetColor(EmissionColor);
+    }
+
     protected virtual void Start()
     {
         isDifficultyHardcore = SettingsManager.Instance.isDifficultyHardcore;
@@ -42,7 +54,7 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHealth -= damage;
         EnemyHealthBar.UpdateBar(currentHealth, 0, maxHealth, true);
-
+        Flash();
         //healthBarImage.fillAmount = currentHealth / maxHealth;
         //Debug.Log("Enemy " + name + " took " + damage + " damage. " + currentHealth + " health remaining");
     }
@@ -72,5 +84,19 @@ public class EnemyHealth : MonoBehaviour
         GameEvents.OnEnemyDeath?.Invoke();
         Destroy(gameObject);
         //Debug.Log("Enemy " + name + " died!");
+    }
+
+    public void Flash()
+    {
+        if (mat == null) return;
+        StopAllCoroutines();
+        StartCoroutine(FlashCoroutine());
+    }
+
+    private IEnumerator FlashCoroutine()
+    {
+        mat.SetColor(EmissionColor, Color.white);
+        yield return new WaitForSeconds(0.075f);
+        mat.SetColor(EmissionColor, originalEmissionColor);
     }
 }
