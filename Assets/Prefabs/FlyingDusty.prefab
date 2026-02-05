@@ -448,13 +448,13 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   FollowTargetMode: 2
-  FollowRotation: 0
+  FollowRotation: 1
   FollowRotationAtPlayer: 0
   FollowScale: 1
   NestDrawnHealthBar: 1
   Billboard: 0
   InstantiatedOnDeath: {fileID: 0}
-  HealthBarOffset: {x: 0, y: 1, z: 0}
+  HealthBarOffset: {x: 0, y: 2, z: 0}
   AlwaysVisible: 0
   DisplayDurationOnHit: 999
   HideBarAtZero: 1
