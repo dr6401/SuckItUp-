@@ -29,7 +29,7 @@ public class WeaponHandler : MonoBehaviour
     [SerializeField] private DamageNumber hitDamageNumber;
     
     [SerializeField] private GameObject muzzleFlashPrefab;
-    [SerializeField] private Transform endOfBarrel;
+    [SerializeField] private Transform endOfShooterWeaponBarrel;
     public RawImage crossHair;
     private int startingAmmo;
     [SerializeField] private int normalStartingAmmo = 0;
@@ -104,9 +104,9 @@ public class WeaponHandler : MonoBehaviour
         currentAmmo = startingAmmo;
 
 
-        if (endOfBarrel == null)
+        if (endOfShooterWeaponBarrel == null)
         {
-            endOfBarrel = GetComponentInChildren<Transform>().Find("EndOfBarrel");
+            endOfShooterWeaponBarrel = GetComponentInChildren<Transform>().Find("EndOfBarrel");
         }
 
         if (soundManager == null)
@@ -218,8 +218,8 @@ public class WeaponHandler : MonoBehaviour
             )).normalized;
         }
 
-        Instantiate(muzzleFlashPrefab, endOfBarrel.position + endOfBarrel.forward * 0.2f + endOfBarrel.up * -0.025f,
-            endOfBarrel.rotation, endOfBarrel);
+        Instantiate(muzzleFlashPrefab, endOfShooterWeaponBarrel.position + endOfShooterWeaponBarrel.forward * 0.2f + endOfShooterWeaponBarrel.up * -0.025f,
+            endOfShooterWeaponBarrel.rotation, endOfShooterWeaponBarrel);
 
         //Debug.Log("Shooting!");
 

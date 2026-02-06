@@ -1,4 +1,5 @@
 using System;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 public class CameraFOVController : MonoBehaviour
@@ -8,6 +9,7 @@ public class CameraFOVController : MonoBehaviour
     [SerializeField] private float fovChangeSpeed = 10f;
     private bool isAiming = false;
 
+    [SerializeField] private MMFeedbacks cameraShakeFeedback;
     private float targetFOV;
 
     private void Awake()
@@ -41,12 +43,20 @@ public class CameraFOVController : MonoBehaviour
         targetFOV = requestedFOV;
     }
 
+    private void PlayCameraShakeFeedback()
+    {
+        cameraShakeFeedback?.PlayFeedbacks();
+    }
+
     private void OnEnable()
     {
         GameEvents.OnFOVChanged += RequestCameraFOVForAiming;
+        GameEvents.OnShoot += PlayCameraShakeFeedback;
     }
     private void OnDisable()
     {
         GameEvents.OnFOVChanged -= RequestCameraFOVForAiming;
+        GameEvents.OnShoot -= PlayCameraShakeFeedback;
+
     }
 }
