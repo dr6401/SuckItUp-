@@ -20,6 +20,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip[] mouseClicks;
     [SerializeField] private AudioClip[] hitMarkerSFX;
     [SerializeField] private AudioClip enemyDeathSFX;
+    [SerializeField] private AudioClip dustIncreaseSFX;
     [SerializeField] private AudioClip noAmmoLeftSFX;
     private AudioClip[][] SFXSounds;
     private static SoundManager instance;
@@ -30,7 +31,15 @@ public class SoundManager : MonoBehaviour
     private float maxSuctionSFXTimer = 0.5f;
 
     private float lastShootSfxPlayedTime = 0;
+    private float lastDustIncreaseSfxPlayedTime = 0;
     private float shootSfxTimeInterval = 0.06f;
+    private float dustIncreaseSfxTimeInterval = 0.02f;
+
+    private float dustPickupSFXSourceBasePitch = 0.5f;
+    private int dustPickupComboStreak = 0;
+    private float dustIncreaseToStreakInterval = 0.5f;
+    private float dustIncreasePitchIncrease = 0.05f;
+    private float maxDustIncreasePitch = 3f;
     
     // Pooling
     [SerializeField] private AudioMixerGroup sfxMixerGroup;
@@ -186,6 +195,7 @@ public class SoundManager : MonoBehaviour
         GameEvents.OnHit += PlayRandomHitMarkerSFX;
         WeaponHandler.OnNoAmmoLeft += PlayNoAmmoLeftSFX;
         GameEvents.OnEnemyDeath += PlayEnemyDeathSFX;
+        GameEvents.OnSuckDust += PlayDustIncreaseSFX;
     }
     
     private void OnDisable()
@@ -194,6 +204,22 @@ public class SoundManager : MonoBehaviour
         GameEvents.OnHit -= PlayRandomHitMarkerSFX;
         WeaponHandler.OnNoAmmoLeft -= PlayNoAmmoLeftSFX;
         GameEvents.OnEnemyDeath -= PlayEnemyDeathSFX;
+        GameEvents.OnSuckDust -= PlayDustIncreaseSFX;
+    }
+
+    private void PlayDustIncreaseSFX()
+    {
+        if (dustIncreaseSFX == null) return;
+        if (Time.time - lastDustIncreaseSfxPlayedTime < dustIncreaseSfxTimeInterval) return;
+        if (Time.time - lastDustIncreaseSfxPlayedTime < dustIncreaseToStreakInterval)
+        {
+            dustPickupComboStreak++;
+        }
+        else dustPickupComboStreak = 0;
+        lastDustIncreaseSfxPlayedTime = Time.time;
+        dustPickupSFXSource.pitch = dustPickupSFXSourceBasePitch + dustPickupComboStreak * dustIncreasePitchIncrease + Random.Range(0, 0.05f);
+        dustPickupSFXSource.pitch = Mathf.Clamp(dustPickupSFXSource.pitch, dustPickupSFXSource.pitch, maxDustIncreasePitch);
+        dustPickupSFXSource.PlayOneShot(dustIncreaseSFX);
     }
 
     private void PlayNoAmmoLeftSFX()
