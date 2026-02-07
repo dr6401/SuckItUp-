@@ -38,7 +38,7 @@ public class CameraFOVController : MonoBehaviour
         }
         vacuumStoplensDistortionFeedback = onStopVacuumCameraFXFeedback.GetFeedbackOfType<MMF_LensDistortion_URP>();
         vacuumStartlensDistortionFeedback = onStartVacuumCameraFXFeedback.GetFeedbackOfType<MMF_LensDistortion_URP>();
-        //fixedTimeStep = 1f / Application.targetFrameRate;
+        //fixedTimeStep = 1f / Application.targetFrameRate;)
 
     }
     void Update()
