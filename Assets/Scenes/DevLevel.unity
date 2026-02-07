@@ -30930,7 +30930,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3788279629610203045, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: managedReferences[7248383239376339021].Active
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3788279629610203045, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: managedReferences[7248383239376339021].Chance
@@ -31563,7 +31563,7 @@ PrefabInstance:
     - target: {fileID: 3788279629610203045, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: managedReferences[7248383239376339021].AnimateRotationTarget
       value: 
-      objectReference: {fileID: 9116042553627022919}
+      objectReference: {fileID: 354884292}
     - target: {fileID: 3788279629610203045, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: managedReferences[7248383239376339021].Timing.LimitPlayCount
       value: 0
@@ -31634,7 +31634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3788279629610203045, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: managedReferences[7248383239376339021].DetermineRotationOnPlay
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3788279629610203045, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: managedReferences[7248383239376339021].Timing.CooldownDuration
@@ -35870,7 +35870,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5450692561524498217, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: managedReferences[7248383219866272027].DetermineRotationOnPlay
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5450692561524498217, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
       propertyPath: managedReferences[7248383219866272027].Timing.CooldownDuration
@@ -38990,11 +38990,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
---- !u!4 &9116042553627022919 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5205638890578641796, guid: 7f0941ad36a99714fbda9d3224ccdeea, type: 3}
-  m_PrefabInstance: {fileID: 9116042553627022918}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

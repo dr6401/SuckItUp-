@@ -1723,7 +1723,7 @@ MonoBehaviour:
     - rid: 7248383219866272026
       type: {class: MMF_Rotation, ns: MoreMountains.Feedbacks, asm: MoreMountains.Tools}
       data:
-        Active: 0
+        Active: 1
         UniqueID: -1480154249
         Label: Rotation
         OriginalLabel: Rotation
@@ -1798,10 +1798,10 @@ MonoBehaviour:
         Mode: 0
         RotationSpace: 1
         MovementMode: 0
-        AnimateRotationDuration: 0.3
+        AnimateRotationDuration: 0.5
         AnimatePositionSpeed: 1
         RemapCurveZero: 0
-        RemapCurveOne: 0.5
+        RemapCurveOne: 0.25
         AnimateX: 0
         AnimateRotationTweenX:
           MMTweenDefinitionType: 1
@@ -1926,7 +1926,7 @@ MonoBehaviour:
           EnumConditionPropertyName: 
           EnumConditions: 0000000000000000000000000000000000000000000000000000000000000000
         AllowAdditivePlays: 0
-        DetermineRotationOnPlay: 1
+        DetermineRotationOnPlay: 0
         ToDestinationSpace: 1
         DestinationAngles: {x: 0, y: 180, z: 0}
         ToDestinationTransform: {fileID: 0}
@@ -2666,7 +2666,7 @@ MonoBehaviour:
           EnumConditionPropertyName: 
           EnumConditions: 0000000000000000000000000000000000000000000000000000000000000000
         AllowAdditivePlays: 0
-        DetermineRotationOnPlay: 1
+        DetermineRotationOnPlay: 0
         ToDestinationSpace: 1
         DestinationAngles: {x: 0, y: 180, z: 0}
         ToDestinationTransform: {fileID: 0}
