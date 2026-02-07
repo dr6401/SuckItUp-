@@ -1,11 +1,15 @@
 using System;
+using DamageNumbersPro;
 using UnityEngine;
 using MoreMountains;
 using MoreMountains.Feedbacks;
+using Random = UnityEngine.Random;
 
 public class AmmoTextFeedbacks : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private RectTransform dustScorePosition;
+    [SerializeField] private DamageNumber dustScoreIncreaseDmgNumbers;
+    
     [SerializeField] private MMFeedbacks ammoIncrease;
     [SerializeField] private MMFeedbacks dustScoreIncrease;
     [SerializeField] private MMFeedbacks noAmmoLeft;
@@ -13,11 +17,16 @@ public class AmmoTextFeedbacks : MonoBehaviour
     [SerializeField] private MMFeedbacks healthDecrease;
     [SerializeField] private MMFeedbacks lowLevelTimer;
 
+    private void PlayDustScoreIncrease()
+    {
+        dustScoreIncrease?.PlayFeedbacks();
+        dustScoreIncreaseDmgNumbers?.SpawnGUI(dustScorePosition,
+            new Vector2(Random.Range(-20,20), -20));
+    }
     
     private void PlayAmmoIncrease()
     {
         ammoIncrease?.PlayFeedbacks();
-        dustScoreIncrease?.PlayFeedbacks();
     }
     private void PlayNoAmmoLeft()
     {
@@ -26,7 +35,7 @@ public class AmmoTextFeedbacks : MonoBehaviour
 
     private void PlayHealthIncrease(int increaseAmount)
     {
-        Debug.Log($"Health Increase: {increaseAmount}");
+        //Debug.Log($"Health Increase: {increaseAmount}");
         healthIncrease?.PlayFeedbacks();
     }
 
@@ -47,6 +56,7 @@ public class AmmoTextFeedbacks : MonoBehaviour
     
     private void OnEnable()
     {
+        GameEvents.OnSuckDust += PlayDustScoreIncrease;
         WeaponHandler.OnAmmoIncrease += PlayAmmoIncrease;
         WeaponHandler.OnNoAmmoLeft += PlayNoAmmoLeft;
         GameEvents.OnTriggerHealthIncreaseFeedback += PlayHealthIncrease;
@@ -57,6 +67,7 @@ public class AmmoTextFeedbacks : MonoBehaviour
     }
     private void OnDisable()
     {
+        GameEvents.OnSuckDust -= PlayDustScoreIncrease;
         WeaponHandler.OnAmmoIncrease -= PlayAmmoIncrease;
         WeaponHandler.OnNoAmmoLeft -= PlayNoAmmoLeft;
         GameEvents.OnTriggerHealthIncreaseFeedback -= PlayHealthIncrease;

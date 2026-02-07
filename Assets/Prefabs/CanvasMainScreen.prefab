@@ -1539,6 +1539,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a49a74595be844a46b2eafaaf25c71c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dustScorePosition: {fileID: 8774444524865838394}
+  dustScoreIncreaseDmgNumbers: {fileID: 2909909947781137645, guid: dfb2a49f87dacaa42882731d1d46fd94, type: 3}
   ammoIncrease: {fileID: 638308616459228889}
   dustScoreIncrease: {fileID: 4495783379591943022}
   noAmmoLeft: {fileID: 2596771368048213161}
