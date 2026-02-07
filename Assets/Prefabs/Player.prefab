@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 6720539852201818198}
   - component: {fileID: 7718804396270724383}
   m_Layer: 7
-  m_Name: CameraShaker
+  m_Name: ShooterCameraShaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,13 +78,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3076315478653645108}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3534616509636871620}
-  m_Father: {fileID: 5030005378581562621}
+  m_Father: {fileID: 5205638890578641796}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6720539852201818198
 MonoBehaviour:
@@ -689,6 +689,38 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!1 &4175694149928337692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5205638890578641796}
+  m_Layer: 7
+  m_Name: VacuumingCameraShaker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5205638890578641796
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4175694149928337692}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5093247193187735309}
+  m_Father: {fileID: 5030005378581562621}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5290455578677226658
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,7 +915,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5093247193187735309}
+  - {fileID: 5205638890578641796}
   - {fileID: 3112378928035973208}
   - {fileID: 4540171911956484529}
   - {fileID: 7929145975240479264}
@@ -1336,8 +1368,8 @@ MonoBehaviour:
           ButtonText: 
         Owner: {fileID: 3788279629610203045}
         DebugActive: 0
-        AnimateRotationTarget: {fileID: 5093247193187735309}
-        Mode: 1
+        AnimateRotationTarget: {fileID: 5205638890578641796}
+        Mode: 0
         RotationSpace: 1
         MovementMode: 0
         AnimateRotationDuration: 0.3
@@ -1906,7 +1938,7 @@ MonoBehaviour:
           ContributeToTotalDuration: 1
           InitialDelay: 0
           CooldownDuration: 0
-          InterruptsOnStop: 1
+          InterruptsOnStop: 0
           NumberOfRepeats: 0
           RepeatForever: 0
           DelayBetweenRepeats: 1
@@ -1964,7 +1996,7 @@ MonoBehaviour:
         Owner: {fileID: 5450692561524498217}
         DebugActive: 0
         AnimateRotationTarget: {fileID: 5093247193187735309}
-        Mode: 1
+        Mode: 0
         RotationSpace: 1
         MovementMode: 0
         AnimateRotationDuration: 0.1
