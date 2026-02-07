@@ -152,8 +152,8 @@ public class WeaponHandler : MonoBehaviour
                 if (isAlreadySucking)
                 {
                     soundManager.PlayEndVacuuming();
+                    GameEvents.OnStopSuckingDust?.Invoke();
                 }
-
                 isAlreadySucking = false;
             }
 
@@ -251,6 +251,7 @@ public class WeaponHandler : MonoBehaviour
         {
             soundManager.PlayStartVacuuming();
             isAlreadySucking = true;
+            GameEvents.OnStartSuckingDust?.Invoke();
         }
 
         SuckDustParticlesIn(true);

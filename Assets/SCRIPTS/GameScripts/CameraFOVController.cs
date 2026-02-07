@@ -1,6 +1,7 @@
 using System;
 using MoreMountains.Feedbacks;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CameraFOVController : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class CameraFOVController : MonoBehaviour
     [SerializeField] private float fovChangeSpeed = 10f;
     private bool isAiming = false;
 
-    [SerializeField] private MMFeedbacks cameraShakeFeedback;
+    [SerializeField] private MMFeedbacks onShootCameraShakeFeedback;
+    [SerializeField] private MMFeedbacks onVacuumCameraFXFeedback;
     private float targetFOV;
 
     private void Awake()
@@ -43,20 +45,38 @@ public class CameraFOVController : MonoBehaviour
         targetFOV = requestedFOV;
     }
 
-    private void PlayCameraShakeFeedback()
+    private void PlayOnShootCameraShakeFeedback()
     {
-        cameraShakeFeedback?.PlayFeedbacks();
+        onShootCameraShakeFeedback?.PlayFeedbacks();
+    }
+
+    private void PlayOnStartVacuumingFXFeedback()
+    {
+        onVacuumCameraFXFeedback?.PlayFeedbacks();
+    }
+    
+    private void PlayOnStopVacuumingFXFeedback()
+    {
+        onVacuumCameraFXFeedback.StopFeedbacks();
     }
 
     private void OnEnable()
     {
         GameEvents.OnFOVChanged += RequestCameraFOVForAiming;
-        GameEvents.OnShoot += PlayCameraShakeFeedback;
+        GameEvents.OnShoot += PlayOnShootCameraShakeFeedback;
+        GameEvents.OnStartSuckingDust += PlayOnStartVacuumingFXFeedback;
+        GameEvents.OnStopSuckingDust += PlayOnStopVacuumingFXFeedback;
+        GameEvents.OnPlayerDeath += PlayOnStopVacuumingFXFeedback;
+        GameEvents.OnLevelCompleted += PlayOnStopVacuumingFXFeedback;
     }
     private void OnDisable()
     {
         GameEvents.OnFOVChanged -= RequestCameraFOVForAiming;
-        GameEvents.OnShoot -= PlayCameraShakeFeedback;
+        GameEvents.OnShoot -= PlayOnShootCameraShakeFeedback;
+        GameEvents.OnStartSuckingDust -= PlayOnStartVacuumingFXFeedback;
+        GameEvents.OnStopSuckingDust -= PlayOnStopVacuumingFXFeedback;
+        GameEvents.OnPlayerDeath -= PlayOnStopVacuumingFXFeedback;
+        GameEvents.OnLevelCompleted -= PlayOnStopVacuumingFXFeedback;
 
     }
 }
