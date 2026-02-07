@@ -31,6 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2823296737661787928}
+  - {fileID: 5764642609848970529}
   - {fileID: 5467010386775632366}
   m_Father: {fileID: 3534616509636871620}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -52,6 +53,37 @@ MonoBehaviour:
   rotationStep: 6
   maxRotationStep: 7
   smoothRot: 5
+--- !u!1 &392757263763066664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5764642609848970529}
+  m_Layer: 0
+  m_Name: VacuumEndOfBarrel
+  m_TagString: EndOfSuctionWeapon
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5764642609848970529
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392757263763066664}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.22238053, y: 0.95156443, z: -0.18802601, w: 0.0985815}
+  m_LocalPosition: {x: 0.10042572, y: -0.038085938, z: 0.39622498}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2556280338148101104}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3076315478653645108
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,7 +910,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 1193547500841403564}
   fovChangeSpeed: 10
-  globalVolume: {fileID: 4853600349920495081}
   onShootCameraShakeFeedback: {fileID: 5450692561524498217}
   onStartVacuumCameraFXFeedback: {fileID: 3788279629610203045}
   onStopVacuumCameraFXFeedback: {fileID: 5741044664309350402}
