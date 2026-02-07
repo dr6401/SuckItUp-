@@ -9,7 +9,6 @@ using UnityEngine.Serialization;
 
 public class CameraFOVController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private Camera camera;
     [SerializeField] private float fovChangeSpeed = 10f;
     private bool isAiming = false;
@@ -20,6 +19,8 @@ public class CameraFOVController : MonoBehaviour
     private MMF_LensDistortion_URP vacuumStartlensDistortionFeedback;
     private MMF_LensDistortion_URP vacuumStoplensDistortionFeedback;
     private float timeSinceStartedLensDistortionFeedback = 0;
+    //private float timeSinceStoppedLensDistortionFeedback = 0;
+
     
     private float targetFOV;
 
@@ -37,12 +38,14 @@ public class CameraFOVController : MonoBehaviour
         }
         vacuumStoplensDistortionFeedback = onStopVacuumCameraFXFeedback.GetFeedbackOfType<MMF_LensDistortion_URP>();
         vacuumStartlensDistortionFeedback = onStartVacuumCameraFXFeedback.GetFeedbackOfType<MMF_LensDistortion_URP>();
-        
+        //fixedTimeStep = 1f / Application.targetFrameRate;
+
     }
     void Update()
     {
         camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, targetFOV, fovChangeSpeed * Time.deltaTime);
         timeSinceStartedLensDistortionFeedback += Time.deltaTime;
+        //timeSinceStoppedLensDistortionFeedback += Time.deltaTime;
     }
 
     public void RequestCameraFOVChange(float requestedFOV)
@@ -66,19 +69,28 @@ public class CameraFOVController : MonoBehaviour
 
     private void PlayOnStartVacuumingFXFeedback()
     {
+        //float normalizedTime = timeSinceStoppedLensDistortionFeedback / vacuumStoplensDistortionFeedback.Duration;
+        //float currentLensDistortion =
+        //    vacuumStoplensDistortionFeedback.Intensity.Evaluate(normalizedTime) * vacuumStoplensDistortionFeedback.RemapIntensityZero;
+        //if (vacuumStartlensDistortionFeedback != null) vacuumStartlensDistortionFeedback.RemapIntensityOne = currentLensDistortion;
+        onStopVacuumCameraFXFeedback.StopFeedbacks();
         timeSinceStartedLensDistortionFeedback = 0;
         onStartVacuumCameraFXFeedback?.PlayFeedbacks();
-        Debug.Log("Started vacuuming camera fx");
+        //Debug.Log($"timeSinceStoppedLensDistortionFeedback: {timeSinceStoppedLensDistortionFeedback}, normalizedTime: {normalizedTime}, evaluated stopping lens distortion: {currentLensDistortion}");
         
     }
     
     private void PlayOnStopVacuumingFXFeedback()
     {
+        float normalizedTime = timeSinceStartedLensDistortionFeedback / vacuumStartlensDistortionFeedback.Duration;
         onStartVacuumCameraFXFeedback?.StopFeedbacks();
+        //timeSinceStoppedLensDistortionFeedback = 0;
         float currentLensDistortion =
-            vacuumStartlensDistortionFeedback.Intensity.Evaluate(timeSinceStartedLensDistortionFeedback) * vacuumStartlensDistortionFeedback.RemapIntensityOne; //lensDistortion.intensity.value;
+            vacuumStartlensDistortionFeedback.Intensity.Evaluate(normalizedTime) * vacuumStartlensDistortionFeedback.RemapIntensityOne;
+        Debug.Log($"timeSinceStartedLensDistortionFeedback: {timeSinceStartedLensDistortionFeedback}, normalizedTime: {normalizedTime}, evaluated starting lens distortion: {currentLensDistortion}");
         if (vacuumStoplensDistortionFeedback != null) vacuumStoplensDistortionFeedback.RemapIntensityOne = currentLensDistortion;
-        StartCoroutine(PlayOnStopVacuumCameraFXFeedbackAfterAWhile());
+        onStopVacuumCameraFXFeedback?.PlayFeedbacks();
+        //StartCoroutine(PlayOnStopVacuumCameraFXFeedbackAfterAWhile());
     }
 
     private IEnumerator PlayOnStopVacuumCameraFXFeedbackAfterAWhile()

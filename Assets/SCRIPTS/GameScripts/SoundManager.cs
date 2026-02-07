@@ -39,7 +39,7 @@ public class SoundManager : MonoBehaviour
     private int dustPickupComboStreak = 0;
     private float dustIncreaseToStreakInterval = 0.5f;
     private float dustIncreasePitchIncrease = 0.05f;
-    private float maxDustIncreasePitch = 3f;
+    private float maxDustIncreasePitch = 2.5f;
     
     // Pooling
     [SerializeField] private AudioMixerGroup sfxMixerGroup;

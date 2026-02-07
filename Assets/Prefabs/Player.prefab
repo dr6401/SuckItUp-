@@ -913,6 +913,7 @@ MonoBehaviour:
   onShootCameraShakeFeedback: {fileID: 5450692561524498217}
   onStartVacuumCameraFXFeedback: {fileID: 3788279629610203045}
   onStopVacuumCameraFXFeedback: {fileID: 5741044664309350402}
+  fixedTimeStep: 0
 --- !u!114 &4853600349920495081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1574,7 +1575,7 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         RemapIntensityZero: 0
-        RemapIntensityOne: 0.5
+        RemapIntensityOne: -0.5
 --- !u!1 &7310088509021323407
 GameObject:
   m_ObjectHideFlags: 0
@@ -2002,7 +2003,7 @@ MonoBehaviour:
           ContributeToTotalDuration: 1
           InitialDelay: 0
           CooldownDuration: 0
-          InterruptsOnStop: 0
+          InterruptsOnStop: 1
           NumberOfRepeats: 0
           RepeatForever: 0
           DelayBetweenRepeats: 1
@@ -2059,7 +2060,7 @@ MonoBehaviour:
           ButtonText: Automatic Shaker Setup
         Owner: {fileID: 3788279629610203045}
         DebugActive: 0
-        Duration: 2
+        Duration: 0.5
         ResetShakerValuesAfterShake: 0
         ResetTargetValuesAfterShake: 0
         RelativeIntensity: 0
@@ -2097,7 +2098,7 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         RemapIntensityZero: 0
-        RemapIntensityOne: 0.5
+        RemapIntensityOne: -0.5
 --- !u!1 &7528116911035463922
 GameObject:
   m_ObjectHideFlags: 0
