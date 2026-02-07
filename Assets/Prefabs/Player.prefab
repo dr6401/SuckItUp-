@@ -913,7 +913,6 @@ MonoBehaviour:
   onShootCameraShakeFeedback: {fileID: 5450692561524498217}
   onStartVacuumCameraFXFeedback: {fileID: 3788279629610203045}
   onStopVacuumCameraFXFeedback: {fileID: 5741044664309350402}
-  fixedTimeStep: 0
 --- !u!114 &4853600349920495081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2061,7 +2060,7 @@ MonoBehaviour:
         Owner: {fileID: 3788279629610203045}
         DebugActive: 0
         Duration: 0.5
-        ResetShakerValuesAfterShake: 0
+        ResetShakerValuesAfterShake: 1
         ResetTargetValuesAfterShake: 0
         RelativeIntensity: 0
         Intensity:
@@ -2077,17 +2076,8 @@ MonoBehaviour:
             inWeight: 0
             outWeight: 0
           - serializedVersion: 3
-            time: 0.3125
-            value: -0.747619
-            inSlope: -1.2505895
-            outSlope: -1.2505895
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0.12121213
-          - serializedVersion: 3
             time: 1
-            value: -1
+            value: 1
             inSlope: 0
             outSlope: 0
             tangentMode: 0
