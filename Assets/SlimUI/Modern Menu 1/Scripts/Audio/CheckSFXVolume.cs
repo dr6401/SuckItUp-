@@ -11,15 +11,17 @@ namespace SlimUI.ModernMenu{
 		}
 
 		public void UpdateVolume (){
-			if (PlayerPrefs.GetFloat("SFXVolume") < 0.001f)
+			if (PlayerPrefs.GetFloat("GeneralSFXVolume") < 0.001f)
 			{
-				audioMixer.SetFloat("SFXVolume", -80f);
+				audioMixer.SetFloat("GeneralSFXVolume", -80f);
+				audioMixer.SetFloat("DustPickupSFXVolume", -80f);
 			}
 			else
 			{
-				audioMixer.SetFloat("SFXVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("SFXVolume", GameConstants.defaultSFXVolume), 0.0001f, 1f)) * 20);
+				audioMixer.SetFloat("GeneralSFXVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("GeneralSFXVolume", GameConstants.defaultSFXVolume), 0.0001f, 1f)) * 20);
+				audioMixer.SetFloat("DustPickupSFXVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("GeneralSFXVolume", GameConstants.defaultSFXVolume), 0.0001f, 1f)) * 20);
 			}
-			//Debug.Log("Updated SFX Volume: " + PlayerPrefs.GetFloat("SFXVolume"));
+			//Debug.Log("Updated SFX Volume: " + PlayerPrefs.GetFloat("GeneralSFXVolume"));
 		}
 	}
 }

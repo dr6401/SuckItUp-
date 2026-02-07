@@ -51,7 +51,7 @@ namespace SlimUI.ModernMenu{
 
 		// sliders
 		public GameObject musicSlider;
-		public GameObject sfxSlider;
+		public GameObject generalSfxSlider;
 		public GameObject sensitivitySlider;
 		public GameObject fOVSlider;
 		public GameObject graphicsSlider;
@@ -81,7 +81,7 @@ namespace SlimUI.ModernMenu{
 
 			// check slider values
 			musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
-			sfxSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SFXVolume");
+			generalSfxSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("GeneralSFXVolume");
 			sensitivitySlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Sensitivity");
 			fOVSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("FOV");
 			graphicsSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Graphics", 1);
@@ -279,7 +279,7 @@ namespace SlimUI.ModernMenu{
 
 		public void SFXSlider (){
 			//PlayerPrefs.SetFloat("MusicVolume", sliderValue);
-			PlayerPrefs.SetFloat("SFXVolume", sfxSlider.GetComponent<Slider>().value);
+			PlayerPrefs.SetFloat("GeneralSFXVolume", generalSfxSlider.GetComponent<Slider>().value);
 		}
 		
 		public void SensitivitySlider (){ // Implemented in PlayerMovement 

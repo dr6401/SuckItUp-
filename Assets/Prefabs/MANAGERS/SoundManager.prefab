@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3020567220259239149}
   - component: {fileID: 7304434123828503156}
   m_Layer: 0
-  m_Name: LoudSFX
+  m_Name: DustPickupSFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ AudioSource:
   m_GameObject: {fileID: 2084550416182946790}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 5505774061515577387, guid: 6de2cc9ccd7156847a9049dce43557fe, type: 2}
+  OutputAudioMixerGroup: {fileID: -1675225612553959978, guid: 6de2cc9ccd7156847a9049dce43557fe, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -306,9 +306,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 6de2cc9ccd7156847a9049dce43557fe, type: 2}
-  music: {fileID: 5558404743378611239}
-  SFX: {fileID: 564658464915958062}
-  loudSFX: {fileID: 7304434123828503156}
+  musicSource: {fileID: 5558404743378611239}
+  generalSFXSource: {fileID: 564658464915958062}
+  dustPickupSFXSource: {fileID: 7304434123828503156}
+  loudSFXSource: {fileID: 0}
   musicThemes: []
   dustParticlesCrumblings:
   - {fileID: 8300000, guid: 2854d7253ffa29c41aaacc78ad39352a, type: 3}
@@ -334,6 +335,7 @@ MonoBehaviour:
   enemyDeathSFX: {fileID: 8300000, guid: a63ec0d2e1747044584f9294be8f54e2, type: 3}
   noAmmoLeftSFX: {fileID: 8300000, guid: d86a37b943fd0504e9cf7a9fd234ac6e, type: 3}
   sfxMixerGroup: {fileID: 5505774061515577387, guid: 6de2cc9ccd7156847a9049dce43557fe, type: 2}
+  sfxAudioSourcePool: []
 --- !u!1 &8559753548214809764
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +347,7 @@ GameObject:
   - component: {fileID: 8215243524715437187}
   - component: {fileID: 564658464915958062}
   m_Layer: 0
-  m_Name: SFX
+  m_Name: GeneralSFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

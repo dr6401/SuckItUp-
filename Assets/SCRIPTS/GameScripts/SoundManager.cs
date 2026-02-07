@@ -2,15 +2,16 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Serialization;
 
 public class SoundManager : MonoBehaviour
 {
     [Header("-------Audio Mixer-------")]
     [SerializeField] private AudioMixer audioMixer;
     [Header("-------Audio Sources-------")]
-    [SerializeField] private AudioSource music;
-    [SerializeField] private AudioSource SFX;
-    [SerializeField] private AudioSource loudSFX;
+    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource generalSFXSource;
+    [SerializeField] private AudioSource dustPickupSFXSource;
     [Header("-------Audio Clips-------")]
     [SerializeField] private AudioClip[] musicThemes;
     [SerializeField] private AudioClip[] dustParticlesCrumblings;
@@ -57,8 +58,8 @@ public class SoundManager : MonoBehaviour
     
     public void PlayMainTheme()
     {
-        music.clip = musicThemes[0];
-        music.Play();
+        musicSource.clip = musicThemes[0];
+        musicSource.Play();
     }
 
     void Update()
@@ -68,49 +69,49 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySFX(int clipNum)
     {
-        SFX.pitch = 1f;
-        SFX.PlayOneShot(SFXSounds[clipNum][Random.Range(0, SFXSounds[clipNum].Length - 1)]);
+        generalSFXSource.pitch = 1f;
+        generalSFXSource.PlayOneShot(SFXSounds[clipNum][Random.Range(0, SFXSounds[clipNum].Length - 1)]);
     }
     
     public void PlayStartVacuuming()
     {
-        SFX.pitch = 1f;
-        SFX.PlayOneShot(vacuumingSounds[0]);
-        SFX.clip = vacuumingSounds[1];
-        SFX.PlayDelayed(vacuumingSounds[0].length - 0.25f);
+        generalSFXSource.pitch = 1f;
+        generalSFXSource.PlayOneShot(vacuumingSounds[0]);
+        generalSFXSource.clip = vacuumingSounds[1];
+        generalSFXSource.PlayDelayed(vacuumingSounds[0].length - 0.25f);
         //SFX.PlayOneShot(vacuumingSounds[1]);
     }
     public void PlayVacuuming()
     {
-        SFX.pitch = 1f;
-        SFX.PlayOneShot(vacuumingSounds[1]);
+        generalSFXSource.pitch = 1f;
+        generalSFXSource.PlayOneShot(vacuumingSounds[1]);
     }
     
     public void PlayEndVacuuming()
     {
-        SFX.pitch = 1f;
-        SFX.PlayOneShot(vacuumingSounds[2]);
+        generalSFXSource.pitch = 1f;
+        generalSFXSource.PlayOneShot(vacuumingSounds[2]);
         StartCoroutine(StopPlayingAfterDelay(0.03f));
     }
 
     public IEnumerator PlaySFXAfterDelay(AudioClip audioClip, float time)
     {
         yield return new WaitForSeconds(time);
-        SFX.pitch = 1f;
-        SFX.PlayOneShot(audioClip);
+        generalSFXSource.pitch = 1f;
+        generalSFXSource.PlayOneShot(audioClip);
     }
     public IEnumerator StopPlayingAfterDelay(float time)
     {
         yield return new WaitForSeconds(time);
-        SFX.clip = null;
+        generalSFXSource.clip = null;
     }
 
     public void PlayDustSuction()
     {
         if (currentSuctionSFXTimer >= maxSuctionSFXTimer)
         {
-            SFX.pitch = 1f;
-            loudSFX.PlayOneShot(dustParticlesCrumblings[Random.Range(0, dustParticlesCrumblings.Length)]);
+            generalSFXSource.pitch = 1f;
+            generalSFXSource.PlayOneShot(dustParticlesCrumblings[Random.Range(0, dustParticlesCrumblings.Length)]);
             currentSuctionSFXTimer = 0;
         }
     }
@@ -122,7 +123,7 @@ public class SoundManager : MonoBehaviour
 
     public void ChangeMusicVolume(float value)
     {
-        StartCoroutine(FadeAudio(music, value, fadeDuration));
+        StartCoroutine(FadeAudio(musicSource, value, fadeDuration));
         currentMusicVolume = value;
         PlayerPrefs.SetFloat("MusicVolume", value);
     }
@@ -134,31 +135,34 @@ public class SoundManager : MonoBehaviour
 
     public void ChangeSFXVolume(float value)
     {
-        StartCoroutine(FadeAudio(SFX, value, fadeDuration));
+        StartCoroutine(FadeAudio(generalSFXSource, value, fadeDuration));
         currentSFXVolume = value;
-        PlayerPrefs.SetFloat("SFXVolume", value);
+        PlayerPrefs.SetFloat("GeneralSFXVolume", value);
     }
 
     public string GetMusicName()
     {
-        return music.clip.name;
+        return musicSource.clip.name;
     }
 
     private void SetupAudio()
     {
         audioMixer.SetFloat("MusicVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("MusicVolume", GameConstants.defaultMusicVolume), 0.0001f, 1f)) * 20 - 10);
-        audioMixer.SetFloat("SFXVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("SFXVolume", GameConstants.defaultSFXVolume), 0.0001f, 1f)) * 20);
+        audioMixer.SetFloat("GeneralSFXVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("GeneralSFXVolume", GameConstants.defaultSFXVolume), 0.0001f, 1f)) * 20);
+        audioMixer.SetFloat("DustPickupSFXVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("GeneralSFXVolume", GameConstants.defaultSFXVolume), 0.0001f, 1f)) * 20);        
         if (PlayerPrefs.GetFloat("MusicVolume") < 0.001f)
         {
             audioMixer.SetFloat("MusicVolume", -80f);
         }
-        if (PlayerPrefs.GetFloat("SFXVolume") < 0.001f)
+        if (PlayerPrefs.GetFloat("GeneralSFXVolume") < 0.001f)
         {
-            audioMixer.SetFloat("SFXVolume", -80f);
+            audioMixer.SetFloat("GeneralSFXVolume", -80f);
+            audioMixer.SetFloat("DustPickupSFXVolume", -80f);
         }
-        music.volume = 1;
-        SFX.volume = 1;
-        music.loop = true;
+        musicSource.volume = 1;
+        generalSFXSource.volume = 1;
+        dustPickupSFXSource.volume = 1;
+        musicSource.loop = true;
         PlayMainTheme();
         SFXSounds = new AudioClip[][] { dustParticlesCrumblings, mouseClicks, vacuumingSounds };
     }
@@ -214,21 +218,21 @@ public class SoundManager : MonoBehaviour
         }
         else
         {
-            SFX.pitch = 1f;
-            SFX.PlayOneShot(shootingSFX[Random.Range(0, shootingSFX.Length)]);
+            generalSFXSource.pitch = 1f;
+            generalSFXSource.PlayOneShot(shootingSFX[Random.Range(0, shootingSFX.Length)]);
             //sfxAudioSource.pitch = 1f;
         }
     }
     
     private void PlayRandomHitMarkerSFX()
     {
-        SFX.pitch = 1f;
-        SFX.PlayOneShot(hitMarkerSFX[Random.Range(0, hitMarkerSFX.Length)]);
+        generalSFXSource.pitch = 1f;
+        generalSFXSource.PlayOneShot(hitMarkerSFX[Random.Range(0, hitMarkerSFX.Length)]);
     }
 
     private void PlayEnemyDeathSFX()
     {
-        SFX.pitch = Random.Range(0.9f, 1.3f);
-        SFX.PlayOneShot(enemyDeathSFX);
+        generalSFXSource.pitch = Random.Range(0.9f, 1.3f);
+        generalSFXSource.PlayOneShot(enemyDeathSFX);
     }
 }

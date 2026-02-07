@@ -81,7 +81,7 @@ namespace SlimUI.ModernMenu{
 
 			// check slider values
 			musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume", GameConstants.defaultMusicVolume);
-			sfxSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SFXVolume", GameConstants.defaultSFXVolume);
+			sfxSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("GeneralSFXVolume", GameConstants.defaultSFXVolume);
 			sensitivitySlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Sensitivity", GameConstants.defaultSensitivity);
 			fOVSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("FOV", GameConstants.defaultFOV);
 			Debug.Log($"sensitivitySlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat(\"Sensitivity\", GameConstants.defaultSensitivity);: {PlayerPrefs.GetFloat("Sensitivity", GameConstants.defaultSensitivity)}");
@@ -280,7 +280,7 @@ namespace SlimUI.ModernMenu{
 
 		public void SFXSlider (){
 			//PlayerPrefs.SetFloat("MusicVolume", sliderValue);
-			PlayerPrefs.SetFloat("SFXVolume", sfxSlider.GetComponent<Slider>().value);
+			PlayerPrefs.SetFloat("GeneralSFXVolume", sfxSlider.GetComponent<Slider>().value);
 		}
 		
 		public void SensitivitySlider (){ // Implemented in PlayerMovement 

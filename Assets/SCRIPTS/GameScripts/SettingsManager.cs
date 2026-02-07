@@ -57,16 +57,17 @@ public class SettingsManager : MonoBehaviour
         isDifficultyHardcore = PlayerPrefs.GetInt("HardCoreDifficulty", GameConstants.defaultHardcoreDifficulty) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
         isWeaponSwitchWithScrollEnabled = PlayerPrefs.GetInt("WeaponSwitchScroll", GameConstants.defaultWeaponSwitchScroll) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
         musicVolume = PlayerPrefs.GetFloat("MusicVolume", GameConstants.defaultMusicVolume);
-        sfxVolume = PlayerPrefs.GetFloat("SFXVolume", GameConstants.defaultSFXVolume);
+        sfxVolume = PlayerPrefs.GetFloat("GeneralSFXVolume", GameConstants.defaultSFXVolume);
         audioMixer.SetFloat("MusicVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("MusicVolume", GameConstants.defaultMusicVolume), 0.0001f, 1f)) * 20 - 10);
-        audioMixer.SetFloat("SFXVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("SFXVolume", GameConstants.defaultSFXVolume), 0.0001f, 1f)) * 20);
+        audioMixer.SetFloat("GeneralSFXVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("GeneralSFXVolume", GameConstants.defaultSFXVolume), 0.0001f, 1f)) * 20);
+        audioMixer.SetFloat("DustPickupSFXVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("GeneralSFXVolume", GameConstants.defaultSFXVolume), 0.0001f, 1f)) * 20);
         PlayerPrefs.SetFloat("Sensitivity", sensitivity);
         PlayerPrefs.SetFloat("FOV", fOV);
         PlayerPrefs.SetInt("Inverted", isMouseInverted ? 1 : 0);
         PlayerPrefs.SetInt("HardCoreDifficulty", isDifficultyHardcore ? 1 : 0);
         PlayerPrefs.SetInt("WeaponSwitchScroll", isWeaponSwitchWithScrollEnabled ? 1 : 0);
         PlayerPrefs.SetFloat("MusicVolume", musicVolume);
-        PlayerPrefs.SetFloat("SFXVolume", sfxVolume);
+        PlayerPrefs.SetFloat("GeneralSFXVolume", sfxVolume);
         PlayerPrefs.Save();
     }
 
