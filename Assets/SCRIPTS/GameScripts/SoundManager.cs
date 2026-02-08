@@ -169,7 +169,7 @@ public class SoundManager : MonoBehaviour
         }
         musicSource.volume = 1;
         generalSFXSource.volume = 1;
-        dustPickupSFXSource.volume = 1;
+        dustPickupSFXSource.volume = 0.5f; // Dust pickup sfx is a bit loud so just half this lol
         musicSource.loop = true;
         PlayMainTheme();
         SFXSounds = new AudioClip[][] { dustParticlesCrumblings, mouseClicks, vacuumingSounds };
