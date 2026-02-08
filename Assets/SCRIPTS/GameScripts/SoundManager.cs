@@ -10,7 +10,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioMixer audioMixer;
     [Header("-------Audio Sources-------")]
     [SerializeField] private AudioSource musicSource;
-    [SerializeField] private AudioSource generalSFXSource;
+    [SerializeField] public AudioSource generalSFXSource;
     [SerializeField] private AudioSource dustPickupSFXSource;
     [Header("-------Audio Clips-------")]
     [SerializeField] private AudioClip[] musicThemes;

@@ -185,7 +185,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (characterController.isGrounded)
         {
-            moveDirection = (forward * curSpeedZ) + (right * curSpeedX);    
+            moveDirection = (forward * curSpeedZ) + (right * curSpeedX);
+            if (moveInput.magnitude > 0)
+            {
+                if (!isRunning) GameEvents.OnPlayerWalking?.Invoke();
+                else GameEvents.OnPlayerRunning?.Invoke();
+            }
         }
         else if (isSliding)
         {
@@ -210,6 +215,7 @@ public class PlayerMovement : MonoBehaviour
     {
         verticalVelocity = jumpForce;
         if (isSliding) verticalVelocity *= 1.2f; //bigger jump after jumping from slide - B-hopping
+        GameEvents.OnPlayerJumped?.Invoke();
     }
 
     void StartSlide()

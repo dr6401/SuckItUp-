@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313181bed46c3a541ad414ef6ee2d096, type: 3}
+  m_Name: FootstepData
+  m_EditorClassIdentifier: 
+  surfaces:
+  - name: Wood
+    walkSoundEffects:
+    - {fileID: 8300000, guid: 8e001351cd7065543a068386cde4c960, type: 3}
+    - {fileID: 8300000, guid: c41fb169b2991c247a5466e00faa6639, type: 3}
+    - {fileID: 8300000, guid: 76c66b3ae15685a45a334b0628d1edd1, type: 3}
+    - {fileID: 8300000, guid: cb9aa4db4b3a12147bf2fe3d88fee270, type: 3}
+    - {fileID: 8300000, guid: 2e832dbb2c7c9ba4e97fd3005fe850b7, type: 3}
+    - {fileID: 8300000, guid: 3af6e561e364a274aa306461461c386b, type: 3}
+    - {fileID: 8300000, guid: 30668cf6c5cbfef478b0812fc59eb646, type: 3}
+    - {fileID: 8300000, guid: eea9624d96ae191439615ca598fe01fa, type: 3}
+    - {fileID: 8300000, guid: a45bdfd5056ed1d4d8f667cc2498ca12, type: 3}
+    - {fileID: 8300000, guid: ec4bd5988d7de0c41ab2d9959705dd8b, type: 3}
+    runSoundEffects:
+    - {fileID: 8300000, guid: 505a015d5525e0442ae4a62d5bac304d, type: 3}
+    - {fileID: 8300000, guid: 7ffe843b3b9c8d14792d912d39646105, type: 3}
+    - {fileID: 8300000, guid: 2802b1a72217c464ea0171ad67e835f7, type: 3}
+    - {fileID: 8300000, guid: 88da42c7018c0fa41870ccf17d13da9c, type: 3}
+    - {fileID: 8300000, guid: 8b4e405a508185e428652ccc26469d53, type: 3}
+    - {fileID: 8300000, guid: cee4ef3ef0fd155409f7b5a5162cece8, type: 3}
+    - {fileID: 8300000, guid: b30822d7e7d412d459397d0749be742a, type: 3}
+    - {fileID: 8300000, guid: 7f31ac62883f78b4ba610e164f57f879, type: 3}
+    - {fileID: 8300000, guid: 2c37f11b2d56b374ebf354853c6ad643, type: 3}
+    - {fileID: 8300000, guid: 75d4e54cf94712d4e8de7ce385abceb2, type: 3}
+    jumpSoundEffects:
+    - {fileID: 8300000, guid: 7d22997c3222c124d91d351ddc1c6ee4, type: 3}
+    - {fileID: 8300000, guid: fcbaf164018fc614a9729400cf40f9de, type: 3}
+    landSoundEffects:
+    - {fileID: 8300000, guid: bb5ec83ccc5c69f43b31f100278bff91, type: 3}
+    - {fileID: 8300000, guid: 623ad07c146cedd4db6b902fd1612618, type: 3}
+  - name: Metal
+    walkSoundEffects:
+    - {fileID: 8300000, guid: 5e265270fb85126479eef52d8fce3b08, type: 3}
+    - {fileID: 8300000, guid: 3701a5fdf99882f40bc00eb9053eec92, type: 3}
+    - {fileID: 8300000, guid: 2f949b40b7283404099a802630fb2077, type: 3}
+    - {fileID: 8300000, guid: dfff2b3c7dfb43c419592789f0a6ab81, type: 3}
+    - {fileID: 8300000, guid: 812100e3982e56842adb6ba5be867b7a, type: 3}
+    - {fileID: 8300000, guid: 83c58d64f2e240c41b1f2c2885b253a6, type: 3}
+    - {fileID: 8300000, guid: 3610d597db7918e44906d575bd074616, type: 3}
+    - {fileID: 8300000, guid: 149e8ca9df68d744e9722158daa78ab1, type: 3}
+    - {fileID: 8300000, guid: d25a8335420d09f43bedf446e2deffa0, type: 3}
+    - {fileID: 8300000, guid: cb111f071b2e63844afba5ac99aceb2b, type: 3}
+    - {fileID: 8300000, guid: 2c32dcddf9cd3a944a54728c2c878557, type: 3}
+    - {fileID: 8300000, guid: 2705e9a452d315940a37bf3403ce5927, type: 3}
+    - {fileID: 8300000, guid: e80de9a8752d20e4d97ab928d318adb3, type: 3}
+    - {fileID: 8300000, guid: 4290a2df9f7c8ee4fbe7fee539c5bf30, type: 3}
+    - {fileID: 8300000, guid: 63218441cc62b42499a5df11d6393821, type: 3}
+    runSoundEffects:
+    - {fileID: 8300000, guid: b25225c72201cd740b16b95b86d57940, type: 3}
+    - {fileID: 8300000, guid: 5e8e6e435e65fe146b588b8a9d2df461, type: 3}
+    - {fileID: 8300000, guid: 8900ae4b297a017448ddb78ea0c2d4da, type: 3}
+    - {fileID: 8300000, guid: be6f9c5983062b9488c5423a7e1fd1e0, type: 3}
+    - {fileID: 8300000, guid: 2244aa424da7d2f439f4c53fa73e8b53, type: 3}
+    - {fileID: 8300000, guid: 2c7ab9bda8ff6364ba31cc57a90a16d5, type: 3}
+    - {fileID: 8300000, guid: b16b005ddc0977b4aa402b5abce3205f, type: 3}
+    - {fileID: 8300000, guid: 150e70d1ee30a0547ab9ded90647ad8d, type: 3}
+    - {fileID: 8300000, guid: afe5e23d02afb5142bc95bacc1e287c0, type: 3}
+    - {fileID: 8300000, guid: f7c73eb9b5b8af24b87031b591566444, type: 3}
+    - {fileID: 8300000, guid: 52c5e1808bea0b34e8abeab31591f4cc, type: 3}
+    - {fileID: 8300000, guid: 520f55c41638a0d408571ddf515810d0, type: 3}
+    - {fileID: 8300000, guid: 9a47b64b8d432b94eb7317d268127b1d, type: 3}
+    - {fileID: 8300000, guid: e2b868994c062864eaa867681aeac0d8, type: 3}
+    - {fileID: 8300000, guid: 034986a81cc0be546a288ff268b8783e, type: 3}
+    jumpSoundEffects:
+    - {fileID: 8300000, guid: df49938a1860650418b6d5654ed436be, type: 3}
+    - {fileID: 8300000, guid: d22035de002018b44bc76a915efcba10, type: 3}
+    - {fileID: 8300000, guid: 5c39ec0074165fb4eaf789fc68f5379b, type: 3}
+    - {fileID: 8300000, guid: c2694fab5eccc4249bd5a2083be61d3e, type: 3}
+    landSoundEffects:
+    - {fileID: 8300000, guid: 37cdbcb02c3324849ac457dfc5b1058e, type: 3}
+    - {fileID: 8300000, guid: 8a7a8ee0447e4b5469bce225745d9f42, type: 3}
+    - {fileID: 8300000, guid: 7e629da20f6fdee418e5e60ba9efc23c, type: 3}
+    - {fileID: 8300000, guid: a04e8112fb4cca944baabc0048ff839d, type: 3}
