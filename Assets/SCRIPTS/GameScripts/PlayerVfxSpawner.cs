@@ -5,7 +5,7 @@ public class PlayerVfxSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject landedVfx;
     [SerializeField] private Transform playerFeetCollider;
-    private float landedVfxInterval = 0.5f;
+    private float landedVfxInterval = GameConstants.playerLandedInterval;
     private float landedVfxTime;
 
     private void Update()

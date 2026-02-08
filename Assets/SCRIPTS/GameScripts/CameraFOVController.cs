@@ -12,10 +12,13 @@ public class CameraFOVController : MonoBehaviour
     [SerializeField] private Camera camera;
     [SerializeField] private float fovChangeSpeed = 10f;
     private bool isAiming = false;
+    private float playerLandedInterval = GameConstants.playerLandedInterval;
+    private float playerLandedTimer;
     
     [SerializeField] private MMFeedbacks onShootCameraShakeFeedback;
     [SerializeField] private MMF_Player onStartVacuumCameraFXFeedback;
     [SerializeField] private MMF_Player onStopVacuumCameraFXFeedback;
+    [SerializeField] private MMF_Player onPlayerLandedFeedback;
     private MMF_LensDistortion_URP vacuumStartlensDistortionFeedback;
     private MMF_LensDistortion_URP vacuumStoplensDistortionFeedback;
     private float timeSinceStartedLensDistortionFeedback = 0;
@@ -45,6 +48,7 @@ public class CameraFOVController : MonoBehaviour
     {
         camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, targetFOV, fovChangeSpeed * Time.deltaTime);
         timeSinceStartedLensDistortionFeedback += Time.deltaTime;
+        playerLandedTimer += Time.deltaTime;
         //timeSinceStoppedLensDistortionFeedback += Time.deltaTime;
     }
 
@@ -90,16 +94,15 @@ public class CameraFOVController : MonoBehaviour
         Debug.Log($"timeSinceStartedLensDistortionedback: {timeSinceStartedLensDistortionFeedback}, normalizedTime: {normalizedTime}, evaluated starting lens distortion: {currentLensDistortion}");
         if (vacuumStoplensDistortionFeedback != null) vacuumStoplensDistortionFeedback.RemapIntensityOne = currentLensDistortion;
         onStopVacuumCameraFXFeedback?.PlayFeedbacks();
-        //StartCoroutine(PlayOnStopVacuumCameraFXFeedbackAfterAWhile());
     }
 
-    private IEnumerator PlayOnStopVacuumCameraFXFeedbackAfterAWhile()
+    private void PlayPlayerLandedFeedback()
     {
-        yield return null;
-        onStopVacuumCameraFXFeedback?.PlayFeedbacks();
-        Debug.Log("Stopped vacuuming camera fx");
+        if (playerLandedTimer < playerLandedInterval) return;
+        playerLandedTimer = 0;
+        onPlayerLandedFeedback?.PlayFeedbacks();
     }
-
+    
     private void OnEnable()
     {
         GameEvents.OnFOVChanged += RequestCameraFOVForAiming;
@@ -108,6 +111,7 @@ public class CameraFOVController : MonoBehaviour
         GameEvents.OnStopSuckingDust += PlayOnStopVacuumingFXFeedback;
         GameEvents.OnPlayerDeath += PlayOnStopVacuumingFXFeedback;
         GameEvents.OnLevelCompleted += PlayOnStopVacuumingFXFeedback;
+        GameEvents.OnPlayerLanded += PlayPlayerLandedFeedback;
     }
     private void OnDisable()
     {
@@ -117,6 +121,6 @@ public class CameraFOVController : MonoBehaviour
         GameEvents.OnStopSuckingDust -= PlayOnStopVacuumingFXFeedback;
         GameEvents.OnPlayerDeath -= PlayOnStopVacuumingFXFeedback;
         GameEvents.OnLevelCompleted -= PlayOnStopVacuumingFXFeedback;
-
+        GameEvents.OnPlayerLanded -= PlayPlayerLandedFeedback;
     }
 }

@@ -12,7 +12,7 @@ public class PlayerFootsteps : MonoBehaviour
 
         private float walkStepInterval = 0.5f;
         private float runStepInterval = 0.3f;
-        private float landInterval = 0.5f;
+        private float landInterval = GameConstants.playerLandedInterval;
         private float stepTimer;
         private float landTimer;
 
