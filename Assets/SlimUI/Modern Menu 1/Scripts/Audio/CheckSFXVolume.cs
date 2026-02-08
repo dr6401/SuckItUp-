@@ -14,12 +14,10 @@ namespace SlimUI.ModernMenu{
 			if (PlayerPrefs.GetFloat("GeneralSFXVolume") < 0.001f)
 			{
 				audioMixer.SetFloat("GeneralSFXVolume", -80f);
-				audioMixer.SetFloat("DustPickupSFXVolume", -80f);
 			}
 			else
 			{
 				audioMixer.SetFloat("GeneralSFXVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("GeneralSFXVolume", GameConstants.defaultSFXVolume), 0.0001f, 1f)) * 20);
-				audioMixer.SetFloat("DustPickupSFXVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("GeneralSFXVolume", GameConstants.defaultSFXVolume), 0.0001f, 1f)) * 20);
 			}
 			//Debug.Log("Updated SFX Volume: " + PlayerPrefs.GetFloat("GeneralSFXVolume"));
 		}

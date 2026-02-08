@@ -20,7 +20,7 @@ public class PlayerFootsteps : MonoBehaviour
             {
                 foot = GameObject.FindWithTag("PlayerHitBox").transform;
             }
-            m_AudioSource = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().generalSFXSource;
+            m_AudioSource = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>().footstepsSFXSource;
             if (m_AudioSource == null) Debug.Log("PlayerFootsteps didn't find an audio source");
         }
 

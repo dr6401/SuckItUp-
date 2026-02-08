@@ -60,7 +60,6 @@ public class SettingsManager : MonoBehaviour
         sfxVolume = PlayerPrefs.GetFloat("GeneralSFXVolume", GameConstants.defaultSFXVolume);
         audioMixer.SetFloat("MusicVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("MusicVolume", GameConstants.defaultMusicVolume), 0.0001f, 1f)) * 20 - 10);
         audioMixer.SetFloat("GeneralSFXVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("GeneralSFXVolume", GameConstants.defaultSFXVolume), 0.0001f, 1f)) * 20);
-        audioMixer.SetFloat("DustPickupSFXVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("GeneralSFXVolume", GameConstants.defaultSFXVolume), 0.0001f, 1f)) * 20);
         PlayerPrefs.SetFloat("Sensitivity", sensitivity);
         PlayerPrefs.SetFloat("FOV", fOV);
         PlayerPrefs.SetInt("Inverted", isMouseInverted ? 1 : 0);

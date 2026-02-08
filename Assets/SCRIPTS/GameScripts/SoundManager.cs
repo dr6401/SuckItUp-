@@ -11,6 +11,7 @@ public class SoundManager : MonoBehaviour
     [Header("-------Audio Sources-------")]
     [SerializeField] private AudioSource musicSource;
     [SerializeField] public AudioSource generalSFXSource;
+    [SerializeField] public AudioSource footstepsSFXSource;
     [SerializeField] private AudioSource dustPickupSFXSource;
     [Header("-------Audio Clips-------")]
     [SerializeField] private AudioClip[] musicThemes;
@@ -158,7 +159,6 @@ public class SoundManager : MonoBehaviour
     {
         audioMixer.SetFloat("MusicVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("MusicVolume", GameConstants.defaultMusicVolume), 0.0001f, 1f)) * 20 - 10);
         audioMixer.SetFloat("GeneralSFXVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("GeneralSFXVolume", GameConstants.defaultSFXVolume), 0.0001f, 1f)) * 20);
-        audioMixer.SetFloat("DustPickupSFXVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("GeneralSFXVolume", GameConstants.defaultSFXVolume), 0.0001f, 1f)) * 20);        
         if (PlayerPrefs.GetFloat("MusicVolume") < 0.001f)
         {
             audioMixer.SetFloat("MusicVolume", -80f);
@@ -166,7 +166,6 @@ public class SoundManager : MonoBehaviour
         if (PlayerPrefs.GetFloat("GeneralSFXVolume") < 0.001f)
         {
             audioMixer.SetFloat("GeneralSFXVolume", -80f);
-            audioMixer.SetFloat("DustPickupSFXVolume", -80f);
         }
         musicSource.volume = 1;
         generalSFXSource.volume = 1;
