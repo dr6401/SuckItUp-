@@ -111,7 +111,6 @@ public class PlayerMovement : MonoBehaviour
                 GameEvents.OnPlayerLanded?.Invoke();
             }
             wasGrounded = characterController.isGrounded;
-            Debug.Log($"wasGrounded: {wasGrounded}");
             //if (isZooming) Zoom();
             Move();
             RotatePlayer();

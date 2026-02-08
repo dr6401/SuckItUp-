@@ -12,6 +12,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource musicSource;
     [SerializeField] public AudioSource generalSFXSource;
     [SerializeField] public AudioSource footstepsSFXSource;
+    [SerializeField] public AudioSource vacuumingSFXSource;
     [SerializeField] private AudioSource dustPickupSFXSource;
     [Header("-------Audio Clips-------")]
     [SerializeField] private AudioClip[] musicThemes;
@@ -76,44 +77,28 @@ public class SoundManager : MonoBehaviour
     {
         currentSuctionSFXTimer += Time.deltaTime;
     }
-
-    public void PlaySFX(int clipNum)
-    {
-        generalSFXSource.pitch = 1f;
-        generalSFXSource.PlayOneShot(SFXSounds[clipNum][Random.Range(0, SFXSounds[clipNum].Length - 1)]);
-    }
+    
     
     public void PlayStartVacuuming()
     {
-        generalSFXSource.pitch = 1f;
-        generalSFXSource.PlayOneShot(vacuumingSounds[0]);
-        generalSFXSource.clip = vacuumingSounds[1];
-        generalSFXSource.PlayDelayed(vacuumingSounds[0].length - 0.25f);
+        vacuumingSFXSource.pitch = 1f;
+        vacuumingSFXSource.PlayOneShot(vacuumingSounds[0]);
+        vacuumingSFXSource.clip = vacuumingSounds[1];
+        vacuumingSFXSource.PlayDelayed(vacuumingSounds[0].length - 0.25f);
         //SFX.PlayOneShot(vacuumingSounds[1]);
-    }
-    public void PlayVacuuming()
-    {
-        generalSFXSource.pitch = 1f;
-        generalSFXSource.PlayOneShot(vacuumingSounds[1]);
     }
     
     public void PlayEndVacuuming()
     {
-        generalSFXSource.pitch = 1f;
-        generalSFXSource.PlayOneShot(vacuumingSounds[2]);
-        StartCoroutine(StopPlayingAfterDelay(0.03f));
+        vacuumingSFXSource.pitch = 1f;
+        vacuumingSFXSource.PlayOneShot(vacuumingSounds[2]);
+        StartCoroutine(StopPlayingVacuumingAfterDelay(0.03f));
     }
 
-    public IEnumerator PlaySFXAfterDelay(AudioClip audioClip, float time)
+    public IEnumerator StopPlayingVacuumingAfterDelay(float time)
     {
         yield return new WaitForSeconds(time);
-        generalSFXSource.pitch = 1f;
-        generalSFXSource.PlayOneShot(audioClip);
-    }
-    public IEnumerator StopPlayingAfterDelay(float time)
-    {
-        yield return new WaitForSeconds(time);
-        generalSFXSource.clip = null;
+        vacuumingSFXSource.clip = null;
     }
 
     public void PlayDustSuction()
@@ -169,6 +154,8 @@ public class SoundManager : MonoBehaviour
         }
         musicSource.volume = 1;
         generalSFXSource.volume = 1;
+        footstepsSFXSource.volume = 1;
+        vacuumingSFXSource.volume = 0.65f; // When player is parkouring/moving around I don't want the vacuum to overshadow all other sfx
         dustPickupSFXSource.volume = 0.5f; // Dust pickup sfx is a bit loud so just half this lol
         musicSource.loop = true;
         PlayMainTheme();
