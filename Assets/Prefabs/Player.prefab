@@ -1068,6 +1068,7 @@ GameObject:
   - component: {fileID: 4015532630556736059}
   - component: {fileID: 2701354778110302605}
   - component: {fileID: 6025915871009185152}
+  - component: {fileID: 6129569426854108401}
   - component: {fileID: 6918828009483187376}
   - component: {fileID: 507313879733409927}
   - component: {fileID: 6120348284230472940}
@@ -1202,6 +1203,20 @@ MonoBehaviour:
   foot: {fileID: 4540171911956484529}
   raycastSize: 10
   data: {fileID: 11400000, guid: 3db9e92b924a13c48a93246d01fbbdf9, type: 2}
+--- !u!114 &6129569426854108401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5856168188944468224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9daec0e5638f0e44e9ad31befa9bcd38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  landedVfx: {fileID: 8930035425051530909, guid: 60e9511f9eb782645b14a757d5977b50, type: 3}
+  playerFeetCollider: {fileID: 4540171911956484529}
 --- !u!33 &6918828009483187376
 MeshFilter:
   m_ObjectHideFlags: 0

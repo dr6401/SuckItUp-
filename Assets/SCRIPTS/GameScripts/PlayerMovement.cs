@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = 9.81f;
     private bool canMove = true;
     private bool isRunning = false;
-    private bool wasGrounded = true;
+    private bool wasGrounded = false;
     public bool inputBlocked = false;
     [SerializeField] private SphereCollider playerFeetColliderHitBox;
     private PlayerControls controls;
