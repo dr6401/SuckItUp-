@@ -16,7 +16,7 @@ public class DustPickup : MonoBehaviour
     private float moveSpeed;
     public bool isGettingSucked; //winky face
     private float accelerationFactor = 1.05f;
-    private float minGetSuckedUpDistance = 1f;
+    private float minGetSuckedUpDistance = 0.5f;
     private SoundManager soundManager;
     private WeaponHandler weaponHandler;
     private GameManager gameManager;
@@ -41,7 +41,7 @@ public class DustPickup : MonoBehaviour
     void Start()
     {
         soundManager = GameObject.FindGameObjectWithTag("SoundManager")?.GetComponent<SoundManager>();
-        target = GameObject.FindGameObjectWithTag("Player")?.transform;
+        target = GameObject.FindGameObjectWithTag("EndOfSuctionWeapon")?.transform;
         weaponHandler = FindFirstObjectByType<WeaponHandler>(); // Cache this once, avoid every frame
         if (gameManager == null)
         {
