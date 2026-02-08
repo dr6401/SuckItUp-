@@ -20,5 +20,7 @@ namespace FSR
             public AudioClip[] jumpSoundEffects;
             public AudioClip[] landSoundEffects;
         }
+
+        public AudioClip[] slideSoundEffects;
     }
 }

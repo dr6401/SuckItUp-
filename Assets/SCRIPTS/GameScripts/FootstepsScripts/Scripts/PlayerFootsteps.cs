@@ -12,7 +12,9 @@ public class PlayerFootsteps : MonoBehaviour
 
         private float walkStepInterval = 0.5f;
         private float runStepInterval = 0.3f;
+        private float slideInterval = 1f;
         private float stepTimer;
+        private float slideTimer;
 
         public void Start()
         {
@@ -34,64 +36,33 @@ public class PlayerFootsteps : MonoBehaviour
         {
             if (stepTimer < walkStepInterval) return;
             stepTimer = 0;
-            if (foot == null) return;
-            RaycastHit hit;
-            if (Physics.Raycast(foot.position, -foot.up, out hit, raycastSize))
+            if (foot == null || data == null || data.surfaces == null) return;
+            
+            if (!Physics.Raycast(foot.position, Vector3.down, out RaycastHit hit, raycastSize))
+                return;
+            
+            string surfaceName = "GENERIC";
+
+            if (hit.transform.TryGetComponent(out FSR_SimpleSurface simple))
             {
-                try {
+                surfaceName = simple.GetSurface();
+            }
+            else if (hit.transform.TryGetComponent(out FSR_TagedSurface tagged))
+            {
+                surfaceName = tagged.GetSurface();
+            }
+            else if (hit.transform.TryGetComponent(out FSR_TerrainSurface terrain))
+            {
+                surfaceName = terrain.GetSurface(transform.position);
+            }
 
-                   FSR_SimpleSurface surface =  hit.transform.GetComponent<FSR_SimpleSurface>();
-                    foreach (FSR_Data.SurfaceType surfaceData in data.surfaces)
-                    {
-                        if (surfaceData.name.Equals(surface.GetSurface()))
-                        {
-                            playWalkSound(surfaceData);
-                        }
-                    }
-                }
-                catch
+            foreach (var surfaceData in data.surfaces)
+            {
+                if (surfaceData != null && surfaceData.name == surfaceName)
                 {
-                    try
-                    {
-                        FSR_TagedSurface surface = hit.transform.GetComponent<FSR_TagedSurface>();
-                        foreach (FSR_Data.SurfaceType surfaceData in data.surfaces)
-                        {
-                            if (surfaceData.name.Equals(surface.GetSurface()))
-                            {
-                                playWalkSound(surfaceData);
-                            }
-                        }
-                    }
-                    catch
-                    {
-                        try
-                        {
-                            FSR_TerrainSurface surface = hit.transform.GetComponent<FSR_TerrainSurface>();
-                            foreach (FSR_Data.SurfaceType surfaceData in data.surfaces)
-                            {
-                                if (surfaceData.name.Equals(surface.GetSurface(transform.position)))
-                                {
-                                    playWalkSound(surfaceData);
-                                }
-                            }
-
-                        }
-                        catch {
-
-                            foreach (FSR_Data.SurfaceType surfaceData in data.surfaces)
-                            {
-                                if (surfaceData.name.Equals("GENERIC"))
-                                {
-                                    playWalkSound(surfaceData);
-                                }
-                            }
-
-                        }
-                    }
-
-
+                    playWalkSound(surfaceData);
+                    return;
                 }
-
             }
         }
         
@@ -99,190 +70,97 @@ public class PlayerFootsteps : MonoBehaviour
         {
             if (stepTimer < runStepInterval) return;
             stepTimer = 0;
-            if (foot == null) return;
-            RaycastHit hit;
-            if (Physics.Raycast(foot.position, -foot.up, out hit, raycastSize))
+            if (foot == null || data == null || data.surfaces == null) return;
+            
+            if (!Physics.Raycast(foot.position, Vector3.down, out RaycastHit hit, raycastSize))
+                return;
+            
+            string surfaceName = "GENERIC";
+
+            if (hit.transform.TryGetComponent(out FSR_SimpleSurface simple))
             {
-                try {
+                surfaceName = simple.GetSurface();
+            }
+            else if (hit.transform.TryGetComponent(out FSR_TagedSurface tagged))
+            {
+                surfaceName = tagged.GetSurface();
+            }
+            else if (hit.transform.TryGetComponent(out FSR_TerrainSurface terrain))
+            {
+                surfaceName = terrain.GetSurface(transform.position);
+            }
 
-                   FSR_SimpleSurface surface =  hit.transform.GetComponent<FSR_SimpleSurface>();
-                    foreach (FSR_Data.SurfaceType surfaceData in data.surfaces)
-                    {
-                        if (surfaceData.name.Equals(surface.GetSurface()))
-                        {
-                            playRunSound(surfaceData);
-                        }
-                    }
-                }
-                catch
+            foreach (var surfaceData in data.surfaces)
+            {
+                if (surfaceData != null && surfaceData.name == surfaceName)
                 {
-                    try
-                    {
-                        FSR_TagedSurface surface = hit.transform.GetComponent<FSR_TagedSurface>();
-                        foreach (FSR_Data.SurfaceType surfaceData in data.surfaces)
-                        {
-                            if (surfaceData.name.Equals(surface.GetSurface()))
-                            {
-                                playRunSound(surfaceData);
-                            }
-                        }
-                    }
-                    catch
-                    {
-                        try
-                        {
-                            FSR_TerrainSurface surface = hit.transform.GetComponent<FSR_TerrainSurface>();
-                            foreach (FSR_Data.SurfaceType surfaceData in data.surfaces)
-                            {
-                                if (surfaceData.name.Equals(surface.GetSurface(transform.position)))
-                                {
-                                    playRunSound(surfaceData);
-                                }
-                            }
-
-                        }
-                        catch {
-
-                            foreach (FSR_Data.SurfaceType surfaceData in data.surfaces)
-                            {
-                                if (surfaceData.name.Equals("GENERIC"))
-                                {
-                                    playRunSound(surfaceData);
-                                }
-                            }
-
-                        }
-                    }
-
-
+                    playRunSound(surfaceData);
+                    return;
                 }
-
             }
         }
         
         public void Jump()
         {
-            if (foot == null) return;
-            RaycastHit hit;
-            if (Physics.Raycast(foot.position, -foot.up, out hit, raycastSize))
+            if (foot == null || data == null || data.surfaces == null) return;
+            
+            if (!Physics.Raycast(foot.position, Vector3.down, out RaycastHit hit, raycastSize))
+                return;
+            
+            string surfaceName = "GENERIC";
+
+            if (hit.transform.TryGetComponent(out FSR_SimpleSurface simple))
             {
-                try {
+                surfaceName = simple.GetSurface();
+            }
+            else if (hit.transform.TryGetComponent(out FSR_TagedSurface tagged))
+            {
+                surfaceName = tagged.GetSurface();
+            }
+            else if (hit.transform.TryGetComponent(out FSR_TerrainSurface terrain))
+            {
+                surfaceName = terrain.GetSurface(transform.position);
+            }
 
-                   FSR_SimpleSurface surface =  hit.transform.GetComponent<FSR_SimpleSurface>();
-                    foreach (FSR_Data.SurfaceType surfaceData in data.surfaces)
-                    {
-                        if (surfaceData.name.Equals(surface.GetSurface()))
-                        {
-                            playJumpSound(surfaceData);
-                        }
-                    }
-                }
-                catch
+            foreach (var surfaceData in data.surfaces)
+            {
+                if (surfaceData != null && surfaceData.name == surfaceName)
                 {
-                    try
-                    {
-                        FSR_TagedSurface surface = hit.transform.GetComponent<FSR_TagedSurface>();
-                        foreach (FSR_Data.SurfaceType surfaceData in data.surfaces)
-                        {
-                            if (surfaceData.name.Equals(surface.GetSurface()))
-                            {
-                                playJumpSound(surfaceData);
-                            }
-                        }
-                    }
-                    catch
-                    {
-                        try
-                        {
-                            FSR_TerrainSurface surface = hit.transform.GetComponent<FSR_TerrainSurface>();
-                            foreach (FSR_Data.SurfaceType surfaceData in data.surfaces)
-                            {
-                                if (surfaceData.name.Equals(surface.GetSurface(transform.position)))
-                                {
-                                    playJumpSound(surfaceData);
-                                }
-                            }
-
-                        }
-                        catch {
-
-                            foreach (FSR_Data.SurfaceType surfaceData in data.surfaces)
-                            {
-                                if (surfaceData.name.Equals("GENERIC"))
-                                {
-                                    playJumpSound(surfaceData);
-                                }
-                            }
-
-                        }
-                    }
-
-
+                    playJumpSound(surfaceData);
+                    return;
                 }
-
             }
         }
         
         public void Land()
         {
-            if (foot == null) return;
-            RaycastHit hit;
-            if (Physics.Raycast(foot.position, -foot.up, out hit, raycastSize))
+            if (foot == null || data == null || data.surfaces == null) return;
+            
+            if (!Physics.Raycast(foot.position, Vector3.down, out RaycastHit hit, raycastSize))
+                return;
+            
+            string surfaceName = "GENERIC";
+
+            if (hit.transform.TryGetComponent(out FSR_SimpleSurface simple))
             {
-                try {
+                surfaceName = simple.GetSurface();
+            }
+            else if (hit.transform.TryGetComponent(out FSR_TagedSurface tagged))
+            {
+                surfaceName = tagged.GetSurface();
+            }
+            else if (hit.transform.TryGetComponent(out FSR_TerrainSurface terrain))
+            {
+                surfaceName = terrain.GetSurface(transform.position);
+            }
 
-                   FSR_SimpleSurface surface =  hit.transform.GetComponent<FSR_SimpleSurface>();
-                    foreach (FSR_Data.SurfaceType surfaceData in data.surfaces)
-                    {
-                        if (surfaceData.name.Equals(surface.GetSurface()))
-                        {
-                            playLandSound(surfaceData);
-                        }
-                    }
-                }
-                catch
+            foreach (var surfaceData in data.surfaces)
+            {
+                if (surfaceData != null && surfaceData.name == surfaceName)
                 {
-                    try
-                    {
-                        FSR_TagedSurface surface = hit.transform.GetComponent<FSR_TagedSurface>();
-                        foreach (FSR_Data.SurfaceType surfaceData in data.surfaces)
-                        {
-                            if (surfaceData.name.Equals(surface.GetSurface()))
-                            {
-                                playLandSound(surfaceData);
-                            }
-                        }
-                    }
-                    catch
-                    {
-                        try
-                        {
-                            FSR_TerrainSurface surface = hit.transform.GetComponent<FSR_TerrainSurface>();
-                            foreach (FSR_Data.SurfaceType surfaceData in data.surfaces)
-                            {
-                                if (surfaceData.name.Equals(surface.GetSurface(transform.position)))
-                                {
-                                    playLandSound(surfaceData);
-                                }
-                            }
-
-                        }
-                        catch {
-
-                            foreach (FSR_Data.SurfaceType surfaceData in data.surfaces)
-                            {
-                                if (surfaceData.name.Equals("GENERIC"))
-                                {
-                                    playLandSound(surfaceData);
-                                }
-                            }
-
-                        }
-                    }
-
-
+                    playLandSound(surfaceData);
+                    return;
                 }
-
             }
         }
 
@@ -322,6 +200,7 @@ public class PlayerFootsteps : MonoBehaviour
             // move picked sound to index 0 so it's not picked next time
             soundEffects[n] = soundEffects[0];
             soundEffects[0] = m_AudioSource.clip;
+            Debug.Log("Played Jump sfx");
         }
         private void playLandSound(FSR_Data.SurfaceType surfaceType)
         {
@@ -334,7 +213,20 @@ public class PlayerFootsteps : MonoBehaviour
             soundEffects[n] = soundEffects[0];
             soundEffects[0] = m_AudioSource.clip;
         }
-        
+
+        private void PlaySlideSound() // Same slide sfx no matter what surface we are on
+        {
+            if (data == null) return;
+            AudioClip[] soundEffects= data.slideSoundEffects;
+            stepTimer = 0; // Disable walking/running sfx for a bit after sliding
+
+            int n = Random.Range(0, soundEffects.Length);
+            m_AudioSource.clip = soundEffects[n];
+            m_AudioSource.PlayOneShot(m_AudioSource.clip);
+            // move picked sound to index 0 so it's not picked next time
+            soundEffects[n] = soundEffects[0];
+            soundEffects[0] = m_AudioSource.clip;
+        }
         
 
         private void OnEnable()
@@ -343,6 +235,7 @@ public class PlayerFootsteps : MonoBehaviour
             GameEvents.OnPlayerRunning += Run;
             GameEvents.OnPlayerJumped += Jump;
             GameEvents.OnPlayerLanded += Land;
+            GameEvents.OnPlayerSlided += PlaySlideSound;
         }
 
         private void OnDisable()
@@ -351,5 +244,6 @@ public class PlayerFootsteps : MonoBehaviour
             GameEvents.OnPlayerRunning -= Run;
             GameEvents.OnPlayerJumped -= Jump;
             GameEvents.OnPlayerLanded -= Land;
+            GameEvents.OnPlayerSlided -= PlaySlideSound;
         }
     }

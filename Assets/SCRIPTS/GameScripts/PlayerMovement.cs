@@ -194,7 +194,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (isSliding)
         {
-            moveDirection += (forward * (curSpeedZ * (5f * Time.deltaTime)));
+            moveDirection += forward * (curSpeedZ * (5f * Time.deltaTime));
         }
         else
         {
@@ -220,6 +220,7 @@ public class PlayerMovement : MonoBehaviour
 
     void StartSlide()
     {
+        GameEvents.OnPlayerSlided?.Invoke();
         isCrouching = false;
         isSliding = true;
         slideDirection = new Vector3(moveDirection.x, 0, moveDirection.z).normalized;
