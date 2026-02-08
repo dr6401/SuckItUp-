@@ -12,9 +12,9 @@ public class PlayerFootsteps : MonoBehaviour
 
         private float walkStepInterval = 0.5f;
         private float runStepInterval = 0.3f;
-        private float slideInterval = 1f;
+        private float landInterval = 0.5f;
         private float stepTimer;
-        private float slideTimer;
+        private float landTimer;
 
         public void Start()
         {
@@ -29,6 +29,7 @@ public class PlayerFootsteps : MonoBehaviour
         private void Update()
         {
             stepTimer += Time.deltaTime;
+            landTimer += Time.deltaTime;
         }
 
 
@@ -60,7 +61,7 @@ public class PlayerFootsteps : MonoBehaviour
             {
                 if (surfaceData != null && surfaceData.name == surfaceName)
                 {
-                    playWalkSound(surfaceData);
+                    PlayWalkSound(surfaceData);
                     return;
                 }
             }
@@ -94,7 +95,7 @@ public class PlayerFootsteps : MonoBehaviour
             {
                 if (surfaceData != null && surfaceData.name == surfaceName)
                 {
-                    playRunSound(surfaceData);
+                    PlayRunSound(surfaceData);
                     return;
                 }
             }
@@ -126,7 +127,7 @@ public class PlayerFootsteps : MonoBehaviour
             {
                 if (surfaceData != null && surfaceData.name == surfaceName)
                 {
-                    playJumpSound(surfaceData);
+                    PlayJumpSound(surfaceData);
                     return;
                 }
             }
@@ -158,7 +159,7 @@ public class PlayerFootsteps : MonoBehaviour
             {
                 if (surfaceData != null && surfaceData.name == surfaceName)
                 {
-                    playLandSound(surfaceData);
+                    PlayLandSound(surfaceData);
                     return;
                 }
             }
@@ -168,7 +169,7 @@ public class PlayerFootsteps : MonoBehaviour
 
         // pick & play a random footstep sound from the array,
         // excluding sound at index 0
-        private void playWalkSound(FSR_Data.SurfaceType surfaceType)
+        private void PlayWalkSound(FSR_Data.SurfaceType surfaceType)
         {
             AudioClip[] soundEffects= surfaceType.walkSoundEffects;
 
@@ -179,7 +180,7 @@ public class PlayerFootsteps : MonoBehaviour
             soundEffects[n] = soundEffects[0];
             soundEffects[0] = m_AudioSource.clip;
         }
-        private void playRunSound(FSR_Data.SurfaceType surfaceType)
+        private void PlayRunSound(FSR_Data.SurfaceType surfaceType)
         {
             AudioClip[] soundEffects= surfaceType.runSoundEffects;
 
@@ -190,7 +191,7 @@ public class PlayerFootsteps : MonoBehaviour
             soundEffects[n] = soundEffects[0];
             soundEffects[0] = m_AudioSource.clip;
         }
-        private void playJumpSound(FSR_Data.SurfaceType surfaceType)
+        private void PlayJumpSound(FSR_Data.SurfaceType surfaceType)
         {
             AudioClip[] soundEffects= surfaceType.jumpSoundEffects;
 
@@ -202,8 +203,10 @@ public class PlayerFootsteps : MonoBehaviour
             soundEffects[0] = m_AudioSource.clip;
             Debug.Log("Played Jump sfx");
         }
-        private void playLandSound(FSR_Data.SurfaceType surfaceType)
+        private void PlayLandSound(FSR_Data.SurfaceType surfaceType)
         {
+            if (landTimer < landInterval) return;
+            landTimer = 0;
             AudioClip[] soundEffects= surfaceType.landSoundEffects;
 
             int n = Random.Range(0, soundEffects.Length);

@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = 9.81f;
     private bool canMove = true;
     private bool isRunning = false;
+    private bool wasGrounded = true;
     public bool inputBlocked = false;
     [SerializeField] private SphereCollider playerFeetColliderHitBox;
     private PlayerControls controls;
@@ -105,6 +106,12 @@ public class PlayerMovement : MonoBehaviour
         if (!inputBlocked)
         {
             ApplyGravity();
+            if (!wasGrounded && characterController.isGrounded) // Did player just land
+            {
+                GameEvents.OnPlayerLanded?.Invoke();
+            }
+            wasGrounded = characterController.isGrounded;
+            Debug.Log($"wasGrounded: {wasGrounded}");
             //if (isZooming) Zoom();
             Move();
             RotatePlayer();
