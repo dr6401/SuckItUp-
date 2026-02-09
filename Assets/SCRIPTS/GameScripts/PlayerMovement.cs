@@ -105,12 +105,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!inputBlocked)
         {
-            ApplyGravity();
+            //Debug.Log($"wasGrounded: {wasGrounded}, characterController.isGrounded: {characterController.isGrounded}");
             if (!wasGrounded && characterController.isGrounded) // Did player just land
             {
                 GameEvents.OnPlayerLanded?.Invoke();
+                //Debug.Log("Player Landed");
             }
             wasGrounded = characterController.isGrounded;
+            ApplyGravity();
+            //Debug.Log($"characterController.isGrounded: {characterController.isGrounded.Equals(true)}");
             //if (isZooming) Zoom();
             Move();
             RotatePlayer();
