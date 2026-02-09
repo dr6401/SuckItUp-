@@ -434,7 +434,19 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2643779922047636910, guid: d43e7f57ebf54d846bce78ea8a2cb385, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1552780891}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8276001036189981997, guid: d43e7f57ebf54d846bce78ea8a2cb385, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 904146343}
+    - targetCorrespondingSourceObject: {fileID: 5969239656326638555, guid: d43e7f57ebf54d846bce78ea8a2cb385, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 904146342}
+    - targetCorrespondingSourceObject: {fileID: 7783644974822717828, guid: d43e7f57ebf54d846bce78ea8a2cb385, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 904146341}
+    - targetCorrespondingSourceObject: {fileID: 3115457532915484056, guid: d43e7f57ebf54d846bce78ea8a2cb385, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 904146344}
   m_SourcePrefab: {fileID: 100100000, guid: d43e7f57ebf54d846bce78ea8a2cb385, type: 3}
 --- !u!4 &316428628 stripped
 Transform:
@@ -1131,6 +1143,82 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff8b101283a34154f995ad06287bda90, type: 3}
+--- !u!1 &904146337 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7783644974822717828, guid: d43e7f57ebf54d846bce78ea8a2cb385, type: 3}
+  m_PrefabInstance: {fileID: 316428627}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &904146338 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5969239656326638555, guid: d43e7f57ebf54d846bce78ea8a2cb385, type: 3}
+  m_PrefabInstance: {fileID: 316428627}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &904146339 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8276001036189981997, guid: d43e7f57ebf54d846bce78ea8a2cb385, type: 3}
+  m_PrefabInstance: {fileID: 316428627}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &904146340 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3115457532915484056, guid: d43e7f57ebf54d846bce78ea8a2cb385, type: 3}
+  m_PrefabInstance: {fileID: 316428627}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &904146341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904146337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d770016719b456b44bb5a16b8d476f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: f400a841531c48a4d982f01f44d18906, type: 2}
+  surfaceName: Soft
+--- !u!114 &904146342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904146338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d770016719b456b44bb5a16b8d476f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: f400a841531c48a4d982f01f44d18906, type: 2}
+  surfaceName: Soft
+--- !u!114 &904146343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904146339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d770016719b456b44bb5a16b8d476f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: f400a841531c48a4d982f01f44d18906, type: 2}
+  surfaceName: Soft
+--- !u!114 &904146344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904146340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d770016719b456b44bb5a16b8d476f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: f400a841531c48a4d982f01f44d18906, type: 2}
+  surfaceName: Soft
 --- !u!1 &1062981103
 GameObject:
   m_ObjectHideFlags: 0
