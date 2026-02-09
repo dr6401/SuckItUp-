@@ -24,6 +24,9 @@ public class EnemyBossScript : MonoBehaviour
     [SerializeField] PlayerHealth playerHealth;
     private bool canChasePlayer = true;
     private Animator animator;
+    
+    private DamageTypes.DamageType damageType = DamageTypes.DamageType.Bludgeoning;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -81,7 +84,7 @@ public class EnemyBossScript : MonoBehaviour
         if ((transform.position - playerPosition).sqrMagnitude <  attackRange * attackRange * 0.76) // If the player is near enough the enemy at the time of "hit"
         // part of the animation being played he takes the dmg, if he moved away in time, he doesn't 
         {
-            playerHealth.TakeDamage((int) attackDamage);
+            playerHealth.TakeDamage((int) attackDamage, damageType);
         }
     }
 

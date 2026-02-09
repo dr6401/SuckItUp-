@@ -11,7 +11,7 @@ public static class GameEvents
         public static Action OnStartSuckingDust;
         public static Action OnStopSuckingDust;
         public static Action<bool> OnHasSettingsUICoveredUpAugmentUI;
-        public static Action<int> OnDamageTaken;
+        public static Action<int, DamageTypes.DamageType> OnDamageTaken;
         public static Action OnLevelCompleted;
         public static Action OnEnteredMainMenu;
         public static Action OnLevelTimeRanOut;

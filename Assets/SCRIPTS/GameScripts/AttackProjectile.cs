@@ -8,6 +8,8 @@ public class AttackProjectile : MonoBehaviour
     
     [SerializeField] private GameObject projectileExplotandoVFX;
     [SerializeField] private GameObject player;
+    
+    private DamageTypes.DamageType damageType = DamageTypes.DamageType.Projectile;
 
     private PlayerHealth playerHealth;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,7 +28,7 @@ public class AttackProjectile : MonoBehaviour
     {
         if (other.collider.CompareTag("Player"))
         {
-            playerHealth.TakeDamage((int) attackDamage);
+            playerHealth.TakeDamage((int) attackDamage, damageType);
         }
         Instantiate(projectileExplotandoVFX, transform.position, Quaternion.identity);
         Destroy(gameObject);

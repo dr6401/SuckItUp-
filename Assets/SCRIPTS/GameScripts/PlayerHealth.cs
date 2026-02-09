@@ -64,14 +64,14 @@ public class PlayerHealth : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, DamageTypes.DamageType damageType)
     {
         float dustStormDamageReductionMultiplier = weaponHandler.isAlreadySucking ? dustStormDamageReduction : 1f;
         int oldHealth = health;
         int damageTaken = (int) (damage * damageReduction * dustStormDamageReductionMultiplier);
         health -= damageTaken;
         health = Mathf.Clamp(health, 0, maxHealth);
-        GameEvents.OnDamageTaken?.Invoke(damageTaken);
+        GameEvents.OnDamageTaken?.Invoke(damageTaken, damageType);
         
         int newHealth = health;
         

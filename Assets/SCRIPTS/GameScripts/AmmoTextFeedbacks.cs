@@ -39,7 +39,7 @@ public class AmmoTextFeedbacks : MonoBehaviour
         healthIncrease?.PlayFeedbacks();
     }
 
-    private void PlayHealthDecrease(int damageTaken)
+    private void PlayHealthDecrease(int damageTaken, DamageTypes.DamageType damageType)
     {
         healthDecrease?.PlayFeedbacks();
     }

@@ -16,7 +16,7 @@ public class DustPickup : MonoBehaviour
     private float moveSpeed;
     public bool isGettingSucked; //winky face
     private float accelerationFactor = 1.05f;
-    private float minGetSuckedUpDistance = 0.5f;
+    private float minGetSuckedUpDistance = 0.75f;
     private SoundManager soundManager;
     private WeaponHandler weaponHandler;
     private GameManager gameManager;

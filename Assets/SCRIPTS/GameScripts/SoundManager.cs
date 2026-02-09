@@ -21,7 +21,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip[] vacuumingSounds;
     [SerializeField] private AudioClip[] mouseClicks;
     [SerializeField] private AudioClip[] hitMarkerSFX;
-    [SerializeField] private AudioClip[] takeDamageSFX;
+    [SerializeField] private AudioClip[] takeBludgeoingDamageSFX;
+    [SerializeField] private AudioClip[] takeProjectileDamageSFX;
     [SerializeField] private AudioClip enemyDeathSFX;
     [SerializeField] private AudioClip dustIncreaseSFX;
     [SerializeField] private AudioClip noAmmoLeftSFX;
@@ -196,10 +197,17 @@ public class SoundManager : MonoBehaviour
         GameEvents.OnDamageTaken -= PlayTakeDamageSFX;
     }
 
-    private void PlayTakeDamageSFX(int dmg)
+    private void PlayTakeDamageSFX(int dmg, DamageTypes.DamageType damageType)
     {
-        generalSFXSource.pitch = Random.Range(0.9f, 1.2f);
-        generalSFXSource.PlayOneShot(takeDamageSFX[Random.Range(0, takeDamageSFX.Length)]);
+        generalSFXSource.pitch = Random.Range(0.95f, 1.2f);
+        if (damageType == DamageTypes.DamageType.Bludgeoning)
+        {
+            generalSFXSource.PlayOneShot(takeBludgeoingDamageSFX[Random.Range(0, takeBludgeoingDamageSFX.Length)]);   
+        }
+        else if (damageType == DamageTypes.DamageType.Projectile)
+        {
+            generalSFXSource.PlayOneShot(takeProjectileDamageSFX[Random.Range(0, takeProjectileDamageSFX.Length)]);
+        }
     }
 
     private void PlayDustIncreaseSFX()

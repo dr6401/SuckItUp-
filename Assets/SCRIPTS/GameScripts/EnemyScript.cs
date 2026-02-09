@@ -21,6 +21,8 @@ public class EnemyScript : MonoBehaviour
     private Vector3 playerPosition;
     private NavMeshAgent agent;
     [SerializeField] PlayerHealth playerHealth;
+    
+    private DamageTypes.DamageType damageType = DamageTypes.DamageType.Bludgeoning;
     private bool canChasePlayer = true;
     void Start()
     {
@@ -77,7 +79,7 @@ public class EnemyScript : MonoBehaviour
     {
         //Debug.Log("Hit yo ass");
         timeSinceAttack = 0;
-        playerHealth.TakeDamage((int) attackDamage);
+        playerHealth.TakeDamage((int) attackDamage, damageType);
     }
 
     private void StopChasingPlayer()
