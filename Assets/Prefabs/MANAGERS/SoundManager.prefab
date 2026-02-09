@@ -593,6 +593,14 @@ MonoBehaviour:
   mouseClicks: []
   hitMarkerSFX:
   - {fileID: 8300000, guid: 9a3df340ed41a9e4189ecce6564e0b99, type: 3}
+  takeDamageSFX:
+  - {fileID: 8300000, guid: 4822911556949e04494cf991d65e90ab, type: 3}
+  - {fileID: 8300000, guid: 011f7e6faf8a5764bb3aa398d914cb78, type: 3}
+  - {fileID: 8300000, guid: 88d1322de0edd554ebf774f40040d603, type: 3}
+  - {fileID: 8300000, guid: a250da378c28fb0408c26fbfead65d38, type: 3}
+  - {fileID: 8300000, guid: 7a18ef5f38058494f8321c6d8c3254a2, type: 3}
+  - {fileID: 8300000, guid: 04fe86cf20bf4e04b85601962da26f96, type: 3}
+  - {fileID: 8300000, guid: e064f126baf47c84bb7f4a009804c275, type: 3}
   enemyDeathSFX: {fileID: 8300000, guid: a63ec0d2e1747044584f9294be8f54e2, type: 3}
   dustIncreaseSFX: {fileID: 8300000, guid: 6ccaffa5203e45b4e95ddd7bb1593479, type: 3}
   noAmmoLeftSFX: {fileID: 8300000, guid: d86a37b943fd0504e9cf7a9fd234ac6e, type: 3}

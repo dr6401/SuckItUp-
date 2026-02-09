@@ -21,6 +21,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip[] vacuumingSounds;
     [SerializeField] private AudioClip[] mouseClicks;
     [SerializeField] private AudioClip[] hitMarkerSFX;
+    [SerializeField] private AudioClip[] takeDamageSFX;
     [SerializeField] private AudioClip enemyDeathSFX;
     [SerializeField] private AudioClip dustIncreaseSFX;
     [SerializeField] private AudioClip noAmmoLeftSFX;
@@ -182,6 +183,7 @@ public class SoundManager : MonoBehaviour
         WeaponHandler.OnNoAmmoLeft += PlayNoAmmoLeftSFX;
         GameEvents.OnEnemyDeath += PlayEnemyDeathSFX;
         GameEvents.OnSuckDust += PlayDustIncreaseSFX;
+        GameEvents.OnDamageTaken += PlayTakeDamageSFX;
     }
     
     private void OnDisable()
@@ -191,6 +193,13 @@ public class SoundManager : MonoBehaviour
         WeaponHandler.OnNoAmmoLeft -= PlayNoAmmoLeftSFX;
         GameEvents.OnEnemyDeath -= PlayEnemyDeathSFX;
         GameEvents.OnSuckDust -= PlayDustIncreaseSFX;
+        GameEvents.OnDamageTaken -= PlayTakeDamageSFX;
+    }
+
+    private void PlayTakeDamageSFX(int dmg)
+    {
+        generalSFXSource.pitch = Random.Range(0.9f, 1.2f);
+        generalSFXSource.PlayOneShot(takeDamageSFX[Random.Range(0, takeDamageSFX.Length)]);
     }
 
     private void PlayDustIncreaseSFX()
