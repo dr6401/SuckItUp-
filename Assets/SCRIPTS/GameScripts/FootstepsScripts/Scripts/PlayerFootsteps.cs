@@ -201,7 +201,6 @@ public class PlayerFootsteps : MonoBehaviour
             // move picked sound to index 0 so it's not picked next time
             soundEffects[n] = soundEffects[0];
             soundEffects[0] = m_AudioSource.clip;
-            Debug.Log("Played Jump sfx");
         }
         private void PlayLandSound(FSR_Data.SurfaceType surfaceType)
         {

@@ -1410,6 +1410,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 970900767031811075, guid: 7e261cc1e30b57146aebdee255ac2ff3, type: 3}
   m_PrefabInstance: {fileID: 828848181}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &840625307 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2082632516347366785, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
+  m_PrefabInstance: {fileID: 925031742}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &844519155
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2268,6 +2273,14 @@ PrefabInstance:
     - target: {fileID: 638308616459228889, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
       propertyPath: managedReferences[6414963554611364113].FontSizeCurve.Curve.m_Curve.Array.data[2].weightedMode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082632516347366785, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082632516347366785, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -123.600006
       objectReference: {fileID: 0}
     - target: {fileID: 2529981447541002970, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
       propertyPath: m_IsActive
@@ -7317,6 +7330,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7429339279489848302, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
+      propertyPath: dustScorePosition
+      value: 
+      objectReference: {fileID: 840625307}
     - target: {fileID: 8887928383120651108, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
       propertyPath: m_Name
       value: CanvasMainScreen
