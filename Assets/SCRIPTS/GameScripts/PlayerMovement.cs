@@ -17,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
     private float halvedBaseMoveSpeed;
     public float sprintMultiplier = 1.5f;
     public float jumpForce = 5f;
+    private float coyoteTime = 0.25f;
+    private float coyoteTimer;
+    
     public float mouseSensitivity = 0.5f; // Controls mouse sensitivity
     private int isMouseInverted = 1;
     public float gravity = 9.81f;
@@ -112,16 +115,19 @@ public class PlayerMovement : MonoBehaviour
                 //Debug.Log("Player Landed");
             }
             wasGrounded = characterController.isGrounded;
+            if (characterController.isGrounded) coyoteTimer = coyoteTime;
+            else coyoteTimer -= Time.deltaTime;
             ApplyGravity();
             //Debug.Log($"characterController.isGrounded: {characterController.isGrounded.Equals(true)}");
             //if (isZooming) Zoom();
             Move();
             RotatePlayer();
-            if (controls.Player.Jump.IsPressed() && characterController.isGrounded) // Jump
+            if (controls.Player.Jump.IsPressed() && coyoteTimer > 0) // Jump
             {
                 if (!Physics.Raycast(transform.position - Vector3.down * 0.25f, transform.up, playerHeight * 1.4f, ~(1 << LayerMask.NameToLayer("PlayerHeadHitBox"))))
                 {
                     Jump();
+                    coyoteTimer = 0;
                 }
             }
             
