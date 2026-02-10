@@ -398,7 +398,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 053395dc53350e1408f603f32b471465, type: 2}
-  - {fileID: 2100000, guid: 053395dc53350e1408f603f32b471465, type: 2}
+  - {fileID: 2100000, guid: f1dab35ba3d2445459f47b5263c90c57, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -653,6 +653,10 @@ PrefabInstance:
     - target: {fileID: 7061205523592163218, guid: 7cea4792b725fd447a8d85c72446925f, type: 3}
       propertyPath: m_Name
       value: Point Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 7061205523592163218, guid: 7cea4792b725fd447a8d85c72446925f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7735638764265306514, guid: 7cea4792b725fd447a8d85c72446925f, type: 3}
       propertyPath: m_LocalPosition.x
