@@ -28,7 +28,8 @@ namespace FSR
             }
             else
             {
-                throw new UnityException("looks like you have mismatching surfaces names, make sure all the surfaces components have the same name specified in the FSR data");
+                Debug.Log("looks like you have mismatching surfaces names, make sure all the surfaces components have the same name specified in the FSR data");
+                return "GENERIC";
             }
         }
 
