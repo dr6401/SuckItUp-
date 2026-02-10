@@ -203,6 +203,8 @@ MonoBehaviour:
   deathExplosionPrefab: {fileID: 3361933763249969519, guid: 2a58533abeb33584fbe929d0a9ad02d0, type: 3}
   minSpawnedDustParticles: 8
   maxSpawnedDustParticles: 20
+  mat: {fileID: 0}
+  originalEmissionColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!54 &3879638101386722354
 Rigidbody:
   m_ObjectHideFlags: 0
