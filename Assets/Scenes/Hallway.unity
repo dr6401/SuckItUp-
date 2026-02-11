@@ -8786,7 +8786,7 @@ PrefabInstance:
       objectReference: {fileID: 1575441656}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: goldAugments.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: silverAugments.Array.size
@@ -8805,8 +8805,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 4f9b6d2d7af0b2a43ad4868f48ad0738, type: 2}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
+      propertyPath: 'goldAugments.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e18cbcf47e351cf4dba27caaa5d14b38, type: 2}
+    - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: prismaticAugments.Array.size
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: 'silverAugments.Array.data[0]'
@@ -8860,6 +8864,14 @@ PrefabInstance:
       propertyPath: 'prismaticAugments.Array.data[5]'
       value: 
       objectReference: {fileID: 11400000, guid: 24133d3878ba2114aba4a04a191fedb6, type: 2}
+    - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
+      propertyPath: 'prismaticAugments.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0184b631b9ccb184c9c494735805a0d4, type: 2}
+    - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
+      propertyPath: 'prismaticAugments.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d41e3df84278e7644806e10b7d940bee, type: 2}
     - target: {fileID: 3462484511507193320, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
