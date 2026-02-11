@@ -85,8 +85,8 @@ public class GameManager : MonoBehaviour
 
         if (gameOver && gameLost)
         {
-            PlayerPrefs.SetInt("Level1", 0); // lock all levels again if player lost
-            PlayerPrefs.SetInt("Level2", 0);
+            //PlayerPrefs.SetInt("Level1", 0); // lock all levels again if player lost
+            //PlayerPrefs.SetInt("Level2", 0);
             if (controls.GameEvents.Restart.triggered)
             {
                 Debug.Log("Triggered PlayLoadSceneHallway()");
