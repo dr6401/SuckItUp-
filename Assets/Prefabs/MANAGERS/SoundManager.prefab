@@ -603,6 +603,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e064f126baf47c84bb7f4a009804c275, type: 3}
   takeProjectileDamageSFX:
   - {fileID: 8300000, guid: e5736fd1c0428054bb90b825d5b378df, type: 3}
+  playerDeathSFX:
+  - {fileID: 8300000, guid: 6f6fe01b5774e684db5986a246027409, type: 3}
   enemyDeathSFX: {fileID: 8300000, guid: a63ec0d2e1747044584f9294be8f54e2, type: 3}
   dustIncreaseSFX: {fileID: 8300000, guid: 6ccaffa5203e45b4e95ddd7bb1593479, type: 3}
   noAmmoLeftSFX: {fileID: 8300000, guid: d86a37b943fd0504e9cf7a9fd234ac6e, type: 3}

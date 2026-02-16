@@ -1092,7 +1092,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2338545943200346280, guid: ff8b101283a34154f995ad06287bda90, type: 3}
       propertyPath: useTestingEqualAugmentOdds
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2338545943200346280, guid: ff8b101283a34154f995ad06287bda90, type: 3}
       propertyPath: augmentTriggerTresholdDuplicator

@@ -23,6 +23,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip[] hitMarkerSFX;
     [SerializeField] private AudioClip[] takeBludgeoingDamageSFX;
     [SerializeField] private AudioClip[] takeProjectileDamageSFX;
+    [SerializeField] private AudioClip[] playerDeathSFX;
     [SerializeField] private AudioClip enemyDeathSFX;
     [SerializeField] private AudioClip dustIncreaseSFX;
     [SerializeField] private AudioClip noAmmoLeftSFX;
@@ -177,26 +178,6 @@ public class SoundManager : MonoBehaviour
         audioSource.volume = targetVolume;
     }
 
-    private void OnEnable()
-    {
-        GameEvents.OnShoot += PlayRandomShootSFX;
-        GameEvents.OnHit += PlayRandomHitMarkerSFX;
-        WeaponHandler.OnNoAmmoLeft += PlayNoAmmoLeftSFX;
-        GameEvents.OnEnemyDeath += PlayEnemyDeathSFX;
-        GameEvents.OnSuckDust += PlayDustIncreaseSFX;
-        GameEvents.OnDamageTaken += PlayTakeDamageSFX;
-    }
-    
-    private void OnDisable()
-    {
-        GameEvents.OnShoot -= PlayRandomShootSFX;
-        GameEvents.OnHit -= PlayRandomHitMarkerSFX;
-        WeaponHandler.OnNoAmmoLeft -= PlayNoAmmoLeftSFX;
-        GameEvents.OnEnemyDeath -= PlayEnemyDeathSFX;
-        GameEvents.OnSuckDust -= PlayDustIncreaseSFX;
-        GameEvents.OnDamageTaken -= PlayTakeDamageSFX;
-    }
-
     private void PlayTakeDamageSFX(int dmg, DamageTypes.DamageType damageType)
     {
         generalSFXSource.pitch = Random.Range(0.95f, 1.2f);
@@ -263,5 +244,34 @@ public class SoundManager : MonoBehaviour
     {
         generalSFXSource.pitch = Random.Range(0.9f, 1.3f);
         generalSFXSource.PlayOneShot(enemyDeathSFX);
+    }
+
+    private void PlayPlayedDeathSFX()
+    {
+        generalSFXSource.pitch = Random.Range(0.95f, 1.05f);
+        generalSFXSource.PlayOneShot(playerDeathSFX[Random.Range(0, playerDeathSFX.Length)]);
+    }
+    
+    
+    private void OnEnable()
+    {
+        GameEvents.OnShoot += PlayRandomShootSFX;
+        GameEvents.OnHit += PlayRandomHitMarkerSFX;
+        WeaponHandler.OnNoAmmoLeft += PlayNoAmmoLeftSFX;
+        GameEvents.OnEnemyDeath += PlayEnemyDeathSFX;
+        GameEvents.OnSuckDust += PlayDustIncreaseSFX;
+        GameEvents.OnDamageTaken += PlayTakeDamageSFX;
+        GameEvents.OnPlayerDeath += PlayPlayedDeathSFX;
+    }
+    
+    private void OnDisable()
+    {
+        GameEvents.OnShoot -= PlayRandomShootSFX;
+        GameEvents.OnHit -= PlayRandomHitMarkerSFX;
+        WeaponHandler.OnNoAmmoLeft -= PlayNoAmmoLeftSFX;
+        GameEvents.OnEnemyDeath -= PlayEnemyDeathSFX;
+        GameEvents.OnSuckDust -= PlayDustIncreaseSFX;
+        GameEvents.OnDamageTaken -= PlayTakeDamageSFX;
+        GameEvents.OnPlayerDeath -= PlayPlayedDeathSFX;
     }
 }
