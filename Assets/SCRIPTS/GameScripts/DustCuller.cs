@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -8,8 +9,10 @@ public class DustCuller : MonoBehaviour
     [SerializeField] private VisualEffect vFX;
     [SerializeField] private Transform target;
     [SerializeField] private float maxDistance = 1000f;
+    private MeshRenderer meshRenderer;
     void Start()
     {
+        meshRenderer = GetComponent<MeshRenderer>();
         vFX = GetComponentInChildren<VisualEffect>();
         if (target == null)
         {
@@ -40,5 +43,19 @@ public class DustCuller : MonoBehaviour
     void StartPlayingVFX()
     {
         vFX.Play();
+    }
+
+    private void SetMeshRendererActive()
+    {
+        meshRenderer.enabled = true;
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.OnPlayerKilledAllEnemies += SetMeshRendererActive;
+    }
+    private void OnDisable()
+    {
+        GameEvents.OnPlayerKilledAllEnemies -= SetMeshRendererActive;
     }
 }

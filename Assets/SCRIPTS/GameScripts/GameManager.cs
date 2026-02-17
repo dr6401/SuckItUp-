@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     private bool keyBindingTextToggled = false;
     public bool gameOver = false;
     public bool gameLost = false;
+    private bool hasAllEnemiesKilledEventBeenFired = false;
     private GameObject player;
     [SerializeField] private Transform enemyFoldersFolder;
     private float timeToLoadNextScene = 5f;
@@ -98,6 +99,11 @@ public class GameManager : MonoBehaviour
         {
             TrackRemainingDust();
             ShowKilledAllEnemiesText();
+            if (!hasAllEnemiesKilledEventBeenFired)
+            {
+                hasAllEnemiesKilledEventBeenFired = true;
+                GameEvents.OnPlayerKilledAllEnemies?.Invoke();
+            }
             if (CheckIfAllDustIsSuckedUp())
             {
                 EndLevel();

@@ -23,6 +23,7 @@ public static class GameEvents
         public static Action OnPlayerJumped;
         public static Action OnPlayerLanded;
         public static Action OnPlayerSlided;
+        public static Action OnPlayerKilledAllEnemies;
         
         // Augments
         public static Action<int> OnTriggerHealthIncreaseFeedback;
