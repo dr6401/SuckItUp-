@@ -95,14 +95,21 @@ public class EnemyHealth : MonoBehaviour
             Instantiate(deathExplosionPrefab, transform.position, Quaternion.identity);
         }
         GameEvents.OnEnemyDeath?.Invoke();
-        switch (type)
+        if (ObjectPooler.Instance != null)
         {
-            case EnemyTypes.EnemyType.FluffyDusty:
-                ObjectPooler.Instance?.DespawnFluffyDusty(gameObject);
-                break;
-            case EnemyTypes.EnemyType.FlyingDusty:
-                ObjectPooler.Instance?.DespawnFlyingDusty(gameObject);
-                break;
+            switch (type)
+            {
+                case EnemyTypes.EnemyType.FluffyDusty:
+                    ObjectPooler.Instance?.DespawnFluffyDusty(gameObject);
+                    break;
+                case EnemyTypes.EnemyType.FlyingDusty:
+                    ObjectPooler.Instance?.DespawnFlyingDusty(gameObject);
+                    break;
+            }    
+        }
+        else
+        {
+            Destroy(gameObject);
         }
         //Destroy(gameObject);
         //Debug.Log("Enemy " + name + " died!");

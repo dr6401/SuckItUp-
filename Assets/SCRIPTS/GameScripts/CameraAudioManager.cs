@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CameraAudioManager : MonoBehaviour
@@ -21,8 +22,29 @@ public class CameraAudioManager : MonoBehaviour
     {
         if (playerCamera == null && backupCamera != null && !_backupAudioListener.enabled)
         {
+            backupCamera.gameObject.SetActive(true);
             backupCamera.enabled = true;
             _backupAudioListener.enabled = true;
         }
+    }
+
+    private void EnableBackupCamera()
+    {
+        if (backupCamera == null) return;
+        backupCamera.gameObject.SetActive(true);
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.OnPlayerDeath += EnableBackupCamera;
+        GameEvents.OnLevelTimeRanOut += EnableBackupCamera;
+        GameEvents.OnLevelCompleted += EnableBackupCamera;
+    }
+    
+    private void OnDisable()
+    {
+        GameEvents.OnPlayerDeath -= EnableBackupCamera;
+        GameEvents.OnLevelTimeRanOut -= EnableBackupCamera;
+        GameEvents.OnLevelCompleted -= EnableBackupCamera;
     }
 }

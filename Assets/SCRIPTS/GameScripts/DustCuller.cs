@@ -47,6 +47,7 @@ public class DustCuller : MonoBehaviour
 
     private void SetMeshRendererActive()
     {
+        if (meshRenderer == null) return;
         meshRenderer.enabled = true;
     }
 
