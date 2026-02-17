@@ -6,8 +6,6 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
     //NOTE: Position this object in a place around which you want the enemies to spawn in radious "spawnOffset"
     //
     [SerializeField] GameObject fluffyDustyPrefab;
@@ -116,8 +114,9 @@ public class EnemySpawner : MonoBehaviour
             }
             if (foundValidSpot)
             {
-                GameObject enemy = Instantiate(fluffyDustyPrefab, finalSpawnPosition, Quaternion.identity);
-                enemy.transform.SetParent(enemiesFolder);
+                ObjectPooler.Instance?.SpawnFluffyDusty(finalSpawnPosition, Quaternion.identity);
+                //GameObject enemy = Instantiate(fluffyDustyPrefab, finalSpawnPosition, Quaternion.identity);
+                //enemy.transform.SetParent(enemiesFolder);
                 timeSinceSpawned = 0;
                 foundValidSpot = false;
             }
@@ -162,8 +161,9 @@ public class EnemySpawner : MonoBehaviour
 
             if (foundValidSpot)
             {
-                GameObject enemy = Instantiate(flyingDustyPrefab, flyingSpawnPos, Quaternion.identity);
-                enemy.transform.SetParent(enemiesFolder);
+                ObjectPooler.Instance?.SpawnFlyingDusty(flyingSpawnPos, Quaternion.identity);
+                //GameObject enemy = Instantiate(flyingDustyPrefab, flyingSpawnPos, Quaternion.identity);
+                //enemy.transform.SetParent(enemiesFolder);
                 timeSinceSpawned = 0;
                 //foundValidSpot = false;
             }
