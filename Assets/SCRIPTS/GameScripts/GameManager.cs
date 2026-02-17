@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         if (enemyFoldersFolder == null)
         {
             Debug.Log("Folder is null, Finding it in the scene");
-            enemyFoldersFolder = GameObject.Find("EnemyFoldersFolder")?.transform;
+            enemyFoldersFolder = GameObject.FindGameObjectWithTag("EnemyFoldersFolder")?.transform;
         }
         // Canvas stuff
         if (augmentSelectionUI == null)
@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log($"current alive enemies: {ObjectPooler.Instance.currentAliveEnemies}");
         if (controls.GameEvents.PauseGame.triggered && !gameOver && isAugmentUIOpenedEvenMaybeUnderSettingsCanvas)
         {
             ToggleSettingsCanvasVisibility(1f);
@@ -313,7 +314,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (Transform enemyFolder in enemyFoldersFolder)
         {
-            if (enemyFolder?.childCount > 0)
+            if (ObjectPooler.Instance.currentAliveEnemies > 0)
             {
                 return true;
             }

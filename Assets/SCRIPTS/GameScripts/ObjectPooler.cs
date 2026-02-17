@@ -12,7 +12,7 @@ public class ObjectPooler : MonoBehaviour
     [SerializeField] private GameObject flyingDustyPrefab;
     private int preloadAmount = 1000;
     [SerializeField] private GameObject dustParticlePrefab;
-    [SerializeField] private int currentAliveEnemies = 0;
+    [SerializeField] public int currentAliveEnemies = 0;
     public int maxCurrentAliveEnemies = 500;
 
     //public Transform animalFoldersFolder;
