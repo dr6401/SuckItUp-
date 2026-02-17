@@ -13,20 +13,15 @@ public class ObjectPooler : MonoBehaviour
     private int preloadAmount = 1000;
     [SerializeField] private GameObject dustParticlePrefab;
     [SerializeField] private int currentAliveEnemies = 0;
-    public int maxCurrentAliveAnimals = 500;
+    public int maxCurrentAliveEnemies = 500;
 
-    public Transform animalFoldersFolder;
+    //public Transform animalFoldersFolder;
     public Transform fluffyDustyParentFolder;
     public Transform flyingDustyParentFolder;
     public Transform dustParticlesParentFolder;
     private Queue<GameObject> fluffyDustyPool = new Queue<GameObject>();
     private Queue<GameObject> flyingDustyPool = new Queue<GameObject>();
     private Queue<GameObject> vfxPool = new Queue<GameObject>();
-
-    public bool isEndlessLevel = false;
-    public bool isIdlerLevel = false;
-
-    //public static ObjectPooler Instance;
     
     public static ObjectPooler Instance { get; private set; }
 
@@ -61,19 +56,47 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
-    public GameObject SpawnFluffyDusty(Vector3 position, Quaternion rotation)
+    public GameObject SpawnEnemy(Vector3 position, Quaternion rotation, EnemyTypes.EnemyType type)
     {
         GameObject dusty;
-
-        if (fluffyDustyPool.Count > 0)
+        switch (type)
         {
-            dusty = fluffyDustyPool.Dequeue();
-            dusty.transform.SetPositionAndRotation(position, rotation);
-        }
-        else
-        {
-            dusty = Instantiate(fluffyDustyPrefab, position, rotation, fluffyDustyParentFolder);
-            //Debug.Log("Pool ran out! Instantiating animal by normal means");
+            case EnemyTypes.EnemyType.FluffyDusty:
+                if (fluffyDustyPool.Count > 0)
+                {
+                    dusty = fluffyDustyPool.Dequeue();
+                    dusty.transform.SetPositionAndRotation(position, rotation);
+                }
+                else
+                {
+                    dusty = Instantiate(fluffyDustyPrefab, position, rotation, fluffyDustyParentFolder);
+                    //Debug.Log("Pool ran out! Instantiating animal by normal means");
+                }
+                break;
+            case EnemyTypes.EnemyType.FlyingDusty:
+                if (flyingDustyPool.Count > 0)
+                {
+                    dusty = flyingDustyPool.Dequeue();
+                    dusty.transform.SetPositionAndRotation(position, rotation);
+                }
+                else
+                {
+                    dusty = Instantiate(flyingDustyPrefab, position, rotation, flyingDustyParentFolder);
+                    //Debug.Log("Pool ran out! Instantiating animal by normal means");
+                }
+                break;
+                default: // Spawn fluffy dusty as fallback
+                if (fluffyDustyPool.Count > 0)
+                {
+                    dusty = fluffyDustyPool.Dequeue();
+                    dusty.transform.SetPositionAndRotation(position, rotation);
+                }
+                else
+                {
+                    dusty = Instantiate(fluffyDustyPrefab, position, rotation, fluffyDustyParentFolder);
+                    //Debug.Log("Pool ran out! Instantiating animal by normal means");
+                }
+                break;    
         }
         
         dusty.SetActive(true);
@@ -177,7 +200,7 @@ public class ObjectPooler : MonoBehaviour
 
     public bool CanSpawnEnemies()
     {
-        return currentAliveEnemies < maxCurrentAliveAnimals;
+        return currentAliveEnemies < maxCurrentAliveEnemies;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

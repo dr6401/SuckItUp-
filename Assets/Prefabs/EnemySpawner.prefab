@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8188ec51b800cf9488087babe33601ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 3
   normalMaxHealth: 100
   hardcoreMaxHealth: 200
   currentHealth: 0
@@ -141,6 +142,8 @@ MonoBehaviour:
   deathExplosionPrefab: {fileID: 3361933763249969519, guid: cd59b4e8dd669984ab8a5a2819f8b7f0, type: 3}
   minSpawnedDustParticles: 20
   maxSpawnedDustParticles: 40
+  mat: {fileID: 0}
+  originalEmissionColor: {r: 0, g: 0, b: 0, a: 0}
   enemySpawnManager: {fileID: 0}
   smokeBleed1VFXprefab: {fileID: 4309857886803190102, guid: 9de698744ee3f944bb0815e9e23f059b, type: 3}
   disableHealthBarDistance: 50

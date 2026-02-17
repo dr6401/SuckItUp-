@@ -114,7 +114,7 @@ public class EnemySpawner : MonoBehaviour
             }
             if (foundValidSpot)
             {
-                ObjectPooler.Instance?.SpawnFluffyDusty(finalSpawnPosition, Quaternion.identity);
+                ObjectPooler.Instance?.SpawnEnemy(finalSpawnPosition, Quaternion.identity, EnemyTypes.EnemyType.FluffyDusty);
                 //GameObject enemy = Instantiate(fluffyDustyPrefab, finalSpawnPosition, Quaternion.identity);
                 //enemy.transform.SetParent(enemiesFolder);
                 timeSinceSpawned = 0;
@@ -161,7 +161,7 @@ public class EnemySpawner : MonoBehaviour
 
             if (foundValidSpot)
             {
-                ObjectPooler.Instance?.SpawnFlyingDusty(flyingSpawnPos, Quaternion.identity);
+                ObjectPooler.Instance?.SpawnEnemy(flyingSpawnPos, Quaternion.identity, EnemyTypes.EnemyType.FlyingDusty);
                 //GameObject enemy = Instantiate(flyingDustyPrefab, flyingSpawnPos, Quaternion.identity);
                 //enemy.transform.SetParent(enemiesFolder);
                 timeSinceSpawned = 0;

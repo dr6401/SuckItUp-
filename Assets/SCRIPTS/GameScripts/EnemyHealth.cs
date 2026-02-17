@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 
 public class EnemyHealth : MonoBehaviour
 {
+    [SerializeField] private EnemyTypes.EnemyType type;
     private bool isDifficultyHardcore;
     protected float maxHealth;
     [SerializeField] protected float normalMaxHealth = 20;
@@ -84,7 +85,7 @@ public class EnemyHealth : MonoBehaviour
                     
                     
                     rb.AddForce(launchDirection * launchForce, ForceMode.Acceleration);
-                    Debug.Log($"Launched that b with force: {launchForce}");
+                    //Debug.Log($"Launched that b with force: {launchForce}");
                 }
             }
         }
@@ -94,7 +95,16 @@ public class EnemyHealth : MonoBehaviour
             Instantiate(deathExplosionPrefab, transform.position, Quaternion.identity);
         }
         GameEvents.OnEnemyDeath?.Invoke();
-        Destroy(gameObject);
+        switch (type)
+        {
+            case EnemyTypes.EnemyType.FluffyDusty:
+                ObjectPooler.Instance?.DespawnFluffyDusty(gameObject);
+                break;
+            case EnemyTypes.EnemyType.FlyingDusty:
+                ObjectPooler.Instance?.DespawnFlyingDusty(gameObject);
+                break;
+        }
+        //Destroy(gameObject);
         //Debug.Log("Enemy " + name + " died!");
     }
 
