@@ -97,8 +97,11 @@ public class DustPickup : MonoBehaviour
             weaponHandler?.RefillAmmo(1);
             soundManager?.PlayDustSuction();
             GameEvents.OnSuckDust?.Invoke();
-            ObjectPooler.Instance.DespawnDustParticle(gameObject);
-            //Destroy(gameObject);
+            if (ObjectPooler.Instance != null)
+            {
+                ObjectPooler.Instance.DespawnDustParticle(gameObject);   
+            }
+            else Destroy(gameObject);
         }
     }
 

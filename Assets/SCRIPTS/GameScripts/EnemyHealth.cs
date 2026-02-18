@@ -72,8 +72,24 @@ public class EnemyHealth : MonoBehaviour
 
                 Vector3 spawnPosition = transform.position + Random.insideUnitSphere * 1f;
                 spawnPosition.y += 1f; // Increase the spawn height so things don't get spawned in the ground
-                ObjectPooler.Instance.SpawnDustParticle(spawnPosition, Quaternion.identity, angle);
-                //GameObject spawnedDust = Instantiate(dustPickupPrefab, spawnPosition, Quaternion.identity);
+                if (ObjectPooler.Instance != null) ObjectPooler.Instance.SpawnDustParticle(spawnPosition, Quaternion.identity, angle);
+                else
+                {
+                    GameObject spawnedDust = Instantiate(dustPickupPrefab, spawnPosition, Quaternion.identity);
+                    
+                    Rigidbody rb = spawnedDust.GetComponent<Rigidbody>();
+                    if (rb != null)
+                    {
+                        float launchForce = 150;
+                        Vector3 launchDirection = new Vector3(Mathf.Cos(angle),
+                            0,
+                            Mathf.Cos(angle)).normalized;
+                        launchDirection.y = 1f;
+                    
+                        rb.AddForce(launchDirection * launchForce, ForceMode.Acceleration);
+                        //Debug.Log($"Launched that b with force: {launchForce}");
+                    }
+                }
             }
         }
 
