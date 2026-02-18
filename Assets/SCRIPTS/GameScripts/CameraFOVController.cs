@@ -68,7 +68,7 @@ public class CameraFOVController : MonoBehaviour
     private void PlayOnShootCameraShakeFeedback()
     {
         onShootCameraShakeFeedback?.PlayFeedbacks();
-        Debug.Log("Played shooting camera fx");
+        //Debug.Log("Played shooting camera fx");
     }
 
     private void PlayOnStartVacuumingFXFeedback()
@@ -91,7 +91,7 @@ public class CameraFOVController : MonoBehaviour
         //timeSinceStoppedLensDistortionFeedback = 0;
         float currentLensDistortion =
             vacuumStartlensDistortionFeedback.Intensity.Evaluate(normalizedTime) * vacuumStartlensDistortionFeedback.RemapIntensityOne;
-        Debug.Log($"timeSinceStartedLensDistortionedback: {timeSinceStartedLensDistortionFeedback}, normalizedTime: {normalizedTime}, evaluated starting lens distortion: {currentLensDistortion}");
+        //Debug.Log($"timeSinceStartedLensDistortionedback: {timeSinceStartedLensDistortionFeedback}, normalizedTime: {normalizedTime}, evaluated starting lens distortion: {currentLensDistortion}");
         if (vacuumStoplensDistortionFeedback != null) vacuumStoplensDistortionFeedback.RemapIntensityOne = currentLensDistortion;
         onStopVacuumCameraFXFeedback?.PlayFeedbacks();
     }

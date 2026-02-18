@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log($"current alive enemies: {ObjectPooler.Instance.currentAliveEnemies}");
+        //Debug.Log($"current alive enemies: {ObjectPooler.Instance.currentAliveEnemies}");
         if (controls.GameEvents.PauseGame.triggered && !gameOver && isAugmentUIOpenedEvenMaybeUnderSettingsCanvas)
         {
             ToggleSettingsCanvasVisibility(1f);
