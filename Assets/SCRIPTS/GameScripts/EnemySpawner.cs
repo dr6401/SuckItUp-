@@ -36,6 +36,7 @@ public class EnemySpawner : MonoBehaviour
         {
             Debug.Log("Folder is null, creating new folder");
             GameObject newFolder = new GameObject($"localEnemiesFolder{GetInstanceID()}");
+            if (enemyFoldersFolder == null) enemyFoldersFolder = GameObject.FindGameObjectWithTag("EnemyFoldersFolder")?.transform;
             if (enemyFoldersFolder != null) newFolder.transform.parent = enemyFoldersFolder;
             enemiesFolder = newFolder.transform; }
         else

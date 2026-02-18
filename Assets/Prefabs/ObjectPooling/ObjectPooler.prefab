@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 135915716926513863}
   m_Layer: 0
   m_Name: EnemyFoldersFolder
-  m_TagString: EnemyFoldersFolder
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,7 +176,6 @@ MonoBehaviour:
   flyingDustyPrefab: {fileID: 894411595714582602, guid: 82af18ff07b29e74c9dc18a1eab84064, type: 3}
   dustParticlePrefab: {fileID: 595504505390220050, guid: 6b7f082c78ed8a146aadd8c036b32730, type: 3}
   currentAliveEnemies: 0
-  maxCurrentAliveEnemies: 500
   fluffyDustyParentFolder: {fileID: 1797987210258762476}
   flyingDustyParentFolder: {fileID: 2476286185921170343}
   dustParticlesParentFolder: {fileID: 7199553631978866891}

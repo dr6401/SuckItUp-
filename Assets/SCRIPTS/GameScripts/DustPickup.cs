@@ -100,7 +100,7 @@ public class DustPickup : MonoBehaviour
             if (ObjectPooler.Instance != null)
             {
                 ObjectPooler.Instance.DespawnDustParticle(gameObject);
-                OnDestroy();
+                ReportDustDestroyedToGameManager();
             }
             else Destroy(gameObject);
         }
@@ -123,13 +123,18 @@ public class DustPickup : MonoBehaviour
         rb.linearDamping = linearDampingTarget;
         rb.useGravity = true;
     }
-    
-    private void OnDestroy()
+
+    private void ReportDustDestroyedToGameManager()
     {
         if (gameManager != null)
         {
             gameManager.DustDestroyed(this.gameObject);   
-        }
+        }   
+    }
+    
+    private void OnDestroy()
+    {
+        ReportDustDestroyedToGameManager();
     }
 
 }

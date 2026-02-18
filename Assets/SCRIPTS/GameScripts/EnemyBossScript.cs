@@ -47,6 +47,7 @@ public class EnemyBossScript : MonoBehaviour
     {
         if (canChasePlayer)
         {
+            if (player == null) return;
             playerPosition = player.transform.position;
             ChasePlayer();
 

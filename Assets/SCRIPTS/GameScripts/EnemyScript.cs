@@ -74,7 +74,6 @@ public class EnemyScript : MonoBehaviour
     {
         if ((transform.position - playerPosition).sqrMagnitude < minPlayerChasingDistance * minPlayerChasingDistance && agent.isOnNavMesh)
         {
-            Debug.Log($"agent.isOnNavMesh: {agent.isOnNavMesh}");
             agent.SetDestination(playerPosition);
         }
     }
