@@ -810,7 +810,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8518886280173072525}
+  m_Father: {fileID: 1626028573}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &166959295
 GameObject:
@@ -3059,7 +3059,7 @@ PrefabInstance:
     - target: {fileID: 2963608202159946524, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
       propertyPath: enemiesFolder
       value: 
-      objectReference: {fileID: 8518886280173072526}
+      objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
       propertyPath: spawnInterval
       value: 3
@@ -3071,7 +3071,7 @@ PrefabInstance:
     - target: {fileID: 2963608202159946524, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
       propertyPath: enemyFoldersFolder
       value: 
-      objectReference: {fileID: 8518886280173072525}
+      objectReference: {fileID: 0}
     - target: {fileID: 2963608202159946524, guid: 4e9b544f5507fff4c9ccfd0035ef200a, type: 3}
       propertyPath: flyingEnemyClearanceRadius
       value: 2
@@ -4436,7 +4436,7 @@ PrefabInstance:
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: enemyFoldersFolder
       value: 
-      objectReference: {fileID: 8518886280173072525}
+      objectReference: {fileID: 0}
     - target: {fileID: 6149801562829461563, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Name
       value: EnemySpawner (3)
@@ -6050,7 +6050,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8518886280173072525}
+  m_Father: {fileID: 1626028573}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &896835298
 GameObject:
@@ -8733,7 +8733,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8518886280173072525}
+  m_Father: {fileID: 1626028573}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1258809512
 GameObject:
@@ -9835,7 +9835,7 @@ PrefabInstance:
     - target: {fileID: 2963608202159946524, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: enemyFoldersFolder
       value: 
-      objectReference: {fileID: 8518886280173072525}
+      objectReference: {fileID: 0}
     - target: {fileID: 6149801562829461563, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_Name
       value: EnemySpawner (2)
@@ -15514,7 +15514,7 @@ PrefabInstance:
     - target: {fileID: 8763557131505957745, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
       propertyPath: 'musicThemes.Array.data[0]'
       value: 
-      objectReference: {fileID: 8300000, guid: 4b1de4b509c39ce41bda4419cc2723b8, type: 3}
+      objectReference: {fileID: 8300000, guid: e0fe0ae6c570b1f46b61c4d89a9530ad, type: 3}
     - target: {fileID: 8763557131505957745, guid: 63e994ecbdcb2e64d83f6136e655b0b8, type: 3}
       propertyPath: 'shootingSFX.Array.data[0]'
       value: 
@@ -15882,7 +15882,7 @@ PrefabInstance:
     - target: {fileID: 5878903646017234297, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: enemyFoldersFolder
       value: 
-      objectReference: {fileID: 8518886280173072525}
+      objectReference: {fileID: 0}
     - target: {fileID: 6724917399087893350, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       propertyPath: m_Name
       value: EnemySpawnerManager
@@ -15963,27 +15963,17 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3725459132352759293, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       insertIndex: 3
       addedObject: {fileID: 630131978}
-    - targetCorrespondingSourceObject: {fileID: 7991445386205148534, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 3725459132352759293, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1254170345}
-    - targetCorrespondingSourceObject: {fileID: 7991445386205148534, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 3725459132352759293, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 141088621}
-    - targetCorrespondingSourceObject: {fileID: 7991445386205148534, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 3725459132352759293, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 887518243}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
---- !u!4 &8518886280173072525 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7991445386205148534, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
-  m_PrefabInstance: {fileID: 8518886280173072524}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8518886280173072526 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2413320561156894515, guid: 8efd7e06c1f758a4ba5bc546737d7cee, type: 3}
-  m_PrefabInstance: {fileID: 8518886280173072524}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
