@@ -19,8 +19,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 382
     y: -190
-    width: 984
-    height: 1628
+    width: 985
+    height: 1646
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -273,7 +273,7 @@ VisualEffectResource:
     m_PreWarmDeltaTime: 0.05
     m_PreWarmStepCount: 0
     m_InitialEventName: OnPlay
-    m_InstancingMode: 1
+    m_InstancingMode: 0
     m_InstancingCapacity: 1000
 --- !u!114 &8926484042661614555
 MonoBehaviour:
@@ -419,7 +419,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614560}
   - {fileID: 8926484042661614564}
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_MasterSlot: {fileID: 8926484042661614559}
   m_MasterData:
