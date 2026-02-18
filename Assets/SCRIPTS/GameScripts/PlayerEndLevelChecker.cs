@@ -15,7 +15,7 @@ public class PlayerEndLevelChecker : MonoBehaviour
     public int currentNumberOfEnemiesInRoom;
     private bool hasShownGoodJobMessage = false;
     private bool hasNotStartedTeleportingToLevel1Yet = true;
-    private int sceneLoadingTimer = 5;
+    private int sceneLoadingTimer = 3;
     [SerializeField] private MMFeedbacks loadHallwaySceneFeedback;
     void Start()
     {

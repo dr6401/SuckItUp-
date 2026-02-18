@@ -99,7 +99,8 @@ public class DustPickup : MonoBehaviour
             GameEvents.OnSuckDust?.Invoke();
             if (ObjectPooler.Instance != null)
             {
-                ObjectPooler.Instance.DespawnDustParticle(gameObject);   
+                ObjectPooler.Instance.DespawnDustParticle(gameObject);
+                OnDestroy();
             }
             else Destroy(gameObject);
         }

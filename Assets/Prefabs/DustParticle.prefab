@@ -209,7 +209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3361933763249969519, guid: 3198a8c9f7a33ca4cb3f85097b34361c, type: 3}
       propertyPath: m_Layer
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6322079718899049475, guid: 3198a8c9f7a33ca4cb3f85097b34361c, type: 3}
       propertyPath: m_LocalScale.x
@@ -265,7 +265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9198716328399507527, guid: 3198a8c9f7a33ca4cb3f85097b34361c, type: 3}
       propertyPath: m_ResetSeedOnPlay
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9198716328399507527, guid: 3198a8c9f7a33ca4cb3f85097b34361c, type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[5].m_Value

@@ -314,7 +314,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (Transform enemyFolder in enemyFoldersFolder)
         {
-            if (ObjectPooler.Instance.currentAliveEnemies > 0)
+            if (enemyFolder?.childCount > 0)
             {
                 return true;
             }
