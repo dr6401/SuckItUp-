@@ -13,7 +13,7 @@ public class ObjectPooler : MonoBehaviour
     private int preloadAmount = 1000;
     [SerializeField] private GameObject dustParticlePrefab;
     [SerializeField] public int currentAliveEnemies = 0;
-    public int maxCurrentAliveEnemies = 500;
+    private int maxCurrentAliveEnemies = 500;
 
     //public Transform animalFoldersFolder;
     public Transform fluffyDustyParentFolder;
@@ -42,13 +42,13 @@ public class ObjectPooler : MonoBehaviour
     {
         for (int i = 0; i < preloadAmount; i++)
         {
-            GameObject fluffyDustyObject = Instantiate(fluffyDustyPrefab, fluffyDustyParentFolder);
+            /*GameObject fluffyDustyObject = Instantiate(fluffyDustyPrefab, fluffyDustyParentFolder);
             fluffyDustyObject.SetActive(false);
             fluffyDustyPool.Enqueue(fluffyDustyObject);
             
             GameObject flyingDustyObject = Instantiate(flyingDustyPrefab, flyingDustyParentFolder);
             flyingDustyObject.SetActive(false);
-            flyingDustyPool.Enqueue(flyingDustyObject);
+            flyingDustyPool.Enqueue(flyingDustyObject);*/
             
             GameObject dustParticle = Instantiate(dustParticlePrefab, dustParticlesParentFolder);
             dustParticle.SetActive(false);
@@ -56,7 +56,7 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
-    public GameObject SpawnEnemy(Vector3 position, Quaternion rotation, EnemyTypes.EnemyType type)
+    public GameObject SpawnEnemy(Vector3 position, Quaternion rotation, EnemyTypes.EnemyType type, Transform parentFolder)
     {
         GameObject dusty;
         switch (type)
@@ -66,10 +66,13 @@ public class ObjectPooler : MonoBehaviour
                 {
                     dusty = fluffyDustyPool.Dequeue();
                     dusty.transform.SetPositionAndRotation(position, rotation);
+                    EnemyScript enemyScript = dusty.GetComponent<EnemyScript>();
+                    enemyScript.ResetHealth();
+                    //enemyScript.EnableNavMeshAgent();
                 }
                 else
                 {
-                    dusty = Instantiate(fluffyDustyPrefab, position, rotation, fluffyDustyParentFolder);
+                    dusty = Instantiate(fluffyDustyPrefab, position, rotation, parentFolder);
                     //Debug.Log("Pool ran out! Instantiating animal by normal means");
                 }
                 break;
@@ -78,10 +81,12 @@ public class ObjectPooler : MonoBehaviour
                 {
                     dusty = flyingDustyPool.Dequeue();
                     dusty.transform.SetPositionAndRotation(position, rotation);
+                    EnemyScript enemyScript = dusty.GetComponent<EnemyScript>();
+                    enemyScript.ResetHealth();
                 }
                 else
                 {
-                    dusty = Instantiate(flyingDustyPrefab, position, rotation, flyingDustyParentFolder);
+                    dusty = Instantiate(flyingDustyPrefab, position, rotation, parentFolder);
                     //Debug.Log("Pool ran out! Instantiating animal by normal means");
                 }
                 break;
@@ -90,41 +95,24 @@ public class ObjectPooler : MonoBehaviour
                 {
                     dusty = fluffyDustyPool.Dequeue();
                     dusty.transform.SetPositionAndRotation(position, rotation);
+                    EnemyScript enemyScript = dusty.GetComponent<EnemyScript>();
+                    enemyScript.ResetHealth();
                 }
                 else
                 {
-                    dusty = Instantiate(fluffyDustyPrefab, position, rotation, fluffyDustyParentFolder);
+                    dusty = Instantiate(fluffyDustyPrefab, position, rotation, parentFolder);
                     //Debug.Log("Pool ran out! Instantiating animal by normal means");
                 }
                 break;    
         }
         
+        dusty.transform.SetParent(parentFolder);
         dusty.SetActive(true);
         currentAliveEnemies++;
         return dusty;
     }
     
-    public GameObject SpawnFlyingDusty(Vector3 position, Quaternion rotation)
-    {
-        GameObject dusty;
-
-        if (flyingDustyPool.Count > 0)
-        {
-            dusty = flyingDustyPool.Dequeue();
-            dusty.transform.SetPositionAndRotation(position, rotation);
-        }
-        else
-        {
-            dusty = Instantiate(flyingDustyPrefab, position, rotation, flyingDustyParentFolder);
-            //Debug.Log("Pool ran out! Instantiating animal by normal means");
-        }
-        
-        dusty.SetActive(true);
-        currentAliveEnemies++;
-        return dusty;
-    }
-    
-    public GameObject SpawnDustParticle(Vector3 position, Quaternion rotation)
+    public GameObject SpawnDustParticle(Vector3 position, Quaternion rotation, float angle)
     {
         GameObject dust;
 
@@ -139,11 +127,28 @@ public class ObjectPooler : MonoBehaviour
         }
         
         dust.SetActive(true);
+                
+                        
+        Rigidbody rb = dust.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            float launchForce = 150;
+            Vector3 launchDirection = new Vector3(Mathf.Cos(angle),
+                0,
+                Mathf.Cos(angle)).normalized;
+            launchDirection.y = 1f;
+                    
+            rb.AddForce(launchDirection * launchForce, ForceMode.Acceleration);
+            //Debug.Log($"Launched that b with force: {launchForce}");
+        }
         return dust;
     }
 
     public void DespawnFluffyDusty(GameObject fluffy)
     {
+        //EnemyScript enemyScript = fluffy.GetComponent<EnemyScript>();
+        //enemyScript.DisableNavMeshAgent();
+        //enemyScript.ResetHealth();
         fluffy.SetActive(false);
         fluffy.transform.SetParent(fluffyDustyParentFolder);
         fluffyDustyPool.Enqueue(fluffy);
@@ -152,9 +157,11 @@ public class ObjectPooler : MonoBehaviour
     
     public void DespawnFlyingDusty(GameObject flying)
     {
+        //EnemyScript enemyScript = flying.GetComponent<EnemyScript>();
+        //enemyScript.ResetHealth();
         flying.SetActive(false);
         flying.transform.SetParent(flyingDustyParentFolder);
-        fluffyDustyPool.Enqueue(flying);
+        flyingDustyPool.Enqueue(flying);
         currentAliveEnemies--;
     }
     

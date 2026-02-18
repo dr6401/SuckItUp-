@@ -21,6 +21,7 @@ public class EnemyScript : MonoBehaviour
     private Vector3 playerPosition;
     private NavMeshAgent agent;
     [SerializeField] PlayerHealth playerHealth;
+    private EnemyHealth enemyHealth;
     
     private DamageTypes.DamageType damageType = DamageTypes.DamageType.Bludgeoning;
     private bool canChasePlayer = true;
@@ -39,6 +40,8 @@ public class EnemyScript : MonoBehaviour
             attackDamage = hardcoreAttackDamage;
             agent.speed += Random.Range(-3f, 3f);
         }
+
+        enemyHealth = GetComponent<EnemyHealth>();
     }
 
     // Update is called once per frame
@@ -71,6 +74,7 @@ public class EnemyScript : MonoBehaviour
     {
         if ((transform.position - playerPosition).sqrMagnitude < minPlayerChasingDistance * minPlayerChasingDistance && agent.isOnNavMesh)
         {
+            Debug.Log($"agent.isOnNavMesh: {agent.isOnNavMesh}");
             agent.SetDestination(playerPosition);
         }
     }
@@ -91,6 +95,30 @@ public class EnemyScript : MonoBehaviour
     {
         Vector3 lookDirection = playerPosition - transform.position;
         transform.rotation = Quaternion.LookRotation(lookDirection);
+    }
+    
+    public void ResetHealth()
+    {
+        enemyHealth?.OnSpawn();
+    }
+
+    public void EnableNavMeshAgent()
+    {
+        agent.isStopped = false;
+    }
+    
+    public void DisableNavMeshAgent()
+    {
+        agent.isStopped = true;
+    }
+
+    public void OnSpawn()
+    {
+        ResetHealth();
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
     }
 
     private void OnEnable()
