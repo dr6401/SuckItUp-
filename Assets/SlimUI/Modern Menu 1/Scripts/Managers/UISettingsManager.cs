@@ -37,19 +37,13 @@ namespace SlimUI.ModernMenu{
 		public GameObject texturemedtextLINE;
 		public GameObject texturehightextLINE;
 		//public GameObject cameraeffectstext; 
-
-		[Header("GAME SETTINGS")]
-		//public GameObject showhudtext; Disabled since game doesn't need this
-		public GameObject tooltipstext;
-		public GameObject difficultynormaltext;
-		public GameObject difficultynormaltextLINE;
-		public GameObject difficultyhardcoretext;
-		public GameObject difficultyhardcoretextLINE;
+		
 
 		[Header("CONTROLS SETTINGS")]
 		public GameObject invertmousetext;
 
 		// sliders
+		public GameObject masterSlider;
 		public GameObject musicSlider;
 		public GameObject sfxSlider;
 		public GameObject sensitivitySlider;
@@ -68,18 +62,8 @@ namespace SlimUI.ModernMenu{
 		
 
 		public void  Start (){
-			// check difficulty
-			if(PlayerPrefs.GetInt("NormalDifficulty", 1) == 1){
-				difficultynormaltextLINE.gameObject.SetActive(true);
-				difficultyhardcoretextLINE.gameObject.SetActive(false);
-			}
-			else
-			{
-				difficultyhardcoretextLINE.gameObject.SetActive(true);
-				difficultynormaltextLINE.gameObject.SetActive(false);
-			}
-
 			// check slider values
+			masterSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MasterVolume", GameConstants.defaultMasterVolume);
 			musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume", GameConstants.defaultMusicVolume);
 			sfxSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("GeneralSFXVolume", GameConstants.defaultSFXVolume);
 			sensitivitySlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Sensitivity", GameConstants.defaultSensitivity);
@@ -111,12 +95,12 @@ namespace SlimUI.ModernMenu{
 			}*/
 
 			// check tool tip value
-			if(PlayerPrefs.GetInt("ToolTips")==0){
+			/*if(PlayerPrefs.GetInt("ToolTips")==0){
 				tooltipstext.GetComponent<TMP_Text>().text = "off";
 			}
 			else{
 				tooltipstext.GetComponent<TMP_Text>().text = "on";
-			}
+			}*/
 
 			// check shadow distance/enabled
 			if(platform == Platform.Desktop){
@@ -273,6 +257,11 @@ namespace SlimUI.ModernMenu{
 			}
 		}
 
+		public void MasterSlider()
+		{
+			PlayerPrefs.SetFloat("MasterVolume", masterSlider.GetComponent<Slider>().value);
+		}
+
 		public void MusicSlider (){
 			//PlayerPrefs.SetFloat("MusicVolume", sliderValue);
 			PlayerPrefs.SetFloat("MusicVolume", musicSlider.GetComponent<Slider>().value);
@@ -367,7 +356,7 @@ namespace SlimUI.ModernMenu{
 		}
 
 		// show tool tips like: 'How to Play' control pop ups
-		public void ToolTips (){ // Needs to be implemented in UI
+		/*public void ToolTips (){ // Needs to be implemented in UI
 			if(PlayerPrefs.GetInt("ToolTips")==0){
 				PlayerPrefs.SetInt("ToolTips",1);
 				tooltipstext.GetComponent<TMP_Text>().text = "on";
@@ -376,19 +365,15 @@ namespace SlimUI.ModernMenu{
 				PlayerPrefs.SetInt("ToolTips",0);
 				tooltipstext.GetComponent<TMP_Text>().text = "off";
 			}
-		}
+		}*/
 
 		public void NormalDifficulty (){ // Needs to be implemented in enemy scripts
-			difficultyhardcoretextLINE.gameObject.SetActive(false);
-			difficultynormaltextLINE.gameObject.SetActive(true);
 			PlayerPrefs.SetInt("NormalDifficulty",1);
 			PlayerPrefs.SetInt("HardCoreDifficulty",0);
 			GameEvents.OnDifficultyChangedToHardcore?.Invoke(false);
 		}
 
 		public void HardcoreDifficulty (){ // Needs to be implemented in enemy scripts 
-			difficultyhardcoretextLINE.gameObject.SetActive(true);
-			difficultynormaltextLINE.gameObject.SetActive(false);
 			PlayerPrefs.SetInt("NormalDifficulty",0);
 			PlayerPrefs.SetInt("HardCoreDifficulty",1);
 			GameEvents.OnDifficultyChangedToHardcore?.Invoke(true);

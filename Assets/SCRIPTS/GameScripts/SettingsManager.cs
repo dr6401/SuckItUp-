@@ -25,6 +25,7 @@ public class SettingsManager : MonoBehaviour
     public bool isWeaponSwitchWithScrollEnabled = true;
     
     public AudioMixer audioMixer;
+    private float masterVolume;
     private float musicVolume;
     private float sfxVolume;
 
@@ -56,8 +57,10 @@ public class SettingsManager : MonoBehaviour
         isMouseInverted = PlayerPrefs.GetInt("Inverted", GameConstants.defaultInvertedMouse) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
         isDifficultyHardcore = PlayerPrefs.GetInt("HardCoreDifficulty", GameConstants.defaultHardcoreDifficulty) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
         isWeaponSwitchWithScrollEnabled = PlayerPrefs.GetInt("WeaponSwitchScroll", GameConstants.defaultWeaponSwitchScroll) == 1; // Makes isMouseInverted equal to "Inverted" or to false, if there's no "Inverted" in PlayerPrefs
+        masterVolume = PlayerPrefs.GetFloat("MasterVolume", GameConstants.defaultMasterVolume);
         musicVolume = PlayerPrefs.GetFloat("MusicVolume", GameConstants.defaultMusicVolume);
         sfxVolume = PlayerPrefs.GetFloat("GeneralSFXVolume", GameConstants.defaultSFXVolume);
+        audioMixer.SetFloat("MasterVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("MasterVolume", GameConstants.defaultMasterVolume), 0.0001f, 1f)) * 20);
         audioMixer.SetFloat("MusicVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("MusicVolume", GameConstants.defaultMusicVolume), 0.0001f, 1f)) * 20 - 10);
         audioMixer.SetFloat("GeneralSFXVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("GeneralSFXVolume", GameConstants.defaultSFXVolume), 0.0001f, 1f)) * 20);
         PlayerPrefs.SetFloat("Sensitivity", sensitivity);
@@ -65,6 +68,7 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetInt("Inverted", isMouseInverted ? 1 : 0);
         PlayerPrefs.SetInt("HardCoreDifficulty", isDifficultyHardcore ? 1 : 0);
         PlayerPrefs.SetInt("WeaponSwitchScroll", isWeaponSwitchWithScrollEnabled ? 1 : 0);
+        PlayerPrefs.SetFloat("MasterVolume", masterVolume);
         PlayerPrefs.SetFloat("MusicVolume", musicVolume);
         PlayerPrefs.SetFloat("GeneralSFXVolume", sfxVolume);
         PlayerPrefs.Save();

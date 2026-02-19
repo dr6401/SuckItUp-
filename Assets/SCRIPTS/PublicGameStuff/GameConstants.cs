@@ -11,6 +11,7 @@ public class GameConstants
     
     public const int defaultTextures = 2;
     public const int defaultFullScreen = 1;
+    public const float defaultMasterVolume = 0.5f;
     public const float defaultMusicVolume = 0.5f;
     public const float defaultSFXVolume = 0.5f;
     public const float defaultSensitivity = 5f;

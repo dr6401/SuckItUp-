@@ -40,7 +40,7 @@ namespace SlimUI.ModernMenu{
 
 		[Header("GAME SETTINGS")]
 		//public GameObject showhudtext; Disabled since game doesn't need this
-		public GameObject tooltipstext;
+		//public GameObject tooltipstext;
 		/*public GameObject difficultynormaltext;
 		public GameObject difficultynormaltextLINE;
 		public GameObject difficultyhardcoretext;
@@ -50,6 +50,7 @@ namespace SlimUI.ModernMenu{
 		public GameObject invertmousetext;
 
 		// sliders
+		public GameObject masterSlider;
 		public GameObject musicSlider;
 		public GameObject generalSfxSlider;
 		public GameObject sensitivitySlider;
@@ -80,6 +81,7 @@ namespace SlimUI.ModernMenu{
 			}*/
 
 			// check slider values
+			masterSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MasterVolume");
 			musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
 			generalSfxSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("GeneralSFXVolume");
 			sensitivitySlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Sensitivity");
@@ -110,12 +112,12 @@ namespace SlimUI.ModernMenu{
 			}*/
 
 			// check tool tip value
-			if(PlayerPrefs.GetInt("ToolTips")==0){
+			/*if(PlayerPrefs.GetInt("ToolTips")==0){
 				tooltipstext.GetComponent<TMP_Text>().text = "off";
 			}
 			else{
 				tooltipstext.GetComponent<TMP_Text>().text = "on";
-			}
+			}*/
 
 			// check shadow distance/enabled
 			if(platform == Platform.Desktop){
@@ -272,13 +274,18 @@ namespace SlimUI.ModernMenu{
 			}
 		}
 
-		public void MusicSlider (){
+		public void MasterSlider(){
+			//PlayerPrefs.SetFloat("MasterVolume", sliderValue);
+			PlayerPrefs.SetFloat("MasterVolume", masterSlider.GetComponent<Slider>().value);
+		}
+		
+		public void MusicSlider(){
 			//PlayerPrefs.SetFloat("MusicVolume", sliderValue);
 			PlayerPrefs.SetFloat("MusicVolume", musicSlider.GetComponent<Slider>().value);
 		}
 
-		public void SFXSlider (){
-			//PlayerPrefs.SetFloat("MusicVolume", sliderValue);
+		public void SFXSlider(){
+			//PlayerPrefs.SetFloat("GeneralSFXVolume", sliderValue);
 			PlayerPrefs.SetFloat("GeneralSFXVolume", generalSfxSlider.GetComponent<Slider>().value);
 		}
 		
@@ -355,8 +362,8 @@ namespace SlimUI.ModernMenu{
 			}
 		}
 
-		// show tool tips like: 'How to Play' control pop ups
-		public void ToolTips (){ // Needs to be implemented in UI
+		// show tool tips like: 'How to Play' control pop-ups
+		/*public void ToolTips (){ // Needs to be implemented in UI
 			if(PlayerPrefs.GetInt("ToolTips")==0){
 				PlayerPrefs.SetInt("ToolTips",1);
 				tooltipstext.GetComponent<TMP_Text>().text = "on";
@@ -367,7 +374,7 @@ namespace SlimUI.ModernMenu{
 				tooltipstext.GetComponent<TMP_Text>().text = "off";
 				Debug.Log("Set to OFF");
 			}
-		}
+		}*/
 
 		/*public void NormalDifficulty (){ // Needs to be implemented in enemy scripts
 			difficultyhardcoretextLINE.gameObject.SetActive(false);
