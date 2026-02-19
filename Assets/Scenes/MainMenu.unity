@@ -2323,6 +2323,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5693356975081986819, guid: 0a68be1bd13d8694e8d8fe85574ac075, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693356975081986819, guid: 0a68be1bd13d8694e8d8fe85574ac075, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693356975081986819, guid: 0a68be1bd13d8694e8d8fe85574ac075, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 522
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693356975081986819, guid: 0a68be1bd13d8694e8d8fe85574ac075, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.000009447336
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693356975081986819, guid: 0a68be1bd13d8694e8d8fe85574ac075, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 20.00006
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693356975081986819, guid: 0a68be1bd13d8694e8d8fe85574ac075, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 393.00003
+      objectReference: {fileID: 0}
     - target: {fileID: 6123297387964354937, guid: 0a68be1bd13d8694e8d8fe85574ac075, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2498,9 +2522,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 352504045639531968, guid: 0a68be1bd13d8694e8d8fe85574ac075, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 352454017363609638, guid: 0a68be1bd13d8694e8d8fe85574ac075, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 352966411076519842, guid: 0a68be1bd13d8694e8d8fe85574ac075, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -2508,9 +2529,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 352840905309520960, guid: 0a68be1bd13d8694e8d8fe85574ac075, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 352687900343013906, guid: 0a68be1bd13d8694e8d8fe85574ac075, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 353397034309236836, guid: 0a68be1bd13d8694e8d8fe85574ac075, type: 3}
