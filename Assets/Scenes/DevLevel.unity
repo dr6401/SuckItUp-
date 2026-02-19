@@ -10905,6 +10905,10 @@ PrefabInstance:
       propertyPath: testing_offerOnlySilverAugments
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3131451191998948869, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
+      propertyPath: testing_offerOnlyPrismaticAugments
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3462484511507193320, guid: 6ab7f73ae86842b45b189a5991bb6283, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
