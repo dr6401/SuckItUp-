@@ -202,7 +202,7 @@ public class WeaponHandler : MonoBehaviour
 
     private void Shoot()
     {
-        int layerMask = ~LayerMask.GetMask("Player", "Projectile", "PlayerHitBox", "PlayerHeadHitBox");
+        int layerMask = ~LayerMask.GetMask("Player", "Projectile", "PlayerHitBox", "PlayerHeadHitBox", "Dust", "RenderBehindWalls");
 
         GameEvents.OnShoot?.Invoke();
 
@@ -470,23 +470,31 @@ public class WeaponHandler : MonoBehaviour
 
 #endregion
 
-    /*private void OnDrawGizmos()
+private void OnDrawGizmos()
+{
+    if (camera == null) return;
+        int layerMask = ~LayerMask.GetMask("Player", "Projectile");
+
+    Vector3 shootOrigin = camera.transform.position;
+    Vector3 shootDirection = camera.transform.forward;
+
+    RaycastHit hit;
+
+    if (Physics.Raycast(shootOrigin, shootDirection, out hit, shootingRange, layerMask))
     {
-        if (camera.transform == null)
-        {
-            camera = Camera.main;
-            if (camera == null)
-            {
-                return;
-            }
-        }
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(shootOrigin, shootDirection * hit.distance);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(hit.point, 0.05f);
+    }
+    else
+    {
         Gizmos.color = Color.red;
+        Gizmos.DrawRay(shootOrigin, shootDirection * shootingRange);
+    }
+}
 
-        Vector3 shootOrigin = camera.transform.position;
-        Vector3 shootDirection = camera.transform.forward;
-
-        Gizmos.DrawRay(shootOrigin, shootDirection * 100f);
-    }*/
 
     private void OnEnable()
     {

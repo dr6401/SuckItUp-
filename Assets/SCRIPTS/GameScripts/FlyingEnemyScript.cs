@@ -109,7 +109,7 @@ public class FlyingEnemyScript : MonoBehaviour
 
     private void WanderAround()
     {
-        int layerMask = ~LayerMask.GetMask("Enemy", "Projectile");
+        int layerMask = ~LayerMask.GetMask("Enemy", "Projectile", "Dust");
         Vector3 randomDirection = Random.onUnitSphere.normalized; //Normalized meaning every movement will be the same length For not same length random movement just remove the .normalized
 
         if (transform.position.y <= minFlyingHeight) // If enemy is near the floor
