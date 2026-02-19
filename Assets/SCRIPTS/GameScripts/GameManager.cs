@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text killedAllEnemiesText;
     private bool hasKilledAllEnemiesTextBeenShown = false;
     private bool areAllSpawnersDestroyed = false;
+    private bool showShortenedKillAllEnemiesText = false;
     private bool keyBindingTextToggled = false;
     public bool gameOver = false;
     public bool gameLost = false;
@@ -108,8 +109,15 @@ public class GameManager : MonoBehaviour
             }
             if (CheckIfAllDustIsSuckedUp())
             {
+                showShortenedKillAllEnemiesText = false;
                 EndLevel();
             }
+        }
+
+        if (showShortenedKillAllEnemiesText)
+        {
+            killedAllEnemiesText.gameObject.SetActive(true);
+            killedAllEnemiesText.text = $"Clean the remaining <color=#C3C3C3> {dustParticles.Count} </color> dust";
         }
     }
 
@@ -364,7 +372,8 @@ public class GameManager : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
-        killedAllEnemiesText.gameObject.SetActive(false);
+        //killedAllEnemiesText.gameObject.SetActive(false);
+        showShortenedKillAllEnemiesText = true;
     }
 
     private IEnumerator LoadNextScene()
