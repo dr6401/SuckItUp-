@@ -67,6 +67,10 @@ namespace SlimUI.ModernMenu{
         [Tooltip("Highlight Image for when GENERAL Sub-Tab is selected in KEY BINDINGS")]
         public GameObject lineGeneral;
 
+        [Header("BUTTON INTERACTABILITY")]
+        public Button newGameButton;
+        public GameObject lockedIcon;
+        
         [Header("LOADING SCREEN")]
 		[Tooltip("If this is true, the loaded scene won't load until receiving user input")]
 		public bool waitForInput = true;
@@ -99,6 +103,7 @@ namespace SlimUI.ModernMenu{
 			if(extrasMenu) extrasMenu.SetActive(false);
 			firstMenu.SetActive(true);
 			mainMenu.SetActive(true);
+			HandleNewGameButtonInteractable();
 
 			SetThemeColors();
 		}
@@ -204,6 +209,21 @@ namespace SlimUI.ModernMenu{
 			PlayerPrefs.SetInt("NormalDifficulty",0);
 			PlayerPrefs.SetInt("HardCoreDifficulty",1);
 			GameEvents.OnDifficultyChangedToHardcore?.Invoke(true);
+		}
+
+		public void HandleNewGameButtonInteractable()
+		{
+			int hasCompletedTutorial = PlayerPrefs.GetInt("HasCompletedTutorial", 0);
+			if (hasCompletedTutorial == 0)
+			{
+				newGameButton.interactable = false;
+				lockedIcon.SetActive(true);
+			}
+			else
+			{
+				newGameButton.interactable = true;
+				lockedIcon.SetActive(false);
+			}
 		}
 
 		void DisablePanels(){

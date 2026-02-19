@@ -33,6 +33,7 @@ public class PlayerEndLevelChecker : MonoBehaviour
         currentNumberOfEnemiesInRoom = GameObject.FindGameObjectsWithTag("Enemy").Length;
         if (tutorialManager.aliveDustParticles <= 0 && currentNumberOfEnemiesInRoom <= 0 && !hasShownGoodJobMessage)
         {
+            PlayerPrefs.SetInt("HasCompletedTutorial", 1);
             objectiveText.GetComponent<TMP_Text>().text = "Good Job! You cleaned the whole place up";
             tutorialManager.SetObjectiveTextVisible();
             objectiveText.SetActive(true);
