@@ -108,6 +108,9 @@ public class EnemyHealth : MonoBehaviour
                 case EnemyTypes.EnemyType.FlyingDusty:
                     ObjectPooler.Instance?.DespawnFlyingDusty(gameObject);
                     break;
+                case EnemyTypes.EnemyType.BigBossDusty:
+                    Destroy(gameObject);
+                    break;
             }    
         }
         else

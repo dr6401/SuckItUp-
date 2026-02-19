@@ -24,7 +24,7 @@ public class LevelProgression : MonoBehaviour
     private MeshRenderer level2AreaMr;
     private MeshRenderer level3AreaMr;
 
-    private float levelLoadingTime = 3;
+    private float levelLoadingTime = 2;
     private float currentTimer = 0;
 
     void Start()

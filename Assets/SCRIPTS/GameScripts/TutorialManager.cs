@@ -137,12 +137,14 @@ public class TutorialManager : MonoBehaviour
             //gameCanvas.alpha = 0;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+            hasInputBeenGranted = false;
         }
         else
         {
             //gameCanvas.alpha = 1;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+            hasInputBeenGranted = true;
         }
 
         Time.timeScale = keyBindingTextToggled ? 0f : 1f;

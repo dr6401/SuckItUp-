@@ -200,6 +200,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1505858724263679729, guid: 36196eb9956c82646a9c8f7289837f0c, type: 3}
+      propertyPath: maxSpawnedDustParticles
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505858724263679729, guid: 36196eb9956c82646a9c8f7289837f0c, type: 3}
+      propertyPath: minSpawnedDustParticles
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 2494672293741293689, guid: 36196eb9956c82646a9c8f7289837f0c, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -20757,6 +20765,10 @@ PrefabInstance:
     - target: {fileID: 8268227819360073390, guid: 89cbfc1936a49d941925b9ac5eaaf9e6, type: 3}
       propertyPath: m_Name
       value: ObjectPooler
+      objectReference: {fileID: 0}
+    - target: {fileID: 8268227819360073390, guid: 89cbfc1936a49d941925b9ac5eaaf9e6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

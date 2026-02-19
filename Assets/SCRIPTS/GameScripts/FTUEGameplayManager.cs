@@ -5,7 +5,7 @@ using MoreMountains.Feedbacks;
 using TMPro;
 using UnityEngine;
 
-public class FTUEManager : MonoBehaviour
+public class FTUEGameplayManager : MonoBehaviour
 {
     [SerializeField] private GameObject fTUECanvas;
     [SerializeField] private TMP_Text tutorialText;
@@ -26,9 +26,11 @@ public class FTUEManager : MonoBehaviour
             StartCoroutine(InitiateFTUE());
             SettingsManager.Instance.hasPlayerCompletedFTUE = true;
         }*/
-        //PlayerPrefs.SetInt("GameplayFTUECompleted", 0);
-        StartCoroutine(InitiateFTUE());
-        StartCoroutine(BlockWeaponHandler());
+        if (PlayerPrefs.GetInt("GameplayFTUECompleted", 0) == 0)
+        {
+            StartCoroutine(InitiateGameplayFTUE());
+            StartCoroutine(BlockWeaponHandler());   
+        }
     }
 
     private IEnumerator BlockWeaponHandler()
@@ -38,10 +40,11 @@ public class FTUEManager : MonoBehaviour
     }
     
     
-    private IEnumerator InitiateFTUE()
+    private IEnumerator InitiateGameplayFTUE()
     {
         yield return new WaitForSeconds(3f);
-        GameEvents.OnFTUETriggered?.Invoke();
+        PlayerPrefs.SetInt("GameplayFTUECompleted", 1);
+        GameEvents.OnGameplayFTUETriggered?.Invoke();
     }
 
     private void SetFTUECanvasActive()
@@ -49,7 +52,7 @@ public class FTUEManager : MonoBehaviour
         playerMovement.inputBlocked = true;
         isFtueInProgress = true;
         Time.timeScale = 0f;
-        Debug.Log("FTUE initiated");
+        Debug.Log("Gameplay FTUE initiated");
         //GameEvents.OnGamePaused?.Invoke(true);
         fTUECanvas?.SetActive(true);
         tutorialText.text = tutorialTexts[currentTextIndex];
@@ -60,7 +63,7 @@ public class FTUEManager : MonoBehaviour
     {
         if (currentTextIndex == tutorialTexts.Count - 1)
         {
-            GameEvents.OnFTUEEnded?.Invoke();
+            GameEvents.OnGameplayFTUEEnded?.Invoke();
             fTUECanvas.SetActive(false);
             //GameEvents.OnGamePaused?.Invoke(false);
             playerMovement.inputBlocked = false;
@@ -80,11 +83,11 @@ public class FTUEManager : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEvents.OnFTUETriggered += SetFTUECanvasActive;
+        GameEvents.OnGameplayFTUETriggered += SetFTUECanvasActive;
     }
     
     private void OnDisable()
     {
-        GameEvents.OnFTUETriggered -= SetFTUECanvasActive;
+        GameEvents.OnGameplayFTUETriggered -= SetFTUECanvasActive;
     }
 }

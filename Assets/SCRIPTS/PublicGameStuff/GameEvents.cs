@@ -26,6 +26,8 @@ public static class GameEvents
         public static Action OnPlayerKilledAllEnemies;
         public static Action OnFTUETriggered;
         public static Action OnFTUEEnded;
+        public static Action OnGameplayFTUETriggered;
+        public static Action OnGameplayFTUEEnded;
         
         // Augments
         public static Action<int> OnTriggerHealthIncreaseFeedback;

@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AugmentSelectionUI augmentSelectionUI;
     private bool isAugmentUIOpenedEvenMaybeUnderSettingsCanvas = false;
     private bool isSettingsCanvasCoveringAugmentUI = false;
+    private bool hasInputBeenGranted = true;
     private PlayerControls controls;
     [SerializeField] private MMFeedbacks loadHallwaySceneFeedback;
     
@@ -81,7 +82,7 @@ public class GameManager : MonoBehaviour
         {
             ToggleSettingsCanvasVisibility(1f);
         }
-        else if (controls.GameEvents.PauseGame.triggered && !gameOver){
+        else if (controls.GameEvents.PauseGame.triggered && !gameOver && hasInputBeenGranted){
             TogglePauseGame();
         }
 
@@ -377,6 +378,34 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(currentSceneIndex + 1);*/
     }
     
+    private void ToggleTutorialPause()
+    {
+        keyBindingTextToggled = !keyBindingTextToggled;
+        //settingsCanvas.SetActive(keyBindingTextToggled);
+
+        objectiveText?.SetActive(false);
+            
+        //Enabling/Disabling the cursor if the game is paused
+        if (keyBindingTextToggled)
+        {
+            //gameCanvas.alpha = 0;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            hasInputBeenGranted = false;
+        }
+        else
+        {
+            //gameCanvas.alpha = 1;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            hasInputBeenGranted = true;
+        }
+
+        Time.timeScale = keyBindingTextToggled ? 0f : 1f;
+        playerMovement.inputBlocked = keyBindingTextToggled;
+        weaponHandler.inputBlocked = keyBindingTextToggled;
+    }
+    
     private void SetHasSettingsUICoveredUpAugmentUI(bool hasSettingsUICoveredUpAugmentUI1)
     {
         isAugmentUIOpenedEvenMaybeUnderSettingsCanvas = hasSettingsUICoveredUpAugmentUI1;
@@ -393,6 +422,8 @@ public class GameManager : MonoBehaviour
         controls.GameEvents.Enable();
         EnemySpawnManager.AllSpawnerDead += HandleAllSpawnersDead;
         GameEvents.OnHasSettingsUICoveredUpAugmentUI += SetHasSettingsUICoveredUpAugmentUI;
+        GameEvents.OnGameplayFTUETriggered += ToggleTutorialPause;
+        GameEvents.OnGameplayFTUEEnded += ToggleTutorialPause;
     }
     
     private void OnDisable()
@@ -400,5 +431,7 @@ public class GameManager : MonoBehaviour
         controls.GameEvents.Disable();
         EnemySpawnManager.AllSpawnerDead -= HandleAllSpawnersDead;
         GameEvents.OnHasSettingsUICoveredUpAugmentUI -= SetHasSettingsUICoveredUpAugmentUI;
+        GameEvents.OnGameplayFTUETriggered -= ToggleTutorialPause;
+        GameEvents.OnGameplayFTUEEnded -= ToggleTutorialPause;
     }
 }
