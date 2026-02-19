@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 public class TutorialManager : MonoBehaviour
 {
-    [SerializeField]private float objectiveTextDuration = 10;
+    [SerializeField]private float objectiveTextDuration = 5;
     [SerializeField] private GameObject objectiveText;
     [SerializeField] private GameObject settingsCanvas;
     [FormerlySerializedAs("toggleWeaponText")] [SerializeField] public GameObject toggleWeaponTextObject;
@@ -44,7 +44,7 @@ public class TutorialManager : MonoBehaviour
         maxNumberOfDust = dustParticles.Count;
         aliveDustParticles = maxNumberOfDust;
         
-        toggleWeaponTextObject.SetActive(true);
+        //toggleWeaponTextObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -102,7 +102,7 @@ public class TutorialManager : MonoBehaviour
     
     private IEnumerator DisplayVacuumTutorialText()
     {
-        toggleWeaponTextObject.GetComponent<TMP_Text>().text = $"Hold Left Click with Vacuum 3000 to suck up dust. Sucking dust up fills your ammo";
+        //toggleWeaponTextObject.GetComponent<TMP_Text>().text = $"Hold Left Click with Vacuum 3000 to suck up dust. Sucking dust up fills your ammo";
         yield return new WaitForSeconds(objectiveTextDuration);
         toggleWeaponTextObject.SetActive(false);
         objectiveText.SetActive(true);
@@ -123,14 +123,45 @@ public class TutorialManager : MonoBehaviour
         objectiveText.SetActive(true);
     }
 
+    private void ToggleTutorialPause()
+    {
+        keyBindingTextToggled = !keyBindingTextToggled;
+        //settingsCanvas.SetActive(keyBindingTextToggled);
+
+        objectiveText.SetActive(!keyBindingTextToggled);
+        toggleWeaponTextObject.SetActive(false);
+            
+        //Enabling/Disabling the cursor if the game is paused
+        if (keyBindingTextToggled)
+        {
+            //gameCanvas.alpha = 0;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            //gameCanvas.alpha = 1;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        Time.timeScale = keyBindingTextToggled ? 0f : 1f;
+        playerMovement.inputBlocked = keyBindingTextToggled;
+        weaponHandler.inputBlocked = keyBindingTextToggled;
+    }
+
     private void OnEnable()
     {
         controls.Player.Enable();
         controls.GameEvents.Enable();
+        GameEvents.OnFTUETriggered += ToggleTutorialPause;
+        GameEvents.OnFTUEEnded += ToggleTutorialPause;
     }
     private void OnDisable()
     {
         controls.Player.Disable();
         controls.GameEvents.Disable();
+        GameEvents.OnFTUETriggered -= ToggleTutorialPause;
+        GameEvents.OnFTUEEnded -= ToggleTutorialPause;
     }
 }

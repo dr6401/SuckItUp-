@@ -470,32 +470,30 @@ public class WeaponHandler : MonoBehaviour
 
 #endregion
 
-private void OnDrawGizmos()
-{
-    if (camera == null) return;
-        int layerMask = ~LayerMask.GetMask("Player", "Projectile");
-
-    Vector3 shootOrigin = camera.transform.position;
-    Vector3 shootDirection = camera.transform.forward;
-
-    RaycastHit hit;
-
-    if (Physics.Raycast(shootOrigin, shootDirection, out hit, shootingRange, layerMask))
+    /*private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawRay(shootOrigin, shootDirection * hit.distance);
+        if (camera == null) return;
+            int layerMask = ~LayerMask.GetMask("Player", "Projectile");
 
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(hit.point, 0.05f);
-    }
-    else
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(shootOrigin, shootDirection * shootingRange);
-    }
-}
+        Vector3 shootOrigin = camera.transform.position;
+        Vector3 shootDirection = camera.transform.forward;
 
+        RaycastHit hit;
 
+        if (Physics.Raycast(shootOrigin, shootDirection, out hit, shootingRange, layerMask))
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawRay(shootOrigin, shootDirection * hit.distance);
+
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(hit.point, 0.05f);
+        }
+        else
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay(shootOrigin, shootDirection * shootingRange);
+        }
+    }*/
     private void OnEnable()
     {
         controls.Player.Enable();

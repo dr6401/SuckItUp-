@@ -267,6 +267,7 @@ public class SoundManager : MonoBehaviour
         GameEvents.OnSuckDust += PlayDustIncreaseSFX;
         GameEvents.OnDamageTaken += PlayTakeDamageSFX;
         GameEvents.OnPlayerDeath += PlayPlayedDeathSFX;
+        //GameEvents.OnFTUETriggered += PlayEndVacuuming;
     }
     
     private void OnDisable()
@@ -278,5 +279,6 @@ public class SoundManager : MonoBehaviour
         GameEvents.OnSuckDust -= PlayDustIncreaseSFX;
         GameEvents.OnDamageTaken -= PlayTakeDamageSFX;
         GameEvents.OnPlayerDeath -= PlayPlayedDeathSFX;
+        //GameEvents.OnFTUETriggered -= PlayEndVacuuming;
     }
 }
