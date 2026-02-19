@@ -96,7 +96,6 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        Debug.Log($"AnyEnemiesAlive(): {AnyEnemiesAlive()}");
         if (areAllSpawnersDestroyed && !AnyEnemiesAlive())
         {
             TrackRemainingDust();

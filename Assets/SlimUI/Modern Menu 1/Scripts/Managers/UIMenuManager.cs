@@ -18,6 +18,8 @@ namespace SlimUI.ModernMenu{
         public GameObject firstMenu;
         [Tooltip("The Menu for when the PLAY button is clicked")]
         public GameObject playMenu;
+        [Tooltip("The Menu for when the PLAY GAME button is clicked")]
+        public GameObject gameModeMenu;
         [Tooltip("The Menu for when the EXIT button is clicked")]
         public GameObject exitMenu;
         [Tooltip("Optional 4th Menu")]
@@ -90,8 +92,9 @@ namespace SlimUI.ModernMenu{
         void Start(){
 	        Time.timeScale = 1f;
 			CameraObject = transform.GetComponent<Animator>();
-
+			
 			playMenu.SetActive(false);
+			gameModeMenu.SetActive(false);
 			exitMenu.SetActive(false);
 			if(extrasMenu) extrasMenu.SetActive(false);
 			firstMenu.SetActive(true);
@@ -131,6 +134,12 @@ namespace SlimUI.ModernMenu{
 			playMenu.SetActive(true);
 		}
 		
+		public void PlayGameMode(){
+			exitMenu.SetActive(false);
+			if(extrasMenu) extrasMenu.SetActive(false);
+			gameModeMenu.SetActive(true);
+		}
+		
 		public void PlayCampaignMobile(){
 			exitMenu.SetActive(false);
 			if(extrasMenu) extrasMenu.SetActive(false);
@@ -140,6 +149,7 @@ namespace SlimUI.ModernMenu{
 
 		public void ReturnMenu(){
 			playMenu.SetActive(false);
+			gameModeMenu.SetActive(false);
 			if(extrasMenu) extrasMenu.SetActive(false);
 			exitMenu.SetActive(false);
 			mainMenu.SetActive(true);
@@ -172,6 +182,7 @@ namespace SlimUI.ModernMenu{
 
 		public void  DisablePlayCampaign(){
 			playMenu.SetActive(false);
+			gameModeMenu.SetActive(false);
 		}
 
 		public void Position2(){
@@ -181,6 +192,18 @@ namespace SlimUI.ModernMenu{
 
 		public void Position1(){
 			CameraObject.SetFloat("Animate",0);
+		}
+		
+		public void NormalDifficulty (){ // Needs to be implemented in enemy scripts
+			PlayerPrefs.SetInt("NormalDifficulty",1);
+			PlayerPrefs.SetInt("HardCoreDifficulty",0);
+			GameEvents.OnDifficultyChangedToHardcore?.Invoke(false);
+		}
+
+		public void HardcoreDifficulty (){ // Needs to be implemented in enemy scripts 
+			PlayerPrefs.SetInt("NormalDifficulty",0);
+			PlayerPrefs.SetInt("HardCoreDifficulty",1);
+			GameEvents.OnDifficultyChangedToHardcore?.Invoke(true);
 		}
 
 		void DisablePanels(){
@@ -276,6 +299,7 @@ namespace SlimUI.ModernMenu{
 
 		public void ExtrasMenu(){
 			playMenu.SetActive(false);
+			gameModeMenu.SetActive(false);
 			if(extrasMenu) extrasMenu.SetActive(true);
 			exitMenu.SetActive(false);
 		}
