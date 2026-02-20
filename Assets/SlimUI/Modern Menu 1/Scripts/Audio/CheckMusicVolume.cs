@@ -19,7 +19,7 @@ namespace SlimUI.ModernMenu{
 			}
 			else
 			{
-				audioMixer.SetFloat("MusicVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("MusicVolume", GameConstants.defaultMusicVolume), 0.0001f, 1f)) * 20 - 10); // -10 so music can never reach -0dB since it would be too loud
+				audioMixer.SetFloat("MusicVolume", Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("MusicVolume", GameConstants.defaultMusicVolume), 0.0001f, 1f)) * 20 - 5); // -10 so music can never reach -0dB since it would be too loud
 			}
 			//Debug.Log("Updated MusicVolume: " + PlayerPrefs.GetFloat("MusicVolume"));
 		}
