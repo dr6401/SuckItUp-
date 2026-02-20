@@ -372,7 +372,12 @@ namespace SlimUI.ModernMenu{
 		
 		public void WishlistOnSteam()
 		{
-			Application.OpenURL("https://store.steampowered.com/app/3951270/Suck_It_Up/");
+			Application.OpenURL(GameConstants.steamWishlistUrl);
+		}
+
+		public void OpenFeedbackForm()
+		{
+			Application.OpenURL(GameConstants.feedbackFormUrl);
 		}
 	}
 }

@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class GameConstants
 {
+    public const string steamWishlistUrl = "https://store.steampowered.com/app/3951270/Suck_It_Up/";
+    public const string feedbackFormUrl = "https://forms.gle/b4BnWztjLrXRKczX7";
+    
     public const float fadeInOrOutDuration = 0.5f;
     public const float mediumFadeInOrOutDuration = 0.25f;
     public const float shortFadeInOrOutDuration = 0.25f;
