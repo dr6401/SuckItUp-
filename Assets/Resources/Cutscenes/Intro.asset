@@ -15,19 +15,18 @@ MonoBehaviour:
   id: 0
   text:
   - Some apartments should never be opened...
-  - "This one hasn\u2019t been cleaned since the old couple passed away."
+  - This one hasn't been cleaned since the old couple passed away.
   - The dust kept growing.
   - Then it started moving.
   - Some would call it impossible.
-  - "Mom would call it \u201Cyour fault\u201D."
+  - Mom would call it "your fault".
   - Standard cleaning methods were attempted.
   - They failed...
-  - <size=150%>You</size> were called
-  - Contain the infestation.\nDestroy the nests.
+  - <size=150%>You</size>\nwere called.
+  - Destroy the nests and\ncontain the infestation.
   - The air is <color=#DEDEDE>contaminated</color> and your <color=#DEDEDE>filtration
     system</color> won't last forever.
-  - Start cleaning.
-  - Leave nothing behind.
-  - Suck. It. Up.
+  - Start cleaning.\n\nLeave nothing behind.
+  - <size=300%>Suck.  It.  Up.</size>
   nextScene: MainMenu
-  music: {fileID: 8300000, guid: 7ab2e9f0cba0ee54b9629c6c1e210ed4, type: 3}
+  music: {fileID: 8300000, guid: 5c637fd62b5cfe049a2533fa8cfe3ad6, type: 3}
