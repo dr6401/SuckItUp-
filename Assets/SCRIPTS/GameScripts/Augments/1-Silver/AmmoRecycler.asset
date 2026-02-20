@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AmmoRecycler
   m_EditorClassIdentifier: 
   augmentName: Ammo Recycler
-  description: Killing enemies has a 20% chance to restore 1 ammo.
+  description: Killing enemies has a 20% chance to restore 10 ammo.
   icon: {fileID: 21300000, guid: 9991f3bf6a10e9e45b9ca1a7d2e8f135, type: 3}
   tier: 0
   category: 0

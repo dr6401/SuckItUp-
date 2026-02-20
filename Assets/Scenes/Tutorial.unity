@@ -13554,6 +13554,28 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6375880256874123750, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
+      propertyPath: m_text
+      value: 'Objective:
+
+        <size=80%><color=#DEDEDE>Clean</color> the Room</size>'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375880256874123750, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375880256874123750, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375880256874123750, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375880256874123750, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7267542044105194087, guid: a430961d7db0ce64ea87f961c990f60f, type: 3}
       propertyPath: m_IsActive
       value: 0
