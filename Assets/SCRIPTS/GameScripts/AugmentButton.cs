@@ -37,6 +37,17 @@ public class AugmentButton : MonoBehaviour
         iconImage.sprite = augment.icon;
 
     }
+    
+    public void Setup(Augment aug, GameObject playerRef)
+    {
+        augment = aug;
+        player = playerRef;
+
+        augmentName.text = augment.augmentName;
+        augmentDescription.text = augment.description;
+        iconImage.sprite = augment.icon;
+
+    }
 
     public void SelectAugment()
     {
