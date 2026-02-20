@@ -44,6 +44,8 @@ public class TutorialManager : MonoBehaviour
         maxNumberOfDust = dustParticles.Count;
         aliveDustParticles = maxNumberOfDust;
         
+        PlayerPrefs.SetInt("NormalDifficulty",1);
+        PlayerPrefs.SetInt("HardCoreDifficulty",0);        
         //toggleWeaponTextObject.SetActive(true);
     }
 
