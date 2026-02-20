@@ -72,6 +72,7 @@ public class SoundManager : MonoBehaviour
     
     public void PlayMainTheme()
     {
+        if (musicSource == null || musicThemes.Length <= 0) return;
         musicSource.clip = musicThemes[0];
         musicSource.Play();
     }
