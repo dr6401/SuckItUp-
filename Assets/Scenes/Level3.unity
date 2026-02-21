@@ -1882,6 +1882,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 87373761461724564, guid: f5aeebd2b96a0cd46bf4bf7a8b3184ae, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.987
+      objectReference: {fileID: 0}
+    - target: {fileID: 87373761461724564, guid: f5aeebd2b96a0cd46bf4bf7a8b3184ae, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.805
+      objectReference: {fileID: 0}
     - target: {fileID: 150149273143035796, guid: f5aeebd2b96a0cd46bf4bf7a8b3184ae, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -9935,10 +9943,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Congratulations on finishing the demo!
-
-
-    Have you tried hardcore yet...?'
+  m_text: Have you tried <b><size=120%><color=#FF0000>hardcore</color></size></b>
+    yet...?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 83ad3f048bf01d84594d4a7d4bc2a42d, type: 2}
   m_sharedMaterial: {fileID: 4056055385566379298, guid: 83ad3f048bf01d84594d4a7d4bc2a42d, type: 2}
@@ -10063,7 +10069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2725402623183118778, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -24.3
+      value: -24.961
       objectReference: {fileID: 0}
     - target: {fileID: 2725402623183118778, guid: 4c468f53988efc842bcfe02881778e9e, type: 3}
       propertyPath: m_LocalPosition.z
