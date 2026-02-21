@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class RoombaHallway : MonoBehaviour
 {
     private bool canBeInteractedWith = false;
-    private float maxInteractableDistance = 10f;
+    private float maxInteractableDistance = 15;
     private GameObject player;
     private PlayerControls controls;
     private bool isChosenAugmentsUIShown = false;
