@@ -9943,8 +9943,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Have you tried <b><size=120%><color=#FF0000>hardcore</color></size></b>
+  m_text: 'Have you tried <b><size=120%><color=#FF0000>hardcore</color></size></b>
     yet...?
+
+
+    <size=50%>Main Menu -> Play -> New game -> Hardcore</size>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 83ad3f048bf01d84594d4a7d4bc2a42d, type: 2}
   m_sharedMaterial: {fileID: 4056055385566379298, guid: 83ad3f048bf01d84594d4a7d4bc2a42d, type: 2}
