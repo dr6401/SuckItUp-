@@ -17,6 +17,7 @@ public class RoombaHallway : MonoBehaviour
     [SerializeField] private GameObject chosenAugmentsCanvas;
     [SerializeField] private TMP_Text pressEToInteractText;
     private Vector3 pressEToInteractOriginalPosition;
+    [SerializeField] private Transform pressEToInteractLowerPosition;
     [SerializeField] private ScrollRect scrollRect;
     [SerializeField] private Transform chosenAugmentsDisplay;
     [SerializeField] private GameObject noAugmentsText;
@@ -54,7 +55,7 @@ public class RoombaHallway : MonoBehaviour
             pressEToInteractText.text = $"Press {interactKey} to show Augments";
             if (controls.Player.Interact.WasPressedThisFrame() && !isChosenAugmentsUIShown)
             {
-                pressEToInteractText.gameObject.transform.position = pressEToInteractOriginalPosition - new Vector3(0, 90, 0);
+                pressEToInteractText.gameObject.transform.position = pressEToInteractLowerPosition.position; // Lower the text to make space for AugmentsUI
                 pressEToInteractText.text = $"Press {interactKey} to close";    
                 ShowChosenAugmentsUI();
             }
