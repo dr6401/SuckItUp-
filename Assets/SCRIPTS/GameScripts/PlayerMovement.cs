@@ -12,7 +12,7 @@ using Vector3 = UnityEngine.Vector3;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    private float moveSpeed;
+    [SerializeField] private float moveSpeed;
     public float baseMoveSpeed = 1f;
     private float halvedBaseMoveSpeed;
     public float sprintMultiplier = 1.5f;
@@ -357,7 +357,7 @@ public class PlayerMovement : MonoBehaviour
     public void ApplySteadyAim()
     {
         halvedBaseMoveSpeed = baseMoveSpeed;
-        Debug.Log("Halved move speed: " + halvedBaseMoveSpeed + " set to base move speed (" + baseMoveSpeed + ")");
+        Debug.Log("Applied Steady Aim from PlayerMovement\nHalved move speed: " + halvedBaseMoveSpeed + " set to base move speed (" + baseMoveSpeed + ")");
     }
 
     public void ApplyFeatherless()

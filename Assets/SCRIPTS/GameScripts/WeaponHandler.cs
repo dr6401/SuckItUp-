@@ -428,14 +428,14 @@ public class WeaponHandler : MonoBehaviour
 
     private void ExcecuteAmmoRecycler()
     {
-        Debug.Log("Time for ammo recycler");
+        //Debug.Log("Time for ammo recycler");
         if (isAmmoRecyclerEnabled)
         {
             int chanceToRecycleAmmo = Random.Range(1, 100);
             if (chanceToRecycleAmmo <= chanceToRecycleAmmoThreshold)
             {
                 RefillAmmo(10);
-                Debug.Log($"Chance was {chanceToRecycleAmmo}, recycling ammo");
+                //Debug.Log($"Chance was {chanceToRecycleAmmo}, recycling ammo");
             }
         }
     }
