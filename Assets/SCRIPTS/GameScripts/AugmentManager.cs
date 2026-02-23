@@ -23,8 +23,8 @@ public class AugmentManager : MonoBehaviour
     [SerializeField] public float normalAugmentTriggerThresholdDuplicator = 1.25f;
     [SerializeField] public float hardcoreAugmentTriggerThresholdDuplicator = 1.25f;
     
-    private float silverAugmentChance = 0.6f;
-    private float goldAugmentChance = 0.25f;
+    private float silverAugmentChance = 0.5f;
+    private float goldAugmentChance = 0.3f;
     
     [Header("TESTING")] [SerializeField] private bool useTestingEqualAugmentOdds = false;
 
