@@ -133,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (controls.Player.Jump.WasReleasedThisFrame() && verticalVelocity >= 0)
             {
-                verticalVelocity *= 0.3f;
+                verticalVelocity *= 0.5f;
             }
             
             horizontalMoveSpeed = new Vector3(moveDirection.x, moveDirection.y * 0.2f, moveDirection.z);
