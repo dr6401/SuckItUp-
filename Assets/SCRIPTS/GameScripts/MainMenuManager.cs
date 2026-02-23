@@ -14,6 +14,8 @@ public class MainMenuManager : MonoBehaviour
         PlayerPrefs.SetInt("Level1", 0); // Lock lvl2 and lvl3 when starting game
         PlayerPrefs.SetInt("Level2", 0);
         GameEvents.OnEnteredMainMenu?.Invoke();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     // Update is called once per frame

@@ -12353,7 +12353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5582426052952561036, guid: bcfc89697aa2cd84f87c193c748dd563, type: 3}
       propertyPath: 'normalDeathMessages.Array.data[0]'
-      value: "You fall\u2026 but your power doesn\u2019t."
+      value: You fall... but your power doesn't.
       objectReference: {fileID: 0}
     - target: {fileID: 5582426052952561036, guid: bcfc89697aa2cd84f87c193c748dd563, type: 3}
       propertyPath: 'normalDeathMessages.Array.data[1]'
@@ -12369,11 +12369,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5582426052952561036, guid: bcfc89697aa2cd84f87c193c748dd563, type: 3}
       propertyPath: 'normalDeathMessages.Array.data[4]'
-      value: "Death resets nothing\u2026 not for you."
+      value: Death resets nothing... not for you.
       objectReference: {fileID: 0}
     - target: {fileID: 5582426052952561036, guid: bcfc89697aa2cd84f87c193c748dd563, type: 3}
       propertyPath: 'normalDeathMessages.Array.data[5]'
-      value: "Your body drops. Your strength doesn\u2019t."
+      value: Your body drops. Your strength doesn't.
       objectReference: {fileID: 0}
     - target: {fileID: 5582426052952561036, guid: bcfc89697aa2cd84f87c193c748dd563, type: 3}
       propertyPath: 'normalDeathMessages.Array.data[6]'

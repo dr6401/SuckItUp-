@@ -37,7 +37,9 @@ public class GameManager : MonoBehaviour
     private bool isSettingsCanvasCoveringAugmentUI = false;
     private bool hasInputBeenGranted = true;
     private PlayerControls controls;
+    [SerializeField] private bool lastLevelOfCampaign = false;
     [SerializeField] private MMFeedbacks loadHallwaySceneFeedback;
+    [SerializeField] private MMFeedbacks loadMainMenuSceneFeedback;
     
     List<GameObject> dustParticles = new List<GameObject>();
 
@@ -381,7 +383,8 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, 1);
         PlayerPrefs.Save();
         yield return new WaitForSeconds(timeToLoadNextScene);
-        PlayLoadSceneHallway();
+        if (!lastLevelOfCampaign) PlayLoadSceneHallway();
+        else PlayLoadMainMenuFeedback();
         /*yield return new WaitForSeconds(timeToLoadNextScene);
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex + 1);*/
@@ -423,6 +426,11 @@ public class GameManager : MonoBehaviour
     private void PlayLoadSceneHallway()
     {
         loadHallwaySceneFeedback?.PlayFeedbacks();
+    }
+
+    private void PlayLoadMainMenuFeedback()
+    {
+        loadMainMenuSceneFeedback?.PlayFeedbacks();
     }
     
     private void OnEnable()
