@@ -25,6 +25,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip[] takeProjectileDamageSFX;
     [SerializeField] private AudioClip[] playerDeathSFX;
     [SerializeField] private AudioClip enemyDeathSFX;
+    [SerializeField] private AudioClip enemySpawnerDeathSFX;
     [SerializeField] private AudioClip dustIncreaseSFX;
     [SerializeField] private AudioClip noAmmoLeftSFX;
     private AudioClip[][] SFXSounds;
@@ -251,8 +252,15 @@ public class SoundManager : MonoBehaviour
         generalSFXSource.pitch = Random.Range(0.9f, 1.3f);
         generalSFXSource.PlayOneShot(enemyDeathSFX);
     }
+    
+    private void PlayEnemySpawnerDeathSFX()
+    {
+        generalSFXSource.pitch = Random.Range(0.9f, 1.3f);
+        generalSFXSource.PlayOneShot(enemySpawnerDeathSFX);
+    }
+    
 
-    private void PlayPlayedDeathSFX()
+    private void PlayPlayerDeathSFX()
     {
         generalSFXSource.pitch = Random.Range(0.95f, 1.05f);
         generalSFXSource.PlayOneShot(playerDeathSFX[Random.Range(0, playerDeathSFX.Length)]);
@@ -265,9 +273,10 @@ public class SoundManager : MonoBehaviour
         GameEvents.OnHit += PlayRandomHitMarkerSFX;
         WeaponHandler.OnNoAmmoLeft += PlayNoAmmoLeftSFX;
         GameEvents.OnEnemyDeath += PlayEnemyDeathSFX;
+        GameEvents.OnEnemySpawnerDeath += PlayEnemySpawnerDeathSFX;
         GameEvents.OnSuckDust += PlayDustIncreaseSFX;
         GameEvents.OnDamageTaken += PlayTakeDamageSFX;
-        GameEvents.OnPlayerDeath += PlayPlayedDeathSFX;
+        GameEvents.OnPlayerDeath += PlayPlayerDeathSFX;
         //GameEvents.OnFTUETriggered += PlayEndVacuuming;
     }
     
@@ -277,9 +286,10 @@ public class SoundManager : MonoBehaviour
         GameEvents.OnHit -= PlayRandomHitMarkerSFX;
         WeaponHandler.OnNoAmmoLeft -= PlayNoAmmoLeftSFX;
         GameEvents.OnEnemyDeath -= PlayEnemyDeathSFX;
+        GameEvents.OnEnemySpawnerDeath -= PlayEnemySpawnerDeathSFX;
         GameEvents.OnSuckDust -= PlayDustIncreaseSFX;
         GameEvents.OnDamageTaken -= PlayTakeDamageSFX;
-        GameEvents.OnPlayerDeath -= PlayPlayedDeathSFX;
+        GameEvents.OnPlayerDeath -= PlayPlayerDeathSFX;
         //GameEvents.OnFTUETriggered -= PlayEndVacuuming;
     }
 }

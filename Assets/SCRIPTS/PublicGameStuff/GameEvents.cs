@@ -18,6 +18,7 @@ public static class GameEvents
         public static Action OnLowLevelTimer;
         public static Action OnResetHasPlayerDiedInPreviousScene;
         public static Action OnEnemyDeath;
+        public static Action OnEnemySpawnerDeath;
         public static Action OnPlayerWalking;
         public static Action OnPlayerRunning;
         public static Action OnPlayerJumped;

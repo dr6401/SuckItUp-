@@ -606,6 +606,7 @@ MonoBehaviour:
   playerDeathSFX:
   - {fileID: 8300000, guid: 6f6fe01b5774e684db5986a246027409, type: 3}
   enemyDeathSFX: {fileID: 8300000, guid: a63ec0d2e1747044584f9294be8f54e2, type: 3}
+  enemySpawnerDeathSFX: {fileID: 8300000, guid: ebfed18334d74f448bc000ca246f01ea, type: 3}
   dustIncreaseSFX: {fileID: 8300000, guid: 6ccaffa5203e45b4e95ddd7bb1593479, type: 3}
   noAmmoLeftSFX: {fileID: 8300000, guid: d86a37b943fd0504e9cf7a9fd234ac6e, type: 3}
   sfxMixerGroup: {fileID: 5505774061515577387, guid: 6de2cc9ccd7156847a9049dce43557fe, type: 2}

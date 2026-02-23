@@ -70,6 +70,7 @@ public class EnemySpawnerHealth : EnemyHealth
             Instantiate(deathExplosionPrefab, transform.position, Quaternion.identity);
         }
         enemySpawnManager.DecrementAliveSpawnersCounter();
+        GameEvents.OnEnemySpawnerDeath?.Invoke();
         Destroy(gameObject);
         Debug.Log("Enemy " + name + " died");
     }
