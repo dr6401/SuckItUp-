@@ -130,6 +130,11 @@ public class PlayerMovement : MonoBehaviour
                     coyoteTimer = 0;
                 }
             }
+
+            if (controls.Player.Jump.WasReleasedThisFrame() && verticalVelocity >= 0)
+            {
+                verticalVelocity *= 0.3f;
+            }
             
             horizontalMoveSpeed = new Vector3(moveDirection.x, moveDirection.y * 0.2f, moveDirection.z);
             if (controls.Player.Crouch.IsPressed() && characterController.isGrounded) // Crouch or Slide
