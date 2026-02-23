@@ -13,6 +13,8 @@ public class AugmentManager : MonoBehaviour
     private int currentSuckedDust = 0;
     [SerializeField] private int defaultAugmentTriggerTreshold = 100;
     [SerializeField] private int augmentTriggerTreshold = 20;
+    public bool use1stLevelFreebieThresholdForFirstAugment = false;
+    private int freebieThresholdForFirstAugment = 10;
     
     [SerializeField] private GameObject player;
     [SerializeField] private AugmentSelectionUI augmentSelectionUI;
@@ -28,15 +30,15 @@ public class AugmentManager : MonoBehaviour
     
     [Header("TESTING")] [SerializeField] private bool useTestingEqualAugmentOdds = false;
 
-    private static AugmentManager instance;
+    public static AugmentManager Instance;
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
-        instance = this;
+        Instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
@@ -66,6 +68,7 @@ public class AugmentManager : MonoBehaviour
         isDifficultyHardcore = SettingsManager.Instance.isDifficultyHardcore;
         if (!isDifficultyHardcore) augmentTriggerThresholdDuplicator = normalAugmentTriggerThresholdDuplicator;
         else augmentTriggerThresholdDuplicator = hardcoreAugmentTriggerThresholdDuplicator;
+        if (use1stLevelFreebieThresholdForFirstAugment) augmentTriggerTreshold = freebieThresholdForFirstAugment;
     }
 
     // Update is called once per frame
@@ -79,7 +82,13 @@ public class AugmentManager : MonoBehaviour
         {
             gameManager.TogglePauseGameWithoutSettingsMenu();
             GameEvents.OnHasSettingsUICoveredUpAugmentUI?.Invoke(true);
-            float tempAugmentTriggerTreshold = augmentTriggerTreshold * augmentTriggerThresholdDuplicator;
+            float tempAugmentTriggerTreshold;
+            if (use1stLevelFreebieThresholdForFirstAugment && !SettingsManager.Instance.isDifficultyHardcore)
+            {
+                tempAugmentTriggerTreshold = defaultAugmentTriggerTreshold;
+            }
+            else tempAugmentTriggerTreshold = augmentTriggerTreshold * augmentTriggerThresholdDuplicator;
+            use1stLevelFreebieThresholdForFirstAugment = false;
             Debug.Log("Current sucked dust was " + currentSuckedDust + "! Setting new currentSuckedDust to 0 and the threshold to " + (int) tempAugmentTriggerTreshold);
             currentSuckedDust = 0;
             int augmentChance = Random.Range(1, 101);
@@ -118,6 +127,8 @@ public class AugmentManager : MonoBehaviour
         {
             augmentTriggerTreshold = defaultAugmentTriggerTreshold;
         }
+        
+        if (use1stLevelFreebieThresholdForFirstAugment && !SettingsManager.Instance.isDifficultyHardcore) augmentTriggerTreshold = freebieThresholdForFirstAugment;
     }
 
     private void ResetAugmentTriggerThreshold() // Reset progress when exiting to main menu - remove this when adding level state persistence

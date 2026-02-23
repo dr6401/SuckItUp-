@@ -19306,7 +19306,7 @@ PrefabInstance:
       objectReference: {fileID: 1152587105}
     - target: {fileID: 2338545943200346280, guid: ff8b101283a34154f995ad06287bda90, type: 3}
       propertyPath: augmentTriggerTreshold
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2338545943200346280, guid: ff8b101283a34154f995ad06287bda90, type: 3}
       propertyPath: useTestingEqualAugmentOdds
@@ -19315,6 +19315,10 @@ PrefabInstance:
     - target: {fileID: 2338545943200346280, guid: ff8b101283a34154f995ad06287bda90, type: 3}
       propertyPath: augmentTriggerTresholdDuplicator
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2338545943200346280, guid: ff8b101283a34154f995ad06287bda90, type: 3}
+      propertyPath: use1stLevelFreebieThresholdForFirstAugment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6025747524574074662, guid: ff8b101283a34154f995ad06287bda90, type: 3}
       propertyPath: m_LocalPosition.x

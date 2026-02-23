@@ -16,6 +16,8 @@ public class MainMenuManager : MonoBehaviour
         GameEvents.OnEnteredMainMenu?.Invoke();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        var manager = AugmentManager.Instance;
+        if (manager != null) manager.use1stLevelFreebieThresholdForFirstAugment = true;
     }
 
     // Update is called once per frame
