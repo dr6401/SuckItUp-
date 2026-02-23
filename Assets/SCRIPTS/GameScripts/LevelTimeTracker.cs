@@ -43,7 +43,7 @@ public class LevelTimeTracker : MonoBehaviour
             //timerText.text = "";
             timeRanOut = true;
             GameEvents.OnLevelTimeRanOut?.Invoke();
-            gameOverText.text = "Mom came home and the house isn't clean!!!\n \n <size=150%>YOU LOSE!</size=150%>";
+            gameOverText.text = "Air supply depleted.\nDust filled your lungs.\n \n <color=#FF0000><size=150%>YOU SUFFOCATED!</size=150%></color>";
         }
     }
 
