@@ -13,7 +13,7 @@ public class RoombaHallway : MonoBehaviour
     private GameObject player;
     private PlayerControls controls;
     private bool isChosenAugmentsUIShown = false;
-    private float scrollSensitivity = 25;
+    private float scrollSensitivity = 20;
     [SerializeField] private GameObject chosenAugmentsCanvas;
     [SerializeField] private TMP_Text pressEToInteractText;
     private Vector3 pressEToInteractOriginalPosition;
