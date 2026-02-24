@@ -263,7 +263,7 @@ public class WeaponHandler : MonoBehaviour
 
     public void RefillAmmo(int reloadAmount)
     {
-        if (isVampire && currentAmmo >= 100 && !playerHealth.IsPlayerAtMaxHealth())
+        if (isVampire && currentAmmo >= 100 && !playerHealth.IsPlayerAtMaxHealth() && isVacuumWeaponActive)
         {
             OnHealthIncrease?.Invoke();
         }
