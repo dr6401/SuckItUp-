@@ -319,7 +319,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void AddVerticalVelocity()
     {
-        Debug.Log($"Boutta reduce verticalVelocity by {Mathf.Abs(verticalVelocity)}");
+        //Debug.Log($"Boutta reduce verticalVelocity by {Mathf.Abs(verticalVelocity)}");
         verticalVelocity -= Mathf.Abs(verticalVelocity) * 0.75f; // decrease vertical speed by 0.75 of speed upwards
     }
 

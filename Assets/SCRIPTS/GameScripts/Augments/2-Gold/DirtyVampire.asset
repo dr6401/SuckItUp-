@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: DirtyVampire
   m_EditorClassIdentifier: 
   augmentName: Dirty Vampire
-  description: While above 100 Ammo, vacuuming heals you +2HP instead of adding ammo.
+  description: While above 100 Ammo, vacuuming heals you +2HP instead of adding ammo
+    (Max 200HP).
   icon: {fileID: 21300000, guid: 8f3ad5bdb44696842b4e5d87987d4fd9, type: 3}
   tier: 1
   category: 3
