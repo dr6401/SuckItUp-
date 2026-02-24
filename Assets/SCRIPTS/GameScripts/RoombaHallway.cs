@@ -52,7 +52,7 @@ public class RoombaHallway : MonoBehaviour
         {
             pressEToInteractText.gameObject.transform.position = pressEToInteractOriginalPosition;
             pressEToInteractText.gameObject.SetActive(true);
-            pressEToInteractText.text = $"Press {interactKey} to show Augments";
+            pressEToInteractText.text = $"Press {interactKey} to show current Augments";
             if (controls.Player.Interact.WasPressedThisFrame() && !isChosenAugmentsUIShown)
             {
                 pressEToInteractText.gameObject.transform.position = pressEToInteractLowerPosition.position; // Lower the text to make space for AugmentsUI
