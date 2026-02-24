@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
@@ -68,7 +69,7 @@ public class AugmentManager : MonoBehaviour
         isDifficultyHardcore = SettingsManager.Instance.isDifficultyHardcore;
         if (!isDifficultyHardcore) augmentTriggerThresholdDuplicator = normalAugmentTriggerThresholdDuplicator;
         else augmentTriggerThresholdDuplicator = hardcoreAugmentTriggerThresholdDuplicator;
-        if (use1stLevelFreebieThresholdForFirstAugment) augmentTriggerTreshold = freebieThresholdForFirstAugment;
+        if (use1stLevelFreebieThresholdForFirstAugment && !isDifficultyHardcore) augmentTriggerTreshold = freebieThresholdForFirstAugment;
     }
 
     // Update is called once per frame
