@@ -124,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
             RotatePlayer();
             if (controls.Player.Jump.IsPressed() && coyoteTimer > 0) // Jump
             {
-                if (!Physics.Raycast(transform.position - Vector3.down * 0.25f, transform.up, playerHeight * 1.4f, ~(1 << LayerMask.NameToLayer("PlayerHeadHitBox"))))
+                if (!Physics.Raycast(transform.position - Vector3.down * 0.25f, transform.up, playerHeight * 1.4f, ~LayerMask.GetMask("PlayerHeadHitBox", "VacuumWeaponHitZone")))
                 {
                     Jump();
                     coyoteTimer = 0;
@@ -155,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
                 baseMoveSpeed * baseMoveSpeed + 1f) // Stop Crouching/Sliding
             {
                 //Debug.Log("Conditions for isUncrouching/StoppingSlide were met");
-                if (!Physics.Raycast(transform.position + Vector3.down * 0.3f, transform.up, playerHeight * 1.4f, ~(1 << LayerMask.NameToLayer("PlayerHeadHitBox"))))// These floats are just fine-tuning, so we get the ray cast to align with the newly created player collider (collider when player is crouching)
+                if (!Physics.Raycast(transform.position + Vector3.down * 0.3f, transform.up, playerHeight * 1.4f, ~LayerMask.GetMask("PlayerHeadHitBox", "VacuumWeaponHitZone"))) // These floats are just fine-tuning, so we get the ray cast to align with the newly created player collider (collider when player is crouching)
                 {
                     isCrouching = false;
                     isSliding = false;

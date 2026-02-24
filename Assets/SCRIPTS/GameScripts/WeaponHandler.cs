@@ -205,7 +205,7 @@ public class WeaponHandler : MonoBehaviour
 
     private void Shoot()
     {
-        int layerMask = ~LayerMask.GetMask("Player", "Projectile", "PlayerHitBox", "PlayerHeadHitBox", "Dust", "RenderBehindWalls");
+        int layerMask = ~LayerMask.GetMask("Player", "Projectile", "PlayerHitBox", "PlayerHeadHitBox", "Dust", "RenderBehindWalls", "VacuumWeaponHitZone");
 
         GameEvents.OnShoot?.Invoke();
 

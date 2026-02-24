@@ -11,7 +11,8 @@ public class VacuumWeaponManager : MonoBehaviour
     
     public static Action<Collider, int> OnEnemyStayInVacuumZone;
     [SerializeField] private WeaponHandler weaponHandler;
-    [SerializeField] private HashSet<EnemyHealth> enemiesInRange = new();
+    private HashSet<EnemyHealth> enemiesInRange = new();
+    private HashSet<EnemySpawnerHealth> spawnersInRange = new();
 
     private void Start()
     {
@@ -22,40 +23,58 @@ public class VacuumWeaponManager : MonoBehaviour
     private void Update()
     {
         timeSinceDamage += Time.deltaTime;
-        if (timeSinceDamage >= damageInterval && enemiesInRange.Count > 0)
+        if (timeSinceDamage >= damageInterval && (enemiesInRange.Count > 0 || spawnersInRange.Count > 0))
         {
-            enemiesInRange.RemoveWhere(enemy => enemy == null || !enemy.gameObject.activeInHierarchy);
+            enemiesInRange.RemoveWhere(enemy => enemy == null || !enemy.gameObject.activeInHierarchy); // Enemies
             foreach (var enemy in enemiesInRange)
             {
                 enemy.TakeDamage(damage);
             }
+            spawnersInRange.RemoveWhere(enemySpawner => enemySpawner == null || !enemySpawner.gameObject.activeInHierarchy); // Spawners
+            foreach (var enemySpawner in spawnersInRange)
+            {
+                enemySpawner.TakeDamage(damage);
+            }
+            
             timeSinceDamage = 0f;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Enemy")) return; // Only on enemies, not on spawners
+        if (!other.CompareTag("Enemy") && !other.CompareTag("EnemySpawner")) return;
         if (other.TryGetComponent(out EnemyHealth health))
         {
             enemiesInRange.Add(health);
+        }
+        if (other.TryGetComponent(out EnemySpawnerHealth spawnerHealth))
+        {
+            enemiesInRange.Add(spawnerHealth);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (!other.CompareTag("Enemy")) return; // Only on enemies, not on spawners
+        if (!other.CompareTag("Enemy") && !other.CompareTag("EnemySpawner")) return;
         if (other.TryGetComponent(out EnemyHealth health))
         {
             enemiesInRange.Remove(health);
+        }
+        if (other.TryGetComponent(out EnemySpawnerHealth spawnerHealth))
+        {
+            enemiesInRange.Remove(spawnerHealth);
         }
     }
 
     public void EnableCollider(bool enable)
     {
         vacuumWeaponDamageCollider.enabled = enable;
-        if (!enable) enemiesInRange.Clear();
-        Debug.Log($"Enabled collider: {enable}");
+        if (!enable)
+        {
+            enemiesInRange.Clear();
+            spawnersInRange.Clear();
+        }
+        //Debug.Log($"Enabled collider: {enable}");
     }
     
     public void ExtendVacuumRange(float multiplier)
@@ -73,5 +92,6 @@ public class VacuumWeaponManager : MonoBehaviour
     private void OnDisable()
     {
         enemiesInRange.Clear();
+        spawnersInRange.Clear();
     }
 }
