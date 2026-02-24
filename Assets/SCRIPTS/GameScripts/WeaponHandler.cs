@@ -81,6 +81,7 @@ public class WeaponHandler : MonoBehaviour
     [SerializeField] private GameObject shieldVFXObject;
     private bool isAmmoNationEnabled = false;
     private float ammoNationConversionIncrease = 1;
+    private float ammoNationChance = 0f;
 
     private void Awake()
     {
@@ -271,7 +272,15 @@ public class WeaponHandler : MonoBehaviour
         else if (reloadAmount > 0)
         {
             OnAmmoIncrease?.Invoke();
-            if (isAmmoNationEnabled) reloadAmount = Mathf.RoundToInt(reloadAmount * ammoNationConversionIncrease);
+            if (isAmmoNationEnabled)
+            {
+                if (Random.value < ammoNationChance)
+                {
+                    reloadAmount = Mathf.RoundToInt(reloadAmount * ammoNationConversionIncrease);
+                    //Debug.Log($"More than {ammoNationChance}, doubling ammo");
+                }
+                //Debug.Log($"Proc ratio: {(float) procCount / totalCounts}%");
+            }
             currentAmmo += reloadAmount;
         }
 
@@ -470,10 +479,11 @@ public class WeaponHandler : MonoBehaviour
         isDuststormShellEnabled = true;
     }
 
-    public void ApplyAmmoNation(float conversionRateIncrease)
+    public void ApplyAmmoNation(float conversionRateIncrease, float chanceToTrigger)
     {
         isAmmoNationEnabled = true;
         ammoNationConversionIncrease = conversionRateIncrease;
+        ammoNationChance = chanceToTrigger;
     }
 
 #endregion
