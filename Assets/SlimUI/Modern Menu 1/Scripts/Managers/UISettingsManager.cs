@@ -104,7 +104,21 @@ namespace SlimUI.ModernMenu{
 
 			// check shadow distance/enabled
 			if(platform == Platform.Desktop){
-				if(PlayerPrefs.GetInt("Shadows", GameConstants.defaultShadows) == 0){
+				if (!PlayerPrefs.HasKey("Shadows"))
+				{
+					PlayerPrefs.SetInt("Shadows", GameConstants.defaultShadows); // Low shadows
+					//QualitySettings.shadowCascades = 0;
+					//QualitySettings.shadowDistance = 0;
+					urpAsset.shadowCascadeCount = 1;
+					urpAsset.shadowDistance = 0;
+					urpAsset.mainLightShadowmapResolution = 256;
+					urpAsset.maxAdditionalLightsCount = 0;
+					urpAsset.additionalLightsShadowmapResolution = 0;
+					shadowofftextLINE.gameObject.SetActive(true);
+					shadowlowtextLINE.gameObject.SetActive(false);
+					shadowhightextLINE.gameObject.SetActive(false);
+				}
+				else if(PlayerPrefs.GetInt("Shadows", GameConstants.defaultShadows) == 0){
 					//QualitySettings.shadowCascades = 0;
 					//QualitySettings.shadowDistance = 0;
 					urpAsset.shadowCascadeCount = 1;
@@ -216,7 +230,15 @@ namespace SlimUI.ModernMenu{
 			}*/
 
 			// check texture quality
-			if(PlayerPrefs.GetInt("Textures", GameConstants.defaultTextures) == 0){
+			if (!PlayerPrefs.HasKey("Textures")){ // If first time, set textures to high
+				Debug.Log("Player ain't had no PlayerPrefs.HasKey(\"Textures\"), so we set textures to high");
+				PlayerPrefs.SetInt("Textures", GameConstants.defaultTextures);
+				QualitySettings.globalTextureMipmapLimit = 0;
+				texturelowtextLINE.gameObject.SetActive(false);
+				texturemedtextLINE.gameObject.SetActive(false);
+				texturehightextLINE.gameObject.SetActive(true);
+			}
+			else if(PlayerPrefs.GetInt("Textures", GameConstants.defaultTextures) == 0){
 				QualitySettings.globalTextureMipmapLimit = 2;
 				texturelowtextLINE.gameObject.SetActive(true);
 				texturemedtextLINE.gameObject.SetActive(false);

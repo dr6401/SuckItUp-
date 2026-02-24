@@ -11,7 +11,7 @@ public class MainMenuManager : MonoBehaviour
     void Start()
     {
         //PlayerPrefs.DeleteAll();
-        PlayerPrefs.DeleteKey("GameplayFTUECompleted");
+        //PlayerPrefs.DeleteKey("GameplayFTUECompleted");
         PlayerPrefs.SetInt("Level1", 0); // Lock lvl2 and lvl3 when starting game
         PlayerPrefs.SetInt("Level2", 0);
         GameEvents.OnEnteredMainMenu?.Invoke();
@@ -20,13 +20,7 @@ public class MainMenuManager : MonoBehaviour
         var manager = AugmentManager.Instance;
         if (manager != null) manager.use1stLevelFreebieThresholdForFirstAugment = true;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     public void LoadHallwayScene()
     {
         loadHallwaySceneFeedback?.PlayFeedbacks();

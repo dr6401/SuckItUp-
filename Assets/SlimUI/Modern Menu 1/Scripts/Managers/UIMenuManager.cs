@@ -185,7 +185,7 @@ namespace SlimUI.ModernMenu{
 			loadTutorialSceneFeedback?.PlayFeedbacks();
 		}
 
-		public void  DisablePlayCampaign(){
+		public void DisablePlayCampaign(){
 			playMenu.SetActive(false);
 			gameModeMenu.SetActive(false);
 		}

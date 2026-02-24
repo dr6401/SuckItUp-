@@ -23,5 +23,5 @@ public class GameConstants
     public const int defaultHardcoreDifficulty = 0;
     public const float defaultFOV = 85f;
     public const float defaultGraphics = 1f;
-    public const int defaultShadows = 2;
+    public const int defaultShadows = 0;
 }
