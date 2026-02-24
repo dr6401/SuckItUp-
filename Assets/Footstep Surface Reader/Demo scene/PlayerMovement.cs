@@ -9,7 +9,7 @@ namespace FSR
         [SerializeField] private float speed = 1;
         [SerializeField] private float jumpForce = 1;
         [SerializeField] private float sensitivity = 1;
-        [SerializeField] private FSR_Player fSR_Player;
+        //[SerializeField] private FSR_Player fSR_Player;
         [SerializeField] private float stepfrequency = 0.5f;
         private float stepTimer;
         float rotationX = 0F;
@@ -53,7 +53,7 @@ namespace FSR
             if (stepTimer > stepfrequency && _rigidbody.linearVelocity.magnitude > 0.1f)
             {
                 stepTimer = 0;
-                fSR_Player.Walk();
+                //fSR_Player.Walk();
             }
 
             Cursor.lockState = CursorLockMode.Locked;

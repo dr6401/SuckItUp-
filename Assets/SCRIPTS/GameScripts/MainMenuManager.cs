@@ -11,6 +11,7 @@ public class MainMenuManager : MonoBehaviour
     void Start()
     {
         //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteKey("GameplayFTUECompleted");
         PlayerPrefs.SetInt("Level1", 0); // Lock lvl2 and lvl3 when starting game
         PlayerPrefs.SetInt("Level2", 0);
         GameEvents.OnEnteredMainMenu?.Invoke();

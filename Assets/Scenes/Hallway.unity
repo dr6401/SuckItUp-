@@ -2905,7 +2905,9 @@ MonoBehaviour:
   - 3 Rooms. 3 Disasters.
   - Destroy the dusty nests to stop the infestation.
   - Eradicate anything still moving and vacuum up the remains.
-  - Leave <b><size=120%><color=#FF0000>nothing alive,\nnothing dirty.
+  - 1 - Destroy nests\n2 - Kill dusties\n3 - Vacuum the Dust
+  - Leave <b><size=120%><color=#FF0000>nothing alive</color></size></b>,\n<b><size=120%><color=#FF0000>nothing
+    dirty.
   fadeInFtueCanvasFeedback: {fileID: 1791059411}
   currentTextIndex: 0
   playerMovement: {fileID: 1699377965}
