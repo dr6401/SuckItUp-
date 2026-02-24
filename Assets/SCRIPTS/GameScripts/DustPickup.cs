@@ -137,4 +137,8 @@ public class DustPickup : MonoBehaviour
         ReportDustDestroyedToGameManager();
     }
 
+    private void OnEnable()
+    {
+        moveSpeed = baseMoveSpeed;
+    }
 }

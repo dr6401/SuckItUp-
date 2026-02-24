@@ -54,7 +54,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        EnemyHealthBar.UpdateBar(currentHealth, 0, maxHealth, true);
+        if (currentHealth > 0) EnemyHealthBar.UpdateBar(currentHealth, 0, maxHealth, true); // Prevents updating Health bar if object is destroyed (hp is less than 1)
         Flash();
         //healthBarImage.fillAmount = currentHealth / maxHealth;
         //Debug.Log("Enemy " + name + " took " + damage + " damage. " + currentHealth + " health remaining");
@@ -98,7 +98,7 @@ public class EnemyHealth : MonoBehaviour
             Instantiate(deathExplosionPrefab, transform.position, Quaternion.identity);
         }
         GameEvents.OnEnemyDeath?.Invoke();
-        if (ObjectPooler.Instance != null)
+        /*if (ObjectPooler.Instance != null)
         {
             switch (type)
             {
@@ -113,10 +113,8 @@ public class EnemyHealth : MonoBehaviour
                     break;
             }    
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        else*/
+        Destroy(gameObject);
         //Destroy(gameObject);
         //Debug.Log("Enemy " + name + " died!");
     }

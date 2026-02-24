@@ -1,0 +1,77 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class VacuumWeaponManager : MonoBehaviour
+{
+    private float damageInterval = 0.75f;
+    private float timeSinceDamage = 0f;
+    private int damage = 1;
+    [SerializeField] private CapsuleCollider vacuumWeaponDamageCollider;
+    
+    public static Action<Collider, int> OnEnemyStayInVacuumZone;
+    [SerializeField] private WeaponHandler weaponHandler;
+    [SerializeField] private HashSet<EnemyHealth> enemiesInRange = new();
+
+    private void Start()
+    {
+        vacuumWeaponDamageCollider = GetComponent<CapsuleCollider>();
+        if (weaponHandler != null) damage = (int) weaponHandler.vacuumWeaponDamage;
+    }
+
+    private void Update()
+    {
+        timeSinceDamage += Time.deltaTime;
+        if (timeSinceDamage >= damageInterval && enemiesInRange.Count > 0)
+        {
+            enemiesInRange.RemoveWhere(enemy => enemy == null || !enemy.gameObject.activeInHierarchy);
+            foreach (var enemy in enemiesInRange)
+            {
+                enemy.TakeDamage(damage);
+            }
+            timeSinceDamage = 0f;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Enemy")) return; // Only on enemies, not on spawners
+        if (other.TryGetComponent(out EnemyHealth health))
+        {
+            enemiesInRange.Add(health);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.CompareTag("Enemy")) return; // Only on enemies, not on spawners
+        if (other.TryGetComponent(out EnemyHealth health))
+        {
+            enemiesInRange.Remove(health);
+        }
+    }
+
+    public void EnableCollider(bool enable)
+    {
+        vacuumWeaponDamageCollider.enabled = enable;
+        if (!enable) enemiesInRange.Clear();
+        Debug.Log($"Enabled collider: {enable}");
+    }
+    
+    public void ExtendVacuumRange(float multiplier)
+    {
+        vacuumWeaponDamageCollider.height *= multiplier;
+        vacuumWeaponDamageCollider.radius *= multiplier;
+    }
+    
+    
+    private void OnEnable()
+    {
+        timeSinceDamage = 10f; // Make vacuum deal damage when enabled and start sucking
+    }
+
+    private void OnDisable()
+    {
+        enemiesInRange.Clear();
+    }
+}

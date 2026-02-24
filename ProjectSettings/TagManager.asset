@@ -18,6 +18,7 @@ TagManager:
   - PlayerHeadHitBox
   - EndOfSuctionWeapon
   - EnemyFoldersFolder
+  - VacuumWeaponHitBox
   layers:
   - Default
   - TransparentFX
@@ -38,7 +39,7 @@ TagManager:
   - 
   - AlwaysRenderOnTop
   - 
-  - 
+  - VacuumWeaponHitZone
   - 
   - 
   - 

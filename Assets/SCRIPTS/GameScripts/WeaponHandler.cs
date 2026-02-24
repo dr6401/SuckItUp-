@@ -15,9 +15,11 @@ public class WeaponHandler : MonoBehaviour
     private bool isDifficultyHardcore;
     public GameObject shooterWeapon;
     public GameObject vacuumWeapon;
+    [SerializeField] private VacuumWeaponManager vacuumWeaponManager;
     private bool isShooterWeaponActive = true;
     private bool isVacuumWeaponActive;
     [SerializeField] private float shooterWeaponDamage = 5f;
+    public float vacuumWeaponDamage = 1f;
     private float shootingRange = 100f;
     private float vacuumRange = 10f;
     [SerializeField] private float fireRate = 0.2f;
@@ -151,6 +153,7 @@ public class WeaponHandler : MonoBehaviour
                 StopSuckingDustParticles();
                 if (isAlreadySucking)
                 {
+                    vacuumWeaponManager.EnableCollider(false);
                     soundManager.PlayEndVacuuming();
                     GameEvents.OnStopSuckingDust?.Invoke();
                 }
@@ -251,6 +254,7 @@ public class WeaponHandler : MonoBehaviour
         {
             soundManager.PlayStartVacuuming();
             isAlreadySucking = true;
+            vacuumWeaponManager.EnableCollider(true);
             GameEvents.OnStartSuckingDust?.Invoke();
         }
 
@@ -342,6 +346,7 @@ public class WeaponHandler : MonoBehaviour
             if (dust.CompareTag("DustPickup"))
             {
                 dust.GetComponent<DustPickup>().isGettingSucked = isSucking;
+                //Debug.Log($"Found dust and sucking it, it's isGettingSucked: {dust.GetComponent<DustPickup>().isGettingSucked}");
             }
         }
     }
@@ -358,6 +363,7 @@ public class WeaponHandler : MonoBehaviour
         StopSuckingDustParticles();
         if (isAlreadySucking)
         {
+            vacuumWeaponManager.EnableCollider(false);
             soundManager.PlayEndVacuuming();
             GameEvents.OnStopSuckingDust?.Invoke();
         }
@@ -418,6 +424,7 @@ public class WeaponHandler : MonoBehaviour
     public void ApplyDustMagnet(float rangeMultiplier)
     {
         vacuumRange *= rangeMultiplier;
+        vacuumWeaponManager.ExtendVacuumRange(rangeMultiplier);
     }
 
     public void ApplyAmmoRecycler(int chanceThreshold)
